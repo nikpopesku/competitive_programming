@@ -19,12 +19,12 @@ public:
         vector<int>dp {};
 
 
-        for (size_t i = 0; i < height.size(); i++) {
-            auto lower = lower_bound(dp.begin(), dp.end(), height[i]);
+        for (int i : height) {
+            auto lower = lower_bound(dp.begin(), dp.end(), i);
             if (lower == dp.end()) {
-                dp.push_back(height[i]);
+                dp.push_back(i);
             } else {
-                dp[lower-dp.begin()] = height[i];
+                dp[lower-dp.begin()] = i;
             }
 
         }
