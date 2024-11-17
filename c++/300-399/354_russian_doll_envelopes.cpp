@@ -21,7 +21,7 @@ public:
 
         for (size_t i = 0; i < height.size(); i++) {
             auto lower = lower_bound(dp.begin(), dp.end(), height[i]);
-            if (lower == dp.end) {
+            if (lower == dp.end()) {
                 dp.push_back(height[i]);
             } else {
                 dp[lower-dp.begin()] = height[i];
@@ -37,8 +37,8 @@ private:
         if (i[0] < j[0]) {
             return true;
         }
-        if (j[0] > i[0]) {
-            return true;
+        if (j[0] < i[0]) {
+            return false;
         }
 
         if (i[1] > j[1]) {
