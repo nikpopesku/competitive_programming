@@ -1,7 +1,6 @@
-
 #include <iostream>
-#include <unordered_map>
 #include "../library/treenode.h"
+#include <unordered_map>
 
 
 using std::cout, std::endl;
@@ -9,17 +8,38 @@ using std::cout, std::endl;
 
 class Solution {
 public:
-    int maxPathSum(TreeNode* root) {
-        return 4;
+    int maxPathSum(TreeNode *root) {
+        if (root == nullptr) return 0;
+        if (dp.find(root->val) != dp.end()) return dp[root->val];
+
+        if (root->left == nullptr and root->right == nullptr) {
+            dp[root->val] = root->val;
+        }
+
+        const int left = maxPathSum(root->left);
+        const int right = maxPathSum(root->right);
+        dp[root->val] = max({left, right, left + right + root->val, root->val, left + root->val, right + root->val});
+
+        return dp[root->val];
     }
+
+private:
+    static int max(std::initializer_list<int> list) {
+        int max_value = *list.begin();
+        for (const auto elem: list) {
+            if (elem > max_value) {
+                max_value = elem;
+            }
+        }
+
+        return max_value;
+    }
+
+    std::unordered_map<int, int> dp{};
 };
 
 int main() {
     auto s = Solution();
-    // const auto a = new TreeNode(3, new TreeNode(2, nullptr, new TreeNode(3)),
-    //                             new TreeNode(3, nullptr, new TreeNode(1)));
-    const auto a = new TreeNode(3, new TreeNode(4, new TreeNode(1), new TreeNode(3)),
-                                new TreeNode(5, nullptr, new TreeNode(1)));
-    cout << s.maxPathSum(a) << endl;
-    delete a;
+    cout << s.maxPathSum(new TreeNode(-10, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)))) <<
+            endl;
 }
