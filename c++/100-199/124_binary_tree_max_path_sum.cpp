@@ -1,14 +1,9 @@
 #include <iostream>
 #include "../library/treenode.h"
-#include <unordered_map>
 #include <climits>
 
 
 using std::cout, std::endl;
-
-// auto hash = [](const TreeNode& n){return std::hash<const TreeNode*>()(&n);};
-// auto equal = [](const TreeNode& l, const TreeNode& r){return l.val == r.val;};
-
 
 class Solution {
 public:
@@ -34,7 +29,5 @@ private:
 
 int main() {
     auto s = Solution();
-    // cout << s.maxPathSum(new TreeNode(-10, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)))) << endl;
     cout << s.maxPathSum(new TreeNode(1, new TreeNode(-2, new TreeNode(1, new TreeNode(-1), nullptr), new TreeNode(3)), new TreeNode(-3, new TreeNode(-2), nullptr))) << endl;
-    // cout << s.maxPathSum(new TreeNode(-3)) << endl;
 }
