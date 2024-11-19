@@ -2,7 +2,6 @@
 #define TREENODE_H
 
 
-
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -15,6 +14,13 @@ struct TreeNode {
     }
 
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    }
+
+    bool operator==(const TreeNode& otherPos) const
+    {
+        if (this->val == otherPos.val) return true;
+
+        return false;
     }
 };
 
