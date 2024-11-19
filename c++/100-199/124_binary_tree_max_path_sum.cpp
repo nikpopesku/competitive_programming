@@ -13,42 +13,23 @@ using std::cout, std::endl;
 class Solution {
 public:
 
-    int maxPathSum(TreeNode *root) {
-        if (root == nullptr) return INT_MIN;
-        if (dp.find(root) != dp.end()) return dp[root];
-
-        if (root->left == nullptr and root->right == nullptr) {
-            dp[root] = root->val;
-        }
-
-        const long long left = maxPathSum(root->left);
-        const long long right = maxPathSum(root->right);
-        dp[root] = max({left, right, left + right + root->val, root->val, left + root->val, right + root->val});
-
-        return dp[root];
-    }
-
-    struct HashFunction
-    {
-        size_t operator()(const TreeNode& n) const
-        {
-            return std::hash<const TreeNode*>()(&n);
-        }
-    };
-private:
-    std::unordered_map<TreeNode*, int, HashFunction> dp {};
-
-    int max(const std::initializer_list<long long> list) {
-        int max_value = *list.begin();
-        for (const auto elem: list) {
-            if (elem > max_value) {
-                max_value = elem;
-            }
-        }
+    int maxPathSum(const TreeNode *root) {
+        calc(root);
 
         return max_value;
     }
+private:
+    int calc(const TreeNode *node) {
+        if (node == nullptr) return 0;
 
+        const int left = std::max(0, calc(node->left));
+        const int right = std::max(0, calc(node->right));
+
+        max_value = std::max(max_value, left + right + node->val);
+
+        return std::max(node->val + left, node->val + right);
+    }
+    int max_value = INT_MIN;
 };
 
 int main() {
