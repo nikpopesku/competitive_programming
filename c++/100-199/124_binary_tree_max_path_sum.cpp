@@ -24,7 +24,7 @@ public:
     }
 
 private:
-    static int max(std::initializer_list<int> list) {
+    static int max(const std::initializer_list<int> list) {
         int max_value = *list.begin();
         for (const auto elem: list) {
             if (elem > max_value) {
