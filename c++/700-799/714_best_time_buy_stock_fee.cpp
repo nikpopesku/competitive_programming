@@ -24,5 +24,5 @@ public:
 
 int main() {
     auto s = Solution();
-    cout << s.maxProfit({1,2,3,0,2}, 2) << endl;
+    cout << s.maxProfit({1,3,7,5,10,3}, 2) << endl;
 }
