@@ -20,7 +20,7 @@ public:
             green[i] = min(red[i-1], blue[i-1]) + costs[i-1][2];
         }
 
-        return min(red[n], blue[n], green[n]);
+        return min(min(red[n], blue[n]), green[n]);
     }
 };
 
