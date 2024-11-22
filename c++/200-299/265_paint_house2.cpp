@@ -5,7 +5,7 @@ using std::vector, std::min;
 
 class Solution {
 public:
-    int minCostII(vector<vector<int>>& costs) {
+    int minCostII(const vector<vector<int>>& costs) {
         const size_t m = costs.size();
         const size_t n = costs[0].size();
         vector dp (m+1, vector(n, 0));
@@ -13,12 +13,8 @@ public:
         for (size_t i = 1; i <= m; i++) {
             for (size_t j = 0; j < n; j++) {
                 vector<int> others {};
-                for (size_t k = 0; k < j; k++) {
-                    others.push_back(dp[i-1][k]);
-                }
-                for (size_t k = j+1; k < n; k++) {
-                    others.push_back(dp[i-1][k]);
-                }
+                others.insert(others.end(), dp[i-1].begin(), dp[i-1].begin() + j);
+                others.insert(others.end(), dp[i-1].begin() + j + 1, dp[i-1].end());
                 dp[i][j] = minValue(others) + costs[i-1][j];
             }
         }
