@@ -9,8 +9,8 @@ using std::cout, std::endl, std::vector, std::max;
 class Solution {
 public:
     int maxProfit(const vector<int>& prices, int fee) {
-        long long sold = INT_MIN;
-        long long held = INT_MIN;
+        long long sold = 0;
+        long long held = 0;
 
         for (auto &p:prices) {
             const long long pre_sold = sold;
