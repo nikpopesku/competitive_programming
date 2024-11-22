@@ -6,7 +6,9 @@ using std::vector;
 class Solution {
 public:
     int minCost(const vector<vector<int>>& costs) {
-
+        vector<int> red(costs.size() + 1, 0);
+        vector<int> blue(costs.size() + 1, 0);
+        vector<int> green(costs.size() + 1, 0);
     }
 };
 
