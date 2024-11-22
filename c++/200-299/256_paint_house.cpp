@@ -1,37 +1,17 @@
-#include <cmath>
 #include <iostream>
 #include <vector>
-#include <climits>
+
+using std::vector;
 
 class Solution {
 public:
-    int numSquares(const int n) {
-        std::vector dp(n + 1, INT_MAX);
-        dp[0] = 0;
-        dp[1] = 1;
+    int minCost(const vector<vector<int>>& costs) {
 
-        std::vector<int> squares{};
-
-        for (int i = 1; i <= std::sqrt(n); i++) {
-            squares.push_back(i * i);
-        }
-
-        for (int i = 2; i <= n; i++) {
-            for (const auto sq: squares) {
-                if (sq > i) {
-                    break;
-                }
-
-                dp[i] = std::min(dp[i], dp[i - sq] + 1);
-            }
-        }
-
-        return dp[n];
     }
 };
 
 
 int main() {
     auto s = Solution();
-    std::cout << s.numSquares(4) << std::endl;
+    std::cout << s.minCost({{17,2,17},{16,16,5},{14,3,19}}) << std::endl;
 }
