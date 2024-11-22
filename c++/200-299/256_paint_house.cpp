@@ -9,6 +9,11 @@ public:
         vector<int> red(costs.size() + 1, 0);
         vector<int> blue(costs.size() + 1, 0);
         vector<int> green(costs.size() + 1, 0);
+        red[1] = costs[0][0];
+        blue[1] = costs[0][1];
+        green[1] = costs[0][2];
+
+        return 4;
     }
 };
 
