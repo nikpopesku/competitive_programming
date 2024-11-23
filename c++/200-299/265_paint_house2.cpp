@@ -9,10 +9,11 @@ public:
         const size_t m = costs.size();
         const size_t n = costs[0].size();
         vector dp (m+1, vector(n, 0));
+        vector<int> others {};
 
         for (size_t i = 1; i <= m; i++) {
             for (size_t j = 0; j < n; j++) {
-                vector<int> others {};
+                others = {};
                 others.insert(others.end(), dp[i-1].begin(), dp[i-1].begin() + j);
                 others.insert(others.end(), dp[i-1].begin() + j + 1, dp[i-1].end());
                 dp[i][j] = minValue(others) + costs[i-1][j];
