@@ -12,15 +12,15 @@ int main() {
     for (int i = 0; i < t; i++) {
         std::cin >> a >> b >> c;
 
-        if (std::abs(b - c) % 2 == 0 and std::abs(b - c) / 2 < a) {
+        if (std::abs(b - c) % 2 == 0) {
             response[i][0] = 1;
         }
 
-        if (std::abs(a - c) % 2 == 0 and std::abs(a - c) / 2 < b) {
+        if (std::abs(a - c) % 2 == 0) {
             response[i][1] = 1;
         }
 
-        if (std::abs(a - b) % 2 == 0 and std::abs(a - b) / 2 < c) {
+        if (std::abs(a - b) % 2 == 0) {
             response[i][2] = 1;
         }
     }
