@@ -6,32 +6,35 @@ using std::vector;
 int main()
 {
     int t;
-    int n;
-    std::string path;
-    unsigned int count = 0;
+    int a, b, c;
 
 
     std::cin >> t;
-    std::vector<unsigned int> response {};
+    vector response (t, vector<int>(3, 0));
 
     for (int i = 0; i < t; i++) {
-        std::cin >> n;
-        std::cin >> path;
-        count = 0;
+        std::cin >> a >> b >> c;
 
-        for (int j = 0; j < n; j++) {
-          if (path[j] == '@') {
-            count++;
-          } else if (path[j] == '*' and j > 0 and path[j-1] == '*') {
-            break;
-          }
+        if (std::abs(b - c) % 2 == 0 and std::abs(b - c) / 2 < a) {
+          response[i][0] = 1;
         }
 
-        response.push_back(count);
+        if (std::abs(a - c) % 2 == 0 and std::abs(a - c) / 2 < b) {
+          response[i][1] = 1;
+        }
+
+        if (std::abs(a - b) % 2 == 0 and std::abs(a - b) / 2 < c) {
+          response[i][2] = 1;
+        }
+
     }
 
-    for (auto &i: response) {
-      std::cout << i << std::endl;
+    for (auto &row: response) {
+      for (const auto &elem: row) {
+        std::cout << elem;
+      }
+
+      std::cout << std::endl;
     }
 
 
