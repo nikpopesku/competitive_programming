@@ -1,15 +1,13 @@
 #include <iostream>
 #include <vector>
 
-using std::vector;
-
 int main() {
     int t;
     int a, b, c;
 
 
     std::cin >> t;
-    vector response(t, vector(3, 0));
+    std::vector response(t, std::vector(3, 0));
 
     for (int i = 0; i < t; i++) {
         std::cin >> a >> b >> c;
