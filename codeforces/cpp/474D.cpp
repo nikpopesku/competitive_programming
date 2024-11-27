@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -14,10 +15,23 @@ int main()
     std::cin >> t >> k;
 
     vector<int> response (t);
+    vector<int> min_value (t);
+    vector<int> max_value (t);
 
     for (int i = 0; i < t; i++) {
         std::cin >> min_flower >> max_flower;
-        response.push_back(6);
+        min_value.push_back(min_flower);
+        max_value.push_back(max_flower);
+    }
+
+    for (int i = 1; i < k; i++) {
+        dp[i] = 1;
+    }
+
+    auto absolute_max = std::max_element(max_value.begin(), max_value.end());
+
+    for (auto i = k; i <= *absolute_max; i++) {
+        dp[i] = 1;
     }
 
     for (const auto i: response) {
