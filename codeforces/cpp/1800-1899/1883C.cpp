@@ -11,32 +11,36 @@ int main() {
     for (int i = 0; i < t; i++) {
         std::cin >> n >> k;
 
-        std::vector numbers(n, 0);
+        int number;
         int number_even = 0;
         int distance_to_5 = 4;
+        int distance_to_3 = 2;
 
         for (int j = 0; j < n; j++) {
-            std::cin >> numbers[j];
+            std::cin >> number;
 
-            if (numbers[j] % 2 == 0) {
+            if (number % 2 == 0) {
                 number_even++;
             }
 
             if (k == 5 and distance_to_5 > 0) {
-                distance_to_5 = std::min(distance_to_5, numbers[j] % 5);
+                distance_to_5 = std::min(distance_to_5, number % 5);
             }
 
+            if (k == 3 and distance_to_3 > 0) {
+                distance_to_3 = std::min(distance_to_3, number % 3);
+            }
         }
 
-        if (k == 2 and number_even == 0) {
-            response[i] = 1;
-        }
-
-        if (k == 5) {
+        if (k == 2) {
+            if (number_even == 0) {
+                response[i] = 1;
+            }
+        } else if (k == 5) {
             response[i] = distance_to_5;
-        }
-
-        if (k == 4) {
+        } else if (k == 3) {
+            response[i] = distance_to_3;
+        } else if (k == 4) {
             if (number_even == 0) {
                 response[i] = 2;
             } else if (number_even < 2) {
