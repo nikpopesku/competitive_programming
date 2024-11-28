@@ -19,8 +19,10 @@ int main() {
         for (int j = 0; j < n; j++) {
             std::cin >> number;
 
-            if (number % 2 == 0) {
+            int even = number;
+            while (even % 2 == 0) {
                 number_even++;
+                even = even / 2;
             }
 
             if (k == 5 and distance_to_5 > 0) {
