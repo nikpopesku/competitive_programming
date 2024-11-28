@@ -20,10 +20,8 @@ int main() {
         }
 
         if (product % k == 0) {
-          continue;
+            continue;
         }
-
-
     }
 
     for (auto &elem: response) {
