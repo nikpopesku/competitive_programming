@@ -14,7 +14,7 @@ int main() {
         int number;
         int number_even = 0;
         int distance_to_5 = 4;
-        int distance_to_4 = 3;
+        int distance_to_4 = 2;
         int distance_to_3 = 2;
 
         for (int j = 0; j < n; j++) {
@@ -46,6 +46,12 @@ int main() {
                     distance_to_4 = 0;
                 } else {
                     distance_to_4 = std::min(distance_to_4, 4 - number % 4);
+                }
+
+                if (number_even >= 2) {
+                    distance_to_4 = std::min(distance_to_4, 0);
+                } else if (number_even >= 1) {
+                    distance_to_4 = std::min(distance_to_4, 1);
                 }
             }
         }
