@@ -12,20 +12,41 @@ int main() {
         std::cin >> n >> k;
 
         std::vector numbers(n, 0);
-        unsigned long long product = 1;
+        int number_even = 0;
+        int distance_to_5 = 4;
 
         for (int j = 0; j < n; j++) {
             std::cin >> numbers[j];
-            product = product * numbers[j];
+
+            if (numbers[j] % 2 == 0) {
+                number_even++;
+            }
+
+            if (k == 5 and distance_to_5 > 0) {
+                distance_to_5 = std::min(distance_to_5, numbers[j] % 5);
+            }
+
         }
 
-        if (product % k == 0) {
-            continue;
+        if (k == 2 and number_even == 0) {
+            response[i] = 1;
+        }
+
+        if (k == 5) {
+            response[i] = distance_to_5;
+        }
+
+        if (k == 4) {
+            if (number_even == 0) {
+                response[i] = 2;
+            } else if (number_even < 2) {
+                response[i] = 1;
+            }
         }
     }
 
-    for (auto &elem: response) {
-        std::cout << elem;
+    for (const auto &elem: response) {
+        std::cout << elem << std::endl;
     }
 
     return 0;
