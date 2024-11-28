@@ -24,11 +24,19 @@ int main() {
             }
 
             if (k == 5 and distance_to_5 > 0) {
-                distance_to_5 = std::min(distance_to_5, number % 5);
+                if (number % 5 == 0) {
+                    distance_to_5 = 0;
+                } else {
+                    distance_to_5 = std::min(distance_to_5, 5 - number % 5);
+                }
             }
 
             if (k == 3 and distance_to_3 > 0) {
-                distance_to_3 = std::min(distance_to_3, number % 3);
+                if (number % 3 == 0) {
+                    distance_to_3 = 0;
+                } else {
+                    distance_to_3 = std::min(distance_to_3, 3 - number % 3);
+                }
             }
         }
 
