@@ -28,8 +28,8 @@ int main() {
     }
 
 
-    for (int j = 0; j < response.size(); j++) {
-        std::cout << response[j] << std::endl;
+    for (const auto & j : response) {
+        std::cout << j << std::endl;
     }
 
     return 0;
