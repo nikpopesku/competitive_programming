@@ -24,6 +24,8 @@ int main() {
 
         if (most_right_zero_a == most_right_zero_b or most_left_one_a == most_left_one_b) {
             response[i] = "YES"s;
+        } else if (std::min(most_right_zero_a, most_right_zero_b) + 1 == std::max(most_left_one_a, most_left_one_b)) {
+            response[i] = "YES"s;
         }
     }
 
