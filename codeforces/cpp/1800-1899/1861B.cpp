@@ -12,7 +12,7 @@ int main() {
         std::cin >> a >> b;
         bool ok = false;
 
-        for (int j = 1; j < a.size() - 1; j++) {
+        for (int j = 0; j < a.size() - 1; j++) {
             if (a[j] == '0' and a[j] == b[j] and a[j + 1] == '1' and a[j + 1] == b[j + 1]) {
                 ok = true;
                 break;
