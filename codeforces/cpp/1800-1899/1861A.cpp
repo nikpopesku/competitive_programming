@@ -1,7 +1,36 @@
 #include <array>
 #include <iostream>
+#include <vector>
 
-using namespace std::string_literals;
+std::vector<std::string> get_numbers(const std::string& number, const int start, const int left) {
+    std::vector<std::string> response {};
+
+    for (int i = start; i < number.size() - left; i++) {
+        const char value = number[i];
+
+        if (left > 0) {
+            for (auto &val: get_numbers(number, i+1, left - 1)) {
+                response.push_back(value + val);
+            }
+        }
+    }
+
+    return response;
+}
+
+std::string find(const std::array<int, 999999999> primes, const std::string& number) {
+    for (int left = 2; left < 10; left++) {
+        for (auto start = 0; start < 9 - left; start++) {
+            for (auto &elem: get_numbers(number, start, left)) {
+                if (primes[std::stoi(elem)] != -1) {
+                    return elem;
+                }
+            }
+        }
+    }
+
+    return "-1";
+}
 
 int main() {
     int t;
@@ -23,7 +52,10 @@ int main() {
     }
 
     for (auto i = 0; i < t; i++) {
-        
+        std::string number;
+        std::cin >> number;
+
+        std::cout << find(primes, number);
     }
 
     return 0;
