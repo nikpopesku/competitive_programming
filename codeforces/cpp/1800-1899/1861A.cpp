@@ -9,13 +9,16 @@ int main() {
     for (auto i = 0; i < t; i++) {
         std::string number;
         std::cin >> number;
-        std::vector<int> numbers {};
+        std::vector<int> numbers{};
 
-        for (char j : number) {
-            if (j == '1') {
+        for (const char digit: number) {
+            if (digit == '1') {
                 puts("13");
-            } else {
+                break;
+            }
+            if (digit == '3') {
                 puts("31");
+                break;
             }
         }
     }
