@@ -15,7 +15,10 @@ int main() {
             j++;
         }
 
-        const auto response = a.size() - j + b.size() - j + 1 + j;
+        auto response = a.size() - j + b.size();
+        if (j > 0) {
+            response += 1;
+        }
         std::cout<< response << std::endl;
     }
 
