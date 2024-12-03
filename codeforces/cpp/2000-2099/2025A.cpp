@@ -2,24 +2,21 @@
 #include <vector>
 
 int main() {
-    int t;
-    std::cin >> t;
+    int q;
+    std::cin >> q;
 
-    for (auto i = 0; i < t; i++) {
-        std::string number;
-        std::cin >> number;
-        std::vector<int> numbers{};
+    for (auto i = 0; i < q; i++) {
+        std::string a, b;
+        std::cin>>a>>b;
 
-        for (const char digit: number) {
-            if (digit == '1') {
-                puts("13");
-                break;
-            }
-            if (digit == '3') {
-                puts("31");
-                break;
-            }
+        int j = 0;
+        while (j < a.size() and j < b.size()) {
+            if (a[j] != b[j]) break;
+            j++;
         }
+
+        const auto response = a.size() - j + b.size() - j + 1 + j;
+        std::cout<< response << std::endl;
     }
 
     return 0;
