@@ -1,29 +1,29 @@
+#include <array>
 #include <iostream>
-#include <vector>
 
 using namespace std::string_literals;
 
 int main() {
     int t;
     std::cin >> t;
+    std::array<int, 999999999> primes{};
 
-    for (int i = 0; i < t; i++) {
-        std::string a, b;
-        std::cin >> a >> b;
-        bool ok = false;
+    for (auto i = 0; i < primes.size(); i++) {
+        primes[i] = i;
+    }
 
-        for (int j = 0; j < a.size() - 1; j++) {
-            if (a[j] == '0' and a[j] == b[j] and a[j + 1] == '1' and a[j + 1] == b[j + 1]) {
-                ok = true;
-                break;
-            }
+    for (auto i = 2; i < primes.size(); i++) {
+        if (primes[i] == -1) continue;
+
+        const auto number = primes[i] + primes[i];
+
+        while (number < primes.size()) {
+            primes[number] = -1;
         }
+    }
 
-        if (ok) {
-            puts("YES");
-        } else {
-            puts("NO");
-        }
+    for (auto i = 0; i < t; i++) {
+        
     }
 
     return 0;
