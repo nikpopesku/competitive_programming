@@ -19,17 +19,7 @@ std::vector<std::string> get_numbers(const std::string& number, const int start,
 }
 
 std::string find(const std::array<int, 999999999> primes, const std::string& number) {
-    for (int left = 2; left < 10; left++) {
-        for (auto start = 0; start < 9 - left; start++) {
-            for (auto &elem: get_numbers(number, start, left)) {
-                if (primes[std::stoi(elem)] != -1) {
-                    return elem;
-                }
-            }
-        }
-    }
 
-    return "-1";
 }
 
 int main() {
@@ -54,8 +44,21 @@ int main() {
     for (auto i = 0; i < t; i++) {
         std::string number;
         std::cin >> number;
+        std::vector<int> numbers {};
 
-        std::cout << find(primes, number);
+        for (int left = 2; left < 10; left++) {
+            for (auto start = 0; start < 9 - left; start++) {
+                for (auto &elem: get_numbers(number, start, left)) {
+                    numbers.push_back(std::stoi(elem));
+                }
+            }
+        }
+
+        for (auto &elem: numbers) {
+            if (primes[elem] != -1) {
+                puts(reinterpret_cast<const char *>(static_cast<char>(elem)));
+            }
+        }
     }
 
     return 0;
