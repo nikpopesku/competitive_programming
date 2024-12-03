@@ -21,7 +21,7 @@ std::vector<std::string> get_numbers(const std::string& number, const int start,
 int main() {
     int t;
     std::cin >> t;
-    std::array<int, 999'999'999> primes{};
+    std::array<int, 999'999> primes{};
 
     for (auto i = 0; i < primes.size(); i++) {
         primes[i] = i;
@@ -30,13 +30,15 @@ int main() {
     for (auto i = 2; i < primes.size(); i++) {
         if (primes[i] == -1) continue;
 
-        auto number = primes[i] + primes[i];
+        int number = primes[i] + primes[i];
 
-        while (number < primes.size()) {
+        while (number <= primes[primes.size() - 1]) {
             primes[number] = -1;
             number = primes[i];
         }
     }
+
+    int xxx = 5;
 
     // for (auto i = 0; i < t; i++) {
     //     std::string number;
