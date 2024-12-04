@@ -19,7 +19,7 @@ int main() {
             }
         }
 
-        int start = 1;
+        int start = k/n;
         while (start <= k) {
             if (n * start >= k) {
                 std::cout << start << std::endl;
