@@ -1,32 +1,14 @@
 #include <iostream>
-#include <vector>
+#include <cmath>
 
 int main() {
-    int n;
-    int abs_max = 0;
-    int last_elem = 0;
-    int current_seq = 0;
-    int last_seq = 0;
-    std::cin >> n;
+    int n, k;
+    std::cin >> n >> k;
 
-    for (auto i = 0; i < n; i++) {
-        int number;
-        std::cin >> number;
+    const int x = (sqrt(8*k + 1) - 1) / 2;
+    const int response = n - x;
 
-        if (number != last_elem) {
-            int local_max = std::min(last_seq, current_seq);
-            abs_max = std::max(abs_max, local_max);
-            last_elem = number;
-            last_seq = current_seq;
-            current_seq = 1;
-        } else {
-            current_seq++;
-        }
-    }
-    const int local_max = std::min(last_seq, current_seq);
-    abs_max = std::max(abs_max, local_max);
-
-    std::cout << abs_max * 2 << std::endl;
+    std::cout << response << std::endl;
 
     return 0;
 }
