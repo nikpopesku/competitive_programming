@@ -2,10 +2,10 @@
 #include <cmath>
 
 int main() {
-    int n, k;
+    long long n, k;
     std::cin >> n >> k;
 
-    const int x = (sqrt(8*(k + n) + 9) - 3) / 2;
+    const long long x = (sqrt(8*(k + n) + 9) - 3) / 2;
 
     std::cout << n - x << std::endl;
 
