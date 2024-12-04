@@ -8,9 +8,15 @@ int main() {
         int n, k;
         std::cin >> n >> k;
 
-        const int initial_k = k;
-        while (k < n) {
-            k += initial_k;
+
+        if (k < n) {
+            const int initial_k = k;
+            const int times = n / k;
+            k = k * times;
+
+            while (k < n) {
+                k += initial_k;
+            }
         }
 
         int start = 1;
