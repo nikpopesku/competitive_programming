@@ -10,21 +10,20 @@ int main() {
 
     for (int i = 0; i < t; i++) {
         std::cin >> n;
+        long long left = 1;
+        long long right = n;
 
-        if (n == 1)  {
-            std::cout << 0 << std::endl;
-        } else if (n <= 4) {
-            std::cout << 1 << std::endl;
-        } else if (n <= 6) {
-            std::cout << 2 << std::endl;
-        } else {
-            const long long k = (sqrt(9 + 4 * n) - 5) / 2;
-            std::cout << k + 3 << std::endl;
+        while (left <= right) {
+            long long m = (n + 1) / 2;
+
+            if (m*m + 1 < n) {
+                left = m + 1;
+            } else {
+                right = m;
+            }
         }
 
-
-
-
+        std::cout << left << std::endl;
     }
 
     return 0;
