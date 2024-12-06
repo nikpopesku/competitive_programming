@@ -10,16 +10,16 @@ int main() {
 
     for (int i = 0; i < t; i++) {
         std::cin >> n;
-        long long left = 1;
-        long long right = n;
+        long long left = sqrt(n) - 1;
+        long long right = sqrt(n) + 1;
 
-        while (left <= right) {
-            long long m = (n + 1) / 2;
+        while (left + 1 < right) {
+            long long m = left + (right - left) / 2;
 
-            if (m*m + 1 < n) {
-                left = m + 1;
+            if (m*m + 1 <= n) {
+                left = m;
             } else {
-                right = m;
+                right = m - 1;
             }
         }
 
