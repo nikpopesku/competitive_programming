@@ -14,12 +14,12 @@ int main() {
             std::cin >> ch;
             for (unsigned int k = 0; k < 4; k++) {
                 if (ch[k] == '#') {
-                    response[j] = k + 1;
+                    response[n - j] = k + 1;
                     break;
                 }
             }
         }
-        for (size_t j = response.size() - 1; j >= 0; j--) {
+        for (size_t j = 0; j < n; j++) {
             std::cout << response[j];
             if (j == n - 1) {
                 std::cout << std::endl;
