@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 int main() {
     int t;
@@ -8,18 +9,22 @@ int main() {
 
     for (auto i = 0; i < t; i++) {
         std::cin >> n;
+        std::vector<unsigned int> response(n, 0);
         for (auto j = 0; j < n; j++) {
             std::cin >> ch;
-            for (unsigned k = 0; k < 4; k++) {
+            for (unsigned int k = 0; k < 4; k++) {
                 if (ch[k] == '#') {
-                    std::cout <<  - k;
-                    if (j == n - 1) {
-                        std::cout << std::endl;
-                    } else {
-                        std::cout << ' ';
-                    }
+                    response[j] = k + 1;
                     break;
                 }
+            }
+        }
+        for (size_t j = response.size() - 1; j >= 0; j--) {
+            std::cout << response[j];
+            if (j == n - 1) {
+                std::cout << std::endl;
+            } else {
+                std::cout << ' ';
             }
         }
     }
