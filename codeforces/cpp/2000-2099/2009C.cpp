@@ -16,7 +16,7 @@ int main() {
         } else {
             int steps = x / k;
             if (x % k) steps += 1;
-            std::cout << 2 * x - 1 << std::endl;
+            std::cout << 2 * steps - 1 << std::endl;
         }
     }
 
