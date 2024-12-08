@@ -8,15 +8,15 @@ int main() {
     for (auto i = 0; i < t; i++) {
         int x, y, k;
         std::cin >> x >> y >> k;
+        int steps_x = x / k;
+        int steps_y = y / k;
+        if (y % k) steps_y += 1;
+        if (x % k) steps_x += 1;
 
-        if (y >= x) {
-            int steps = y / k;
-            if (y % k) steps += 1;
-            std::cout << steps * 2 << std::endl;
+        if (steps_y >= steps_x) {
+            std::cout << steps_y * 2 << std::endl;
         } else {
-            int steps = x / k;
-            if (x % k) steps += 1;
-            std::cout << 2 * steps - 1 << std::endl;
+            std::cout << 2 * steps_x - 1 << std::endl;
         }
     }
 
