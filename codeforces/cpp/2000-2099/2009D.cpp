@@ -15,8 +15,8 @@ int main() {
         std::cin >> n;
         std::vector<std::tuple<int, int>> points0{};
         std::vector<std::tuple<int, int>> points1{};
+        std::unordered_set<std::string> points{};
 
-        std::unordered_set<std::string> points;
         for (auto j = 0; j < n; j++) {
             int x, y;
             std::cin >> x >> y;
@@ -32,7 +32,7 @@ int main() {
         std::ranges::sort(points0, comp);
 
         long long counter = 0;
-        for (auto k1 = 0; k1 < points0.size() - 1; k1++) {
+        for (auto k1 = 0; k1 < points0.size(); k1++) {
             for (auto k2 = k1 + 1; k2 < points0.size(); k2++) {
                 const int x1 = std::get<0>(points0[k1]);
                 const int x2 = std::get<0>(points0[k2]);
@@ -50,7 +50,7 @@ int main() {
             }
         }
 
-        for (auto k1 = 0; k1 < points1.size() - 1; k1++) {
+        for (auto k1 = 0; k1 < points1.size(); k1++) {
             for (auto k2 = k1 + 1; k2 < points1.size(); k2++) {
                 const int x1 = std::get<0>(points1[k1]);
                 const int x2 = std::get<0>(points1[k2]);
