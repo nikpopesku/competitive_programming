@@ -31,6 +31,12 @@ int main() {
         std::ranges::sort(points1, comp);
         std::ranges::sort(points0, comp);
 
+        if (points0.empty() or points1.empty()) {
+            std::cout << 0 << std::endl;
+
+            continue;
+        }
+
         long long counter = 0;
         for (auto k1 = 0; k1 < points0.size(); k1++) {
             for (auto k2 = k1 + 1; k2 < points0.size(); k2++) {
