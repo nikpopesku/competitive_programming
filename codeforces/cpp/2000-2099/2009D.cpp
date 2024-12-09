@@ -34,8 +34,26 @@ int main() {
         long long counter = 0;
         for (auto k1 = 0; k1 < points0.size() - 1; k1++) {
             for (auto k2 = k1 + 1; k2 < points0.size(); k2++) {
-                const int x1 = std::get<0>(points1[k1]);
-                const int x2 = std::get<0>(points1[k2]);
+                const int x1 = std::get<0>(points0[k1]);
+                const int x2 = std::get<0>(points0[k2]);
+                if (auto got = points.find(std::to_string(x1) + "_1"); got != points.end()) {
+                    counter += 1;
+                }
+                if (auto got = points.find(std::to_string(x2) + "_1"); got != points.end()) {
+                    counter += 1;
+                }
+                if (x2 == x1 + 4) {
+                    if (auto got = points.find(std::to_string(x1 + 2) + "_1"); got != points.end()) {
+                        counter += 1;
+                    }
+                }
+            }
+        }
+
+        for (auto k1 = 0; k1 < points1.size() - 1; k1++) {
+            for (auto k2 = k1 + 1; k2 < points1.size(); k2++) {
+                const int x1 = std::get<0>(points0[k1]);
+                const int x2 = std::get<0>(points0[k2]);
                 if (auto got = points.find(std::to_string(x1) + "_1"); got != points.end()) {
                     counter += 1;
                 }
