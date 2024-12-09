@@ -42,8 +42,8 @@ int main() {
                 if (auto got = points.find(std::to_string(x2) + "_1"); got != points.end()) {
                     counter += 1;
                 }
-                if (x2 == x1 + 4) {
-                    if (auto got = points.find(std::to_string(x1 + 2) + "_1"); got != points.end()) {
+                if (x2 == x1 + 2) {
+                    if (auto got = points.find(std::to_string(x1 + 1) + "_1"); got != points.end()) {
                         counter += 1;
                     }
                 }
@@ -60,8 +60,8 @@ int main() {
                 if (auto got = points.find(std::to_string(x2) + "_1"); got != points.end()) {
                     counter += 1;
                 }
-                if (x2 == x1 + 4) {
-                    if (auto got = points.find(std::to_string(x1 + 2) + "_1"); got != points.end()) {
+                if (x2 == x1 + 2) {
+                    if (auto got = points.find(std::to_string(x1 + 1) + "_1"); got != points.end()) {
                         counter += 1;
                     }
                 }
