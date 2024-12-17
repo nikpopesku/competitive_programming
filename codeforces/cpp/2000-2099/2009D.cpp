@@ -6,64 +6,34 @@ int main() {
     int t;
     std::cin >> t;
 
+    struct hashFunction {
+        size_t operator()(const std::tuple<int, int> &x) const {
+            return get<0>(x) ^ get<1>(x);
+        }
+    };
+
     for (auto i = 0; i < t; i++) {
         int n;
         std::cin >> n;
-        std::vector<std::tuple<int, int>> points0{};
-        std::vector<std::tuple<int, int>> points1{};
-        std::unordered_set<std::string> points{};
+        std::unordered_set<std::tuple<int, int>, hashFunction> points;
 
         for (auto j = 0; j < n; j++) {
             int x, y;
             std::cin >> x >> y;
-            if (y == 1) {
-                points1.emplace_back(x, y);
-            } else {
-                points0.emplace_back(x, y);
-            }
-            points.insert(std::to_string(x) + "_" + std::to_string(y));
+            points.insert(std::make_tuple(x, y));
         }
 
-        if (points0.empty() or points1.empty()) {
-            std::cout << 0 << std::endl;
-
-            continue;
-        }
-
-        long long counter = 0;
-        for (auto k1 = 0; k1 < points0.size(); k1++) {
-            for (auto k2 = k1 + 1; k2 < points0.size(); k2++) {
-                const int x1 = std::get<0>(points0[k1]);
-                const int x2 = std::get<0>(points0[k2]);
-                if (auto got = points.find(std::to_string(x1) + "_1"); got != points.end()) {
+        unsigned long long counter = 0;
+        for (const auto &point: points) {
+            auto x = get<0>(point);
+            auto y = get<1>(point);
+            if (auto got1 = points.find(std::make_tuple(x+2, y)); got1 != points.end()) {
+                if (auto got2 = points.find(std::make_tuple(x+1, y ^ 1)); got2 != points.end()) {
                     counter += 1;
-                }
-                if (auto got = points.find(std::to_string(x2) + "_1"); got != points.end()) {
-                    counter += 1;
-                }
-                if (x2 == x1 + 2) {
-                    if (auto got = points.find(std::to_string(x1 + 1) + "_1"); got != points.end()) {
-                        counter += 1;
-                    }
                 }
             }
-        }
-
-        for (auto k1 = 0; k1 < points1.size(); k1++) {
-            for (auto k2 = k1 + 1; k2 < points1.size(); k2++) {
-                const int x1 = std::get<0>(points1[k1]);
-                const int x2 = std::get<0>(points1[k2]);
-                if (auto got = points.find(std::to_string(x1) + "_0"); got != points.end()) {
-                    counter += 1;
-                }
-                if (auto got = points.find(std::to_string(x2) + "_0"); got != points.end()) {
-                    counter += 1;
-                }
-                if (x2 == x1 + 2) {
-                    if (auto got = points.find(std::to_string(x1 + 1) + "_0"); got != points.end()) {
-                        counter += 1;
-                    }
-                }
+            if (auto got1 = points.find(std::make_tuple(x, 1)); got1 != points.end() and y == 0) {
+                counter += points.size() - 2;
             }
         }
 
