@@ -2,10 +2,6 @@
 #include <vector>
 #include <bits/stdc++.h>
 
-bool comp(const std::tuple<int, int> &a, const std::tuple<int, int> &b) {
-    return std::get<0>(a) <= std::get<0>(b);
-}
-
 int main() {
     int t;
     std::cin >> t;
@@ -27,9 +23,6 @@ int main() {
             }
             points.insert(std::to_string(x) + "_" + std::to_string(y));
         }
-
-        std::ranges::sort(points1, comp);
-        std::ranges::sort(points0, comp);
 
         if (points0.empty() or points1.empty()) {
             std::cout << 0 << std::endl;
