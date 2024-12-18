@@ -1,6 +1,6 @@
 #include <iostream>
 
-long long calc(int k, int m, int n) {
+long long calc(int k, long long m, int n) {
     long long s1 = k;
     long long s2 = k + n - 1;
 
@@ -24,16 +24,19 @@ int main() {
         int n, k;
         std::cin >> n >> k;
 
-        int left = k;
-        int right = k + n - 1;
-        int m = left;
+        long long left = k;
+        long long right = k + n - 1;
+        long long m = left;
 
         while (left + 1 < right) {
-            m = left + (right - left - 1) / 2;
+            m = (left + right) / 2;
+            long long s0 = calc(k, m-1, n);
+            long long s1 = calc(k, m, n);
+            long long s2 = calc(k, m+1, n);
 
-            if (calc(k, m, n) > calc(k, m+1, n)) {
+            if (s1 > s2) {
                 left = m;
-            } else if (calc(k, m, n) < calc(k, m-1, n)) {
+            } else if (s0 < s1) {
                 right = m;
             } else {
                 break;
