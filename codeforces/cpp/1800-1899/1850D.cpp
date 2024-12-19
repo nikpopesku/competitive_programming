@@ -30,18 +30,20 @@ int main() {
             insert_sorted(numbers, problem);
         }
 
-        int largest_group = 0;
-        int current_group = 0;
-        for (int j = 0; j < numbers.size(); j++) {
-            if (j == 0 or numbers[j] - numbers[j-1] <= k) {
+        int largest_group = 1;
+        int current_group = 1;
+        for (int j = 1; j < numbers.size(); j++) {
+            if (numbers[j] - numbers[j - 1] <= k) {
                 current_group += 1;
             } else {
                 largest_group = std::max(largest_group, current_group);
-                current_group = 0;
+                current_group = 1;
             }
         }
 
-        std::cout << largest_group << std::endl;
+        largest_group = std::max(largest_group, current_group);
+
+        std::cout << numbers.size() - largest_group << std::endl;
     }
 
     return 0;
