@@ -1,48 +1,47 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <algorithm>
 
-int main()
-{
-    int t;
-    int n;
-    int k;
-    int a;
-    bool found;
+template<typename T>
+typename std::vector<T>::iterator
+insert_sorted(std::vector<T> &vec, T const &item) {
+    return vec.insert
+            (
+                    std::upper_bound(vec.begin(), vec.end(), item),
+                    item
+            );
+}
+
+
+int main() {
+    int t, n, k;
 
     std::cin >> t;
 
     for (int i = 0; i < t; i++) {
         std::cin >> n >> k;
 
-        std::map<std::vector<int>, int> problems;
+        int problem;
+        std::vector<int> numbers;
 
         for (int j = 0; j < n; j++) {
-            std::cin >> a;
-            found = false;
-            for (const auto &problem : problems)
-            {
+            std::cin >> problem;
+            insert_sorted(numbers, problem);
+        }
 
-                if (problem.first[0] >= a and problem.first[1] <= a) {
-                    found = true;
-                    std::vector<int> tempV = {std::min(a-k, problem.first[0]), std::max(a+k, problem.first[1])};
-                    problems[tempV] = problem.second + 1;
-                    break;
-                }
-            }
-            if (!found) {
-                std::vector<int> tempV = {a-k, a+k};
-                problems[tempV] = 1;
+        int largest_group = 0;
+        int current_group = 0;
+        for (int j = 0; j < numbers.size(); j++) {
+            if (j == 0 or numbers[j] - numbers[j-1] <= k) {
+                current_group += 1;
+            } else {
+                largest_group = std::max(largest_group, current_group);
+                current_group = 0;
             }
         }
 
-        int max_element = 0;
-        for (const auto &problem : problems)
-        {
-            max_element = std::max(max_element, problem.second);
-        }
-
-        std::cout << n - max_element << std::endl;
+        std::cout << largest_group << std::endl;
     }
 
     return 0;
