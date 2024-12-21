@@ -21,12 +21,12 @@ int main() {
             c -= side * side;
 
             long long left = 1;
-            long long right = 100;
+            long long right = c;
 
             while (left <= right) {
                 long long w = left + (right - left) / 2;
 
-                long long expression = 4 * n * w * w + 4 * sum * w;
+                double long expression = 4 * n * w * w + 4 * sum * w;
 
                 if (expression == c) {
                     std::cout << w << std::endl;
