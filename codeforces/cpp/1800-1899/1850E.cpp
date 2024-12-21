@@ -1,45 +1,44 @@
-#include "bits/stdc++.h"
-using namespace std;
+#include <iostream>
+#include <cmath>
+#include <vector>
 
-#define ll long long
+int main() {
+    int t;
+    long long n;
+    long long c;
 
-#define          all(v)              v.begin(), v.end()
-#define         rall(v)              v.rbegin(),v.rend()
+    std::cin >> t;
 
-#define            pb                push_back
-#define          sz(a)               (int)a.size()
+    for (int i = 0; i < t; i++) {
+        std::cin >> n >> c;
+        std::vector<int> sides (n);
+        for (int j = 0; j < n; j++) std::cin >> sides[j];
 
-#define int long long
+        long long left = 1;
+        long long right = 1e9;
 
-void solve() {
-    int n, c; cin >> n >> c;
-    vector<int> a(n);
-    for(int i = 0; i < n; ++i) cin >> a[i];
-    int l = 1, r = 1e9;
-    while(l <= r) {
-        int mid = l + (r - l) / 2;
-        int sumall = 0;
-        for(int i = 0; i < n; ++i) {
-            sumall += (a[i] + 2 * mid) * (a[i] + 2 * mid);
-            if(sumall > c) break;
-        }
-        if(sumall == c) {
-            cout << mid << "\n";
-            return;
-        }
-        if(sumall > c) {
-            r = mid - 1;
-        } else {
-            l = mid + 1;
+
+        while (left <= right) {
+            long long w = left + (right - left) / 2;
+            long long sum = 0;
+
+            for (int j = 0; j < n; j++) {
+                sum += (sides[j] + 2 * w) * (sides[j] + 2 * w);
+
+                if (sum > c) break;
+            }
+
+
+            if (sum == c) {
+                std::cout << w << std::endl;
+                break;
+            } else if (sum > c) {
+                right = w - 1;
+            } else {
+                left = w + 1;
+            }
         }
     }
-}
 
-int32_t main() {
-    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-    int t = 1;
-    cin >> t;
-    while(t--) {
-        solve();
-    }
+    return 0;
 }
