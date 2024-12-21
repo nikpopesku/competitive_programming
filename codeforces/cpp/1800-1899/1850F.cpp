@@ -12,9 +12,24 @@ int main() {
     for (int i = 0; i < t; i++) {
         std::cin >> n;
 
+        int frog;
+        std::vector frogs(n + 1, 0);
+
+        for (int j = 0; j < n; j++) {
+            std::cin >> frog;
+
+            if (frog > n) {
+                continue;
+            }
+
+            frogs[frog] += 1;
+        }
+
         std::vector multipliers(n + 1, std::vector<int>{});
 
-        for (int j = 1; j < n+1; j++) {
+        for (int j = 1; j < n + 1; j++) {
+            if (frogs[j] == 0) continue;
+
             int value = j;
             while (value <= n) {
                 multipliers[j].push_back(value);
@@ -22,18 +37,13 @@ int main() {
             }
         }
 
-        int leap;
         std::vector leaps(n + 1, 0);
 
-        for (int j = 0; j < n; j++) {
-            std::cin >> leap;
+        for (int j = 1; j < n + 1; j++) {
+            if (frogs[j] == 0) continue;
 
-            if (leap > n) {
-                continue;
-            }
-
-            for (auto &elem: multipliers[leap]) {
-                leaps[elem] += 1;
+            for (auto &elem: multipliers[j]) {
+                leaps[elem] += frogs[j];
             }
         }
 
