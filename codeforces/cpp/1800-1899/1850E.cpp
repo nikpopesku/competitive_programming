@@ -1,42 +1,49 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <climits>
 
 int main() {
     int t;
     long long n;
-    long long c, side;
+    long long c;
+    int side;
 
     std::cin >> t;
 
     for (int i = 0; i < t; i++) {
         std::cin >> n >> c;
 
-        long long sum = 0;
+        std::vector<int> sides (n);
 
         for (int j = 0; j < n; j++) {
             std::cin >> side;
+            sides[j] = side;
+        }
 
-            sum += side;
-            c -= side * side;
+        int left = 1;
+        int right = 1e9;
 
-            long long left = 1;
-            long long right = c;
 
-            while (left <= right) {
-                long long w = left + (right - left) / 2;
 
-                double long expression = 4 * n * w * w + 4 * sum * w;
+        while (left <= right) {
+            int w = left + (right - left) / 2;
+            long long sum = 0;
 
-                if (expression == c) {
-                    std::cout << w << std::endl;
+            for (int j = 0; j < n; j++) {
+                sum += (sides[j] + 2 * w) * (sides[j] + 2 * w);
 
-                    break;
-                } else if (expression > c) {
-                    right = w - 1;
-                } else {
-                    left = w + 1;
-                }
+                if (sum > c) break;
+            }
+
+
+            if (sum == c) {
+                std::cout << w << std::endl;
+                break;
+            } else if (sum > c) {
+                right = w - 1;
+            } else {
+                left = w + 1;
             }
         }
     }
