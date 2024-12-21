@@ -11,7 +11,7 @@ int main() {
 
     for (int i = 0; i < t; i++) {
         std::cin >> n >> c;
-        std::vector<int> sides (n);
+        std::vector<long long> sides (n);
         for (int j = 0; j < n; j++) std::cin >> sides[j];
 
         long long left = 1;
