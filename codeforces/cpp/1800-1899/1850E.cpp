@@ -13,22 +13,15 @@ int main() {
 
     for (int i = 0; i < t; i++) {
         std::cin >> n >> c;
-
         std::vector<int> sides (n);
-
-        for (int j = 0; j < n; j++) {
-            std::cin >> side;
-            sides[j] = side;
-        }
+        for (int j = 0; j < n; j++) std::cin >> sides[j];
 
         int left = 1;
         int right = 1e9;
 
-
-
         while (left <= right) {
             int w = left + (right - left) / 2;
-            long long sum = 0;
+            int sum = 0;
 
             for (int j = 0; j < n; j++) {
                 sum += (sides[j] + 2 * w) * (sides[j] + 2 * w);
