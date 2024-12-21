@@ -7,7 +7,6 @@ int main() {
     int t;
     long long n;
     long long c;
-    int side;
 
     std::cin >> t;
 
