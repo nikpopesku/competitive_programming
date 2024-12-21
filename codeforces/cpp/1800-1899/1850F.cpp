@@ -14,10 +14,10 @@ int main() {
 
         std::vector multipliers(n + 1, std::vector<int>{});
 
-        for (int j = 1; j < n; j++) {
+        for (int j = 1; j < n+1; j++) {
             int value = j;
             while (value <= n) {
-                multipliers[value].push_back(value);
+                multipliers[j].push_back(value);
                 value += j;
             }
         }
