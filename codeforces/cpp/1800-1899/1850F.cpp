@@ -12,7 +12,7 @@ int main() {
     for (int i = 0; i < t; i++) {
         std::cin >> n;
 
-        std::vector multipliers (n+1, std::vector<int> {});
+        std::vector multipliers(n + 1, std::vector<int>{});
 
         for (int j = 1; j < n; j++) {
             int value = j;
@@ -23,7 +23,7 @@ int main() {
         }
 
         int leap;
-        std::vector leaps (n+1, 0);
+        std::vector leaps(n + 1, 0);
 
         for (int j = 0; j < n; j++) {
             std::cin >> leap;
@@ -32,7 +32,7 @@ int main() {
                 continue;
             }
 
-            for (auto & elem: multipliers[leap]) {
+            for (auto &elem: multipliers[leap]) {
                 leaps[elem] += 1;
             }
         }
