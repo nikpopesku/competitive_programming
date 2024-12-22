@@ -5,7 +5,7 @@
 int main() {
     int t;
     int n;
-    int coordinate;
+    int coord;
     long long value;
 
     std::cin >> t;
@@ -26,25 +26,21 @@ int main() {
             std::cin >> x >> y;
 
             same_x[x] += 1;
-            value = same_x[x];
-            response += value * (value - 1) - (value - 1) * (value - 2);
+            response += same_x[x] * (same_x[x] - 1) - (same_x[x] - 1) * (same_x[x] - 2);
 
 
             same_y[y] += 1;
-            value = same_y[y];
-            response += value * (value - 1) - (value - 1) * (value - 2);
+            response += same_y[y] * (same_y[y] - 1) - (same_y[y] - 1) * (same_y[y] - 2);
 
 
-            coordinate = x - y;
-            positive_45[coordinate] += 1;
-            value = positive_45[coordinate];
-            response += value * (value - 1) - (value - 1) * (value - 2);
+            coord = x - y;
+            positive_45[coord] += 1;
+            response += positive_45[coord] * (positive_45[coord] - 1) - (positive_45[coord] - 1) * (positive_45[coord] - 2);
 
 
-            coordinate = x + y;
-            negative_45[coordinate] += 1;
-            value = negative_45[coordinate];
-            response += value * (value - 1) - (value - 1) * (value - 2);
+            coord = x + y;
+            negative_45[coord] += 1;
+            response += negative_45[coord] * (negative_45[coord] - 1) - (negative_45[coord] - 1) * (negative_45[coord] - 2);
         }
 
         std::cout << response << std::endl;
