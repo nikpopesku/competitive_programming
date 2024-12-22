@@ -13,8 +13,8 @@ int main() {
 
         std::vector points_x(n, 0);
         std::vector points_y(n, 0);
-        std::unordered_map<int, int> x {};
-        std::unordered_map<int, int> y {};
+        std::unordered_map<int, int> x{};
+        std::unordered_map<int, int> y{};
 
 
         int response = 0;
