@@ -5,8 +5,6 @@
 int main() {
     int t;
     int n;
-    int coord;
-    long long value;
 
     std::cin >> t;
 
@@ -31,9 +29,11 @@ int main() {
             negative_45[x + y] += 1;
 
             response += same_x[x] * (same_x[x] - 1) - (same_x[x] - 1) * (same_x[x] - 2) +
-                same_y[y] * (same_y[y] - 1) - (same_y[y] - 1) * (same_y[y] - 2) +
-                positive_45[x - y] * (positive_45[x - y] - 1) - (positive_45[x - y] - 1) * (positive_45[x - y] - 2) +
-                negative_45[x + y] * (negative_45[x + y] - 1) - (negative_45[x + y] - 1) * (negative_45[x + y] - 2);
+                        same_y[y] * (same_y[y] - 1) - (same_y[y] - 1) * (same_y[y] - 2) +
+                        positive_45[x - y] * (positive_45[x - y] - 1) -
+                        (positive_45[x - y] - 1) * (positive_45[x - y] - 2) +
+                        negative_45[x + y] * (negative_45[x + y] - 1) -
+                        (negative_45[x + y] - 1) * (negative_45[x + y] - 2);
         }
 
         std::cout << response << std::endl;
