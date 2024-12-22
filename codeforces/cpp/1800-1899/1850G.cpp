@@ -5,6 +5,8 @@
 int main() {
     int t;
     int n;
+    int coordinate;
+    long long value;
 
     std::cin >> t;
 
@@ -23,49 +25,51 @@ int main() {
         for (int j = 0; j < n; j++) {
             std::cin >> x >> y;
 
-            if (auto value = same_x.find(x); value != same_x.end()) {
-                same_x[value->first] += 1;
+            if (same_x.find(x) != same_x.end()) {
+                same_x[x] += 1;
 
-                response += same_x[value->first] * (same_x[value->first] - 1);
-                if (same_x[value->first] > 2) {
-                    response -= (same_x[value->first] - 1) * (same_x[value->first] - 2);
+                response += same_x[x] * (same_x[x] - 1);
+                if (same_x[x] > 2) {
+                    response -= (same_x[x] - 1) * (same_x[x] - 2);
                 }
             } else {
                 same_x[x] = 1;
             }
 
-            if (auto value = same_y.find(y); value != same_y.end()) {
-                same_y[value->first] += 1;
+            if (same_y.find(y) != same_y.end()) {
+                same_y[y] += 1;
 
-                response += same_y[value->first] * (same_y[value->first] - 1);
-                if (same_y[value->first] > 2) {
-                    response -= (same_y[value->first] - 1) * (same_y[value->first] - 2);
+                response += same_y[y] * (same_y[y] - 1);
+                if (same_y[y] > 2) {
+                    response -= (same_y[y] - 1) * (same_y[y] - 2);
                 }
             } else {
                 same_y[y] = 1;
             }
 
-            if (auto value = positive_45.find(x - y); value != positive_45.end()) {
-                positive_45[value->first] += 1;
+            if (positive_45.find(x - y) != positive_45.end()) {
+                positive_45[x - y] += 1;
 
 
-                response += positive_45[value->first] * (positive_45[value->first] - 1);
-                if (positive_45[value->first] > 2) {
-                    response -= (positive_45[value->first] - 1) * (positive_45[value->first] - 2);
+                response += positive_45[x - y] * (positive_45[x - y] - 1);
+                if (positive_45[x - y] > 2) {
+                    response -= (positive_45[x - y] - 1) * (positive_45[x - y] - 2);
                 }
             } else {
                 positive_45[x - y] = 1;
             }
 
-            if (auto value = negative_45.find(x + y); value != negative_45.end()) {
-                negative_45[value->first] += 1;
+            coordinate = x + y;
+            if (negative_45.find(coordinate) != negative_45.end()) {
+                negative_45[coordinate] += 1;
+                value = negative_45[coordinate];
 
-                response += negative_45[value->first] * (negative_45[value->first] - 1);
-                if (negative_45[value->first] > 2) {
-                    response -= (negative_45[value->first] - 1) * (negative_45[value->first] - 2);
+                response += value * (value - 1);
+                if (value > 2) {
+                    response -= (value - 1) * (value - 2);
                 }
             } else {
-                negative_45[x + y] = 1;
+                negative_45[coordinate] = 1;
             }
         }
 
