@@ -1,26 +1,26 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
+#include <map>
 
 int main() {
-    int t;
-    int n;
+    long long t;
+    long long n;
     long long x, y;
     std::cin >> t;
 
-    for (int i = 0; i < t; i++) {
+    for (long long i = 0; i < t; i++) {
         std::cin >> n;
 
-        std::unordered_map<long long, long long> same_x, same_y, positive_45, negative_45;
+        std::map<long long, long long> same_x, same_y, positive_45, negative_45;
         long long response = 0;
 
-        for (int j = 0; j < n; j++) {
+        for (long long j = 0; j < n; j++) {
             std::cin >> x >> y;
 
-            same_x[x] += 1;
-            same_y[y] += 1;
-            positive_45[x - y] += 1;
-            negative_45[x + y] += 1;
+            same_x[x]++;
+            same_y[y]++;
+            positive_45[x - y]++;
+            negative_45[x + y]++;
         }
 
         for (auto &elem: same_x) response += elem.second * (elem.second - 1);
