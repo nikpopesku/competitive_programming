@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 
 int main() {
     int t;
@@ -10,20 +11,64 @@ int main() {
     for (int i = 0; i < t; i++) {
         std::cin >> n;
 
-        std::vector points_x(n, 0);
-        std::vector points_y(n, 0);
+        int x, y;
+        std::unordered_map<int, int> same_x{};
+        std::unordered_map<int, int> same_y{};
+        std::unordered_map<int, int> positive_45{};
+        std::unordered_map<int, int> negative_45{};
+
 
         int response = 0;
 
         for (int j = 0; j < n; j++) {
-            std::cin >> points_x[j] >> points_y[j];
+            std::cin >> x >> y;
+
+            if (auto value = same_x.find(x); value != same_x.end()) {
+                same_x[value->first] += 1;
+            } else {
+                same_x[x] = 1;
+            }
+
+            if (auto value = same_y.find(y); value != same_y.end()) {
+                same_y[value->first] += 1;
+            } else {
+                same_y[y] = 1;
+            }
+
+            if (auto value = positive_45.find(x - y); value != positive_45.end()) {
+                positive_45[value->first] += 1;
+            } else {
+                positive_45[x - y] = 1;
+            }
+
+            if (auto value = negative_45.find(x + y); value != negative_45.end()) {
+                negative_45[value->first] += 1;
+            } else {
+                negative_45[x + y] = 1;
+            }
         }
 
-        for (int j = 0; j < points_x.size() - 1; j++) {
-            for (int k = j + 1; k < points_x.size(); k++) {
-                if (std::abs(points_x[j] - points_x[k]) == std::abs(points_y[j] - points_y[k]) or points_x[j] == points_x[k] or points_y[j] == points_y[k]) {
-                    response += 2;
-                }
+        for (auto &elem: same_x) {
+            if (elem.second > 1) {
+                response += elem.second * (elem.second - 1);
+            }
+        }
+
+        for (auto &elem: same_y) {
+            if (elem.second > 1) {
+                response += elem.second * (elem.second - 1);
+            }
+        }
+
+        for (auto &elem: positive_45) {
+            if (elem.second > 1) {
+                response += elem.second * (elem.second - 1);
+            }
+        }
+
+        for (auto &elem: negative_45) {
+            if (elem.second > 1) {
+                response += elem.second * (elem.second - 1);
             }
         }
 
