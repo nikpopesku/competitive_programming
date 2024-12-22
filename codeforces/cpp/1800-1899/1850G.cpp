@@ -47,6 +47,14 @@ int main() {
             }
         }
 
+        for (int j = 0; j < points_x.size() - 1; j++) {
+            for (int k = j + 1; k < points_x.size(); k++) {
+                if (points_y[k] != points_y[j] and std::abs(points_x[j] - points_x[k]) == std::abs(points_y[j] - points_y[k])) {
+                    response += 2;
+                }
+            }
+        }
+
         std::cout << response << std::endl;
     }
 
