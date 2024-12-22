@@ -27,10 +27,11 @@ int main() {
 
             if (same_x.find(x) != same_x.end()) {
                 same_x[x] += 1;
+                value = same_x[x];
 
-                response += same_x[x] * (same_x[x] - 1);
-                if (same_x[x] > 2) {
-                    response -= (same_x[x] - 1) * (same_x[x] - 2);
+                response += value * (value - 1);
+                if (value > 2) {
+                    response -= (value - 1) * (value - 2);
                 }
             } else {
                 same_x[x] = 1;
@@ -38,25 +39,28 @@ int main() {
 
             if (same_y.find(y) != same_y.end()) {
                 same_y[y] += 1;
+                value = same_y[y];
 
-                response += same_y[y] * (same_y[y] - 1);
-                if (same_y[y] > 2) {
-                    response -= (same_y[y] - 1) * (same_y[y] - 2);
+                response += value * (value - 1);
+                if (value > 2) {
+                    response -= (value - 1) * (value - 2);
                 }
             } else {
                 same_y[y] = 1;
             }
 
-            if (positive_45.find(x - y) != positive_45.end()) {
-                positive_45[x - y] += 1;
+            coordinate = x - y;
+            if (positive_45.find(coordinate) != positive_45.end()) {
+                positive_45[coordinate] += 1;
+                value = positive_45[coordinate];
 
 
-                response += positive_45[x - y] * (positive_45[x - y] - 1);
-                if (positive_45[x - y] > 2) {
-                    response -= (positive_45[x - y] - 1) * (positive_45[x - y] - 2);
+                response += value * (value - 1);
+                if (value > 2) {
+                    response -= (value - 1) * (value - 2);
                 }
             } else {
-                positive_45[x - y] = 1;
+                positive_45[coordinate] = 1;
             }
 
             coordinate = x + y;
