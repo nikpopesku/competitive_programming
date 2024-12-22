@@ -12,13 +12,13 @@ int main() {
         std::cin >> n;
 
         int x, y;
-        std::unordered_map<int, int> same_x{};
-        std::unordered_map<int, int> same_y{};
-        std::unordered_map<int, int> positive_45{};
-        std::unordered_map<int, int> negative_45{};
+        std::unordered_map<int, long long> same_x{};
+        std::unordered_map<int, long long> same_y{};
+        std::unordered_map<int, long long> positive_45{};
+        std::unordered_map<int, long long> negative_45{};
 
 
-        int response = 0;
+        long long response = 0;
 
         for (int j = 0; j < n; j++) {
             std::cin >> x >> y;
