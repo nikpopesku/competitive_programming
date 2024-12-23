@@ -5,15 +5,19 @@
 int main() {
     int t;
     int n, m;
+    int a, b, d;
     std::cin >> t;
 
-    for (long long i = 0; i < t; i++) {
+    for (auto i = 0; i < t; i++) {
         std::cin >> n;
 
 
-        for (long long j = 0; j < n; j++) {
+        for (auto j = 0; j < n; j++) {
             std::cin >> n >> m;
 
+            for (auto k = 0; k < m; k++) {
+                std::cin >> a >> b >> d;
+            }
         }
     }
 
