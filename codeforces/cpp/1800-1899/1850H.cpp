@@ -19,10 +19,12 @@ int main() {
             auto it_a = places.find(a);
             auto it_b = places.find(b);
             if (it_a == places.end() and it_b == places.end()) {
-                places[a] = 1;
-                places[b] = 1 + d;
+                places.insert({a, 1});
+                places.insert({b, 1 + d});
             } else if (it_a != places.end() and it_b == places.end()) {
-                places[b] = 1 + d;
+                places.insert({b, it_a->second + d});
+            } else if (it_a == places.end() and it_b != places.end()) {
+                places.insert({a, it_b->second - d});
             } else if (it_a->second + d != it_b->second) {
                 response = "NO";
 
