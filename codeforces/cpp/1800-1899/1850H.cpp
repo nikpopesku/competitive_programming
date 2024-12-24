@@ -1,31 +1,44 @@
 #include <iostream>
+#include <vector>
+#include <map>
 #include <unordered_map>
+
+void dfs(int u) {
+
+}
+
 
 int main() {
     int t;
     int n, m;
     int a, b, d;
+    const int N = 2e5+5;
     std::cin >> t;
 
     for (auto i = 0; i < t; i++) {
         std::cin >> n >> m;
 
+        std::vector<bool> visited (n, false);
+        std::vector c(m, std::vector<int> (3, 0));
+        std::vector<std::pair<int, int>> adj[N];
+
         std::string response = "YES";
-        std::unordered_map<int, long long> places;
 
         for (auto k = 0; k < m; k++) {
             std::cin >> a >> b >> d;
+            adj[a].emplace_back(b, d);
+            adj[b].emplace_back(a, -d);
+            c.push_back({a, b, d});
+        }
 
-            auto it_a = places.find(a);
-            auto it_b = places.find(b);
-            if (it_a == places.end() and it_b == places.end()) {
-                places.insert({a, 1});
-                places.insert({b, 1 + d});
-            } else if (it_a != places.end() and it_b == places.end()) {
-                places.insert({b, it_a->second + d});
-            } else if (it_a == places.end() and it_b != places.end()) {
-                places.insert({a, it_b->second - d});
-            } else if (it_a->second + d != it_b->second) {
+        for (int j = 1; j <= n; j++) {
+            if (!visited[j]) dfs(j);
+        }
+
+        for (auto & j : c) {
+            a = j[0]; b = j[1]; d = j[2];
+
+            if (a + d != b) {
                 response = "NO";
 
                 break;
