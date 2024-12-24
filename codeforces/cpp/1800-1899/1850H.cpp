@@ -1,10 +1,26 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include <unordered_map>
+
+const int N = 2e5+5;
+
+std::vector<bool> visited (N, false);
+std::vector c(N, std::vector<int> (3, 0));
+std::vector<int> val(N);
+std::vector<std::pair<int, int>> adj[N];
 
 void dfs(int u) {
+    visited[u] = true;
 
+    for (auto &p: adj[u]) {
+        int b = p.first;
+        int d = p.second;
+        val[b] = val[u] + d;
+
+        if (!visited[b]) {
+            dfs(b);
+        }
+    }
 }
 
 
@@ -12,15 +28,10 @@ int main() {
     int t;
     int n, m;
     int a, b, d;
-    const int N = 2e5+5;
     std::cin >> t;
 
     for (auto i = 0; i < t; i++) {
         std::cin >> n >> m;
-
-        std::vector<bool> visited (n, false);
-        std::vector c(m, std::vector<int> (3, 0));
-        std::vector<std::pair<int, int>> adj[N];
 
         std::string response = "YES";
 
@@ -36,7 +47,7 @@ int main() {
         }
 
         for (auto & j : c) {
-            a = j[0]; b = j[1]; d = j[2];
+            a = val[j[0]]; b = val[j[1]]; d = j[2];
 
             if (a + d != b) {
                 response = "NO";
