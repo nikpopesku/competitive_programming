@@ -2,12 +2,12 @@
 #include <vector>
 #include <map>
 
-const int N = 2e5+5;
+const int N = 2e5 + 5;
 
-std::vector<bool> visited (N, false);
-std::vector c(N, std::vector<int> (3, 0));
-std::vector<int> val(N);
+
 std::vector<std::pair<int, int>> adj[N];
+std::vector<int> val(N);
+std::vector<bool> visited(N, false);
 
 void dfs(int u) {
     visited[u] = true;
@@ -33,6 +33,15 @@ int main() {
     for (auto i = 0; i < t; i++) {
         std::cin >> n >> m;
 
+        std::vector c(n + 1, std::vector<int>(3, 0));
+
+
+        for (int j = 0; j < N; j++) {
+            val[j] = 0;
+            visited[j] = false;
+            adj[j].clear();
+        }
+
         std::string response = "YES";
 
         for (auto k = 0; k < m; k++) {
@@ -46,8 +55,10 @@ int main() {
             if (!visited[j]) dfs(j);
         }
 
-        for (auto & j : c) {
-            a = val[j[0]]; b = val[j[1]]; d = j[2];
+        for (auto &j: c) {
+            a = val[j[0]];
+            b = val[j[1]];
+            d = j[2];
 
             if (a + d != b) {
                 response = "NO";
