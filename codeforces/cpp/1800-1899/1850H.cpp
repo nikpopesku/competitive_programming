@@ -15,9 +15,9 @@ void dfs(int u) {
     for (auto &p: adj[u]) {
         int b = p.first;
         int d = p.second;
-        val[b] = val[u] + d;
 
         if (!visited[b]) {
+            val[b] = val[u] + d;
             dfs(b);
         }
     }
