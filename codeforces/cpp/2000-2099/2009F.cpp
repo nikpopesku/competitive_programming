@@ -42,7 +42,6 @@ int main() {
             std::rotate(elems.rbegin(), elems.rbegin() + rotate_left, elems.rend());
 
 
-
             std::rotate(elems.begin(), elems.begin() + rotate_right, elems.end());
             long long sum_shift_right = 0;
 
