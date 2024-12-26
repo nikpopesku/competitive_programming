@@ -37,7 +37,8 @@ int main() {
                 sum_shift_left += elems[k];
             }
 
-            std::rotate(elems.begin(), elems.begin() + rotate_left, elems.end());
+            std::rotate(elems.rbegin(), elems.rbegin() + rotate_left, elems.rend());
+            std::rotate(elems.begin(), elems.begin() + rotate_right, elems.end());
             long long sum_shift_right = 0;
 
             for (auto k = 0; k < shift_right; k++) {
