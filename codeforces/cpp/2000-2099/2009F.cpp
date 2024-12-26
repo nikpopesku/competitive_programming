@@ -19,11 +19,13 @@ int main() {
         }
 
         for (auto j = 0; j < n; j++) {
-            std::rotate(elems.begin(), elems.begin() + j % n, elems.end());
+            int step = j % n;
 
-            for (auto k = 1; k < n; k++) {
-                partial_sum[k] = partial_sum[k-1] + elems[k-1];
+            for (auto k = 1; k <= n; k++) {
+                partial_sum[step * n + k] = partial_sum[step * n + k - 1] + elems[k-1];
             }
+
+            std::rotate(elems.begin(), elems.begin() + 1, elems.end());
         }
 
         long long l, r;
@@ -31,7 +33,7 @@ int main() {
         for (auto j = 0; j < q; j++) {
             std::cin >> l >> r;
 
-            std::cout << partial_sum[r] - partial_sum[l] << std::endl;
+            std::cout << partial_sum[r] - partial_sum[l-1] << std::endl;
         }
 
     }
