@@ -12,11 +12,11 @@ int main() {
 
         long long sum = 0;
 
-        std::vector<long long> elems(n, 0);
+        std::vector<long long> elems(n);
 
-        for (auto j = 0; j < n; j++) {
-            std::cin >> elems[j];
-            sum += elems[j];
+        for (auto &a : elems) {
+            std::cin >> a;
+            sum += a;
         }
 
         long long l, r;
