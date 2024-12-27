@@ -1,58 +1,34 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 int main() {
     int t;
     std::cin >> t;
 
-    for (auto i = 0; i < t; i++) {
+    for (auto x = 0; x < t; x++) {
         int n, q;
         std::cin >> n >> q;
 
-        long long sum = 0;
-
-        std::vector<long long> elems(n);
+        std::vector<long long> elems(n), ps(1);
 
         for (auto &a : elems) {
             std::cin >> a;
-            sum += a;
+            ps.push_back(ps.back() + a);
+        }
+        for (long long &r : elems) {
+            ps.push_back(ps.back() + r);
         }
 
         long long l, r;
 
-        for (auto j = 0; j < q; j++) {
+        for (auto y = 0; y < q; y++) {
             std::cin >> l >> r;
 
-            long long rotate_left = (l - 1) / n;
-            long long shift_left = (l - 1) % n;
+            l--; r--;
+            long long i = l / n, j = r / n;
+            l %= n; r %= n;
 
-            long long rotate_right = r / n;
-            long long shift_right = r % n;
-
-
-            long long sum_shift_left = 0;
-
-            std::rotate(elems.begin(), elems.begin() + rotate_left, elems.end());
-
-            for (auto k = 0; k < shift_left; k++) {
-                sum_shift_left += elems[k];
-            }
-
-            std::rotate(elems.rbegin(), elems.rbegin() + rotate_left, elems.rend());
-
-
-            std::rotate(elems.begin(), elems.begin() + rotate_right, elems.end());
-            long long sum_shift_right = 0;
-
-            for (auto k = 0; k < shift_right; k++) {
-                sum_shift_right += elems[k];
-            }
-
-            std::rotate(elems.rbegin(), elems.rbegin() + rotate_right, elems.rend());
-
-
-            std::cout << (sum * rotate_right + sum_shift_right) - (sum * rotate_left + sum_shift_left) << std::endl;
+            std::cout << ps[n] * (j - i + 1) - (ps[i + l] - ps[i]) - (ps[j + n] - ps[j + r + 1]) << "\n";
         }
 
     }
