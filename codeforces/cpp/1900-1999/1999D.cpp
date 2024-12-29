@@ -23,7 +23,7 @@ int main() {
                 if (s[row-1] == t[col-1]) value = dp[row-1][col-1] + 1;
                 if (s[row-1] == '?') value = dp[row-1][col-1] + 1;
 
-                std::vector temp {value, dp[row][col-1], dp[row-1][col]};
+                std::vector temp {value, dp[row][col-1]};
                 dp[row][col] = *std::min_element(temp.begin(), temp.end());
             }
         }
