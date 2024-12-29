@@ -1,7 +1,4 @@
 #include <iostream>
-#include <vector>
-#include <climits>
-#include <algorithm>
 
 int main() {
     int tt;
@@ -13,28 +10,18 @@ int main() {
         std::cin >> s;
         std::cin >> t;
 
-        std::vector dp(s.size() + 1, std::vector<int> (t.size() + 1, INT_MAX));
-        for (auto col = 0; col <= s.size(); col++) dp[0][col] = 0;
+        int index_source = 0;
+        int index_target = 0;
 
-
-        for (auto row = 1; row <= s.size(); row++) {
-            for (auto col = 1; col <= t.size(); col++) {
-                int value = INT_MAX;
-                if (s[row-1] == t[col-1]) value = dp[row-1][col-1] + 1;
-                if (s[row-1] == '?') value = dp[row-1][col-1] + 1;
-
-                std::vector temp {value, dp[row][col-1]};
-                dp[row][col] = *std::min_element(temp.begin(), temp.end());
+        while (index_target < t.size() and index_source < s.size()) {
+            if (s[index_source] == t[index_target] or s[index_source] == '?') {
+                index_target++;
+                index_source++;
+            } else {
+                index_source++;
             }
         }
 
-        if (dp[s.size()][t.size()] < INT_MAX) {
-            std::cout << "YES" << std::endl;
-        } else {
-            std::cout << "NO" << std::endl;
-        }
-
-
-
+        std::cout << (index_target == t.size() ? "YES" : "NO") << std::endl;
     }
 }
