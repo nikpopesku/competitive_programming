@@ -17,8 +17,8 @@ int main() {
         for (auto col = 0; col <= s.size(); col++) dp[0][col] = 0;
 
 
-        for (auto row = 1; row <= t.size(); row++) {
-            for (auto col = 1; col <= s.size(); col++) {
+        for (auto row = 1; row <= s.size(); row++) {
+            for (auto col = 1; col <= t.size(); col++) {
                 int value = INT_MAX;
                 if (s[row-1] == t[col-1]) value = dp[row-1][col-1] + 1;
                 if (s[row-1] == '?') value = dp[row-1][col-1] + 1;
