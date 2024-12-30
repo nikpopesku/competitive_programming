@@ -4,12 +4,13 @@ int main() {
     int t;
     int l, r;
     std::cin >> t;
-    int response = 0;
+    int response;
 
     for (int i = 0; i < t; i++) {
         std::cin >> l >> r;
 
         int val = l;
+        response = 0;
 
         while (val > 0) {
             response += 2;
