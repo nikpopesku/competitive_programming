@@ -1,13 +1,14 @@
 #include <iostream>
+#include <cmath>
 
 int main() {
     int t;
-    int l, r;
+    long long l, r;
     std::cin >> t;
 
 
     for (int i = 0; i < t; i++) {
-        int response = 0;
+        long long response = 0;
         std::cin >> l >> r;
 
         int start = 0;
@@ -25,10 +26,11 @@ int main() {
             val /= 3;
         }
 
-        int current = l;
+        long long current = l - 1;
         for (auto j = start; j <= end; j++) {
-            response += (std::min(3 * j, r) - current) * j;
-            current = 3 * j - 1;
+            long long xxx = pow(3, j);
+            response += (std::min(xxx, r) - current) * j;
+            current = xxx;
         }
 
         response += start;
