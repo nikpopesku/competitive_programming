@@ -6,7 +6,7 @@ int main() {
     std::cin >> t;
     int response = 0;
 
-    for (auto i = 0; i < t; i++) {
+    for (int i = 0; i < t; i++) {
         std::cin >> l >> r;
 
         int val = l;
@@ -24,6 +24,6 @@ int main() {
             }
         }
 
-        return response;
+        std::cout << response << std::endl;
     }
 }
