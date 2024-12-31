@@ -1,39 +1,38 @@
 #include <iostream>
-#include <cmath>
+#include <vector>
 
 int main() {
     int t;
-    long long l, r;
+    int l, r;
     std::cin >> t;
 
+    std::vector<int> steps;
+    int step = 1;
+
+    while (step <= 200000) {
+        step *= 3;
+        steps.push_back(step);
+    }
+
+    int index = 0;
 
     for (int i = 0; i < t; i++) {
-        long long response = 0;
+        int response = 0;
         std::cin >> l >> r;
 
-        int start = 0;
-        int end = 0;
+        while (l >= steps[index]) index++;
+        response = index + 1;
 
-        int val = l;
-        while (val > 0) {
-            start += 1;
-            val /= 3;
+        int current = l;
+        while (r >= steps[index]) {
+            response += (steps[index] - current) * (index + 1);
+            current = steps[index];
+            index++;
         }
 
-        val = r;
-        while (val > 0) {
-            end += 1;
-            val /= 3;
-        }
+        response += (std::min(steps[index], r + 1) - current) * (index + 1);
 
-        long long current = l - 1;
-        for (auto j = start; j <= end; j++) {
-            long long xxx = pow(3, j);
-            response += (std::min(xxx, r) - current) * j;
-            current = xxx;
-        }
 
-        response += start;
 
         std::cout << response << std::endl;
     }
