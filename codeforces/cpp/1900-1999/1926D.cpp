@@ -1,7 +1,5 @@
 #include <iostream>
-#include <unordered_map>
-#include <climits>
-#include <cstdint>
+#include <map>
 
 int main() {
     int t, n;
@@ -14,7 +12,7 @@ int main() {
     for (auto i = 0; i < t; i++) {
         std::cin >> n;
 
-        std::unordered_map<int, int> mp{};
+        std::map<int, int> mp{};
         groups = 0;
 
         for (auto j = 0; j < n; j++) {
