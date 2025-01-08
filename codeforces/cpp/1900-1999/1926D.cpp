@@ -1,5 +1,7 @@
 #include <iostream>
 #include <unordered_map>
+#include <climits>
+#include <cstdint>
 
 int main() {
     int t, n;
@@ -7,7 +9,6 @@ int main() {
     int groups = 0;
     int reverse;
     std::cin >> t;
-
 
 
     for (auto i = 0; i < t; i++) {
@@ -27,7 +28,7 @@ int main() {
                     mp.erase(number);
                 }
             } else {
-                reverse = ~number;
+                reverse = ((1 << 31) - 1) ^ number;
 
                 if (mp.find(reverse) != mp.end()) {
                     mp[reverse]++;
