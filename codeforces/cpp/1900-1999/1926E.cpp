@@ -3,51 +3,30 @@
 #include <map>
 
 int main() {
-    unsigned int t, k, n, value;
+    int t, k, n;
     std::cin >> t;
-    unsigned int N = 1e3;
-    unsigned int factor = 1;
-    unsigned int counter = 0;
-
-    std::map<unsigned int, unsigned int> number;
-
-    for (auto i = 1; i <= N; i++) {
-        number[i] = i;
-    }
-
-    std::vector<unsigned int> data(N);
-
-
-    while (!number.empty() and factor <= N) {
-        for (auto i = 1; i <= N; i += 2) {
-            value = factor * i;
-            if (value > N) break;
-
-            auto it = number.find(value);
-            if (it != number.end()) {
-                data[counter] = value;
-                number.erase(it);
-                counter++;
-            }
-        }
-
-        factor++;
-    }
 
 
     for (auto i = 0; i < t; i++) {
         std::cin >> n >> k;
 
-        counter = 0;
+        std::vector<int> data;
 
-        for (auto j : data) {
-            if (j <= n) counter++;
+        while (n) {
+            data.push_back((n + 1) / 2);
+            n /= 2;
+        }
 
-            if (counter == k) {
-                std::cout << j << std::endl;
-
+        int total = 0;
+        int pow2 = 1;
+        for (auto &elem: data) {
+            if (total < k and total + elem >= k) {
+                std::cout << pow2 * (2 * (k - total) - 1) << std::endl;
                 break;
             }
+
+            total += elem;
+            pow2 *= 2;
         }
     }
 }
