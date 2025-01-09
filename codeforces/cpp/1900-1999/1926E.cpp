@@ -15,7 +15,7 @@ int main() {
         number[i] = i;
     }
 
-    std::vector<int> data(N);
+    std::vector<int> data {};
 
 
     while (!number.empty() and factor <= N) {
@@ -44,6 +44,8 @@ int main() {
 
             if (counter == k) {
                 std::cout << j << std::endl;
+
+                break;
             }
         }
     }
