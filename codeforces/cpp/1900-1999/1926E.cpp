@@ -3,19 +3,19 @@
 #include <map>
 
 int main() {
-    int t, k, n, value;
+    unsigned int t, k, n, value;
     std::cin >> t;
-    int N = 1e9;
-    int factor = 1;
-    int counter = 0;
+    unsigned int N = 1e3;
+    unsigned int factor = 1;
+    unsigned int counter = 0;
 
-    std::map<int, int> number;
+    std::map<unsigned int, unsigned int> number;
 
     for (auto i = 1; i <= N; i++) {
         number[i] = i;
     }
 
-    std::vector<int> data {};
+    std::vector<unsigned int> data(N);
 
 
     while (!number.empty() and factor <= N) {
@@ -25,8 +25,9 @@ int main() {
 
             auto it = number.find(value);
             if (it != number.end()) {
-                data.push_back(value);
+                data[counter] = value;
                 number.erase(it);
+                counter++;
             }
         }
 
