@@ -40,7 +40,7 @@ int main() {
 
         counter = 0;
 
-        for (int j : data) {
+        for (auto j : data) {
             if (j <= n) counter++;
 
             if (counter == k) {
