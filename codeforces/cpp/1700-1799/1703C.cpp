@@ -26,7 +26,7 @@ int main() {
             if (counter_d + counter_d >= moves) {
                 fin[j] += counter_d + counter_d - moves;
             } else {
-                fin[j] += counter_d + counter_d - moves;
+                fin[j] += 10 - moves + counter_d + counter_d;
             }
         }
 
