@@ -24,16 +24,16 @@ int main() {
             }
 
             if (counter_d + counter_d >= moves) {
-                fin[j] = (fin[j] + counter_d + counter_d - moves) % 10;
+                fin[j] += counter_d + counter_d - moves;
             } else {
-                fin[j] = (fin[j] + 10 - moves + counter_d) % 10;
+                fin[j] += counter_d + counter_d - moves;
             }
         }
 
         for (auto j = 0; j < n - 1; j++) {
-            std::cout << fin[j] << ' ';
+            std::cout << fin[j] % 10 << ' ';
         }
 
-        std::cout << fin[n - 1] << std::endl;
+        std::cout << fin[n - 1] % 10 << std::endl;
     }
 }
