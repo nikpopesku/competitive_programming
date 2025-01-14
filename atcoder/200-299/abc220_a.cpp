@@ -9,7 +9,7 @@ int main() {
         value += c;
     }
 
-    int response = (value <= b ? value : -1);
+    int response = value <= b ? value : -1;
 
     std::cout << response << std::endl;
 }
