@@ -9,5 +9,7 @@ int main() {
         value += c;
     }
 
-    std::cout << (a < value and value <= b ? value : -1) << std::endl;
+    int response = (value <= b ? value : -1);
+
+    std::cout << response << std::endl;
 }
