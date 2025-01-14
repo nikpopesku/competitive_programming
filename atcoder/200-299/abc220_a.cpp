@@ -5,7 +5,7 @@ int main() {
     std::cin >> a >> b >> c;
 
     unsigned int value = c;
-    while (value <= a) {
+    while (value < a) {
         value += c;
     }
 

@@ -2,7 +2,7 @@
 
 int solution1(int &a, int &b, int &c) {
     int value = c;
-    while (value <= a) {
+    while (value < a) {
         value += c;
     }
 
