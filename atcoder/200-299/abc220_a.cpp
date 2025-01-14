@@ -5,9 +5,9 @@ int main() {
     std::cin >> a >> b >> c;
 
     unsigned int value = c;
-    while (value < a) {
+    while (value <= a) {
         value += c;
     }
 
-    std::cout << (value <= b ? value : -1) << std::endl;
+    std::cout << (a < value and value <= b ? value : -1) << std::endl;
 }
