@@ -25,12 +25,19 @@ int main() {
         std::cout << "0\n";
     }
 
-    long long response = 1;
+    long long response;
+
 
     for (auto& elem: mp) {
         if (elem.second == 1) {
             unique++;
         }
+    }
+
+    if (unique > 1) {
+        response = 0;
+    } else {
+        response = 1;
     }
 
     for (auto i = 1; i < unique; i++) {
