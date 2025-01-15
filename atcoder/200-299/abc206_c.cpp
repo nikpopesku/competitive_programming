@@ -7,7 +7,6 @@ int main() {
 
     std::map<int, int> mp;
     int unique = 0;
-    int duplicates = 0;
 
     for (auto i = 1; i <= n; i++) {
         std::cin >> value;
