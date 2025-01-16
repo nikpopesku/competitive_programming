@@ -7,7 +7,7 @@ int main() {
 
     std::map<int, int> mp;
 
-    for (auto i = 1; i <= n; i++) {
+    for (auto i = 0; i < n; i++) {
         std::cin >> value;
 
         if (mp.find(value) != mp.end()) {
