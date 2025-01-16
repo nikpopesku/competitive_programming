@@ -6,7 +6,6 @@ int main() {
     std::cin >> n;
 
     std::map<int, int> mp;
-    int unique = 0;
 
     for (auto i = 1; i <= n; i++) {
         std::cin >> value;
@@ -20,36 +19,8 @@ int main() {
         mp[value] = 1;
     }
 
-    if (mp.size() <= 1) {
-        std::cout << "0\n";
-    }
-
-    long long response;
-
-
-    for (auto& elem: mp) {
-        if (elem.second == 1) {
-            unique++;
-        }
-    }
-
-    if (unique > 1) {
-        response = 0;
-    } else {
-        response = 1;
-    }
-
-    for (auto i = 1; i < unique; i++) {
-        response += i;
-    }
-
-
-    for (auto& elem: mp) {
-        if (elem.second > 1) {
-            response *= elem.second;
-        }
-    }
-
+    long long response = n * (n - 1) / 2;
+    for (auto &elem: mp) response -= elem.second * (elem.second - 1) / 2;
 
     std::cout << response << std::endl;
 }
