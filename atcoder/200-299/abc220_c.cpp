@@ -23,7 +23,7 @@ int main() {
             sum += v[i];
 
             if (sum > x) {
-                std::cout << i << std::endl;
+                std::cout << i + 1 << std::endl;
 
                 break;
             }
@@ -37,7 +37,7 @@ int main() {
             sum += v[i];
 
             if (sum > x) {
-                std::cout << response + i << std::endl;
+                std::cout << response + i + 1 << std::endl;
 
                 break;
             }
