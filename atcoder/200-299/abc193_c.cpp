@@ -14,11 +14,17 @@ int main() {
 
     while (val_i <= N or val_j <= N) {
         if (val_i < val_j) {
-            vc.push_back(val_i);
+            if (vc.empty() or vc.back() != val_i) {
+                vc.push_back(val_i);
+            }
+
             i++;
             val_i = i * i;
         } else {
-            vc.push_back(val_j);
+            if (vc.empty() or vc.back() != val_j) {
+                vc.push_back(val_j);
+            }
+
             j++;
             val_j = j * j * j;
         }
