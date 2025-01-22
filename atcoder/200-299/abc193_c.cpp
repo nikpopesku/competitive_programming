@@ -8,7 +8,8 @@ int main() {
     ll n;
     std::cin >> n;
 
-    for (ll i = 2, value = i * i; value <= n; i++) {
+    for (ll i = 2; i * i <= n; i++) {
+        ll value = i * i;
         while (value <= n) {
             s.insert(value);
             value *= i;
