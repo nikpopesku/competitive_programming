@@ -19,8 +19,7 @@ int main() {
 
 
     for (int i = 0; i < n; i++) {
-        partial_sum -= vc[i];
-        response -= partial_sum * vc[i];
+        response -= (partial_sum  - vc[i]) * vc[i];
     }
 
     std::cout << response << std::endl;
