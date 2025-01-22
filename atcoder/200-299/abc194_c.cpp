@@ -3,9 +3,9 @@
 
 
 int main() {
-    int n;
+    long long n;
     std::cin >> n;
-    std::vector<int> vc(n);
+    std::vector<long long> vc(n);
     long long response = 0;
     long long partial_sum = 0;
 
