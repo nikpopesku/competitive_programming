@@ -26,10 +26,9 @@ int main() {
     }
 
     ll left = 0, right = vc.size() - 1;
-    ll m = left;
 
     while (left < right) {
-        m = left + (right - left) / 2;
+        ll m = left + (right - left) / 2;
 
         if (vc[m + 1] <= n) {
             left = m + 1;
@@ -38,5 +37,5 @@ int main() {
         }
     }
 
-    std::cout << n - m << std::endl;
+    std::cout << n - left - 1 << std::endl;
 }
