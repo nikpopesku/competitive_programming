@@ -16,7 +16,7 @@ int main() {
 
         if (type == 1) {
             value = value % n;
-            std::string sub = s.substr(n-value-1, value);
+            std::string sub = s.substr(n-value, value);
             s.insert(0, sub);
             s.resize(n);
         }
