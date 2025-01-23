@@ -11,8 +11,8 @@ int main() {
         std::cin >> type >> cur_value;
 
         if (type == 2) {
-            int zz = cur_value - 1 - value % n;
-            if (zz < 0 ) zz += n;
+            int zz = cur_value % n - 1 - value % n;
+            if (zz < 0) zz += n;
             std::cout << s[zz] << std::endl;
         }
 
