@@ -7,7 +7,7 @@ int main() {
     std::string s;
     std::cin >> s;
 
-    for (auto i = 1; i <= n; i++) {
+    for (auto i = 1; i <= q; i++) {
         std::cin >> type >> value;
 
         if (type == 2) {
