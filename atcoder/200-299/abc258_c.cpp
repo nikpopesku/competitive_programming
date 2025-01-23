@@ -2,27 +2,23 @@
 
 
 int main() {
-    int n, q, type, cur_value, value = 0;
+    int n, q, type, value;
     std::cin >> n >> q;
     std::string s;
     std::cin >> s;
 
     for (auto i = 1; i <= q; i++) {
-        std::cin >> type >> cur_value;
+        std::cin >> type >> value;
 
         if (type == 2) {
-            if (value) {
-                std::string sub = s.substr(n-value, value);
-                s.insert(0, sub);
-                s.resize(n);
-            }
-
-            std::cout << s[cur_value - 1] << std::endl;
+            std::cout << s[value - 1] << std::endl;
         }
 
         if (type == 1) {
-            value += cur_value;
-            value %= n;
+            value = value % n;
+            std::string sub = s.substr(n-value, value);
+            s.insert(0, sub);
+            s.resize(n);
         }
     }
 }
