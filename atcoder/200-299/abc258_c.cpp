@@ -16,12 +16,9 @@ int main() {
 
         if (type == 1) {
             value = value % n;
-
-            while (value > 0) {
-                s.insert(0, 1, s.back());
-                s.resize(n);
-                value--;
-            }
+            std::string sub = s.substr(n-value-1, value);
+            s.insert(0, sub);
+            s.resize(n);
         }
     }
 }
