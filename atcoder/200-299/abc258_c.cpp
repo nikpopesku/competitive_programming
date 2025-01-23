@@ -13,5 +13,15 @@ int main() {
         if (type == 2) {
             std::cout << s[value - 1] << std::endl;
         }
+
+        if (type == 1) {
+            value = value % n;
+
+            while (value > 0) {
+                s.insert(0, 1, s.back());
+                s.resize(n);
+                value--;
+            }
+        }
     }
 }
