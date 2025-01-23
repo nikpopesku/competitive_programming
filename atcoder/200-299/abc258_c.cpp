@@ -16,7 +16,7 @@ int main() {
 
         if (type == 1) {
             value = value % n;
-            s = s.substr(n-value, value) + s.substr(0, n-value);
+            s = s.substr(n - value, value) + s.substr(0, n - value);
         }
     }
 }
