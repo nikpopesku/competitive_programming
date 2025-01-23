@@ -2,22 +2,21 @@
 
 
 int main() {
-    int n, q, type, cur_value, value = 0;
-    std::cin >> n >> q;
+    int n, q, type, x;
     std::string s;
-    std::cin >> s;
+    std::cin >> n >> q >> s;
+    int beg = 0;
 
     for (auto i = 1; i <= q; i++) {
-        std::cin >> type >> cur_value;
+        std::cin >> type >> x;
 
         if (type == 2) {
-            int zz = cur_value % n - 1 - value % n;
-            if (zz < 0) zz += n;
-            std::cout << s[zz] << std::endl;
+            x--;
+            std::cout << s[(beg + x) % n] << '\n';
         }
 
         if (type == 1) {
-            value += cur_value;
+            beg = (beg + n - x) % n;
         }
     }
 }
