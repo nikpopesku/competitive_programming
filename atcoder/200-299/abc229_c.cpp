@@ -19,7 +19,7 @@ int main() {
         auto tp = pq.top();
         response += tp.first * std::min(tp.second, w - count);
         if (tp.second <= w - count) pq.pop();
-        count += std::min(tp.second, w - count - tp.second);
+        count += std::min(tp.second, w - count);
     }
 
     std::cout << response << std::endl;
