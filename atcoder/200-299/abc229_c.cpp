@@ -3,17 +3,17 @@
 
 
 int main() {
-    int n, w, a, b;
+    long long n, w, a, b;
     std::cin >> n >> w;
-    std::priority_queue<std::pair<int, int>> pq;
+    std::priority_queue<std::pair<long long, long long>> pq;
 
-    for (int i = 0; i < n; i++) {
+    for (long long i = 0; i < n; i++) {
         std::cin >> a >> b;
         pq.emplace(a, b);
     }
 
-    int response = 0;
-    int count = 0;
+    long long response = 0;
+    long long count = 0;
 
     while (count < w and !pq.empty()) {
         auto tp = pq.top();
