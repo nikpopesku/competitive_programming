@@ -9,7 +9,7 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         std::cin >> a >> b;
-        pq.push(std::make_pair(a, b));
+        pq.emplace(a, b);
     }
 
     int response = 0;
