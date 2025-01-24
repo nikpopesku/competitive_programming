@@ -15,12 +15,11 @@ int main() {
     int response = 0;
     int count = 0;
 
-    while (count < w) {
+    while (count < w and !pq.empty()) {
         auto tp = pq.top();
         response += tp.first * std::min(tp.second, w - count);
-        count += std::min(tp.second, w - count);
-
         if (tp.second <= w - count) pq.pop();
+        count += std::min(tp.second, w - count - tp.second);
     }
 
     std::cout << response << std::endl;
