@@ -15,7 +15,7 @@ int main() {
     long long factor = vc[1] / vc[0];
 
     for (int i = 2; i < n; i++) {
-        if (vc[i] / vc[i-1] != factor) {
+        if (vc[i] / vc[i - 1] != factor) {
             response = "No";
             break;
         }
