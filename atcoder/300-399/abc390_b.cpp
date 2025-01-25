@@ -12,10 +12,8 @@ int main() {
         std::cin >> vc[i];
     }
 
-    long long factor = vc[1] / vc[0];
-
-    for (int i = 2; i < n; i++) {
-        if (vc[i] / vc[i - 1] != factor) {
+    for (int i = 1; i < n; i++) {
+        if (vc[1] * vc[i - 1] != vc[i] * vc[0]) {
             response = "No";
             break;
         }
