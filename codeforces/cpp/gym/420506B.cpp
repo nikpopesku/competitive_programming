@@ -13,7 +13,7 @@ int main() {
         std::cin >> type >> value1 >> value2;
 
         if (type == 'c') {
-            if (vc[value1].size() >= value2) {
+            if (vc[value1].size() > value2) {
                 std::cout << vc[value1][value2] << std::endl;
             } else {
                 std::cout << -1 << std::endl;
