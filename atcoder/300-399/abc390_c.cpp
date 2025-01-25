@@ -5,7 +5,7 @@
 int main() {
     int h, w;
     std::cin >> h >> w;
-    std::vector vc(h, std::vector<char> (w));
+    std::vector vc(h, std::vector<char>(w));
     int top = h - 1, right = 0, left = w - 1, down = 0;
 
     for (int i = 0; i < h; i++) {
