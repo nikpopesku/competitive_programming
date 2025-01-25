@@ -7,7 +7,7 @@ int main() {
     std::cin >> h >> w;
     std::string s;
     std::vector<std::string> vc;
-    int top = h-1, right = 0, left = w - 1, down = 0;
+    int top = h - 1, right = 0, left = w - 1, down = 0;
 
     for (int i = 0; i < h; i++) {
         std::cin >> vc[i];
