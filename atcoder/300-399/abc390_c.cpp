@@ -5,17 +5,16 @@
 int main() {
     int h, w;
     std::cin >> h >> w;
-    std::string s;
-    std::vector<std::string> vc;
+    std::vector vc(h, std::vector<char> (w));
     int top = h - 1, right = 0, left = w - 1, down = 0;
 
     for (int i = 0; i < h; i++) {
-        std::cin >> vc[i];
+        for (int j = 0; j < w; j++) {
+            std::cin >> vc[i][j];
 
-        for (int j = 0; j < s.size(); j++) {
-            if (s[j] == '#') {
-                if (i > top) top = i;
-                if (i < down) down = i;
+            if (vc[i][j] == '#') {
+                if (i < top) top = i;
+                if (i > down) down = i;
                 if (j < left) left = j;
                 if (j > right) right = j;
             }
