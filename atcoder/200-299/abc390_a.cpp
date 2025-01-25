@@ -7,7 +7,7 @@ int main() {
     bool possible = false;
 
 
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 0; i < 5; i++) {
         std::cin >> a[i];
     }
 
