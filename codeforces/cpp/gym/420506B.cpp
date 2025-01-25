@@ -5,7 +5,7 @@ int main() {
     int n, m, q, value1, value2;
     std::cin >> n >> m >> q;
     char type;
-    std::vector<std::vector<int>> vc(n);
+    std::vector<std::vector<int>> vc(m);
     vc[0] = std::vector<int>(n);
     for (int i = 0; i < n; i++) vc[0][i] = i;
 
