@@ -20,7 +20,7 @@ int main() {
             }
         }
 
-        if (type == 's') {
+        if (type == 's' and !vc[value1].empty()) {
             vc[value2].push_back(vc[value1].back());
             vc[value1].pop_back();
         }
