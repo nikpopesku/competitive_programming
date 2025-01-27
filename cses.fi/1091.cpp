@@ -44,7 +44,10 @@ int main() {
         }
 
         if (left == right) {
-            if (price[left] <= value) std::cout << price[left] << std::endl;
+            if (price[left] <= value) {
+                std::cout << price[left] << std::endl;
+                price.erase(price.begin() + left);
+            }
             if (price[left] > value) std::cout << -1 << std::endl;
         }
     }
