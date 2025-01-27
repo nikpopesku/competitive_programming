@@ -30,7 +30,7 @@ int main() {
             if (m == 0 and price[m] > value) {
                 std::cout << -1 << std::endl;
                 break;
-            } else if (price[m] <= value and (m == price.size() - 1 or price[m+1] < value)) {
+            } else if (price[m] <= value and (m == price.size() - 1 or price[m + 1] < value)) {
                 std::cout << price[m] << std::endl;
                 price.erase(price.begin() + m);
                 break;
