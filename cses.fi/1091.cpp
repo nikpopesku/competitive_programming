@@ -5,7 +5,7 @@
 int main() {
     int n, m, value, willing_pay;
     std::cin >> n >> m;
-    std::set<int> price;
+    std::multiset<int> price;
 
     for (int i = 0; i < n; ++i) {
         std::cin >> value;
@@ -20,9 +20,14 @@ int main() {
             continue;
         }
 
-        auto it = price.lower_bound(willing_pay);
-        std::cout << *it << std::endl;
-        price.erase(*it);
+        auto it = price.upper_bound(willing_pay);
+        if (it != price.begin()) {
+            --it;
+            std::cout << *it << std::endl;
+            price.erase(*it);
+        } else {
+            std::cout << -1 << std::endl;
+        }
     }
 
 }
