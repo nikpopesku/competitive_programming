@@ -8,7 +8,7 @@ int main() {
     std::map<int, std::vector<int>> mp;
     std::cin >> n >> q;
 
-    for (int i = 1; i < n; ++i) {
+    for (int i = 1; i <= n; ++i) {
         std::cin >> value;
         mp[value].push_back(i);
     }
