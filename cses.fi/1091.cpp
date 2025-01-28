@@ -23,7 +23,7 @@ int main() {
     for (int i = 0; i < m; ++i) {
         std::cin >> willing_pay;
 
-        if (price[0] > willing_pay) {
+        if (price.empty() or price[0] > willing_pay) {
             std::cout << -1 << std::endl;
             continue;
         }
