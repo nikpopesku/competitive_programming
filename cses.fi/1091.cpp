@@ -24,7 +24,7 @@ int main() {
         if (it != price.begin()) {
             --it;
             std::cout << *it << std::endl;
-            price.erase(*it);
+            price.erase(it);
         } else {
             std::cout << -1 << std::endl;
         }
