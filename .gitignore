@@ -1,4 +1,5 @@
 .idea
-codeforces/cpp/bin
+bin
+bin
 
 __pycache__
