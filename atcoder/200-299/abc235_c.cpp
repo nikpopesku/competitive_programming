@@ -19,7 +19,7 @@ int main() {
         if (mp[x].size() < k) {
             std::cout << -1 << std::endl;
         } else {
-            std::cout << mp[x][k-1] << std::endl;
+            std::cout << mp[x][k - 1] << std::endl;
         }
     }
 }
