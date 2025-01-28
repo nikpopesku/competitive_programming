@@ -10,9 +10,9 @@ int main() {
     for (int i = 1; i <= n; ++i) {
         std::cin >> value;
         if (!found and mp[x - value] != 0) {
-            std::cout << mp[x-value] << ' ' << i << std::endl;
+            std::cout << mp[x - value] << ' ' << i << std::endl;
             found = true;
-        } else if(!found) {
+        } else if (!found) {
             mp[value] = i;
         }
     }
