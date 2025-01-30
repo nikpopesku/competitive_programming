@@ -12,33 +12,42 @@ int main() {
             std::cin >> x;
             s.insert(x);
         } else {
-            std::cin >> x >> k;
+             std::cin >> x >> k;
+             auto it = s.lower_bound(x);
 
-            auto it = s.upper_bound(x);
 
-            while (k > 0 and type == 3) {
-                if (it != s.end()) {
-                    ++it;
-                } else {
-                    break;
-                }
-                --k;
-            }
+             if (type == 3) {
+                 it = s.lower_bound(x);
 
-            while (k > 0 and type == 2) {
-                if (it != s.begin()) {
-                    --it;
-                } else {
-                    break;
-                }
-                --k;
-            }
+                 while (k > 1) {
+                     if (it == s.end()) break;
 
-            if (it != s.end() and ((type == 2 and *it <= x) or (type == 3 and *it >= x))) {
-                std::cout << *it << std::endl;
-            } else {
-                std::cout << -1 << std::endl;
-            }
+                     ++it;
+                     --k;
+                 }
+
+                 if (it != s.end()) {
+                     std::cout << *it << std::endl;
+                 } else {
+                     std::cout << -1 << std::endl;
+                 }
+             }
+
+             if (type == 2) {
+                 it = s.upper_bound(x);
+
+                 while (k > 0) {
+                     if (it == s.begin()) break;
+
+                     --it;
+                     --k;
+                 }
+                 if (k == 0) {
+                     std::cout << *it << std::endl;
+                 } else {
+                     std::cout << -1 << std::endl;
+                 }
+             }
         }
     }
 }
