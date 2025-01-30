@@ -11,42 +11,42 @@ int main() {
         if (type == 1) {
             std::cin >> x;
             s.insert(x);
-        } else {
+        }
+
+        if (type == 3) {
             std::cin >> x >> k;
             auto it = s.lower_bound(x);
+            it = s.lower_bound(x);
 
+            while (k > 1) {
+                if (it == s.end()) break;
 
-            if (type == 3) {
-                it = s.lower_bound(x);
-
-                while (k > 1) {
-                    if (it == s.end()) break;
-
-                    ++it;
-                    --k;
-                }
-
-                if (it != s.end()) {
-                    std::cout << *it << std::endl;
-                } else {
-                    std::cout << -1 << std::endl;
-                }
+                ++it;
+                --k;
             }
 
-            if (type == 2) {
-                it = s.upper_bound(x);
+            if (it != s.end()) {
+                std::cout << *it << std::endl;
+            } else {
+                std::cout << -1 << std::endl;
+            }
+        }
 
-                while (k > 0) {
-                    if (it == s.begin()) break;
+        if (type == 2) {
+            std::cin >> x >> k;
+            auto it = s.lower_bound(x);
+            it = s.upper_bound(x);
 
-                    --it;
-                    --k;
-                }
-                if (k == 0) {
-                    std::cout << *it << std::endl;
-                } else {
-                    std::cout << -1 << std::endl;
-                }
+            while (k > 0) {
+                if (it == s.begin()) break;
+
+                --it;
+                --k;
+            }
+            if (k == 0) {
+                std::cout << *it << std::endl;
+            } else {
+                std::cout << -1 << std::endl;
             }
         }
     }
