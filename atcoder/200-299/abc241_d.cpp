@@ -20,7 +20,7 @@ int main() {
                 it = s.lower_bound(x);
             }
 
-            while (k > 0) {
+            while (k > 1) {
                 if (it != s.end()) {
                     ++it;
                 } else {
