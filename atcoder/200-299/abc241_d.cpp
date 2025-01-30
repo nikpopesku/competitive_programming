@@ -25,11 +25,7 @@ int main() {
                 --k;
             }
 
-            if (it != s.end()) {
-                std::cout << *it << std::endl;
-            } else {
-                std::cout << -1 << std::endl;
-            }
+            std::cout << (it != s.end() ? *it : -1) << std::endl;
         }
 
         if (type == 2) {
@@ -43,11 +39,8 @@ int main() {
                 --it;
                 --k;
             }
-            if (k == 0) {
-                std::cout << *it << std::endl;
-            } else {
-                std::cout << -1 << std::endl;
-            }
+
+            std::cout << (k == 0 ? *it : -1) << std::endl;
         }
     }
 }
