@@ -27,6 +27,24 @@ int main() {
                     std::cout << -1 << std::endl;
                 }
             }
+
+            if (type == 3) {
+                auto it = s.upper_bound(x);
+                while (k > 0) {
+                    if (it != s.end()) {
+                        ++it;
+                    } else {
+                        break;
+                    }
+                    --k;
+                }
+
+                if (it != s.end() and *it <= x) {
+                    std::cout << *it << std::endl;
+                } else {
+                    std::cout << -1 << std::endl;
+                }
+            }
         }
     }
 }
