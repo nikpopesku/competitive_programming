@@ -16,7 +16,6 @@ int main() {
         if (type == 3) {
             std::cin >> x >> k;
             auto it = s.lower_bound(x);
-            it = s.lower_bound(x);
 
             while (k > 1) {
                 if (it == s.end()) break;
@@ -30,8 +29,7 @@ int main() {
 
         if (type == 2) {
             std::cin >> x >> k;
-            auto it = s.lower_bound(x);
-            it = s.upper_bound(x);
+            auto it = s.upper_bound(x);
 
             while (k > 0) {
                 if (it == s.begin()) break;
