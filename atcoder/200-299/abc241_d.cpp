@@ -17,7 +17,7 @@ int main() {
             auto it = s.begin();
 
             if (type == 3) {
-                it = s.upper_bound(x);
+                it = s.lower_bound(x);
             }
 
             while (k > 0) {
@@ -29,7 +29,7 @@ int main() {
                 --k;
             }
 
-            if (it != s.end() and *it <= x) {
+            if (it != s.end() and ((type == 2 and *it <= x) or (type == 3 and *it >= x))) {
                 std::cout << *it << std::endl;
             } else {
                 std::cout << -1 << std::endl;
