@@ -17,7 +17,7 @@ int divide(int start, int end, int x, std::vector<int> partial_sum) {
         }
     }
 
-    return response + divide(0, j, partial_sum[j], partial_sum) + divide(j+1, end, partial_sum[j], partial_sum);
+    return response + divide(0, j, partial_sum[j], partial_sum) + divide(j + 1, end, partial_sum[j], partial_sum);
 }
 
 int main() {
