@@ -14,15 +14,20 @@ int main() {
         } else {
             std::cin >> x >> k;
 
-            auto it = s.begin();
+            auto it = s.upper_bound(x);
 
-            if (type == 3) {
-                it = s.lower_bound(x);
-            }
-
-            while (k > 1) {
+            while (k > 0 and type == 3) {
                 if (it != s.end()) {
                     ++it;
+                } else {
+                    break;
+                }
+                --k;
+            }
+
+            while (k > 0 and type == 2) {
+                if (it != s.begin()) {
+                    --it;
                 } else {
                     break;
                 }
