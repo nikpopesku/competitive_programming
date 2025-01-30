@@ -2,9 +2,10 @@
 #include <set>
 
 int main() {
-    int q, type, x, k;
+    int q, type, k;
+    long long x;
     std::cin >> q;
-    std::multiset<int> s;
+    std::multiset<long long> s;
 
     for (int i = 0; i < q; ++i) {
         std::cin >> type;
