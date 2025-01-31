@@ -8,7 +8,7 @@ int divide(int start, int end, int x, std::vector<int> partial_sum) {
     int half = x / 2;
     int j = 0;
 
-    int deduct = start > 0 ? partial_sum[start-1] : 0;
+    int deduct = start > 0 ? partial_sum[start - 1] : 0;
     for (int i = start; i <= end; ++i) {
         if (std::abs(half - partial_sum[i] + deduct) < min_delta) {
             j = i;
