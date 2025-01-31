@@ -18,7 +18,8 @@ int divide(int start, int end, int x, std::vector<int> partial_sum) {
 
     response += x;
 
-    return response + divide(0, j, partial_sum[j], partial_sum) + divide(j + 1, end, partial_sum[end] - partial_sum[j], partial_sum);
+    return response + divide(0, j, partial_sum[j], partial_sum) +
+           divide(j + 1, end, partial_sum[end] - partial_sum[j], partial_sum);
 }
 
 int main() {
@@ -29,7 +30,7 @@ int main() {
 
     for (int i = 0; i < n; ++i) {
         std::cin >> vc[i];
-        partial_sum[i] = (i > 0 ? partial_sum[i-1] : 0) + vc[i];
+        partial_sum[i] = (i > 0 ? partial_sum[i - 1] : 0) + vc[i];
     }
 
     int response = divide(0, n - 1, x, partial_sum);
