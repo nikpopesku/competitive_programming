@@ -13,7 +13,7 @@ struct Person {
 
 struct ComparePerson {
     bool operator()(Person const &p1, Person const &p2) {
-        return p1.departure < p2.departure;
+        return p1.departure > p2.departure;
     }
 };
 
@@ -29,8 +29,8 @@ int main() {
     }
 
     while(!pq.empty()) {
-        Person p = pq.pop();
-        std::cout << p.arrival << ' ' << p.departure;
+        Person p = pq.top();
+        std::cout << p.arrival << ' ' << p.departure << std::endl;
         pq.pop();
     }
 }
