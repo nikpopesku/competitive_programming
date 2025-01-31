@@ -14,7 +14,10 @@ struct Person {
 
 struct ComparePerson {
     bool operator()(Person const &p1, Person const &p2) {
-        return p1.departure > p2.departure;
+        if (p1.departure > p2.departure) return true;
+        if (p1.departure == p2.departure) return p1.arrival > p2.arrival;
+
+        return false;
     }
 };
 
@@ -37,7 +40,7 @@ int main() {
         counter -= d[p.arrival];
         counter += 1;
         if (counter > max_counter) max_counter = counter;
-        d[p.departure] += 1;
+        d[p.departure + 1] += 1;
         pq.pop();
     }
 
