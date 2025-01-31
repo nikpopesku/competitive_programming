@@ -13,11 +13,12 @@ int divide(int start, int end, int x, std::vector<int> partial_sum) {
         if (std::abs(half - partial_sum[i]) < min_delta) {
             j = i;
             min_delta = std::abs(half - partial_sum[i]);
-            response += x;
         }
     }
 
-    return response + divide(0, j, partial_sum[j], partial_sum) + divide(j + 1, end, partial_sum[j], partial_sum);
+    response += x;
+
+    return response + divide(0, j, partial_sum[j], partial_sum) + divide(j + 1, end, partial_sum[end] - partial_sum[j], partial_sum);
 }
 
 int main() {
