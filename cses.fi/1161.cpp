@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
 
-long long divide(int start, int end, int x, std::vector<int> partial_sum) {
+long long divide(int start, int end, long long x, std::vector<int> partial_sum) {
     if (start == end) return 0;
 
-    int min_delta = x;
-    int half = x / 2;
+    long long min_delta = x;
+    long long half = x / 2;
     int j = 0;
 
     int deduct = start > 0 ? partial_sum[start - 1] : 0;
@@ -21,7 +21,8 @@ long long divide(int start, int end, int x, std::vector<int> partial_sum) {
 }
 
 int main() {
-    int n, x;
+    int n;
+    long long x;
     std::cin >> x >> n;
     std::vector<int> vc(n);
     std::vector<int> partial_sum(n);
