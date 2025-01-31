@@ -6,7 +6,6 @@ int divide(int start, int end, int x, std::vector<int> partial_sum) {
 
     int min_delta = x;
     int half = x / 2;
-    int response = 0;
     int j = 0;
 
     for (int i = start; i <= end; ++i) {
@@ -16,9 +15,7 @@ int divide(int start, int end, int x, std::vector<int> partial_sum) {
         }
     }
 
-    response += x;
-
-    return response + divide(0, j, partial_sum[j], partial_sum) +
+    return x + divide(0, j, partial_sum[j], partial_sum) +
            divide(j + 1, end, partial_sum[end] - partial_sum[j], partial_sum);
 }
 
