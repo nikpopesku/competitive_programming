@@ -1,8 +1,8 @@
 #include <iostream>
+#include <vector>
 #include <queue>
 
 struct Person {
-
     int arrival;
     int departure;
 
@@ -19,11 +19,12 @@ struct ComparePerson {
 
 int main() {
     int n;
+    int arrival, departure;
     std::cin >> n;
-    std::vector<int> arrival(n);
-    std::vector<int> departure(n);
+    std::priority_queue<Person, std::vector<Person>, ComparePerson> pq;
 
     for (int i = 0; i < n; ++i) {
-        std::cin >> arrival[i] >> departure[i];
+        std::cin >> arrival >> departure;
+        pq.emplace(arrival, departure);
     }
 }
