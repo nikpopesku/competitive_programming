@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <map>
 
 struct Person {
     int arrival;
@@ -20,17 +21,25 @@ struct ComparePerson {
 int main() {
     int n;
     int arrival, departure;
+    int counter = 0, max_counter = 0;
     std::cin >> n;
     std::priority_queue<Person, std::vector<Person>, ComparePerson> pq;
+    std::map<int, int> d;
 
     for (int i = 0; i < n; ++i) {
         std::cin >> arrival >> departure;
         pq.emplace(arrival, departure);
     }
 
-    while(!pq.empty()) {
+    while (!pq.empty()) {
         Person p = pq.top();
         std::cout << p.arrival << ' ' << p.departure << std::endl;
+        counter -= d[p.arrival];
+        counter += 1;
+        if (counter > max_counter) max_counter = counter;
+        d[p.departure] += 1;
         pq.pop();
     }
+
+    std::cout << max_counter << std::endl;
 }
