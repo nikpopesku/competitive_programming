@@ -27,4 +27,10 @@ int main() {
         std::cin >> arrival >> departure;
         pq.emplace(arrival, departure);
     }
+
+    while(!pq.empty()) {
+        Person p = pq.pop();
+        std::cout << p.arrival << ' ' << p.departure;
+        pq.pop();
+    }
 }
