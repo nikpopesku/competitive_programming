@@ -8,14 +8,15 @@ int divide(int start, int end, int x, std::vector<int> partial_sum) {
     int half = x / 2;
     int j = 0;
 
+    int deduct = start > 0 ? partial_sum[start-1] : 0;
     for (int i = start; i <= end; ++i) {
-        if (std::abs(half - partial_sum[i]) < min_delta) {
+        if (std::abs(half - partial_sum[i] + deduct) < min_delta) {
             j = i;
-            min_delta = std::abs(half - partial_sum[i]);
+            min_delta = std::abs(half - partial_sum[i] + deduct);
         }
     }
 
-    return x + divide(0, j, partial_sum[j], partial_sum) +
+    return x + divide(start, j, partial_sum[j] - deduct, partial_sum) +
            divide(j + 1, end, partial_sum[end] - partial_sum[j], partial_sum);
 }
 
