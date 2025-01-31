@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-int divide(int start, int end, int x, std::vector<int> partial_sum) {
+long long divide(int start, int end, int x, std::vector<int> partial_sum) {
     if (start == end) return 0;
 
     int min_delta = x;
@@ -31,7 +31,7 @@ int main() {
         partial_sum[i] = (i > 0 ? partial_sum[i - 1] : 0) + vc[i];
     }
 
-    int response = divide(0, n - 1, x, partial_sum);
+    long long response = divide(0, n - 1, x, partial_sum);
 
     std::cout << response << std::endl;
 }
