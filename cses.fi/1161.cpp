@@ -4,7 +4,7 @@
 using ll = long long;
 
 int main() {
-    ll n, value, x, response;
+    ll n, value, x, response = 0;
     std::cin >> x >> n;
     std::priority_queue<int> pq;
 
@@ -18,7 +18,7 @@ int main() {
         pq.pop();
         ll right = -1 * pq.top();
         pq.pop();
-        value = left + right
+        value = left + right;
         response += value;
         pq.push(-1 * value);
     }
