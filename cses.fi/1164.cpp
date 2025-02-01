@@ -5,8 +5,8 @@
 
 struct Person {
     int day;
-    int ordinal_number;
     std::string type;
+    int ordinal_number;
 
     Person(int day, std::string type, int ordinal_number)
             : day(day), type(std::move(type)), ordinal_number(ordinal_number) {
