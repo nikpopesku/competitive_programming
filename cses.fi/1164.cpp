@@ -55,7 +55,7 @@ int main() {
     }
 
     std::cout << max_counter << std::endl;
-    for (int i = 0; i < rooms.size(); ++i) {
+    for (auto i = 0; i < rooms.size(); ++i) {
         std::cout << rooms[i];
         if (i < rooms.size()) std::cout << ' ';
         else std::cout << std::endl;
