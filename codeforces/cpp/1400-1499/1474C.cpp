@@ -22,6 +22,8 @@ int main() {
 
         while (it != last) {
             value = *it + *last;
+
+            ++it;
         }
     }
 }
