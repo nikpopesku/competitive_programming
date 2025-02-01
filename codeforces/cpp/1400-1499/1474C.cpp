@@ -23,6 +23,7 @@ int main() {
         std::string response = "NO";
 
         while (it != last and response == "NO") {
+            s_copy = s;
             int max_value = *last_copy;
             bool condition = true;
 
