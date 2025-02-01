@@ -17,21 +17,20 @@ int main() {
         }
 
         auto it = s.begin();
-        auto last = s.end();
-        last--;
-        auto last_copy = last;
+        auto last = --s.end();
         std::string response = "NO";
 
         while (it != last and response == "NO") {
             s_copy = s;
+            auto last_copy = --s_copy.end();
             int max_value = *last_copy + *it;
 
             while (!s_copy.empty()) {
-                int previous_size = s_copy.size();
-                if (s_copy.find(max_value - *last_copy) == s_copy.end()) break;
-                s_copy.erase(max_value - *last_copy);
+                auto itt = s_copy.find(max_value - *last_copy);
+                if (itt == s_copy.end()) break;
+                s_copy.erase(itt);
                 max_value = *last_copy;
-                s_copy.erase(*last_copy);
+                s_copy.erase(last_copy);
                 last_copy = s_copy.end();
                 if (s_copy.size() > 0) {
                     --last_copy;
