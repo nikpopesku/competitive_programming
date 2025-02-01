@@ -48,7 +48,7 @@ int main() {
         }
         if (p.type == "departure") {
             --counter;
-            room_pool.insert(rooms[p.ordinal_number] - 1);
+            room_pool.insert(rooms[p.ordinal_number] + 1);
         }
         if (counter > max_counter) max_counter = counter;
         pq.pop();
