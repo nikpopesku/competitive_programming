@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <set>
 
 int main() {
@@ -10,6 +11,7 @@ int main() {
         int n;
         std::cin >> n;
         std::multiset<int> s, s_copy;
+        std::vector<int> pairs(2*n);
 
         for (int j = 0; j < 2 * n; ++j) {
             std::cin >> value;
@@ -21,6 +23,7 @@ int main() {
         std::string response = "NO";
 
         while (it != last and response == "NO") {
+            pairs = {};
             s_copy = s;
             auto last_copy = --s_copy.end();
             int max_value = *last_copy + *it;
@@ -28,10 +31,12 @@ int main() {
             while (!s_copy.empty()) {
                 auto itt = s_copy.find(max_value - *last_copy);
                 if (itt == s_copy.end() or itt == last_copy) break;
+                pairs.push_back(*itt);
                 s_copy.erase(itt);
                 if (s_copy.count(max_value - *last_copy) == 0 or s_copy.count(*last_copy) == 1) {
                     max_value = *last_copy;
                 }
+                pairs.push_back(*last_copy);
                 s_copy.erase(last_copy);
                 last_copy = s_copy.end();
                 if (s_copy.size() > 0) {
@@ -45,5 +50,16 @@ int main() {
         }
 
         std::cout << response << std::endl;
+        if (response == "YES") {
+            for (int j = 0; j < pairs.size(); ++j) {
+                std::cout << pairs[j];
+
+                if (j % 2 == 0) {
+                    std::cout << std::endl;
+                } else {
+                    std::cout << ' ';
+                }
+            }
+        }
     }
 }
