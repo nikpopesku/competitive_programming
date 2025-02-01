@@ -51,6 +51,8 @@ int main() {
 
         std::cout << response << std::endl;
         if (response == "YES") {
+            std::cout << pairs[0] + pairs[1] << std::endl;
+
             for (int j = 0; j < pairs.size(); ++j) {
                 std::cout << pairs[j];
 
