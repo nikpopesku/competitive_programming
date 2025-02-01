@@ -4,6 +4,7 @@
 int main() {
     int t;
     std::cin >> t;
+    int max_value = 0;
 
 
     for (auto i = 0; i < t; i++) {
@@ -13,6 +14,7 @@ int main() {
 
         for (int j = 0; j < 2 * n; ++j) {
             std::cin >> vc[j];
+            if (vc[j] > max_value) max_value = vc[j];
         }
     }
 }
