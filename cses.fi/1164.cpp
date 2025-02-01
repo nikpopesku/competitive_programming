@@ -15,6 +15,7 @@ struct Person {
 
 struct ComparePerson {
     bool operator()(Person const &p1, Person const &p2) {
+        if (p1.type == p2.type and p1.day == p2.day) return p1.ordinal_number < p2.ordinal_number;
         if (p1.type == p2.type) return p1.day > p2.day;
         if (p1.day > p2.day) return true;
         if (p1.day == p2.day) return p1.type == "departure";
@@ -41,6 +42,7 @@ int main() {
 
     while (!pq.empty()) {
         Person p = pq.top();
+        std::cout << p.day << ' ' << p.type << ' ' << p.ordinal_number << std::endl;
         if (p.type == "arrival") {
             ++counter;
             rooms[p.ordinal_number - 1] = *room_pool.begin();
