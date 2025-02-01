@@ -19,11 +19,28 @@ int main() {
         auto it = s.begin();
         auto last = s.end();
         last--;
+        auto last_copy = last;
+        std::string response = "NO";
 
-        while (it != last) {
-            value = *it + *last;
+        while (it != last and response == "NO") {
+            int max_value = *last_copy;
+            bool condition = true;
+
+            while (!s_copy.empty() && condition) {
+                int previous_size = s_copy.size();
+                s_copy.erase(max_value - *last_copy);
+                s_copy.erase(*last_copy);
+                last_copy = s_copy.end();
+                --last_copy;
+                max_value = *last_copy;
+                condition = previous_size > s_copy.size();
+            }
+
+            if (s_copy.empty()) response = "YES";
 
             ++it;
         }
+
+        std::cout << response << std::endl;
     }
 }
