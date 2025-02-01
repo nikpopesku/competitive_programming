@@ -24,16 +24,18 @@ int main() {
 
         while (it != last and response == "NO") {
             s_copy = s;
-            int max_value = *last_copy;
+            int max_value = *last_copy + *it;
             bool condition = true;
 
             while (!s_copy.empty() && condition) {
                 int previous_size = s_copy.size();
                 s_copy.erase(max_value - *last_copy);
+                max_value = *last_copy;
                 s_copy.erase(*last_copy);
                 last_copy = s_copy.end();
-                --last_copy;
-                max_value = *last_copy;
+                if (s_copy.size() > 0) {
+                    --last_copy;
+                }
                 condition = previous_size > s_copy.size();
             }
 
