@@ -19,18 +19,9 @@ int main() {
         auto it = s.begin();
         auto last = s.end();
         last--;
-        auto last_copy = last;
 
         while (it != last) {
-            s_copy = s;
-            last_copy = last;
-
-            while (!s_copy.empty()) {
-                int max_value =
-            }
-
-            ++it;
-            last = s.end();
+            value = *it + *last;
         }
     }
 }
