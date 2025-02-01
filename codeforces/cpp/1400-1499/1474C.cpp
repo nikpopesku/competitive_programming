@@ -27,7 +27,7 @@ int main() {
 
             while (!s_copy.empty()) {
                 auto itt = s_copy.find(max_value - *last_copy);
-                if (itt == s_copy.end()) break;
+                if (itt == s_copy.end() or itt == last_copy) break;
                 s_copy.erase(itt);
                 if (s_copy.count(max_value - *last_copy) == 0 or s_copy.count(*last_copy) == 1) {
                     max_value = *last_copy;
