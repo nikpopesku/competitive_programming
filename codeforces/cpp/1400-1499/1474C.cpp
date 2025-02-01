@@ -11,7 +11,7 @@ int main() {
         int n;
         std::cin >> n;
         std::multiset<int> s, s_copy;
-        std::vector<int> pairs(2 * n);
+        std::vector<int> pairs;
 
         for (int j = 0; j < 2 * n; ++j) {
             std::cin >> value;
@@ -54,7 +54,7 @@ int main() {
             for (int j = 0; j < pairs.size(); ++j) {
                 std::cout << pairs[j];
 
-                if (j % 2 == 0) {
+                if (j % 2 == 1) {
                     std::cout << std::endl;
                 } else {
                     std::cout << ' ';
