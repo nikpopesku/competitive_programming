@@ -25,10 +25,10 @@ int main() {
         while (it != last and response == "NO") {
             s_copy = s;
             int max_value = *last_copy + *it;
-            bool condition = true;
 
-            while (!s_copy.empty() && condition) {
+            while (!s_copy.empty()) {
                 int previous_size = s_copy.size();
+                if (s_copy.find(max_value - *last_copy) == s_copy.end()) break;
                 s_copy.erase(max_value - *last_copy);
                 max_value = *last_copy;
                 s_copy.erase(*last_copy);
@@ -36,7 +36,6 @@ int main() {
                 if (s_copy.size() > 0) {
                     --last_copy;
                 }
-                condition = previous_size > s_copy.size();
             }
 
             if (s_copy.empty()) response = "YES";
