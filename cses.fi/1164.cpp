@@ -34,9 +34,9 @@ int main() {
 
     for (int i = 0; i < n; ++i) {
         std::cin >> arrival >> departure;
-        pq.emplace(arrival, "arrival", i+1);
-        pq.emplace(departure, "departure", i+1);
-        room_pool.insert(i+1);
+        pq.emplace(arrival, "arrival", i + 1);
+        pq.emplace(departure, "departure", i + 1);
+        room_pool.insert(i + 1);
     }
 
     while (!pq.empty()) {
