@@ -43,12 +43,12 @@ int main() {
         Person p = pq.top();
         if (p.type == "arrival") {
             ++counter;
-            rooms[p.ordinal_number] = *room_pool.begin();
+            rooms[p.ordinal_number - 1] = *room_pool.begin();
             room_pool.erase(room_pool.begin());
         }
         if (p.type == "departure") {
             --counter;
-            room_pool.insert(rooms[p.ordinal_number]);
+            room_pool.insert(rooms[p.ordinal_number] - 1);
         }
         if (counter > max_counter) max_counter = counter;
         pq.pop();
