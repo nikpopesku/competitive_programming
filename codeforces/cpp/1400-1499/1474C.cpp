@@ -1,33 +1,18 @@
 #include <iostream>
+#include <vector>
 
 int main() {
     int t;
     std::cin >> t;
 
+
     for (auto i = 0; i < t; i++) {
-        int n, k;
-        std::cin >> n >> k;
+        int n;
+        std::cin >> n;
+        std::vector<int> vc(2 * n);
 
-
-        if (k < n) {
-            const int initial_k = k;
-            const int times = n / k;
-            k = k * times;
-
-            while (k < n) {
-                k += initial_k;
-            }
-        }
-
-        int start = k/n;
-        while (start <= k) {
-            if (n * start >= k) {
-                std::cout << start << std::endl;
-                break;
-            }
-            start++;
+        for (int j = 0; j < 2 * n; ++j) {
+            std::cin >> vc[j];
         }
     }
-
-    return 0;
 }
