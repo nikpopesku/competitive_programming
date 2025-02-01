@@ -1,15 +1,15 @@
 #include <iostream>
-#include <utility>
 #include <vector>
 #include <queue>
-#include <map>
+#include <set>
 
 struct Person {
     int day;
+    int ordinal_number;
     std::string type;
 
-    Person(int day, std::string type)
-            : day(day), type(std::move(type)) {
+    Person(int day, std::string type, int ordinal_number)
+            : day(day), type(std::move(type)), ordinal_number(ordinal_number) {
     }
 };
 
@@ -29,21 +29,32 @@ int main() {
     int counter = 0, max_counter = 0;
     std::cin >> n;
     std::priority_queue<Person, std::vector<Person>, ComparePerson> pq;
-    std::map<int, int> d;
+    std::set<int> room_pool;
+    std::vector<int> rooms(n);
 
     for (int i = 0; i < n; ++i) {
         std::cin >> arrival >> departure;
-        pq.emplace(arrival, "arrival");
-        pq.emplace(departure, "departure");
+        pq.emplace(arrival, "arrival", i+1);
+        pq.emplace(departure, "departure", i+1);
+        room_pool.insert(i+1);
     }
 
     while (!pq.empty()) {
         Person p = pq.top();
-        if (p.type == "arrival") ++counter;
-        if (p.type == "departure") --counter;
+        if (p.type == "arrival") {
+            ++counter;
+            rooms[p.ordinal_number] = *room_pool.begin();
+            room_pool.erase(room_pool.begin());
+        }
+        if (p.type == "departure") {
+            --counter;
+            room_pool.insert(rooms[p.ordinal_number]);
+        }
         if (counter > max_counter) max_counter = counter;
         pq.pop();
     }
 
     std::cout << max_counter << std::endl;
+    for (auto &room: rooms) std::cout << room << ' ';
+    std::cout << std::endl;
 }
