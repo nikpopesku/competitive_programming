@@ -30,27 +30,26 @@ int main() {
     int counter = 0, max_counter = 0;
     std::cin >> n;
     std::priority_queue<Person, std::vector<Person>, ComparePerson> pq;
-    std::set<int> room_pool;
+    std::multiset<int> room_pool;
     std::vector<int> rooms(n);
 
     for (int i = 0; i < n; ++i) {
         std::cin >> arrival >> departure;
-        pq.emplace(arrival, "arrival", i + 1);
-        pq.emplace(departure, "departure", i + 1);
+        pq.emplace(arrival, "arrival", i);
+        pq.emplace(departure, "departure", i);
         room_pool.insert(i + 1);
     }
 
     while (!pq.empty()) {
         Person p = pq.top();
-        std::cout << p.day << ' ' << p.type << ' ' << p.ordinal_number << std::endl;
         if (p.type == "arrival") {
             ++counter;
-            rooms[p.ordinal_number - 1] = *room_pool.begin();
+            rooms[p.ordinal_number] = *room_pool.begin();
             room_pool.erase(room_pool.begin());
         }
         if (p.type == "departure") {
             --counter;
-            room_pool.insert(rooms[p.ordinal_number] + 1);
+            room_pool.insert(rooms[p.ordinal_number]);
         }
         if (counter > max_counter) max_counter = counter;
         pq.pop();
