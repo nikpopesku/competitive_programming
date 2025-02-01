@@ -39,7 +39,6 @@ int main() {
 
     while (!pq.empty()) {
         Person p = pq.top();
-        std::cout << p.day << ' ' << p.type << std::endl;
         if (p.type == "arrival") ++counter;
         if (p.type == "departure") --counter;
         if (counter > max_counter) max_counter = counter;
