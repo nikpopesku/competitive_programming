@@ -11,7 +11,7 @@ int main() {
         int n;
         std::cin >> n;
         std::multiset<int> s, s_copy;
-        std::vector<int> pairs(2*n);
+        std::vector<int> pairs(2 * n);
 
         for (int j = 0; j < 2 * n; ++j) {
             std::cin >> value;
