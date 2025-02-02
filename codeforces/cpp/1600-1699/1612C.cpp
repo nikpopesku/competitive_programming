@@ -25,8 +25,6 @@ int main() {
                 right = m - 1;
             }
         }
-
-        cout << left << endl;
     } else {
         ll left = k+1, right = 2 * k - 1;
 
@@ -40,7 +38,7 @@ int main() {
                 right = m - 1;
             }
         }
-
-        cout << left << endl;
     }
+
+    cout << left << endl;
 }
