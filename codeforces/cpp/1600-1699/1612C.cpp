@@ -31,8 +31,8 @@ int main() {
         while (left < right) {
             ll m = left + (right - left + 1) / 2;
 
-            ll value = (1 + m) * m / 2;
-            if (value < x - k * (k + 1) / 2) {
+            ll value = k * k - (2 * k - m) * (2 * k - 1 - m) / 2;
+            if (value < x) {
                 left = m;
             } else {
                 right = m - 1;
