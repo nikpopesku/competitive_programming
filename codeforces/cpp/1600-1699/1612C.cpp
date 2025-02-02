@@ -46,7 +46,8 @@ int main() {
                 }
             }
 
-            cout << left << endl;
+            ll value = k * k - (2 * k - left) * (2 * k - 1 - left) / 2;
+            cout << (value < x ? left + 1 : left) << endl;
         }
     }
 }
