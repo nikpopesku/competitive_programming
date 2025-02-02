@@ -21,14 +21,14 @@ int main() {
                 ll m = left + (right - left + 1) / 2;
 
                 ll value = (1 + m) * m / 2;
-                if (value <= x) {
+                if (value < x) {
                     left = m;
                 } else {
                     right = m - 1;
                 }
             }
 
-            cout << left << endl;
+            cout << left + 1 << endl;
         } else {
             ll left = k + 1, right = 2 * k - 1;
 
