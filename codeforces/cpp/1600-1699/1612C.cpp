@@ -14,7 +14,9 @@ int main() {
 
         ll first_half = (k + 1) * k / 2;
 
-        if (first_half >= x) {
+        if (k * k <= x) {
+            cout << 2 * k - 1 << endl;
+        } else if (first_half >= x) {
             ll left = 1, right = k;
 
             while (left < right) {
@@ -30,7 +32,7 @@ int main() {
 
             cout << left + 1 << endl;
         } else {
-            ll left = k, right = 2 * k - 1;
+            ll left = k + 1, right = 2 * k - 1;
 
             while (left < right) {
                 ll m = left + (right - left + 1) / 2;
