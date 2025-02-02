@@ -30,7 +30,8 @@ int main() {
                 }
             }
 
-            cout << left + 1 << endl;
+            ll value = (1 + left) * left / 2;
+            cout << (value > x ? left + 1 : left) << endl;
         } else {
             ll left = k + 1, right = 2 * k - 1;
 
