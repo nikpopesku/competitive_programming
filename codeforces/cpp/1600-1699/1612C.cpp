@@ -26,7 +26,7 @@ int main() {
             }
         }
     } else {
-        ll left = k+1, right = 2 * k - 1;
+        ll left = k + 1, right = 2 * k - 1;
 
         while (left < right) {
             ll m = left + (right - left + 1) / 2;
