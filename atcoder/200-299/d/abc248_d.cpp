@@ -43,7 +43,10 @@ int main() {
             continue;
         }
 
-        cout << ffind(mp, x, r - 1) - ffind(mp, x, l - 1) << endl;
+        int pos_r = ffind(mp, x, r - 1), pos_l = ffind(mp, x, l - 1);
+
+        if (pos_r == pos_l) cout << "1\n";
+        else cout << pos_r - pos_l << endl;
     }
 
 }
