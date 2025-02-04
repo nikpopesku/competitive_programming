@@ -15,7 +15,7 @@ ll count_in_matrix(ll x, ll n) {
 }
 
 int main() {
-    int n;
+    ll n;
     cin >> n;
     ll middle_elem = (n * n - 1) / 2;
 
