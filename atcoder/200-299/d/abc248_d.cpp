@@ -1,37 +1,38 @@
 #include <iostream>
-#include <vector>
 #include <map>
 
 using namespace std;
 
-int ffind(map<int, vector<int>> mp, int x, int xx) {
+int ffind(map<int, map<int, int>> mp, int x, int xx) {
     if (xx == 0) return 0;
 
+    auto yyy = mp[x];
     int left = 0, right = mp[x].size() - 1;
 
     while (left < right) {
-        int m = left + (right - left) / 2;
+        int m = left + (right - left + 1) / 2;
 
-        if (mp[x][m] == xx) {
+        if (mp[x].count(m) and mp[x][m] == xx) {
             return m;
-        } else if (mp[x][m] < xx) {
-            left = m + 1;
+        } else if (mp[x].count(m) and mp[x][m] > xx) {
+            right = m - 1;
         } else {
-            right = m;
+            left = m;
         }
     }
 
-    return mp[x][left];
+    return left;
 }
 
 int main() {
     int n, q, value;
     cin >> n;
-    map<int, vector<int>> mp;
+    map<int, map<int, int>> mp;
 
     for (int i = 1; i <= n; ++i) {
         cin >> value;
-        mp[value].push_back(i);
+        if (mp[value].empty()) mp[value].emplace(0, 0);
+        mp[value].emplace(mp[value].size(), i);
     }
 
     cin >> q;
