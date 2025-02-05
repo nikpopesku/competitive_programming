@@ -44,11 +44,11 @@ int main() {
         ll value = count_subarray(m, vc);
 
         if (value <= k) {
-            right = m - 1;
+            right = m;
         } else {
-            left = m;
+            left = m + 1;
         }
     }
 
-    cout <<  left << endl;
+    cout << left << endl;
 }
