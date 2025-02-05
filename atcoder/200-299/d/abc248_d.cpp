@@ -6,7 +6,6 @@ using namespace std;
 int ffind(map<int, map<int, int>> mp, int x, int xx) {
     if (xx == 0) return 0;
 
-    auto yyy = mp[x];
     int left = 0, right = mp[x].size() - 1;
 
     while (left < right) {
