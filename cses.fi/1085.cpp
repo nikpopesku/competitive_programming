@@ -38,11 +38,11 @@ int main() {
     ll left = max_elem, right = total_sum;
 
     while (left < right) {
-        ll m = left + (right - left + 1) / 2;
+        ll m = left + (right - left) / 2;
 
         ll value = count_subarray(m, vc);
 
-        if (value < k) {
+        if (value <= k) {
             right = m - 1;
         } else {
             left = m;
