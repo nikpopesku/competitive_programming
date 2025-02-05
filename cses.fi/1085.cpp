@@ -5,7 +5,7 @@ using namespace std;
 
 #define ll long long
 
-ll count_subarrays(ll val, vector<ll> & vc) {
+ll count_subarray(ll val, vector<ll> &vc) {
     ll response = 0;
     ll current_sum = 0;
 
@@ -40,7 +40,7 @@ int main() {
     while (left < right) {
         ll m = left + (right - left) / 2;
 
-        ll value = count_subarrays(m, vc);
+        ll value = count_subarray(m, vc);
 
         if (value < k) {
             right = m - 1;
