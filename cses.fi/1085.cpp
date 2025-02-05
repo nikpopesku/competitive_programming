@@ -18,7 +18,8 @@ ll count_subarray(ll val, vector<ll> &vc) {
         }
     }
 
-    if (current_sum > 0) ++response;
+    if (current_sum > val) response += 2;
+    else if (current_sum > 0) ++response;
 
     return response;
 }
