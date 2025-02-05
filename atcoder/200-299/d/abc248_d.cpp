@@ -5,6 +5,8 @@
 using namespace std;
 
 int ffind(map<int, vector<int>> mp, int x, int xx) {
+    if (xx == 0) return 0;
+
     int left = 0, right = mp[x].size() - 1;
 
     while (left < right) {
@@ -19,7 +21,7 @@ int ffind(map<int, vector<int>> mp, int x, int xx) {
         }
     }
 
-    return mp[x][right] <= xx ? mp[x][right] : mp[x][left];
+    return mp[x][left];
 }
 
 int main() {
@@ -27,7 +29,7 @@ int main() {
     cin >> n;
     map<int, vector<int>> mp;
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 1; i <= n; ++i) {
         cin >> value;
         mp[value].push_back(i);
     }
@@ -43,10 +45,9 @@ int main() {
             continue;
         }
 
-        int pos_r = ffind(mp, x, r - 1), pos_l = ffind(mp, x, l - 1);
+        int pos_r = ffind(mp, x, r), pos_l = ffind(mp, x, l - 1);
 
-        if (pos_r == pos_l) cout << "1\n";
-        else cout << pos_r - pos_l << endl;
+        cout << pos_r - pos_l << endl;
     }
 
 }
