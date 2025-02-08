@@ -18,7 +18,5 @@ int main() {
         for (auto i = 0; i < h; i++) {
             cout << vc[i][j] << (i < h - 1 ? ' ' : '\n');
         }
-
-        cout << endl;
     }
 }
