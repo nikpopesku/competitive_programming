@@ -11,9 +11,10 @@ bool calc(int k, vector<int> &vc_a, vector<int> &vc_b) {
     }
 
     if (count < k) return false;
+    count = k;
 
     for (int i = 0; i < vc_a.size(); ++i) {
-        if (vc_a[i] >= count - 1) count--;
+        if (vc_a[i] >= count) --count;
     }
 
     return count <= 0;
