@@ -7,10 +7,10 @@ using namespace std;
 
 ll calc(ll n) {
     n--;
-    ll ans = 0;
-    ans = (n / 3) * (n / 3) * 3;
-    for (int i = 0; i <= n % 3; i++)
-        ans += (n / 3) * 2 + i;
+    ll ans = (n / 3) * (n / 3) * 3;
+
+    for (int i = 0; i <= n % 3; i++) ans += (n / 3) * 2 + i;
+
     return ans * 2;
 }
 
