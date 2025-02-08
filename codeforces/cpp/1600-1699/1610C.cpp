@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool calc(int k, vector<int> &vc_a, vector<int> & vc_b) {
+bool calc(int k, vector<int> &vc_a, vector<int> &vc_b) {
     int count = 0;
 
     for (int i = 0; i < vc_b.size(); ++i) {
@@ -13,7 +13,7 @@ bool calc(int k, vector<int> &vc_a, vector<int> & vc_b) {
     if (count < k) return false;
     count = 0;
 
-    for (int i = vc_a.size()-1; i >= 0; --i) {
+    for (int i = vc_a.size() - 1; i >= 0; --i) {
         if (vc_a[i] >= count) count++;
     }
 
@@ -40,7 +40,7 @@ int main() {
             int m = left + (right - left + 1) / 2;
 
             bool value = calc(m, vc_a, vc_b);
-            if(value) {
+            if (value) {
                 left = m;
             } else {
                 right = m - 1;
