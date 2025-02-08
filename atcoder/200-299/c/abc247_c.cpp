@@ -17,7 +17,7 @@ int main() {
         vc[i] = vc[i - 1] + to_string(i) + vc[i - 1];
     }
 
-    for (auto i = 0; i < vc[n].size(); ++i) {
+    for (size_t i = 0; i < vc[n].size(); ++i) {
         cout << vc[n][i] << (i < vc[n].size() - 1 ? " " : "\n");
     }
 }
