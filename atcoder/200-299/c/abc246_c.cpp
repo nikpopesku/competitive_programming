@@ -21,14 +21,22 @@ int main() {
 
     while (!pq.empty() and k > 0) {
         value = pq.top();
-        response -= std::min(value, x);
-        value -= x;
-        if (value < 0) value = 0;
+        ll cnt = std::min(value / x, k);
+
+        if (cnt > 0) {
+            response -= cnt * x;
+            value -= cnt * x;
+            k -= cnt;
+        } else {
+            response -= std::min(value, x);
+            value = 0;
+            --k;
+        }
+
         pq.pop();
         if (value > 0) {
             pq.push(value);
         }
-        --k;
     }
 
     cout << response << endl;
