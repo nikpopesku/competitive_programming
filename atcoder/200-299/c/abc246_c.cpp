@@ -16,10 +16,12 @@ int main() {
     for (auto i = 0; i < n; ++i) {
         cin >> value;
         pq.push(value);
+        response += value;
     }
 
     while (!pq.empty() and k > 0) {
         value = pq.top();
+        response -= std::min(value, x);
         value -= x;
         if (value < 0) value = 0;
         pq.pop();
@@ -27,11 +29,6 @@ int main() {
             pq.push(value);
         }
         --k;
-    }
-
-    while (!pq.empty()) {
-        response += pq.top();
-        pq.pop();
     }
 
     cout << response << endl;
