@@ -9,27 +9,32 @@ int main() {
     int q, type;
     ll x, c;
     cin >> q;
-    queue<ll> qq;
+    deque<pair<ll, ll>> qq;
 
     for (int i = 0; i < q; ++i) {
         std::cin >> type;
         if (type == 1) {
             std::cin >> x >> c;
-            while (c-- > 0) {
-                qq.push(x);
-            }
-
+            qq.insert(qq.end(), {x, c});
         }
 
         if (type == 2) {
             ll response = 0;
             std::cin >> c;
 
-
-            while (c-- > 0) {
-                response += qq.front();
-                qq.pop();
+            while (c > 0) {
+                auto value = qq.front();
+                qq.pop_front();
+                if (value.second >= c) {
+                    response += c * value.first;
+                    value.second -= c;
+                    qq.push_front(value);
+                } else {
+                    c -= value.second;
+                    response += value.second * value.first;
+                }
             }
+
 
             std::cout << response << std::endl;
         }
