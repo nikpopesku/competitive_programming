@@ -29,5 +29,11 @@ int main() {
         --k;
     }
 
+    while (!pq.empty()) {
+        response += pq.top();
+        pq.pop();
+    }
+
+    cout << response << endl;
 
 }
