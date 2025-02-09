@@ -29,6 +29,7 @@ int main() {
                     response += c * value.first;
                     value.second -= c;
                     qq.push_front(value);
+                    c = 0;
                 } else {
                     c -= value.second;
                     response += value.second * value.first;
