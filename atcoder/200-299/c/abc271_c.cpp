@@ -19,9 +19,7 @@ int main() {
     ll response = 0;
 
     while (!s.empty()) {
-        value = *s.begin();
-
-        if (value == response + 1) {
+        if (*s.begin() == response + 1) {
             s.erase(s.begin());
         } else {
             if (s.empty()) break;
