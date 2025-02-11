@@ -6,12 +6,12 @@ using namespace std;
 #define ll long long
 
 int main() {
-    int n;
+    ll n;
     cin >> n;
     ll value;
     multiset<ll> s;
 
-    for (auto i = 1; i <= n; ++i) {
+    for (size_t i = 1; i <= n; ++i) {
         cin >> value;
         s.insert(value);
     }
