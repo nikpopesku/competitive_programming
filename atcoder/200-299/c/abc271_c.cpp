@@ -9,11 +9,17 @@ int main() {
     ll n;
     cin >> n;
     ll value;
-    multiset<ll> s;
+    ll duplicates = 0;
+    set<ll> s;
 
     for (size_t i = 1; i <= n; ++i) {
         cin >> value;
-        s.insert(value);
+        if (s.count(value) == 0) {
+            s.insert(value);
+        } else {
+            ++duplicates;
+        }
+
     }
 
     ll response = 0;
@@ -22,10 +28,19 @@ int main() {
         if (*s.begin() == response + 1) {
             s.erase(s.begin());
         } else {
-            if (s.empty()) break;
-            s.erase(std::prev(s.end()));
-            if (s.empty()) break;
-            s.erase(std::prev(s.end()));
+            if (duplicates > 0) {
+                --duplicates;
+            } else {
+                if (s.empty()) break;
+                s.erase(std::prev(s.end()));
+            }
+
+            if (duplicates > 0) {
+                --duplicates;
+            } else {
+                if (s.empty()) break;
+                s.erase(std::prev(s.end()));
+            }
         }
 
         ++response;
