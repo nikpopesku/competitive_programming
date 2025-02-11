@@ -21,7 +21,7 @@ int main() {
     bool condition = true;
 
     while (condition and !pq_low.empty()) {
-        value = pq_low.top();
+        value = -1 * pq_low.top();
 
         if (value == response + 1) {
             pq_low.pop();
