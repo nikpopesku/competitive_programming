@@ -24,7 +24,7 @@ int main() {
 
     ll response = 0;
 
-    while (!s.empty()) {
+    while (!s.empty() || duplicates > 0) {
         if (*s.begin() == response + 1) {
             s.erase(s.begin());
         } else {
