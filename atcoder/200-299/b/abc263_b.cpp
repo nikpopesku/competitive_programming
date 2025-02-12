@@ -3,13 +3,13 @@
 using namespace std;
 
 int main() {
-    unsigned int n, value, response = 0;
+    int n, value, response = 0;
     std::cin >> n;
 
-    for (auto i = 1; i <= n; i++) {
+    for (auto i = 1; i < n; i++) {
         std::cin >> value;
 
-        if (value == n - 1 and response == 0) {
+        if (value + 1 == n and response == 0) {
             response = i;
         }
     }
