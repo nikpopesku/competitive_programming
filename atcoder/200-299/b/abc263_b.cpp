@@ -7,7 +7,7 @@ int main() {
     int n;
     cin >> n;
     vector<int> p(n);
-    
+
     for (int i = 1; i < n; i++) {
         cin >> p[i];
         p[i]--;
