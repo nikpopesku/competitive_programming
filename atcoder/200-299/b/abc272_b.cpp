@@ -19,7 +19,10 @@ int main() {
     for (int i = 1; i <= m; ++i) {
         set<unsigned int> s;
 
-        for (int j = 0; j < n; ++j) {
+        unsigned int k;
+        cin >> k;
+
+        for (int j = 0; j < k; ++j) {
             cin >> value;
             s.insert(value);
         }
