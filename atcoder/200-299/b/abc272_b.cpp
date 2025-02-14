@@ -24,10 +24,10 @@ int main() {
             s.insert(value);
         }
 
-        for (auto it1 = s.begin(); it1 != s.end(); ++it1) {
-            for (auto it2 = ++it1; it2 != s.end(); ++it2) {
-                pairs.erase({*it1, *it2});
-            }
+        for (auto it = pairs.begin(); it != pairs.end();) {
+            auto p = *it;
+            if (s.count(p.first) && s.count(p.second)) pairs.erase(it++);
+            else ++it;
         }
     }
 
