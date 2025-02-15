@@ -7,21 +7,22 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    int n, q, value, sw;
+    int n, q, value;
     cin >> n >> q;
 
-    map<int, int> mp;
-    for (int i = 1; i <= n; ++i) mp[i] = i;
+    vector<int> a(n + 1), pos(n + 1);
+    iota(a.begin(), a.end(), 0);
+    iota(pos.begin(), pos.end(), 0);
 
     while (q--) {
         cin >> value;
-        if (mp[value] + 1 <= n) {
-            sw = mp[value] + 1;
-        } else {
-            sw = mp[value] - 1;
+        int i = pos[value], j = i + 1;
+        if (j == n + 1) {
+            j = i - 1;
         }
-        swap(mp[mp[sw]], mp[value]);
+        swap(a[i], a[j]);
+        swap(pos[a[i]], pos[a[j]]);
     }
 
-    for (int i = 1; i <= n; ++i) cout << mp[i] << ' ';
+    for (int i = 1; i <= n; ++i) cout << a[i] << ' ';
 }
