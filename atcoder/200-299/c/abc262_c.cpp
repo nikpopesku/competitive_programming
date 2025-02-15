@@ -3,30 +3,32 @@
 
 using namespace std;
 
+#define ll long long
+
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0), cout.tie(0);
-
-    int n;
+    ll n;
     cin >> n;
-    int p = 0;
-    vector<int> a(n);
-    for (int i = 0; i < n; ++i) {
-        cin >> a[i];
-        --a[i];
-        if (a[i] == i) {
-            ++p;
-        }
-    }
-    long long ans = 1ll * p * (p - 1) / 2;
-    for (int i = 0; i < n; ++i) {
-        if (a[i] != i) {
-            if (a[a[i]] == i and i < a[i]) {
-                ++ans;
-            }
-        }
-    }
-    cout << ans;
 
-    return 0;
+    vector<ll> vc(n);
+    ll response = 0, okay_number = 0, intermediate_response = 0;
+
+    for (ll i = 1; i <= n; ++i) {
+        cin >> vc[i - 1];
+
+        if (vc[i - 1] == i) {
+            okay_number++;
+        } else if (vc[vc[i - 1] - 1] == i) {
+            response++;
+        }
+    }
+
+
+    if (okay_number > 1) {
+        intermediate_response = okay_number * (okay_number - 1) / 2;
+    }
+
+
+    response += intermediate_response;
+
+    cout << response << '\n';
 }
