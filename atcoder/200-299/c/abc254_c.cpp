@@ -7,7 +7,7 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    int n, k;
+    int n, k, j;
     cin >> n >> k;
 
     vector<int> vc(n + 1, 0);
@@ -17,10 +17,15 @@ int main() {
     }
 
     for (int i = 1; i <= n - k; ++i) {
-        int j = i;
+        j = i;
         while (j + k <= n and vc[j] > vc[j + k]) {
             swap(vc[j], vc[j + k]);
             j += k;
+        }
+        j = i;
+        while (j - k >= 1 and vc[j] < vc[j - k]) {
+            swap(vc[j], vc[j - k]);
+            j -= k;
         }
     }
 
