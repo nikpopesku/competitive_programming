@@ -8,7 +8,7 @@ int main() {
     cin >> n;
 
     vector<int> vc(n);
-    long long response = 0, okay_number = 0;
+    long long response = 0, okay_number = 0, intermediate_response = 1;
 
     for (auto i = 1; i <= n; ++i) {
         cin >> vc[i - 1];
@@ -18,7 +18,8 @@ int main() {
         if (vc[i - 1] < i and vc[vc[i - 1] - 1] == i) response++;
     }
 
-    while (okay_number > 1) response *= okay_number--;
 
-    cout << okay_number << '\n';
+    while (okay_number > 1) intermediate_response *= --okay_number;
+
+    cout << response + intermediate_response << '\n';
 }
