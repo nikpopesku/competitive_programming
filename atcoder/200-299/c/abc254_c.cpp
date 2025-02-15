@@ -25,10 +25,6 @@ int main() {
                 swap(vc[i], vc[i + k]);
                 has_changes = true;
             }
-            if (vc[n - i + 1] < vc[n - i + 1 - k]) {
-                swap(vc[n - i + 1], vc[n - i + 1 - k]);
-                has_changes = true;
-            }
         }
     }
 
