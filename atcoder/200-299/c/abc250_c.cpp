@@ -1,28 +1,28 @@
-#include <iostream>
-#include <map>
+#include<bits/stdc++.h>
 
 using namespace std;
 
 int main() {
-    int n, q, value, sw;
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    int n, q, value;
     cin >> n >> q;
 
-    map<int, int> mp;
-    for (int i = 1; i <= n; ++i) mp[i] = i;
+    vector<int> a(n + 1), pos(n + 1);
+    iota(a.begin(), a.end(), 0);
+    iota(pos.begin(), pos.end(), 0);
 
-    for (int i = 1; i <= q; ++i) {
+    while (q--) {
         cin >> value;
-        if (mp[value] + 1 <= n) {
-            sw = mp[value] + 1;
-        } else {
-            sw = mp[value] - 1;
+        int i = pos[value], j = i + 1;
+        if (j == n + 1) {
+            j = i - 1;
         }
-
-        int temp = mp[mp[sw]];
-        mp[mp[sw]] = mp[value];
-        mp[value] = temp;
+        swap(a[i], a[j]);
+        swap(pos[a[i]], pos[a[j]]);
     }
 
-    for (int i = 1; i < n; ++i) cout << mp[i] << ' ';
-    cout << mp[n] << '\n';
+    for (int i = 1; i <= n; ++i) cout << a[i] << ' ';
 }
