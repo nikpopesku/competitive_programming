@@ -16,14 +16,10 @@ int main() {
         cin >> vc[i];
     }
 
-    bool has_changes = true;
-
-    while (has_changes) {
-        has_changes = false;
+    for (int j = 1; j < n / k + 1; ++j) {
         for (int i = 1; i <= n - k; ++i) {
             if (vc[i] > vc[i + k]) {
                 swap(vc[i], vc[i + k]);
-                has_changes = true;
             }
         }
     }
