@@ -15,9 +15,11 @@ int main() {
     for (ll i = 1; i <= n; ++i) {
         cin >> vc[i - 1];
 
-        if (vc[i - 1] == i) okay_number++;
-
-        if (vc[i - 1] < i and vc[vc[i - 1] - 1] == i) response++;
+        if (vc[i - 1] == i) {
+            okay_number++;
+        } else if (vc[vc[i - 1] - 1] == i) {
+            response++;
+        }
     }
 
 
