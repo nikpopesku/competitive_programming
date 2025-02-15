@@ -20,7 +20,7 @@ int main() {
     }
 
     for (ll i = 1; i <= n - k; ++i) {
-        if (pos[i] != i) {
+        if (vc[i] > vc[i + k]) {
             swap(vc[i], vc[i + k]);
             swap(pos[i], pos[i + k]);
         }
@@ -28,7 +28,7 @@ int main() {
 
     string response = "Yes";
     for (ll i = 1; i <= n; ++i) {
-        if (i != vc[i]) {
+        if (vc[i] < vc[i - 1]) {
             response = "No";
             break;
         }
