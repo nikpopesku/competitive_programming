@@ -16,11 +16,11 @@ int main() {
         cin >> vc[i];
     }
 
-    for (int j = 1; j < n / k + 1; ++j) {
-        for (int i = 1; i <= n - k; ++i) {
-            if (vc[i] > vc[i + k]) {
-                swap(vc[i], vc[i + k]);
-            }
+    for (int i = 1; i <= n - k; ++i) {
+        int j = i;
+        while (j + k <= n and vc[j] > vc[j + k]) {
+            swap(vc[j], vc[j + k]);
+            j += k;
         }
     }
 
