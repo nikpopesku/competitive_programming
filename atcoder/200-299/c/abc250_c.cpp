@@ -12,7 +12,7 @@ int main() {
     map<int, int> mp;
     for (int i = 1; i <= n; ++i) mp[i] = i;
 
-    for (int i = 1; i <= n; ++i) {
+    for (int i = 1; i <= q; ++i) {
         cin >> value;
         if (mp[value] + 1 <= n) {
             sw = mp[value] + 1;
@@ -21,7 +21,7 @@ int main() {
         }
 
         int temp = mp[sw];
-        mp[sw] = value;
+        mp[sw] = mp[value];
         mp[value] = temp;
     }
 
