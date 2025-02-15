@@ -3,8 +3,6 @@
 
 using namespace std;
 
-#define ll long long
-
 int main() {
     int n, q, value, sw;
     cin >> n >> q;
@@ -20,11 +18,11 @@ int main() {
             sw = mp[value] - 1;
         }
 
-        int temp = mp[sw];
-        mp[sw] = mp[value];
+        int temp = mp[mp[sw]];
+        mp[mp[sw]] = mp[value];
         mp[value] = temp;
     }
 
     for (int i = 1; i < n; ++i) cout << mp[i] << ' ';
-    cout << mp[n - 1] << '\n';
+    cout << mp[n] << '\n';
 }
