@@ -12,7 +12,7 @@ int main() {
     vector<ll> vc(n);
     ll response = 0, okay_number = 0, intermediate_response = 1;
 
-    for (size_t i = 1; i <= n; ++i) {
+    for (ll i = 1; i <= n; ++i) {
         cin >> vc[i - 1];
 
         if (vc[i - 1] == i) okay_number++;
