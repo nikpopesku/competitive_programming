@@ -29,6 +29,5 @@ int main() {
 
     response += intermediate_response;
 
-
     cout << response << '\n';
 }
