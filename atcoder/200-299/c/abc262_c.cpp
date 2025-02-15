@@ -10,7 +10,7 @@ int main() {
     cin >> n;
 
     vector<ll> vc(n);
-    ll response = 0, okay_number = 0, intermediate_response = 1;
+    ll response = 0, okay_number = 0, intermediate_response = 0;
 
     for (ll i = 1; i <= n; ++i) {
         cin >> vc[i - 1];
@@ -21,7 +21,11 @@ int main() {
     }
 
 
-    while (okay_number > 1) intermediate_response *= --okay_number;
+    if (okay_number > 1) {
+        intermediate_response = 1;
+        while (okay_number > 1) intermediate_response *= --okay_number;
+    }
+
 
     cout << response + intermediate_response << '\n';
 }
