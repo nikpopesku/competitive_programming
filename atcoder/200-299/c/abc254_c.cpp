@@ -16,7 +16,7 @@ int main() {
         cin >> vc[i];
     }
 
-    for (int i = 1; i < n; ++i) {
+    for (int i = 1; i <= n; ++i) {
         if (vc[i] != i and abs(vc[i] - i) % k == 0) {
             swap(vc[i], vc[vc[i]]);
         }
