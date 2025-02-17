@@ -16,24 +16,21 @@ int main() {
         cin >> vc[i];
     }
 
-    for (int i = 1; i <= n - k; ++i) {
-        int j = i + k;
-        while (j <= n) {
-            if (vc[j] < vc[i]) {
-                swap(vc[i], vc[j]);
-                break;
-            }
+    for (int i = 0; i < k; ++i) {
+        vector<int> pos;
 
+        int j = i;
+
+        while (j <= n) {
+            pos.push_back(vc[j]);
             j += k;
         }
-        j = i - k;
-        while (j >= 1) {
-            if (vc[j] > vc[i]) {
-                swap(vc[i], vc[j]);
-                break;
-            }
 
-            j -= k;
+        sort(pos.begin(), pos.end());
+
+        j = i;
+        for (auto it = pos.begin(); it != pos.end(); ++it, j += k) {
+            vc[j] = *it;
         }
     }
 
