@@ -9,7 +9,7 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    ll n, m, cur_product = 0, max_product = 0;
+    ll n, m, cur_product = 0, cur_sum = 0, max_product = 0;
     cin >> n >> m;
 
     vector<ll> vc(n + 1);
@@ -17,12 +17,14 @@ int main() {
     for (ll i = 1; i <= m; ++i) {
         cin >> vc[i];
         cur_product += i * vc[i];
+        cur_sum += vc[i];
     }
     max_product = cur_product;
 
     for (ll i = m + 1; i <= n; ++i) {
         cin >> vc[i];
-        for (ll j = i - m; j <= i - 1; ++j) cur_product -= vc[j];
+        cur_product -= cur_sum;
+        cur_sum = cur_sum - vc[i - m] + vc[i];
         cur_product += m * vc[i];
         max_product = max(max_product, cur_product);
     }
