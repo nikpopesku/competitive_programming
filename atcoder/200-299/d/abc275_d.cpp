@@ -10,7 +10,9 @@ ll calc(ll n) {
     if (n == 0) return 1;
     if (mp.contains(n)) return mp[n];
 
-    return calc(n / 2) + calc(n / 3);
+    mp[n] = calc(n / 2) + calc(n / 3);
+
+    return mp[n];
 }
 
 int main() {
