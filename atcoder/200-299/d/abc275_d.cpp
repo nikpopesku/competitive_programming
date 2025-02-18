@@ -7,6 +7,7 @@ using namespace std;
 unordered_map<ll, ll> mp;
 
 ll calc(ll n) {
+    if (n == 0) return 1;
     if (mp.contains(n)) return mp[n];
 
     return calc(n / 2) + calc(n / 3);
