@@ -23,9 +23,8 @@ int main() {
 
     for (ll i = m + 1; i <= n; ++i) {
         cin >> vc[i];
-        cur_product -= cur_sum;
-        cur_sum = cur_sum - vc[i - m] + vc[i];
-        cur_product += m * vc[i];
+        cur_product += -cur_sum + m * vc[i];
+        cur_sum += -vc[i - m] + vc[i];
         max_product = max(max_product, cur_product);
     }
 
