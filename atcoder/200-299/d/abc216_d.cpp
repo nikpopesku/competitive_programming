@@ -45,4 +45,15 @@ int main() {
 
         to_parse = to_add;
     }
+
+    string response = "Yes";
+
+    for (int i = 0; i < m; ++i) {
+        if (!cylinder[i].empty()) {
+            response = "No";
+            break;
+        }
+    }
+
+    cout << response << "\n";
 }
