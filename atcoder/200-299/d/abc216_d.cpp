@@ -11,14 +11,38 @@ int main() {
 
     int n, m, k, value;
     cin >> n >> m;
-    vector<vector<int>> vc(m);
+    vector<stack<int>> cylinder(m);
+    unordered_map<int, int> pool;
 
     for (int i = 0; i < m; ++i) {
         cin >> k;
 
         for (int j = 0; j < k; ++j) {
             cin >> value;
-            vc[i][j] = value;
+            cylinder[i].push(value);
         }
+    }
+
+    vector<int> to_parse(m);
+
+    iota(to_parse.begin(), to_parse.end(), 0);
+
+    while (!to_parse.empty()) {
+        vector<int> to_add;
+        for (int i = 0; i < to_parse.size(); ++i) {
+            if (!cylinder[i].empty()) {
+                value = cylinder[i].top();
+
+                if (!pool.contains(value)) {
+                    pool[value] = i;
+                } else {
+                    to_add.push_back(i);
+                    to_add.push_back(pool[value]);
+                    pool.erase(value);
+                }
+            }
+        }
+
+        to_parse = to_add;
     }
 }
