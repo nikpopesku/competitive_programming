@@ -28,7 +28,7 @@ int main() {
     iota(to_parse.begin(), to_parse.end(), 0);
 
     while (!to_parse.empty()) {
-        vector<int> to_add;
+        vector<int> to_add {};
         for (int i = 0; i < to_parse.size(); ++i) {
             if (!cylinder[i].empty()) {
                 value = cylinder[i].top();
@@ -40,6 +40,8 @@ int main() {
                     to_add.push_back(pool[value]);
                     pool.erase(value);
                 }
+
+                cylinder[i].pop();
             }
         }
 
