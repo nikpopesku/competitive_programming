@@ -10,8 +10,6 @@ using namespace std;
 
 // input data
 int N, K, T, i, t;
-vector<int> P;
-stack<int> st;
 
 int main() {
     //  uncomment the following lines if you want to read/write from files
@@ -21,6 +19,8 @@ int main() {
     assert(cin >> T);
     for (t = 0; t < T; t++) {
         assert(cin >> N >> K);
+        vector<int> P;
+        stack<int> st;
         P.resize(N);
         for (i = 0; i < N; i++) {
             assert(cin >> P[i]);
