@@ -48,9 +48,11 @@ int main() {
         to_parse = to_add;
     }
 
-    string response = "Yes";
+    string response = "No";
 
     if (pool.empty()) {
+        response = "Yes";
+
         for (int i = 0; i < m; ++i) {
             if (!cylinder[i].empty()) {
                 response = "No";
