@@ -50,10 +50,12 @@ int main() {
 
     string response = "Yes";
 
-    for (int i = 0; i < m; ++i) {
-        if (!cylinder[i].empty()) {
-            response = "No";
-            break;
+    if (pool.empty()) {
+        for (int i = 0; i < m; ++i) {
+            if (!cylinder[i].empty()) {
+                response = "No";
+                break;
+            }
         }
     }
 
