@@ -5,6 +5,7 @@ using namespace std;
 string type;
 int x;
 deque<int> a;
+priority_queue<int> pq;
 
 void solve() {
     cin >> type;
@@ -12,6 +13,7 @@ void solve() {
     if (type == "1") {
         cin >> x;
         a.push_back(x);
+        pq.push(-x);
     }
 
     if (type == "2") {
@@ -20,7 +22,11 @@ void solve() {
     }
 
     if (type == "3") {
-        sort(a.begin(), a.end());
+        a = {};
+        while (!pq.empty()) {
+            a.push_back(-pq.top());
+            pq.pop();
+        }
     }
 }
 
