@@ -29,7 +29,7 @@ int main() {
         condition = false;
         pool = {};
 
-        for (size_t i = 0; i < m; ++i) {
+        for (int i = 0; i < m; ++i) {
             if (!cylinder[i].empty()) {
                 value = cylinder[i].top();
 
