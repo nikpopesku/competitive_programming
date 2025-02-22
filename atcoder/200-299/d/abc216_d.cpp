@@ -1,62 +1,56 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-#define ll long long
-
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-
-    int n, m, k, value;
-    cin >> n >> m;
-    vector<stack<int>> cylinder(m);
-    unordered_map<int, int> pool{};
-
-    for (int i = 0; i < m; ++i) {
+    int N, M;
+    cin >> N >> M;
+    vector<queue<int>> Q(M);
+    for (int i = 0; i < M; i++) {
+        int k;
         cin >> k;
-
-        for (int j = 0; j < k; ++j) {
-            cin >> value;
-            cylinder[i].push(value);
+        for (int j = 0; j < k; j++) {
+            int a;
+            cin >> a;
+            a--;
+            Q[i].push(a);
         }
     }
-
-    bool condition = true;
-
-    while (condition) {
-        condition = false;
-        pool = {};
-
-        for (int i = 0; i < m; ++i) {
-            if (!cylinder[i].empty()) {
-                value = cylinder[i].top();
-
-                if (!pool.contains(value)) {
-                    pool[value] = i;
-                } else {
-                    pool.erase(value);
-                    cylinder[i].pop();
-                    cylinder[pool[value]].pop();
-                    condition = true;
-                }
+    vector<vector<int>> p(N);
+    for (int i = 0; i < M; i++) {
+        p[Q[i].front()].push_back(i);
+    }
+    queue<int> Q2;
+    for (int i = 0; i < N; i++) {
+        if (p[i].size() == 2) {
+            Q2.push(i);
+        }
+    }
+    int cnt = 0;
+    while (!Q2.empty()) {
+        int c = Q2.front();
+        Q2.pop();
+        cnt++;
+        int a = p[c][0];
+        int b = p[c][1];
+        Q[a].pop();
+        Q[b].pop();
+        if (!Q[a].empty()) {
+            p[Q[a].front()].push_back(a);
+            if (p[Q[a].front()].size() == 2) {
+                Q2.push(Q[a].front());
+            }
+        }
+        if (!Q[b].empty()) {
+            p[Q[b].front()].push_back(b);
+            if (p[Q[b].front()].size() == 2) {
+                Q2.push(Q[b].front());
             }
         }
     }
-
-    string response = "No";
-
-    if (pool.empty()) {
-        response = "Yes";
-
-        for (int i = 0; i < m; ++i) {
-            if (!cylinder[i].empty()) {
-                response = "No";
-                break;
-            }
-        }
+    if (cnt == N) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
     }
-
-    cout << response << "\n";
 }
