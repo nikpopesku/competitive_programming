@@ -12,7 +12,7 @@ int main() {
     int n, m, k, value;
     cin >> n >> m;
     vector<stack<int>> cylinder(m);
-    unordered_map<int, int> pool {};
+    unordered_map<int, int> pool{};
 
     for (int i = 0; i < m; ++i) {
         cin >> k;
@@ -23,29 +23,25 @@ int main() {
         }
     }
 
-    vector<int> to_parse(m);
+    bool condition = true;
 
-    iota(to_parse.begin(), to_parse.end(), 0);
+    while (condition) {
+        condition = false;
 
-    while (!to_parse.empty()) {
-        vector<int> to_add{};
-        for (size_t i = 0; i < to_parse.size(); ++i) {
+        for (size_t i = 0; i < m; ++i) {
             if (!cylinder[i].empty()) {
                 value = cylinder[i].top();
 
                 if (!pool.contains(value)) {
                     pool[value] = i;
                 } else {
-                    to_add.push_back(i);
-                    to_add.push_back(pool[value]);
                     pool.erase(value);
+                    condition = true;
                 }
 
                 cylinder[i].pop();
             }
         }
-
-        to_parse = to_add;
     }
 
     string response = "No";
