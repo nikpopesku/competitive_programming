@@ -27,6 +27,7 @@ int main() {
 
     while (condition) {
         condition = false;
+        pool = {};
 
         for (size_t i = 0; i < m; ++i) {
             if (!cylinder[i].empty()) {
@@ -36,10 +37,10 @@ int main() {
                     pool[value] = i;
                 } else {
                     pool.erase(value);
+                    cylinder[i].pop();
+                    cylinder[pool[value]].pop();
                     condition = true;
                 }
-
-                cylinder[i].pop();
             }
         }
     }
