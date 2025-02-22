@@ -23,24 +23,30 @@ int main() {
         }
     }
 
+    unordered_set<int> to_parse;
+    for (int i = 0; i < m; ++i) to_parse.insert(i);
     bool condition = true;
 
     while (condition) {
         condition = false;
         pool = {};
 
-        for (int i = 0; i < m; ++i) {
-            if (!cylinder[i].empty()) {
-                value = cylinder[i].top();
+        for (auto it = to_parse.begin(); it != to_parse.end();) {
+            if (!cylinder[*it].empty()) {
+                value = cylinder[*it].top();
 
                 if (!pool.contains(value)) {
-                    pool[value] = i;
+                    pool[value] = *it;
                 } else {
                     condition = true;
-                    cylinder[i].pop();
+                    cylinder[*it].pop();
                     cylinder[pool[value]].pop();
                     pool.erase(value);
                 }
+
+                ++it;
+            } else {
+                it = to_parse.erase(it);
             }
         }
     }
