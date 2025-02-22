@@ -27,8 +27,7 @@ int main() {
 
     while (!to_parse.empty()) {
         vector<int> to_add{};
-        for (size_t i = 0; i < to_parse.size(); ++i) {
-            int j = to_parse[i];
+        for (int j : to_parse) {
             if (!cylinder[j].empty()) {
                 value = cylinder[j].back();
 
