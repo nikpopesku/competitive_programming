@@ -2,23 +2,24 @@
 
 using namespace std;
 
-int type, x;
-list<int> a;
+string type;
+int x;
+deque<int> a;
 
 void solve() {
     cin >> type;
 
-    if (type == '1') {
+    if (type == "1") {
         cin >> x;
         a.push_back(x);
     }
 
-    if (type == '2') {
+    if (type == "2") {
         cout << a.front() << '\n';
         a.pop_front();
     }
 
-    if (type == '3') {
+    if (type == "3") {
         sort(a.begin(), a.end());
     }
 }
