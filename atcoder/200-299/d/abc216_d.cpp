@@ -9,44 +9,42 @@ int main() {
 
     int n, m, k, value;
     cin >> n >> m;
-    vector<stack<int>> cylinder(m);
-    unordered_map<int, int> pool{};
+    vector<vector<int>> cylinder(m);
+    unordered_map<int, int> pool;
 
     for (int i = 0; i < m; ++i) {
         cin >> k;
 
+        cylinder[i].resize(k);
+
         for (int j = 0; j < k; ++j) {
-            cin >> value;
-            cylinder[i].push(value);
+            cin >> cylinder[i][j];
         }
     }
 
-    unordered_set<int> to_parse;
-    for (int i = 0; i < m; ++i) to_parse.insert(i);
-    bool condition = true;
+    vector<int> to_parse(m);
+    iota(to_parse.begin(), to_parse.end(), 0);
 
-    while (condition) {
-        condition = false;
-        pool = {};
-
-        for (auto it = to_parse.begin(); it != to_parse.end();) {
-            if (!cylinder[*it].empty()) {
-                value = cylinder[*it].top();
+    while (!to_parse.empty()) {
+        vector<int> to_add{};
+        for (size_t i = 0; i < to_parse.size(); ++i) {
+            int j = to_parse[i];
+            if (!cylinder[j].empty()) {
+                value = cylinder[j].back();
 
                 if (!pool.contains(value)) {
-                    pool[value] = *it;
+                    pool[value] = j;
                 } else {
-                    condition = true;
-                    cylinder[*it].pop();
-                    cylinder[pool[value]].pop();
+                    to_add.push_back(j);
+                    to_add.push_back(pool[value]);
+                    cylinder[j].pop_back();
+                    cylinder[pool[value]].pop_back();
                     pool.erase(value);
                 }
-
-                ++it;
-            } else {
-                it = to_parse.erase(it);
             }
         }
+
+        to_parse = to_add;
     }
 
     string response = "No";
