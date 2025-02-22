@@ -5,14 +5,14 @@ using namespace std;
 #define ll long long
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
 
     int n, m, k, value;
     cin >> n >> m;
     vector<stack<int>> cylinder(m);
-    unordered_map<int, int> pool;
+    unordered_map<int, int> pool {};
 
     for (int i = 0; i < m; ++i) {
         cin >> k;
