@@ -10,6 +10,7 @@ int main() {
     cin >> N;
     S.resize(N + 1);
     for (int i = 0; i < N; i++) cin >> S[i];
+    S[N] = 0;
 
     int response = 0;
     int count_1 = 0;
