@@ -5,22 +5,14 @@
 
 using namespace std;
 
-// Input data
-
 int main() {
-//  Uncomment the following lines if you want to read/write from files
-//  ifstream cin("input.txt");
-//  ofstream cout("output.txt");
     int N;
     vector<int> S;
 
     cin >> N;
     S.resize(N + 1);
-    for (int i = 0; i < N; i++) {
-        cin >> S[i];
-    }
+    for (int i = 0; i < N; i++) cin >> S[i];
 
-    // Insert your code here
     int response = 0;
     int count_1 = 0;
     int count_2 = 0;
@@ -48,8 +40,5 @@ int main() {
         }
     }
 
-    // Print the result
     cout << response << endl;
-
-    return 0;
 }
