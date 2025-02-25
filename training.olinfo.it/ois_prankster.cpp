@@ -8,25 +8,32 @@ int main() {
     vector<int> S;
 
     cin >> N;
-    S.resize(N);
+    S.resize(N + 1);
     for (int i = 0; i < N; i++) cin >> S[i];
+    S[N] = 0;
 
     int response = 0;
+    int count_1 = 0;
+    int count_2 = 0;
     int argument;
-    int prev_argument = 0;
+    bool condition = true;
+    while (condition) {
+        condition = false;
 
+        for (int i = 0; i <= N; i++) {
+            if (S[i] == 1) ++count_1;
+            if (S[i] == 2) ++count_2;
+            if (S[i] == 0 and (count_1 or count_2)) {
+                argument = count_1 > count_2 ? -1 : 1;
 
-    for (int i = 0; i <= N; i++) {
-        if (S[i] != 0) {
-            argument = S[i] == 1 ? -1 : 1;
+                for (int j = i - count_2 - count_1; j < i; ++j) S[j] = (S[j] + argument) % 3;
 
-            if (argument != prev_argument) {
+                count_1 = 0;
+                count_2 = 0;
                 ++response;
-                prev_argument = argument;
+                condition = true;
             }
         }
-
-        if (S[i] == 0) prev_argument = 0;
     }
 
     cout << response << endl;
