@@ -1,5 +1,3 @@
-// NOTE: it is recommended to use this even if you don't understand the following code.
-
 #include <iostream>
 #include <vector>
 
@@ -27,10 +25,7 @@ int main() {
             if (S[i] == 0 and (count_1 or count_2)) {
                 argument = count_1 > count_2 ? -1 : 1;
 
-                for (int j = i - count_2 - count_1; j < i; ++j) {
-                    S[j] += argument;
-                    if (S[j] == 3) S[j] = 0;
-                }
+                for (int j = i - count_2 - count_1; j < i; ++j) S[j] = (S[j] + argument) % 3;
 
                 count_1 = 0;
                 count_2 = 0;
