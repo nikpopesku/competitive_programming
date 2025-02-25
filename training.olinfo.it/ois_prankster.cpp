@@ -15,7 +15,7 @@ int main() {
     vector<int> S;
 
     cin >> N;
-    S.resize(N+1);
+    S.resize(N + 1);
     for (int i = 0; i < N; i++) {
         cin >> S[i];
     }
