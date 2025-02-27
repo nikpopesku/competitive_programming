@@ -7,15 +7,19 @@ using namespace std;
 ll max_answer = 0;
 
 ll calc(unordered_map<string, ll> &mp, set<int> s, ll answer) {
-    for (auto it1 = s.begin(); it1 != s.end(); ++it1) {
-        for (auto it2 = it1; it2 != s.end(); ++it2) {
-            if (it2 == it1) continue;
+    auto it1 = s.begin();
+    while (it1 != s.end()) {
+        int val1 = *it1;
+        it1 = s.erase(it1);
+        auto it2 = it1;
+        while (it2 != s.end()) {
             answer ^= mp[to_string(*it1) + "_" + to_string(*it2)];
-            s.erase(it1);
-            s.erase(it2);
-
+            int val2 = *it2;
+            it2 = s.erase(it2);
             answer = calc(mp, s, answer);
+            s.insert(val2);
         }
+        s.insert(val1);
     }
 
     if (answer > max_answer) max_answer = answer;
