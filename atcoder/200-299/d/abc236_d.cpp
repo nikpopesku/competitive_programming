@@ -13,8 +13,8 @@ ll calc(unordered_map<string, ll> &mp, set<int> s, ll answer) {
         it1 = s.erase(it1);
         auto it2 = it1;
         while (it2 != s.end()) {
-            answer ^= mp[to_string(*it1) + "_" + to_string(*it2)];
             int val2 = *it2;
+            answer ^= mp[to_string(val1) + "_" + to_string(val2)];
             it2 = s.erase(it2);
             answer = calc(mp, s, answer);
             s.insert(val2);
