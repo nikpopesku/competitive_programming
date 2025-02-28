@@ -4,35 +4,14 @@ using namespace std;
 
 #define ll long long
 
-ll max_answer = 0;
-
-ll calc(unordered_map<string, ll> &mp, set<int> s, ll answer) {
-    auto it1 = s.begin();
-    while (it1 != s.end()) {
-        int val1 = *it1;
-        it1 = s.erase(it1);
-        auto it2 = it1;
-        while (it2 != s.end()) {
-            int val2 = *it2;
-            answer ^= mp[to_string(val1) + "_" + to_string(val2)];
-            it2 = s.erase(it2);
-            answer = calc(mp, s, answer);
-            s.insert(val2);
-        }
-        s.insert(val1);
-    }
-
-    if (answer > max_answer) max_answer = answer;
-
-    return answer;
-};
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    ll answer = 0;
+
+    ll max_answer = 0;
     unordered_map<string, ll> mp{};
 
     int n;
@@ -45,11 +24,16 @@ int main() {
         }
     }
 
-    std::vector<int> vec(2 * n);
-    std::iota(vec.begin(), vec.end(), 0);
-    set<int> s;
-    s.insert(vec.begin(), vec.end());
-    calc(mp, s, answer);
+    std::vector<int> v(2 * n);
+    std::iota(v.begin(), v.end(), 0);
+
+
+    do {
+        ll answer = 0;
+        for (int i = 0; i <= n; i += 2)
+            answer ^= mp[to_string(min(v[i], v[i + 1])) + "_" + to_string(max(v[i], v[i + 1]))];
+        if (answer > max_answer) max_answer = answer;
+    } while (next_permutation(v.begin(), v.end()));
 
     cout << max_answer << "\n";
 }
