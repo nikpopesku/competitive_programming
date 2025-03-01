@@ -22,7 +22,7 @@ int main() {
 
     assert(2 == scanf("%d%d", &N, &K));
     assert(2 == scanf("%d%d", &P, &Q));
-    for(i=0; i<N; i++)
+    for (i = 0; i < N; i++)
         assert(1 == scanf("%d", &V[i]));
 
     // insert your code here
