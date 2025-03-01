@@ -2,25 +2,20 @@
 
 using namespace std;
 
-// constraints
-#define MAXN 200000
 #define ll long long
 
-// input data
-int N, K, Q, P, i;
-int V[MAXN];
-ll value;
-
 int main() {
-//  uncomment the following lines if you want to read/write from files
-//  freopen("input.txt", "r", stdin);
-//  freopen("output.txt", "w", stdout);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
 
+    int N, K, Q, P;
+    ll value;
     priority_queue<ll> pq;
 
-    assert(2 == scanf("%d%d", &N, &K));
-    assert(2 == scanf("%d%d", &P, &Q));
-    for (i = 0; i < N; i++) {
+    cin >> N >> K;
+    cin >> P >> Q;
+    for (int i = 0; i < N; i++) {
         cin >> value;
         pq.push(value);
     }
