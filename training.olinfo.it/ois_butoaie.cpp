@@ -44,7 +44,7 @@ int main() {
         }
         ++response;
 
-        if (min_value > 0) {
+        if (min_value > 0 and min_value < 1'000'000'000) {
             response += min_value;
 
             for (auto i = 0; i < parsed.size(); ++i) {
