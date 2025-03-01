@@ -49,9 +49,11 @@ int main() {
 
             for (auto i = 0; i < parsed.size(); ++i) {
                 ll pp = i < power[0].first ? power[0].second : power[1].second;
-                pq.push(parsed[i] - min_value * pp);
+                parsed[i] -= min_value * pp;
             }
         }
+
+        for (auto &p: parsed) pq.push(p);
     }
 
     cout << response << "\n";
