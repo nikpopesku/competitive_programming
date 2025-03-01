@@ -50,7 +50,7 @@ int main() {
 
         for (auto i = 0; i < parsed.size(); ++i) {
             ll pp = i < power[0].first ? power[0].second : power[1].second;
-            parsed[i] -= (min_value + 1) * pp;
+            parsed[i] -= min_value * pp;
             pq.push(parsed[i]);
         }
     }
