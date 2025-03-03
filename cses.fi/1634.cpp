@@ -9,12 +9,11 @@ int main() {
 
     int n, x;
     cin >> n >> x;
-    vector<int> coins(n, -1);
+    vector<int> coins(n);
     vector<int> dp(x + 1, -1);
     dp[0] = 0;
 
     for (int i = 0; i < n; ++i) cin >> coins[i];
-    for (auto &coin: coins) dp[coin] = 1;
 
     for (int i = 0; i < dp.size(); ++i) {
         for (auto &c: coins) {
