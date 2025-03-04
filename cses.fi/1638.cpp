@@ -23,14 +23,14 @@ int main() {
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            if (i > 0 and vc[i-1][j] != '*') {
-                dp[i][j] = (dp[i][j] + dp[i-1][j]) % MOD;
+            if (i > 0 and vc[i - 1][j] != '*') {
+                dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
             }
-            if (j > 0 and vc[i][j-1] != '*') {
-                dp[i][j] = (dp[i][j] + dp[i][j-1]) % MOD;
+            if (j > 0 and vc[i][j - 1] != '*') {
+                dp[i][j] = (dp[i][j] + dp[i][j - 1]) % MOD;
             }
         }
     }
 
-    cout << dp[n-1][n-1] << "\n";
+    cout << dp[n - 1][n - 1] << "\n";
 }
