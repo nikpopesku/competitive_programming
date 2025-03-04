@@ -25,5 +25,7 @@ int main() {
         }
     }
 
-    cout << dp[x] << "\n";
+    ll modulo = 10e9 + 7;
+
+    cout << dp[x] % modulo << "\n";
 }
