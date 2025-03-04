@@ -9,10 +9,10 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int n, x;
+    ll n, x;
     cin >> n >> x;
-    vector<int> coins(n);
-    for (int i = 0; i < n; ++i) cin >> coins[i];
+    vector<ll> coins(n);
+    for (ll i = 0; i < n; ++i) cin >> coins[i];
 
     vector<ll> dp(x + 1, 0);
     for (auto &c: coins) if (c <= x) dp[c] = 1;
