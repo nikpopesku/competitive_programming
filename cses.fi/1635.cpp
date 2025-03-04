@@ -10,16 +10,15 @@ int main() {
     int n, x;
     cin >> n >> x;
     vector<int> coins(n);
-    vector<int> dp(x + 1, -1);
-    dp[0] = 0;
-
     for (int i = 0; i < n; ++i) cin >> coins[i];
+
+    vector<int> dp(x + 1, 0);
+    for (auto &c: coins) dp[c] = 1;
 
     for (int i = 1; i < dp.size(); ++i) {
         for (auto &c: coins) {
-            if (i - c >= 0 and dp[i - c] >= 0) {
-                int current = dp[i] == -1 ? 1'000'000'000 : dp[i];
-                dp[i] = min(current, dp[i - c] + 1);
+            if (i >= c) {
+                dp[i] += dp[i-c];
             }
         }
     }
