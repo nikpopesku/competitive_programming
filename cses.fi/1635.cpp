@@ -18,7 +18,7 @@ int main() {
     for (int i = 1; i < dp.size(); ++i) {
         for (auto &c: coins) {
             if (i >= c) {
-                dp[i] += dp[i-c];
+                dp[i] += dp[i - c];
             }
         }
     }
