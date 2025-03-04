@@ -28,7 +28,7 @@ int main() {
             if (i > 0 and vc[i - 1][j] != "*") {
                 dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
             }
-            if (j > 0 and vc[i][j - 1] != '*') {
+            if (j > 0 and vc[i][j - 1] != "*") {
                 dp[i][j] = (dp[i][j] + dp[i][j - 1]) % MOD;
             }
         }
