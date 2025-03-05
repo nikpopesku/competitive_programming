@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -7,26 +9,31 @@ int main() {
     cin >> N;
 
     vector<int> T(N);
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < N; ++i) {
         cin >> T[i];
-
-    if (N == 1) {
-        cout << "0\n";
-        return 0;
     }
 
-    if (N == 2) {
-        cout << min(T[0], T[1]) << "\n";
-        return 0;
+    // dp[i][0]: stop at i-th traffic light
+    // dp[i][1]: skip i-th traffic light
+    vector<vector<int>> dp(N, vector<int>(2));
+
+    // Base case
+    dp[0][0] = T[0]; // Stop at the first traffic light
+    dp[0][1] = 0;    // Skip the first traffic light
+
+    // Fill the DP table
+    for (int i = 1; i < N; ++i) {
+        // If we stop at the i-th traffic light, we could have stopped or skipped the previous one
+        dp[i][0] = T[i] + min(dp[i-1][0], dp[i-1][1]);
+
+        // If we skip the i-th traffic light, we must have stopped at the previous one
+        dp[i][1] = dp[i-1][0];
     }
 
-    vector<int> dp(N);
-    dp[0] = T[0];
-    dp[1] = min(T[1], T[0]);
+    // The answer is the minimum of stopping or skipping the last traffic light
+    int result = min(dp[N-1][0], dp[N-1][1]);
 
-    for (int i = 2; i < dp.size(); ++i) {
-        dp[i] = min(dp[i - 2] + T[i], dp[i - 1] + T[i - 1]);
-    }
+    cout << result << endl;
 
-    cout << min(dp[N - 1], dp[N - 2]) << "\n";
+    return 0;
 }
