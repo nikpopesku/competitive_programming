@@ -16,7 +16,7 @@ int main() {
     }
 
     if (N == 2) {
-        cout <<  min(T[0], T[1]) << "\n";
+        cout << min(T[0], T[1]) << "\n";
         return 0;
     }
 
@@ -25,8 +25,8 @@ int main() {
     dp[1] = min(T[1], T[0]);
 
     for (int i = 2; i < dp.size(); ++i) {
-        dp[i] = min(dp[i-2] + T[i], dp[i-1] + T[i-1]);
+        dp[i] = min(dp[i - 2] + T[i], dp[i - 1] + T[i - 1]);
     }
 
-    cout << min(dp[N - 1], dp[N-2]) << "\n";
+    cout << min(dp[N - 1], dp[N - 2]) << "\n";
 }
