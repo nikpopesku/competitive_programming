@@ -19,8 +19,9 @@ int main() {
     vector<ll> dp(x + 1, 0);
     dp[0] = 1;
 
-    for (ll coin: coins) {
+    for (auto &coin: coins) {
         if (coin > x) break;
+
         for (ll sum = coin; sum <= x; ++sum) {
             dp[sum] = (dp[sum] + dp[sum - coin]) % MOD;
         }
