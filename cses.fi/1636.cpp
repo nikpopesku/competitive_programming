@@ -5,8 +5,7 @@ using namespace std;
 #define ll long long
 const ll MOD = 1e9 + 7;
 
-ll calc(ll i, ll left_value, ll n, vector<ll> & coins)
-{
+ll calc(ll i, ll left_value, ll n, vector<ll> &coins) {
     if (left_value == 0) {
         return 1;
     }
