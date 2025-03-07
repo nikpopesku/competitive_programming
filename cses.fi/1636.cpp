@@ -25,7 +25,6 @@ int main() {
     while (!q.empty()) {
         auto elem = q.front();
         q.pop();
-        if (elem.first < 0) continue;
         if (elem.first == 0) response = (response + 1) % MOD;
         for (ll j = elem.second; j < n; ++j) {
             if (coins[j] > elem.first) break;
