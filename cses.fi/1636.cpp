@@ -34,5 +34,5 @@ int main() {
         }
     }
 
-    cout << response << "\n";
+    cout << response % MOD << "\n";
 }
