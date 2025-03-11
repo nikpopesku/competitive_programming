@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
 
 using namespace std;
 
@@ -7,12 +8,21 @@ const ll MOD = 998244353;
 
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-
-    ll N, M, K;
+    int N, M, K;
     cin >> N >> M >> K;
+    vector dp(N + 1, vector(K + 1, 0LL));
 
-    cout << 1 << endl;
+    dp[0][0] = 1;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < K; j++) {
+            for (int k = 1; k <= M; k++) {
+                if (j + k <= K) dp[i + 1][j + k] += dp[i][j];
+            }
+        }
+    }
+    ll res = 0;
+    for (int i = 1; i <= K; i++) {
+        res = (res + dp[N][i]) % MOD;
+    }
+    cout << res << endl;
 }
