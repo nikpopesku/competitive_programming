@@ -11,11 +11,11 @@ int main() {
     ll N, M, K;
     cin >> N >> M >> K;
     vector dp(N + 1, vector(K + 1, 0LL));
-
     dp[0][0] = 1;
-    for (ll i = 0; i < N; i++) {
-        for (ll j = 0; j < K; j++) {
-            for (ll k = 1; k <= M; k++) {
+
+    for (ll i = 0; i < N; ++i) {
+        for (ll j = 0; j < K; ++j) {
+            for (ll k = 1; k <= M; ++k) {
                 if (j + k <= K) dp[i + 1][j + k] = (dp[i + 1][j + k] + dp[i][j]) % MOD;
             }
         }
