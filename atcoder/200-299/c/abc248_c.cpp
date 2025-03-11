@@ -16,7 +16,7 @@ int main() {
     for (ll i = 0; i < N; i++) {
         for (ll j = 0; j < K; j++) {
             for (ll k = 1; k <= M; k++) {
-                if (j + k <= K) dp[i + 1][j + k] += dp[i][j];
+                if (j + k <= K) dp[i + 1][j + k] = (dp[i + 1][j + k] + dp[i][j]) % MOD;
             }
         }
     }
