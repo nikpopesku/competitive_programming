@@ -1,21 +1,17 @@
-#include <bits/stdc++.h>
+#include<iostream>
 
 using namespace std;
-long long dp[2001][2001];
+int N, M;
+int A[2000];
+long dp[2020];
 
 int main() {
-    int n, m;
-    cin >> n >> m;
-    vector<long long> a(n);
-    for (int i = 0; i < n; i++) cin >> a[i];
-    dp[0][0] = 0;
-    dp[0][1] = -1000000000000000000ll;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j <= n; j++) {
-            if (j == 0) dp[i][0] = 0;
-            else if (j > i) dp[i][j] = -1000000000000000000ll;
-            else dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - 1] + a[i - 1] * j);
-        }
+    cin >> N >> M;
+    for (int i = 0; i < N; i++) cin >> A[i];
+    for (int j = 0; j <= M; j++) dp[j] = -1e18;
+    dp[0] = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = M; j--;)dp[j + 1] = max(dp[j + 1], dp[j] + (j + 1) * (long) A[i]);
     }
-    cout << dp[n][m] << endl;
+    cout << dp[M] << endl;
 }
