@@ -44,5 +44,16 @@ int main() {
         }
     }
 
-    cout << dp[n - 1][num[n - 1]] << "\n";
+    ll response = dp[n - 1][num[n - 1]];
+
+    if (num[n - 1] == 0) {
+        response = 0;
+
+        for (int j = 0; j <= m; ++j) {
+            response = (response + dp[n - 1][j]) % MOD;
+        }
+
+    }
+
+    cout << response << "\n";
 }
