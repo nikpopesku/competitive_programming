@@ -31,6 +31,10 @@ int main() {
             dp[i][num[i - 1]] = dp[i - 1][num[i - 1]];
             dp[i][num[i - 1] - 1] = dp[i - 1][num[i - 1]];
         }
+
+        if (num[i] == 0 and i == 0) {
+            for (int j = 0; j <= m; ++j) dp[i][j] = 1;
+        }
     }
 
     cout << dp[n - 1][num[n - 1]] << "\n";
