@@ -29,13 +29,21 @@ int main() {
         }
 
         if (num[i] == 0 and i > 0) {
-            if (num[i - 1] + 1 <= m) {
-                dp[i][num[i - 1] + 1] = dp[i - 1][num[i - 1]];
-            }
-            dp[i][num[i - 1]] = dp[i - 1][num[i - 1]];
+            if (num[i - 1] > 0) {
+                if (num[i - 1] + 1 <= m) {
+                    dp[i][num[i - 1] + 1] = dp[i - 1][num[i - 1]];
+                }
+                dp[i][num[i - 1]] = dp[i - 1][num[i - 1]];
 
-            if (num[i - 1] - 1 >= 0) {
-                dp[i][num[i - 1] - 1] = dp[i - 1][num[i - 1]];
+                if (num[i - 1] - 1 >= 0) {
+                    dp[i][num[i - 1] - 1] = dp[i - 1][num[i - 1]];
+                }
+            } else {
+                for (int j = 0; j <= m; ++j) {
+                    if (j + 1 <= m) dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % MOD;
+                    if (j - 1 >= 0) dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % MOD;
+                    dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
+                }
             }
         }
 
