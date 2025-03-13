@@ -24,25 +24,14 @@ int main() {
 
     for (ll i = 1; i < n; ++i) {
         if (num[i] > 0) {
-            if (num[i] - 1 >= 0) dp[i][num[i]] = (dp[i][num[i]] + dp[i - 1][num[i] - 1]) % MOD;
+            if (num[i] - 1 >= 1) dp[i][num[i]] = (dp[i][num[i]] + dp[i - 1][num[i] - 1]) % MOD;
             if (num[i] + 1 <= m) dp[i][num[i]] = (dp[i][num[i]] + dp[i - 1][num[i] + 1]) % MOD;
             dp[i][num[i]] = (dp[i][num[i]] + dp[i - 1][num[i]]) % MOD;
         } else {
-            if (num[i - 1] > 0) {
-                if (num[i - 1] + 1 <= m) {
-                    dp[i][num[i - 1] + 1] = dp[i - 1][num[i - 1]];
-                }
-                dp[i][num[i - 1]] = dp[i - 1][num[i - 1]];
-
-                if (num[i - 1] - 1 >= 0) {
-                    dp[i][num[i - 1] - 1] = dp[i - 1][num[i - 1]];
-                }
-            } else {
-                for (ll j = 0; j <= m; ++j) {
-                    if (j + 1 <= m) dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % MOD;
-                    if (j - 1 >= 0) dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % MOD;
-                    dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
-                }
+            for (ll j = 1; j <= m; ++j) {
+                if (j - 1 >= 1) dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % MOD;
+                dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
+                if (j + 1 <= m) dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % MOD;
             }
         }
     }
