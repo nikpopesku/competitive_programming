@@ -19,7 +19,7 @@ int main() {
     if (num[0] > 0) {
         dp[0][num[0]] = 1;
     } else {
-        for (ll j = 0; j <= m; ++j) dp[0][j] = 1;
+        for (ll j = 1; j <= m; ++j) dp[0][j] = 1;
     }
 
     for (ll i = 1; i < n; ++i) {
