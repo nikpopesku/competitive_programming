@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -14,52 +14,37 @@ int main() {
     cin >> n >> m;
     vector<ll> num(n);
     for (ll i = 0; i < n; ++i) cin >> num[i];
-    vector dp(n, vector<ll>(m + 1, 0));
+    vector<vector<ll>> dp(n, vector<ll>(m + 1, 0));
 
-    for (ll i = 0; i < n; ++i) {
-        if (num[i] > 0 and i > 0) {
-            ll value1 = num[i] - 1 >= 0 ? dp[i - 1][num[i] - 1] : 0LL;
-            ll value3 = num[i] + 1 <= m ? dp[i - 1][num[i] + 1] : 0LL;
-            dp[i][num[i]] = (value1 + dp[i - 1][num[i]] + value3) % MOD;
+    if (num[0] == 0) {
+        for (ll j = 1; j <= m; ++j) {
+            dp[0][j] = 1;
         }
+    } else {
+        dp[0][num[0]] = 1;
+    }
 
-        if (num[i] > 0 and i == 0) {
-            dp[i][num[i]] = 1;
-        }
-
-        if (num[i] == 0 and i > 0) {
-            if (num[i - 1] > 0) {
-                if (num[i - 1] + 1 <= m) {
-                    dp[i][num[i - 1] + 1] = dp[i - 1][num[i - 1]];
-                }
-                dp[i][num[i - 1]] = dp[i - 1][num[i - 1]];
-
-                if (num[i - 1] - 1 >= 0) {
-                    dp[i][num[i - 1] - 1] = dp[i - 1][num[i - 1]];
-                }
-            } else {
-                for (ll j = 0; j <= m; ++j) {
-                    if (j + 1 <= m) dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % MOD;
-                    if (j - 1 >= 0) dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % MOD;
-                    dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
-                }
+    for (ll i = 1; i < n; ++i) {
+        if (num[i] == 0) {
+            for (ll j = 1; j <= m; ++j) {
+                if (j - 1 >= 1) dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % MOD;
+                dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
+                if (j + 1 <= m) dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % MOD;
             }
-        }
-
-        if (num[i] == 0 and i == 0) {
-            for (ll j = 0; j <= m; ++j) dp[i][j] = 1;
+        } else {
+            if (num[i] - 1 >= 1) dp[i][num[i]] = (dp[i][num[i]] + dp[i - 1][num[i] - 1]) % MOD;
+            dp[i][num[i]] = (dp[i][num[i]] + dp[i - 1][num[i]]) % MOD;
+            if (num[i] + 1 <= m) dp[i][num[i]] = (dp[i][num[i]] + dp[i - 1][num[i] + 1]) % MOD;
         }
     }
 
-    ll response = dp[n - 1][num[n - 1]];
-
+    ll response = 0;
     if (num[n - 1] == 0) {
-        response = 0;
-
-        for (ll j = 0; j <= m; ++j) {
+        for (ll j = 1; j <= m; ++j) {
             response = (response + dp[n - 1][j]) % MOD;
         }
-
+    } else {
+        response = dp[n - 1][num[n - 1]];
     }
 
     cout << response << "\n";
