@@ -41,7 +41,7 @@ int main() {
     if (num[n - 1] == 0) {
         response = 0;
 
-        for (ll j = 0; j <= m; ++j) response = (response + dp[n - 1][j]) % MOD;
+        for (ll j = 1; j <= m; ++j) response = (response + dp[n - 1][j]) % MOD;
     }
 
     cout << response << "\n";
