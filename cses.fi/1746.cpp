@@ -19,7 +19,9 @@ int main() {
 
     for (int i = 0; i < n; ++i) {
         if (num[i] > 0 and i > 0) {
-            dp[i][num[i]] = (dp[i - 1][num[i] - 1] + dp[i - 1][num[i]] + dp[i - 1][num[i] + 1]) % MOD;
+            ll value1 = num[i] - 1 >= 0 ? dp[i - 1][num[i] - 1] : 0LL;
+            ll value3 = num[i] + 1 <= m ? dp[i - 1][num[i] + 1] : 0LL;
+            dp[i][num[i]] = (value1 + dp[i - 1][num[i]] + value3) % MOD;
         }
 
         if (num[i] > 0 and i == 0) {
@@ -27,9 +29,14 @@ int main() {
         }
 
         if (num[i] == 0 and i > 0) {
-            dp[i][num[i - 1] + 1] = dp[i - 1][num[i - 1]];
+            if (num[i - 1] + 1 <= m) {
+                dp[i][num[i - 1] + 1] = dp[i - 1][num[i - 1]];
+            }
             dp[i][num[i - 1]] = dp[i - 1][num[i - 1]];
-            dp[i][num[i - 1] - 1] = dp[i - 1][num[i - 1]];
+
+            if (num[i - 1] - 1 >= 0) {
+                dp[i][num[i - 1] - 1] = dp[i - 1][num[i - 1]];
+            }
         }
 
         if (num[i] == 0 and i == 0) {
