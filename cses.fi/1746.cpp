@@ -9,15 +9,14 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    const int MOD = 1e9 + 7;
-    int n, m;
+    const ll MOD = 1e9 + 7;
+    ll n, m;
     cin >> n >> m;
     vector<ll> num(n);
-    for (int i = 0; i < n; ++i) cin >> num[i];
+    for (ll i = 0; i < n; ++i) cin >> num[i];
+    vector dp(n, vector<ll>(m + 1, 0));
 
-    vector<vector<ll>> dp(n, vector<ll>(m + 1, 0));
-
-    for (int i = 0; i < n; ++i) {
+    for (ll i = 0; i < n; ++i) {
         if (num[i] > 0 and i > 0) {
             ll value1 = num[i] - 1 >= 0 ? dp[i - 1][num[i] - 1] : 0LL;
             ll value3 = num[i] + 1 <= m ? dp[i - 1][num[i] + 1] : 0LL;
@@ -39,7 +38,7 @@ int main() {
                     dp[i][num[i - 1] - 1] = dp[i - 1][num[i - 1]];
                 }
             } else {
-                for (int j = 0; j <= m; ++j) {
+                for (ll j = 0; j <= m; ++j) {
                     if (j + 1 <= m) dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % MOD;
                     if (j - 1 >= 0) dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % MOD;
                     dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
@@ -48,7 +47,7 @@ int main() {
         }
 
         if (num[i] == 0 and i == 0) {
-            for (int j = 0; j <= m; ++j) dp[i][j] = 1;
+            for (ll j = 0; j <= m; ++j) dp[i][j] = 1;
         }
     }
 
@@ -57,7 +56,7 @@ int main() {
     if (num[n - 1] == 0) {
         response = 0;
 
-        for (int j = 0; j <= m; ++j) {
+        for (ll j = 0; j <= m; ++j) {
             response = (response + dp[n - 1][j]) % MOD;
         }
 
