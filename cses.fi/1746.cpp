@@ -29,9 +29,7 @@ int main() {
             ll value3 = num[i] + 1 <= m ? dp[i - 1][num[i] + 1] : 0LL;
             dp[i][num[i]] = (dp[i][num[i]] + value3) % MOD;
             dp[i][num[i]] = (dp[i][num[i]] + dp[i - 1][num[i]]) % MOD;
-        }
-
-        if (num[i] == 0) {
+        } else {
             if (num[i - 1] > 0) {
                 if (num[i - 1] + 1 <= m) {
                     dp[i][num[i - 1] + 1] = dp[i - 1][num[i - 1]];
@@ -56,9 +54,7 @@ int main() {
     if (num[n - 1] == 0) {
         response = 0;
 
-        for (ll j = 0; j <= m; ++j) {
-            response = (response + dp[n - 1][j]) % MOD;
-        }
+        for (ll j = 0; j <= m; ++j) response = (response + dp[n - 1][j]) % MOD;
     }
 
     cout << response << "\n";
