@@ -9,7 +9,6 @@ int main() {
 
     int a, b;
     cin >> a >> b;
-    int response = 0;
     vector dp(a + 1, vector<int>(b + 1, 0));
 
     for (int i = 1; i <= a; ++i) {
