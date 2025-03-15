@@ -3,23 +3,28 @@
 using namespace std;
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-
     int a, b;
-    cin >> a >> b;
+    std::cin >> a >> b;
 
-    int response = 0;
+    std::vector<std::vector<int>> dp(a + 1, std::vector<int>(b + 1, 0));
 
-    while (a > 0 and b > 0 and a != b) {
-        if (a > b) {
-            a -= b;
-        } else {
-            b -= a;
+    for (int i = 1; i <= a; ++i) {
+        for (int j = 1; j <= b; ++j) {
+            if (i == j) {
+                dp[i][j] = 0;
+            } else {
+                dp[i][j] = 1e9; // Initialize with a large value
+                for (int k = 1; k < i; ++k) {
+                    dp[i][j] = std::min(dp[i][j], dp[k][j] + dp[i - k][j] + 1);
+                }
+                for (int k = 1; k < j; ++k) {
+                    dp[i][j] = std::min(dp[i][j], dp[i][k] + dp[i][j - k] + 1);
+                }
+            }
         }
-        response += 1;
     }
 
-    cout << response << "\n";
+    std::cout << dp[a][b] << std::endl;
+
+    return 0;
 }
