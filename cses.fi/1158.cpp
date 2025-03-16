@@ -13,7 +13,7 @@ int main() {
     vector<int> pages(n, 0);
 
     for (int i = 0; i <= n; ++i) cin >> price[i];
-    for (int i = 0; i <= n; ++i) cin>> pages[i];
+    for (int i = 0; i <= n; ++i) cin >> pages[i];
 
     cout << 1 << "\n";
 }
