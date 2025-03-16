@@ -17,12 +17,13 @@ int main() {
     vector<int> dp(x + 1, 0);
 
     for (int j = 0; j < n; ++j) {
-        for (int i = 0; i <= x; ++i) {
-            if ((i == 0 or dp[i] > 0) and price[j] + i <= x and dp[i] + pages[j] > dp[i + price[j]]) {
+        for (int i = 1; i <= x; ++i) {
+            if (dp[i] > 0 and price[j] + i <= x and dp[i] + pages[j] > dp[i + price[j]]) {
                 dp[i + price[j]] = dp[i] + pages[j];
             }
         }
+        if (price[j] <= x and dp[0] + pages[j] > dp[price[j]]) dp[price[j]] = dp[0] + pages[j];
     }
 
-    cout << dp[x] << "\n";
+    cout << *max_element(dp.begin(), dp.end()) << "\n";
 }
