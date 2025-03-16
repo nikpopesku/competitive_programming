@@ -3,26 +3,24 @@
 using namespace std;
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-
     int n, x;
     cin >> n >> x;
-    vector<int> prices(n + 1, 0);
-    vector<int> pages(n + 1, 0);
-    for (int i = 1; i <= n; ++i) cin >> prices[i];
-    for (int i = 1; i <= n; ++i) cin >> pages[i];
 
-    vector dp(n + 1, vector<int>(x + 1, 0));
+    vector<int> prices(n);
+    vector<int> pages(n);
 
-    for (int i = 1; i <= n; ++i) {
-        for (int j = 0; j <= x; ++j) {
-            if (j - prices[i] >= 0) {
-                dp[i][j] = max(dp[i][j - prices[i]] + pages[i], dp[i - 1][j]);
-            }
+    for (int i = 0; i < n; ++i) cin >> prices[i];
+    for (int i = 0; i < n; ++i) cin >> pages[i];
+
+    vector<int> dp(x + 1, 0);
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = x; j >= prices[i]; --j) {
+            dp[j] = max(dp[j], dp[j - prices[i]] + pages[i]);
         }
     }
 
-    cout << dp[n][x] << "\n";
+    cout << dp[x] << endl;
+
+    return 0;
 }
