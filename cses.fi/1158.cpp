@@ -14,6 +14,7 @@ int main() {
 
     for (int i = 0; i <= n; ++i) cin >> price[i];
     for (int i = 0; i <= n; ++i) cin >> pages[i];
+    int response = 0;
 
-    cout << 1 << "\n";
+    cout << response << "\n";
 }
