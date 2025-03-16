@@ -11,10 +11,18 @@ int main() {
     cin >> n >> x;
     vector<int> price(n, 0);
     vector<int> pages(n, 0);
+    for (int i = 0; i < n; ++i) cin >> price[i];
+    for (int i = 0; i < n; ++i) cin >> pages[i];
 
-    for (int i = 0; i <= n; ++i) cin >> price[i];
-    for (int i = 0; i <= n; ++i) cin >> pages[i];
-    int response = 0;
+    vector<int> dp(x + 1, 0);
 
-    cout << response << "\n";
+    for (int i = 0; i <= x; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if ((i == 0 or dp[i] > 0) and price[j] + i <= x and dp[i] + pages[j] > dp[i + price[j]]) {
+                dp[i + price[j]] = dp[i] + pages[j];
+            }
+        }
+    }
+
+    cout << dp[x] << "\n";
 }
