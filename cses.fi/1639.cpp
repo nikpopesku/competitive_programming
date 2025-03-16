@@ -7,25 +7,19 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int n, m;
-    cin >> n >> m;
-    vector dp(n + 1, vector<int>(m + 1, 0));
+    string s1, s2;
+    cin >> s1 >> s2;
+    vector dp(s1.length() + 1, vector<int>(s2.length() + 1, 1e9));
+    dp[0][0] = 0;
 
-    for (int i = 1; i <= n; ++i) dp[i][0] = dp[i - 1][0] + 1;
-    for (int j = 1; j <= n; ++j) dp[0][j] = dp[0][j] + 1;
+    for (int i = 1; i <= s1.length(); ++i) dp[i][0] = dp[i - 1][0] + 1;
+    for (int j = 1; j <= s2.length(); ++j) dp[0][j] = dp[0][j] + 1;
 
-    for (int i = 1; i <= n; ++i) {
-        for (int j = 1; j <= m; ++j) {
-            if (i == j) {
-                dp[i][j] = 0;
-                continue;
-            }
-
-            dp[i][j] = 1e9;
-            for (int k = 1; k < i; ++k) dp[i][j] = min(dp[i][j], dp[k][j] + dp[i - k][j] + 1);
-            for (int k = 1; k < j; ++k) dp[i][j] = min(dp[i][j], dp[i][k] + dp[i][j - k] + 1);
+    for (int i = 1; i <= s1.length(); ++i) {
+        for (int j = 1; j <= s2.length(); ++j) {
+            dp[i][j] = min(min(dp[i - 1][j] + 1, dp[i][j - 1]), dp[i - 1][j - 1] + s1[i] == s2[j] ? 1 : 0);
         }
     }
 
-    cout << dp[n][m] << "\n";
+    cout << dp[s1.length()][s2.length()] << "\n";
 }
