@@ -17,9 +17,9 @@ int main() {
     vector dp(n + 1, vector<int>(x + 1, 0));
 
     for (int i = 1; i <= n; ++i) {
-        for (int price = 0; price <= x; ++price) {
-            if (price - prices[i] >= 0) {
-                dp[i][price] = max(dp[i][price - prices[i]] + pages[i], dp[i - 1][price]);
+        for (int j = 0; j <= x; ++j) {
+            if (j - prices[i] >= 0) {
+                dp[i][j] = max(dp[i][j - prices[i]] + pages[i], dp[i - 1][j]);
             }
         }
     }
