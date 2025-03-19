@@ -1,14 +1,20 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 int main() {
-    int t, n;
+    int t;
     cin >> t;
-
-    for (int i = 0; i < t; i++) {
+    while (t--) {
+        int n;
         cin >> n;
-
-        std::cout << 1 << "\n";
+        int a = 1;
+        for (int g = 2; g * g <= n; ++g) {
+            if (n % g == 0) {
+                a = n / g;
+                break;
+            }
+        }
+        cout << a << ' ' << n - a << '\n';
     }
 }
