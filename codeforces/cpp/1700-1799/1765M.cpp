@@ -9,12 +9,14 @@ int main() {
         int n;
         cin >> n;
         int a = 1;
-        for (int g = 2; g * g <= n; ++g) {
-            if (n % g == 0) {
-                a = n / g;
+
+        for (int d = 2; d * d <= n; ++d) {
+            if (n % d == 0) {
+                a = n / d;
                 break;
             }
         }
-        cout << a << ' ' << n - a << '\n';
+
+        cout << a << ' ' << n - a << "\n";
     }
 }
