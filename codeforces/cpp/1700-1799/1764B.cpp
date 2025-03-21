@@ -2,6 +2,15 @@
 
 using namespace std;
 
+int gcd(int a, int b) {
+    while (b) {
+        a = a % b;
+        swap(a, b);
+    }
+
+    return a;
+}
+
 int main() {
     int t;
     cin >> t;
@@ -9,13 +18,31 @@ int main() {
         int n, value;
         cin >> n;
 
-        vector<int> vc;
+        set<int> vc;
 
-        for (int i = 0; i < n ; ++i) {
+        for (int i = 0; i < n; ++i) {
             cin >> value;
-            vc.push_back(value);
+            vc.insert(value);
         }
 
-        cout << 1 << "\n";
+        int firstGcd = *vc.begin();
+
+
+        for (auto it = ++vc.begin(); it != vc.end(); ++it) {
+            firstGcd = gcd(firstGcd, *it);
+        }
+
+        auto start = firstGcd;
+
+
+        while (firstGcd < *(--vc.end())) {
+            if (vc.find(firstGcd) != vc.end()) {
+                vc.insert(firstGcd);
+            }
+
+            firstGcd += start;
+        }
+
+        cout << vc.size() << "\n";
     }
 }
