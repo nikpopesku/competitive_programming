@@ -36,7 +36,7 @@ int main() {
 
 
         while (firstGcd < *(--vc.end())) {
-            if (vc.find(firstGcd) != vc.end()) {
+            if (vc.find(firstGcd) == vc.end()) {
                 vc.insert(firstGcd);
             }
 
