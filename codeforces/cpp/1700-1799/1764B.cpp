@@ -11,8 +11,7 @@ int main() {
     cin >> t;
     while (t--) {
         int n, value;
-        cin >> n;
-        cin >> value;
+        cin >> n >> value;
         int first = value;
         int factor = 2;
         vector<int> factors = {1};
@@ -21,10 +20,9 @@ int main() {
             if (first % factor == 0) {
                 first /= factor;
                 if (factors.back() != factor) factors.push_back(factor);
-                continue;
+            } else {
+                ++factor;
             }
-
-            ++factor;
         }
 
 
