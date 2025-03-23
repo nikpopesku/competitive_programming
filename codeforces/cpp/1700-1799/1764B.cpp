@@ -15,12 +15,12 @@ int main() {
         cin >> value;
         int first = value;
         int factor = 2;
-        set<int> factors = {1};
+        vector<int> factors = {1};
 
         while (factor <= first) {
             if (first % factor == 0) {
                 first /= factor;
-                if (factors.find(factor) == factors.end()) factors.insert(factor);
+                if (factors.back() != factor) factors.push_back(factor);
                 continue;
             }
 
