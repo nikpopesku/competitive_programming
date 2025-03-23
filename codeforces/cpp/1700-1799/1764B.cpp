@@ -19,9 +19,9 @@ int main() {
         cin >> n;
 
         vector<int> vc(n);
+        cin >> vc[0];
 
-        for (int i = 0; i < n; ++i) cin >> vc[i];
-        int first = *vc.begin();
+        int first = vc[0];
         int factor = 2;
         set<int> factors = {1};
 
@@ -29,24 +29,17 @@ int main() {
             if (first % factor == 0) {
                 first /= factor;
                 if (factors.find(factor) == factors.end()) factors.insert(factor);
-            } else {
-                ++factor;
+                continue;
             }
+
+            ++factor;
         }
 
-        bool condition = true;
+
         auto it = factors.rbegin();
-
-        while (condition) {
-            condition = false;
-
-            for (auto it2 = ++vc.begin(); it2 != vc.end(); ++it2) {
-                if (*it2 % *it != 0) {
-                    ++it;
-                    condition = true;
-                    break;
-                }
-            }
+        for (int i = 1; i < n; ++i) {
+            cin >> vc[i];
+            while (*it > 1 and vc[i] % *it != 0) ++it;
         }
 
 
