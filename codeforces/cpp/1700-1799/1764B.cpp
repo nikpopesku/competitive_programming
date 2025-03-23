@@ -10,13 +10,10 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
+        int n, value;
         cin >> n;
-
-        vector<int> vc(n);
-        cin >> vc[0];
-
-        int first = vc[0];
+        cin >> value;
+        int first = value;
         int factor = 2;
         set<int> factors = {1};
 
@@ -33,11 +30,11 @@ int main() {
 
         auto it = factors.rbegin();
         for (int i = 1; i < n; ++i) {
-            cin >> vc[i];
-            while (*it > 1 and vc[i] % *it != 0) ++it;
+            cin >> value;
+            while (*it > 1 and value % *it != 0) ++it;
         }
 
 
-        cout << *vc.rbegin() / *it << "\n";
+        cout << value / *it << "\n";
     }
 }
