@@ -17,12 +17,8 @@ int main() {
         vector<int> factors = {1};
 
         while (factor <= first) {
-            if (first % factor == 0) {
-                first /= factor;
-                if (factors.back() != factor) factors.push_back(factor);
-            } else {
-                ++factor;
-            }
+            if (first % factor == 0 and factors.back() != factor) factors.push_back(factor);
+            ++factor;
         }
 
 
