@@ -18,31 +18,38 @@ int main() {
         int n, value;
         cin >> n;
 
-        set<int> vc;
+        vector<int> vc;
 
-        for (int i = 0; i < n; ++i) {
-            cin >> value;
-            vc.insert(value);
-        }
+        for (int i = 0; i < n; ++i) cin >> vc[i];
+        int first = *vc.begin();
+        int factor = 2;
+        set<int> factors = {1};
 
-        int firstGcd = *vc.begin();
-
-
-        for (auto it = ++vc.begin(); it != vc.end(); ++it) {
-            firstGcd = gcd(firstGcd, *it);
-        }
-
-        auto start = firstGcd;
-
-
-        while (firstGcd < *(--vc.end())) {
-            if (vc.find(firstGcd) == vc.end()) {
-                vc.insert(firstGcd);
+        while (factor <= first) {
+            if (first % factor == 0) {
+                first /= factor;
+                if (factors.find(factor) == factors.end()) factors.insert(factor);
+            } else {
+                ++factor;
             }
-
-            firstGcd += start;
         }
 
-        cout << vc.size() << "\n";
+        bool condition = true;
+        auto it = factors.rbegin();
+
+        while (condition) {
+            condition = false;
+
+            for (auto it2 = ++vc.begin(); it2 != vc.end(); ++it2) {
+                if (*it2 % *it != 0) {
+                    ++it;
+                    condition = true;
+                    break;
+                }
+            }
+        }
+
+
+        cout << *vc.rbegin() / *it << "\n";
     }
 }
