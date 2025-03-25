@@ -17,7 +17,7 @@ int main() {
         cin >> a[i];
 
         for (int j = 2; j * j <= a[i]; ++j) {
-            if (a[i] % j == 0) {
+            while (a[i] % j == 0) {
                 factor.insert(j);
                 a[i] /= j;
             }
