@@ -37,7 +37,7 @@ int main() {
     }
 
     int counter = 0;
-    for (int i = 1; i < response.size(); ++i) if (response[i]) ++counter;
+    for (int i = 1; i <= M; ++i) if (response[i]) ++counter;
     cout << counter << "\n";
-    for (int i = 1; i < response.size(); ++i) if (response[i]) cout << i << "\n";
+    for (int i = 1; i <= M; ++i) if (response[i]) cout << i << "\n";
 }
