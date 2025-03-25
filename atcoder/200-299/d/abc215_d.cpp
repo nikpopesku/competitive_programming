@@ -24,11 +24,11 @@ int main() {
         num.insert(i);
     }
 
-    for (auto it = a.begin(); it != a.end(); ++it) {
+    for (int it : a) {
         auto it2 = num.begin();
 
         while (it2 != num.end()) {
-            if (gcd(*it, *it2) != 1) {
+            if (gcd(it, *it2) != 1) {
                 it2 = num.erase(it2);
             } else {
                 ++it2;
