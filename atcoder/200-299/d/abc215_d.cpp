@@ -29,6 +29,15 @@ int main() {
 
         while (it2 != num.end()) {
             if (gcd(it, *it2) != 1) {
+                int value_base = *it2;
+
+                value  = *it2 + value_base;
+
+                while (value <= M) {
+                    if (num.contains(value)) num.erase(value);
+                    value += value_base;
+                }
+
                 it2 = num.erase(it2);
             } else {
                 ++it2;
