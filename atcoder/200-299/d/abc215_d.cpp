@@ -7,44 +7,37 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int N, M, value;
+    int N, M;
     cin >> N >> M;
-    set<int> a;
+    vector<int> a(N);
+
+    set<int> factor;
 
     for (int i = 0; i < N; ++i) {
-        cin >> value;
-        a.insert(value);
-    }
+        cin >> a[i];
 
-    set<int> num = {1};
-
-    for (int i = 2; i <= M; ++i) {
-        if (a.find(i) != a.end()) continue;
-
-        num.insert(i);
-    }
-
-    for (int it: a) {
-        auto it2 = num.begin();
-
-        while (it2 != num.end()) {
-            if (gcd(it, *it2) != 1) {
-                int value_base = *it2;
-
-                value  = *it2 + value_base;
-
-                while (value <= M) {
-                    if (num.contains(value)) num.erase(value);
-                    value += value_base;
-                }
-
-                it2 = num.erase(it2);
-            } else {
-                ++it2;
+        for (int j = 2; j * j <= a[i]; ++j) {
+            if (a[i] % j == 0) {
+                factor.insert(j);
+                a[i] /= j;
             }
+        }
+
+        if (a[i] > 1) factor.insert(a[i]);
+    }
+
+    vector<bool> response(M + 1, true);
+
+    for (auto &elem: factor) {
+        int value = elem;
+        while (value <= M) {
+            if (response[value]) response[value] = false;
+            value += elem;
         }
     }
 
-    cout << num.size() << "\n";
-    for (auto &elem: num) cout << elem << "\n";
+    int counter = 0;
+    for (int i = 1; i < response.size(); ++i) if (response[i]) ++counter;
+    cout << counter << "\n";
+    for (int i = 1; i < response.size(); ++i) if (response[i]) cout << i << "\n";
 }
