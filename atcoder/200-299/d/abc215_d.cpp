@@ -16,15 +16,15 @@ int main() {
         a.insert(value);
     }
 
-    set<int> num;
+    set<int> num = {1};
 
-    for (int i = 1; i <= M; ++i) {
+    for (int i = 2; i <= M; ++i) {
         if (a.find(i) != a.end()) continue;
 
         num.insert(i);
     }
 
-    for (int it : a) {
+    for (int it: a) {
         auto it2 = num.begin();
 
         while (it2 != num.end()) {
