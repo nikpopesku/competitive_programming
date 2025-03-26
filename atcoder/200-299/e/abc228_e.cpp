@@ -19,10 +19,16 @@ int main() {
     cout.tie(nullptr);
 
     const ll MOD = 998244353;
+    const ll MOD_MINUS_1 = MOD - 1;
 
     ll N, K, M;
     cin >> N >> K >> M;
 
-    ll val = modpow(K, N, MOD);
+    if (M % MOD == 0) {
+        cout << 0 << endl;
+        return 0;
+    }
+
+    ll val = modpow(K, N, MOD_MINUS_1);
     cout << modpow(M, val, MOD) << '\n';
 }
