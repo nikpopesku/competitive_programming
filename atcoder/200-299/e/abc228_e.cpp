@@ -9,8 +9,10 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
+    const ll MOD = 998244353;
+
     ll N, K, M;
     cin >> N >> K >> M;
 
-    cout << 1 << '\n';
+    cout << 1 % MOD << '\n';
 }
