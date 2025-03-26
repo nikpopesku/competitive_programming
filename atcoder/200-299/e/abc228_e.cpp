@@ -17,13 +17,13 @@ int main() {
     ll val = K;
 
     for (ll i = 1; i < N; ++i) {
-        val = val * K % MOD;
+        val = (val * K) % MOD;
     }
 
     ll val2 = M;
 
     for (ll i = 1; i < val; ++i) {
-        val2 = val2 * M % MOD;
+        val2 = (val2 * M) % MOD;
     }
 
     cout << val2 << '\n';
