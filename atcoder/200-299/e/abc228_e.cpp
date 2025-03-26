@@ -14,5 +14,17 @@ int main() {
     ll N, K, M;
     cin >> N >> K >> M;
 
-    cout << 1 % MOD << '\n';
+    ll val = K;
+
+    for (ll i = 1; i < N; ++i) {
+        val = val * K % MOD;
+    }
+
+    ll val2 = M;
+
+    for (ll i = 1; i < val; ++i) {
+        val2 = val2 * M % MOD;
+    }
+
+    cout << val2 << '\n';
 }
