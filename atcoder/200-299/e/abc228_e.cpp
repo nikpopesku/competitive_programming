@@ -1,18 +1,9 @@
-#include<bits/stdc++.h>
-
+#include <atcoder/all>
+#include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 
 #define ll long long
-
-int pow_mod(ll x, ll n, ll m) {
-    if (n == 0) return 1 % m;
-
-    ll u = pow_mod(x, n / 2, m);
-    u = (u * u) % m;
-    if (n % 2 == 1) u = (u * x) % m;
-
-    return u;
-}
 
 int main() {
     const ll MOD = 998244353;
