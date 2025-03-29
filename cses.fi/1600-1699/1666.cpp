@@ -26,13 +26,7 @@ int main() {
 
         while (!q.empty()) {
             unvisited.erase(q.front());
-
-            for (auto &road: roads[q.front()]) {
-                if (unvisited.find(road) != unvisited.end()) {
-                    q.push(road);
-                }
-            }
-
+            for (auto &road: roads[q.front()]) if (unvisited.count(road)) q.push(road);
             q.pop();
         }
 
