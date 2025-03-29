@@ -7,12 +7,13 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int n, m;
+    int n, m, a, b;
     cin >> n >> m;
-    vector<int> roads(m);
+    vector<vector<int>> roads(n + 1);
 
     for (int i = 0; i < m; ++i) {
-        cin >> roads[i];
+        cin >> a >> b;
+        roads[a].push_back(b);
     }
 
     cout << 1 << "\n";
