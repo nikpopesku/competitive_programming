@@ -2,14 +2,22 @@
 
 using namespace std;
 
+int n, m, a, b;
+
+int dfs(int elem, set<int> &unvisited, vector<vector<int>> &roads) {
+    unvisited.erase(elem);
+    for (auto &road: roads[elem]) if (unvisited.count(road)) dfs(road, unvisited, roads);
+
+    return elem;
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int n, m, a, b;
     cin >> n >> m;
-    queue<int> q;
+
     vector<vector<int>> roads(n + 1);
     vector<pair<int, int>> response;
     vector<int> u(n);
@@ -25,15 +33,10 @@ int main() {
     int previous = 0;
 
     while (!unvisited.empty()) {
-        q.push(*unvisited.begin());
-        if (previous > 0) response.push_back({previous, *unvisited.begin()});
+        int elem = *unvisited.begin();
+        if (previous > 0) response.push_back({previous, elem});
 
-        while (!q.empty()) {
-            unvisited.erase(q.front());
-            previous = q.front();
-            for (auto &road: roads[q.front()]) if (unvisited.count(road)) q.push(road);
-            q.pop();
-        }
+        previous = dfs(elem, unvisited, roads);
     }
 
 
