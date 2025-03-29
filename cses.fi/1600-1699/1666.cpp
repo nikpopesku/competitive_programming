@@ -37,5 +37,5 @@ int main() {
 
 
     cout << response.size() << "\n";
-    for (int i = 0; i < response.size(); ++i) cout << response[i].first << " " << response[i].second << "\n";
+    for (auto &elem: response) cout << elem.first << " " << elem.second << "\n";
 }
