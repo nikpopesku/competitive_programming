@@ -20,12 +20,18 @@ int main() {
     }
 
     for (int city = 1; city <= n; ++city) unvisited.insert(city);
+    int previous = 0;
 
     while (!unvisited.empty()) {
         q.push(*unvisited.begin());
 
+        if (previous > 0) {
+            response.push_back({previous, *unvisited.begin()});
+        }
+
         while (!q.empty()) {
             unvisited.erase(q.front());
+            previous = q.front();
             for (auto &road: roads[q.front()]) if (unvisited.count(road)) q.push(road);
             q.pop();
         }
