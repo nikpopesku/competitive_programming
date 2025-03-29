@@ -12,7 +12,7 @@ int main() {
     queue<int> q;
     vector<vector<int>> roads(n + 1);
     vector<pair<int, int>> response;
-    set<int> unvisited;
+    vector<int> u(n);
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
@@ -20,7 +20,8 @@ int main() {
         roads[b].push_back(a);
     }
 
-    for (int city = 1; city <= n; ++city) unvisited.insert(city);
+    iota(u.begin(), u.end(), 1);
+    set<int> unvisited(u.begin(), u.end());
     int previous = 0;
 
     while (!unvisited.empty()) {
