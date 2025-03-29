@@ -17,6 +17,7 @@ int main() {
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
         roads[a].push_back(b);
+        roads[b].push_back(a);
     }
 
     for (int city = 1; city <= n; ++city) unvisited.insert(city);
