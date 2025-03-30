@@ -44,12 +44,15 @@ int main() {
     while (!q.empty()) {
         ll elem = q.front();
         q.pop();
-        for (auto&e: adj_list[elem]) {
+        for (auto &e: adj_list[elem]) {
             if (unvisited.count(e) == 1) {
                 if (e == end) {
                     response = true;
                     break;
                 }
+
+                unvisited.erase(e);
+                q.push(e);
             }
         }
 
