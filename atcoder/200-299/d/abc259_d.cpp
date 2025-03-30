@@ -15,11 +15,13 @@ int main() {
     cin >> sx >> sy >> tx >> ty;
 
     vector<tuple<int, int, int>> circle(N);
+    set<ll> unvisited;
 
     for (int i = 0; i < N; ++i) {
         cin >> x >> y >> r;
 
         circle.push_back({x, y, r});
+        unvisited.insert(i);
     }
 
     cout << 1 << "\n";
