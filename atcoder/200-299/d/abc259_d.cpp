@@ -21,20 +21,21 @@ int main() {
     for (int i = 0; i < N; ++i) {
         cin >> x >> y >> r;
 
-        for (size_t j = 0; j < circle.size(); ++j) {
-            ll d = sqrt((get<0>(circle[j]) - x) * (get<0>(circle[j]) - x) +
-                        (get<1>(circle[j]) - y) * (get<1>(circle[j]) - y));
-            if (abs(get<2>(circle[j]) - r) <= d and d <= get<2>(circle[j]) + r) {
-                adj_list[i].push_back(j);
-                adj_list[j].push_back(i);
-            }
-
-        }
-
         circle.push_back({x, y, r});
         unvisited.insert(i);
         if (sqrt((sx - x) * (sx - x) + (sy - y) * (sy - y)) == r) start = i;
         if (sqrt((tx - x) * (tx - x) + (ty - y) * (ty - y)) == r) end = i;
+    }
+
+    for (int i = 0; i < N - 1; ++i) {
+        for (int j = i + 1; j < N; ++j) {
+            ll d = sqrt((get<0>(circle[j]) - get<0>(circle[i])) * (get<0>(circle[j]) - get<0>(circle[i])) +
+                        (get<1>(circle[j]) - get<1>(circle[i])) * (get<1>(circle[j]) - get<1>(circle[i])));
+            if (abs(get<2>(circle[j]) - get<2>(circle[i])) <= d and d <= get<2>(circle[j]) + get<2>(circle[i])) {
+                adj_list[i].push_back(j);
+                adj_list[j].push_back(i);
+            }
+        }
     }
 
     queue<int> q;
