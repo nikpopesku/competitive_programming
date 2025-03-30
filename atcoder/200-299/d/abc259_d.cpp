@@ -9,8 +9,8 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int N;
-    ll sx, sy, tx, ty, x, y, r, start, end;
+    int N, start, end;
+    ll sx, sy, tx, ty, x, y, r;
     cin >> N;
     cin >> sx >> sy >> tx >> ty;
 
@@ -30,7 +30,14 @@ int main() {
         }
     }
 
-    while (unvisited.empty())
+    queue<int> q;
+    q.push(start);
 
-        cout << 1 << "\n";
+    while (!q.empty()) {
+        ll elem = q.front();
+        q.pop();
+
+    }
+
+    cout << 1 << "\n";
 }
