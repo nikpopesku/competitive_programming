@@ -9,7 +9,7 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int N, start, end;
+    int N, start, end = 0;
     ll sx, sy, tx, ty, x, y, r;
     cin >> N;
     cin >> sx >> sy >> tx >> ty;
