@@ -20,6 +20,15 @@ int main() {
     for (int i = 0; i < N; ++i) {
         cin >> x >> y >> r;
 
+        for (size_t j = 0; j < circle.size(); ++j) {
+            ll d = sqrt((get<0>(circle[j]) - x) * (get<0>(circle[j]) - x) +
+                        (get<1>(circle[j]) - y) * (get<1>(circle[j]) - y));
+            if (abs(get<2>(circle[j]) - r) <= d and d <= get<2>(circle[j]) + r) {
+
+            }
+
+        }
+
         circle.push_back({x, y, r});
         unvisited.insert(i);
         if (sqrt((sx - x) * (sx - x) + (sy - y) * (sy - y)) == r) start = i;
