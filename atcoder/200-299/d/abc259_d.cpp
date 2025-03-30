@@ -15,6 +15,7 @@ int main() {
     cin >> sx >> sy >> tx >> ty;
 
     vector<tuple<int, int, int>> circle(N);
+    vector<vector<int>> adj_list(N);
     set<ll> unvisited;
 
     for (int i = 0; i < N; ++i) {
@@ -24,7 +25,8 @@ int main() {
             ll d = sqrt((get<0>(circle[j]) - x) * (get<0>(circle[j]) - x) +
                         (get<1>(circle[j]) - y) * (get<1>(circle[j]) - y));
             if (abs(get<2>(circle[j]) - r) <= d and d <= get<2>(circle[j]) + r) {
-
+                adj_list[i].push_back(j);
+                adj_list[j].push_back(i);
             }
 
         }
