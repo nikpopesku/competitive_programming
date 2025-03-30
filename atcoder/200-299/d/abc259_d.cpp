@@ -14,7 +14,7 @@ int main() {
     cin >> N;
     cin >> sx >> sy >> tx >> ty;
 
-    vector<tuple<int, int, int>> circle(N);
+    vector<tuple<int, int, int>> circle;
     vector<vector<int>> adj_list(N);
     set<ll> unvisited;
 
