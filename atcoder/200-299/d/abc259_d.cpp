@@ -10,7 +10,7 @@ int main() {
     cout.tie(nullptr);
 
     int N;
-    ll sx, sy, tx, ty, x, y, r;
+    ll sx, sy, tx, ty, x, y, r, start, end;
     cin >> N;
     cin >> sx >> sy >> tx >> ty;
 
@@ -22,7 +22,15 @@ int main() {
 
         circle.push_back({x, y, r});
         unvisited.insert(i);
+        if (sqrt((sx - x) * (sx - x) + (sy - y) * (sy - y)) == r) {
+            start = i;
+        }
+        if (sqrt((tx - x) * (tx - x) + (ty - y) * (ty - y)) == r) {
+            end = i;
+        }
     }
 
-    cout << 1 << "\n";
+    while (unvisited.empty())
+
+        cout << 1 << "\n";
 }
