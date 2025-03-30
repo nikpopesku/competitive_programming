@@ -9,7 +9,7 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int N, start, end = 0;
+    int N, start = -1, end = -1;
     ll sx, sy, tx, ty, x, y, r;
     cin >> N;
     cin >> sx >> sy >> tx >> ty;
@@ -29,13 +29,23 @@ int main() {
 
     for (int i = 0; i < N - 1; ++i) {
         for (int j = i + 1; j < N; ++j) {
-            ll d = sqrt((get<0>(circle[j]) - get<0>(circle[i])) * (get<0>(circle[j]) - get<0>(circle[i])) +
-                        (get<1>(circle[j]) - get<1>(circle[i])) * (get<1>(circle[j]) - get<1>(circle[i])));
-            if (abs(get<2>(circle[j]) - get<2>(circle[i])) <= d and d <= get<2>(circle[j]) + get<2>(circle[i])) {
+            ll x1 = get<0>(circle[i]), y1 = get<1>(circle[i]), r1 = get<2>(circle[i]);
+            ll x2 = get<0>(circle[j]), y2 = get<1>(circle[j]), r2 = get<2>(circle[j]);
+            ll dist_sq = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+            ll sum_r_sq = (r1 + r2) * (r1 + r2);
+            ll diff_r_sq = (r1 - r2) * (r1 - r2);
+
+            if (diff_r_sq <= dist_sq && dist_sq <= sum_r_sq) {
                 adj_list[i].push_back(j);
                 adj_list[j].push_back(i);
             }
         }
+    }
+
+
+    if (start == -1 || end == -1) {
+        cout << "No\n";
+        return 0;
     }
 
     queue<int> q;
@@ -44,21 +54,20 @@ int main() {
     bool response = false;
 
     while (!q.empty()) {
-        ll elem = q.front();
+        ll curr = q.front();
         q.pop();
-        for (auto &e: adj_list[elem]) {
-            if (!visited[e]) {
-                if (e == end) {
-                    response = true;
-                    break;
-                }
 
-                visited[e] = true;
-                q.push(e);
-            }
+        if (curr == end) {
+            response = true;
+            break;
         }
 
-        if (response) break;
+        for (auto &neighbor: adj_list[curr]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                q.push(neighbor);
+            }
+        }
     }
 
     cout << (response ? "Yes" : "No") << "\n";
