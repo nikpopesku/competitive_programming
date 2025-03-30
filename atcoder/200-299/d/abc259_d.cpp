@@ -16,13 +16,13 @@ int main() {
 
     vector<tuple<int, int, int>> circle;
     vector<vector<int>> adj_list(N);
-    vector<bool> unvisited(N);
+    vector<bool> visited(N);
 
     for (int i = 0; i < N; ++i) {
         cin >> x >> y >> r;
 
         circle.push_back({x, y, r});
-        unvisited[i] = false;
+        visited[i] = false;
         if (sqrt((sx - x) * (sx - x) + (sy - y) * (sy - y)) == r) start = i;
         if (sqrt((tx - x) * (tx - x) + (ty - y) * (ty - y)) == r) end = i;
     }
@@ -40,20 +40,20 @@ int main() {
 
     queue<int> q;
     q.push(start);
-    unvisited[start] = true;
+    visited[start] = true;
     bool response = false;
 
     while (!q.empty()) {
         ll elem = q.front();
         q.pop();
         for (auto &e: adj_list[elem]) {
-            if (!unvisited[e]) {
+            if (!visited[e]) {
                 if (e == end) {
                     response = true;
                     break;
                 }
 
-                unvisited[e] = true;
+                visited[e] = true;
                 q.push(e);
             }
         }
