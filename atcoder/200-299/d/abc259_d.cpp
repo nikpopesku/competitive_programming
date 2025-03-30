@@ -39,12 +39,22 @@ int main() {
 
     queue<int> q;
     q.push(start);
+    bool response = false;
 
     while (!q.empty()) {
         ll elem = q.front();
         q.pop();
+        for (auto&e: adj_list[elem]) {
+            if (unvisited.count(e) == 1) {
+                if (e == end) {
+                    response = true;
+                    break;
+                }
+            }
+        }
 
+        if (response) break;
     }
 
-    cout << 1 << "\n";
+    cout << (response ? "Yes" : "No") << "\n";
 }
