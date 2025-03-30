@@ -22,12 +22,8 @@ int main() {
 
         circle.push_back({x, y, r});
         unvisited.insert(i);
-        if (sqrt((sx - x) * (sx - x) + (sy - y) * (sy - y)) == r) {
-            start = i;
-        }
-        if (sqrt((tx - x) * (tx - x) + (ty - y) * (ty - y)) == r) {
-            end = i;
-        }
+        if (sqrt((sx - x) * (sx - x) + (sy - y) * (sy - y)) == r) start = i;
+        if (sqrt((tx - x) * (tx - x) + (ty - y) * (ty - y)) == r) end = i;
     }
 
     queue<int> q;
