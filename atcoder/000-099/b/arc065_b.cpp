@@ -5,7 +5,7 @@ using namespace std;
 #define ll long long
 
 void
-dfs(vector<bool> &visited, int city_index, vector<set<int>> &roads, vector<set<int>> &railways, vector<int> &response) {
+dfs(vector<bool> &visited, size_t city_index, vector<set<int>> &roads, vector<set<int>> &railways, vector<int> &response) {
     visited[city_index] = true;
     ++response[city_index];
 
