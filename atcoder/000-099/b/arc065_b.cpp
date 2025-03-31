@@ -23,8 +23,8 @@ int main() {
 
     int N, K, L, city1, city2;
     cin >> N >> K >> L;
-    vector<set<int>> roads(K);
-    vector<set<int>> railways(L);
+    vector<set<int>> roads(N);
+    vector<set<int>> railways(N);
     vector<int> response(N, 0);
     vector<bool> visited(N, false);
 
