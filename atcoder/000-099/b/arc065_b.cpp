@@ -9,10 +9,8 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int N, start = -1, end = -1;
-    ll sx, sy, tx, ty, x, y, r;
-    cin >> N;
-    cin >> sx >> sy >> tx >> ty;
+    int N, K, L ;
+    cin >> N >> K >> L;
 
     cout << 1 << "\n";
 }
