@@ -10,9 +10,9 @@ dfs(vector<bool> &visited, int city_index, vector<set<int>> &roads, vector<set<i
     visited[city_index] = true;
     ++response[city_index];
 
-    for (int i = 1; i <= N; ++i) {
-        if (!visited[i] && railways[city_index].count(i)) {
-            dfs(visited, i, roads, railways, response, N);
+    for (auto it = roads[city_index].begin(); it != roads[city_index].end(); ++it) {
+        if (!visited[*it] && railways[city_index].count(*it)) {
+            dfs(visited, *it, roads, railways, response, N);
         }
     }
 }
