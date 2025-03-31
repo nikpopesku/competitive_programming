@@ -12,6 +12,8 @@ dfs(vector<bool> &visited, int city_index, vector<set<int>> &roads, vector<set<i
 
     for (auto it = roads[city_index].begin(); it != roads[city_index].end(); ++it) {
         if (!visited[*it] && railways[city_index].count(*it)) {
+            ++response[city_index];
+            ++response[*it];
             dfs(visited, *it, roads, railways, response, N);
         }
     }
