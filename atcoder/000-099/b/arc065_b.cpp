@@ -49,5 +49,5 @@ int main() {
         dfs(visited, i, roads, railways, response);
     }
 
-    for (size_t i = 1; i < response.size(); ++i) cout << response[i] << (i != response.size() - 1 ? " " : "\n");
+    for (size_t i = 1; i <= N; ++i) cout << response[i] << (i != N ? " " : "\n");
 }
