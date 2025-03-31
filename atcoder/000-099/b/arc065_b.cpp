@@ -13,6 +13,7 @@ int main() {
     cin >> N >> K >> L;
     vector<vector<int>> roads(K);
     vector<vector<int>> railways(L);
+    vector<int> response(N, 1);
 
     for (int i = 0; i < K; ++i) {
         cin >> city1 >> city2;
@@ -28,5 +29,5 @@ int main() {
         railways[city2].push_back(city1);
     }
 
-    cout << 1 << "\n";
+    for (size_t i = 0; i < response.size(); ++i) cout << response[i] << (i != response.size() - 1 ? " " : "\n");
 }
