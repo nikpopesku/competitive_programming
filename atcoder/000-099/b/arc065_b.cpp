@@ -5,11 +5,12 @@ using namespace std;
 #define ll long long
 
 void
-dfs(vector<bool> &visited, size_t city_index, vector<set<int>> &roads, vector<set<int>> &railways, vector<int> &response) {
+dfs(vector<bool> &visited, size_t city_index, vector<set<int>> &roads, vector<set<int>> &railways,
+    vector<int> &response) {
     visited[city_index] = true;
     ++response[city_index];
 
-    for (size_t i = 0; i < roads[city_index].size(); ++i) {
+    for (size_t i = 1; i < roads[city_index].size(); ++i) {
         if (!visited[i] && railways[city_index].count(i)) {
             dfs(visited, i, roads, railways, response);
         }
@@ -23,8 +24,8 @@ int main() {
 
     int N, K, L, city1, city2;
     cin >> N >> K >> L;
-    vector<set<int>> roads(N);
-    vector<set<int>> railways(N);
+    vector<set<int>> roads(N + 1);
+    vector<set<int>> railways(N + 1);
     vector<int> response(N, 0);
     vector<bool> visited(N, false);
 
@@ -48,5 +49,5 @@ int main() {
         dfs(visited, i, roads, railways, response);
     }
 
-    for (size_t i = 0; i < response.size(); ++i) cout << response[i] << (i != response.size() - 1 ? " " : "\n");
+    for (size_t i = 1; i < response.size(); ++i) cout << response[i] << (i != response.size() - 1 ? " " : "\n");
 }
