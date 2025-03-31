@@ -9,8 +9,24 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int N, K, L ;
+    int N, K, L, city1, city2;
     cin >> N >> K >> L;
+    vector<vector<int>> roads(K);
+    vector<vector<int>> railways(L);
+
+    for (int i = 0; i < K; ++i) {
+        cin >> city1 >> city2;
+
+        roads[city1].push_back(city2);
+        roads[city2].push_back(city1);
+    }
+
+    for (int i = 0; i < L; ++i) {
+        cin >> city1 >> city2;
+
+        railways[city1].push_back(city2);
+        railways[city2].push_back(city1);
+    }
 
     cout << 1 << "\n";
 }
