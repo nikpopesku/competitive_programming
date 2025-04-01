@@ -54,4 +54,11 @@ int main() {
             dfs(i, railways, railway_compoonent, i);
         }
     }
+
+    map<pair<int, int>, int> mp;
+    for (int i = 1; i <= N; ++i) {
+        ++mp[{road_compoonent[i], railway_compoonent[i]}];
+    }
+
+    for (int i = 1; i <= N; ++i) cout << mp[{road_compoonent[i], railway_compoonent[i]}] << (i < N ? " " : "\n");
 }
