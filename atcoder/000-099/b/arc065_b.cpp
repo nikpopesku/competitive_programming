@@ -33,7 +33,7 @@ int main() {
 
     vector<vector<int>> railways(N + 1);
 
-    for (int i = 0; i < K; ++i) {
+    for (int i = 0; i < L; ++i) {
         cin >> val1 >> val2;
 
         railways[val1].push_back(val2);
