@@ -1,20 +1,14 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 #define ll long long
 
-void
-dfs(vector<bool> &visited, int city_index, vector<set<int>> &roads, vector<set<int>> &railways,
-    vector<int> &parents, vector<int> &parents_count, int &N, int &parent) {
-    visited[city_index] = true;
-    parents[city_index] = parent;
-    ++parents_count[parent];
-
-    for (auto it = roads[city_index].begin(); it != roads[city_index].end(); ++it) {
-        if (!visited[*it] && railways[city_index].count(*it)) {
-            parents[*it] = parent;
-            dfs(visited, *it, roads, railways, parents, parents_count, N, parent);
+void dfs(int city_index, vector<vector<int>>& adj, vector<int>& component, int comp_id) {
+    component[city_index] = comp_id;
+    for (int neighbor : adj[city_index]) {
+        if (component[neighbor] == 0) {
+            dfs(neighbor, adj, component, comp_id);
         }
     }
 }
@@ -24,33 +18,52 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int N, K, L, city1, city2;
+    int N, K, L;
     cin >> N >> K >> L;
-    vector<set<int>> roads(N + 1);
-    vector<set<int>> railways(N + 1);
-    vector<int> parents(N + 1, 0);
-    vector<int> parents_count(N + 1, 0);
-    vector<bool> visited(N + 1, false);
+
+    vector<vector<int>> roads(N + 1);
+    vector<vector<int>> railways(N + 1);
 
     for (int i = 0; i < K; ++i) {
+        int city1, city2;
         cin >> city1 >> city2;
-
-        roads[city1].insert(city2);
-        roads[city2].insert(city1);
+        roads[city1].push_back(city2);
+        roads[city2].push_back(city1);
     }
 
     for (int i = 0; i < L; ++i) {
+        int city1, city2;
         cin >> city1 >> city2;
+        railways[city1].push_back(city2);
+        railways[city2].push_back(city1);
+    }
 
-        railways[city1].insert(city2);
-        railways[city2].insert(city1);
+    vector<int> road_component(N + 1, 0);
+    vector<int> railway_component(N + 1, 0);
+
+    int road_comp_id = 1;
+    for (int i = 1; i <= N; ++i) {
+        if (road_component[i] == 0) {
+            dfs(i, roads, road_component, road_comp_id++);
+        }
+    }
+
+    int railway_comp_id = 1;
+    for (int i = 1; i <= N; ++i) {
+        if (railway_component[i] == 0) {
+            dfs(i, railways, railway_component, railway_comp_id++);
+        }
+    }
+
+    map<pair<int, int>, int> component_count;
+    for (int i = 1; i <= N; ++i) {
+        component_count[{road_component[i], railway_component[i]}]++;
     }
 
     for (int i = 1; i <= N; ++i) {
-        if (visited[i]) continue;
-
-        dfs(visited, i, roads, railways, parents, parents_count, N, i);
+        cout << component_count[{road_component[i], railway_component[i]}] << (i == N ? "" : " ");
     }
+    cout << endl;
 
-    for (int i = 1; i <= N; ++i) cout << parents_count[parents[i]] << (i != N ? " " : "\n");
+    return 0;
 }
