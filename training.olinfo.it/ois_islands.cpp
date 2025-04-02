@@ -18,13 +18,6 @@ void dfs(int i, int j, vector<vector<bool>> &visited) {
 }
 
 int main() {
-//  uncomment the following lines if you want to read/write from files
-//  freopen("input.txt", "r", stdin);
-//  freopen("output.txt", "w", stdout);
-
-
-
-
     assert(2 == scanf("%d %d", &R, &C));
     vector visited(R, vector<bool>(C, false));
 
@@ -54,5 +47,5 @@ int main() {
         }
     }
 
-    printf("%d\n", response); // print the result
+    printf("%d\n", response);
 }
