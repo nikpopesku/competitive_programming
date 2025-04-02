@@ -21,15 +21,24 @@ int main() {
     vector visited(R, vector<bool>(C, false));
     vector M(R, vector<int>(C, 0));
 
-    for (int i = 0; i < R; i++)
+    for (int i = 0; i < R; i++) {
         for (int j = 0; j < C; j++) {
             assert(1 == scanf("%d", &M[i][j]));
             visited[i][j] = false;
         }
+    }
 
     for (int i: {0, R - 1}) {
+        for (int j = 0; j < C; ++j) {
+            if (M[i][j] and !visited[i][j]) dfs(i, j, visited, M);
+
+            visited[i][j] = true;
+        }
+    }
+
+    for (int i = 0; i < R; ++i) {
         for (int j: {0, C - 1}) {
-            if (M[i][j]) dfs(i, j, visited, M);
+            if (M[i][j] and !visited[i][j]) dfs(i, j, visited, M);
 
             visited[i][j] = true;
         }
