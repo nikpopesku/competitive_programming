@@ -10,9 +10,9 @@ int M[MAXN][MAXN];
 void dfs(int i, int j, vector<vector<bool>> &visited) {
     visited[i][j] = true;
 
-    for (int vertical: {1, -1})
-        for (int horizontal: {1, -1})
-            if (i + vertical >= 0 and i + vertical < R and j + horizontal >= 0 and j + horizontal < C and
+    for (int vertical: {1, 0, -1})
+        for (int horizontal: {1, 0, -1})
+            if (abs(horizontal) + abs(vertical) < 2 and i + vertical >= 0 and i + vertical < R and j + horizontal >= 0 and j + horizontal < C and
                 !visited[i + vertical][j + horizontal] and M[i + vertical][j + horizontal])
                 dfs(i + vertical, j + horizontal, visited);
 }
@@ -54,8 +54,5 @@ int main() {
         }
     }
 
-    // insert your code here
-
     printf("%d\n", response); // print the result
-    return 0;
 }
