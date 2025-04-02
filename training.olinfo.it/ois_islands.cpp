@@ -21,8 +21,8 @@ int main() {
 //  freopen("output.txt", "w", stdout);
 
     assert(2 == scanf("%d %d", &R, &C));
-    for(i=0; i<R; i++)
-        for (j=0; j<C; j++)
+    for (i = 0; i < R; i++)
+        for (j = 0; j < C; j++)
             assert(1 == scanf("%d", &M[i][j]));
 
     // insert your code here
