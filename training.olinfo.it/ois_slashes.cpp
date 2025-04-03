@@ -1,8 +1,4 @@
-// NOTE: it is recommended to use this even if you don't understand the following code.
-
-#include <iostream>
-#include <fstream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -11,9 +7,6 @@ int N, M;
 vector<string> S;
 
 int main() {
-//  uncomment the following lines if you want to read/write from files
-//  ifstream cin("input.txt");
-//  ofstream cout("output.txt");
 
     cin >> N >> M;
     S.resize(N);
