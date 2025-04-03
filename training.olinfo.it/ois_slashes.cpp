@@ -37,7 +37,7 @@ int main() {
                         vc[vi][vj] = 0;
                         continue;
                     }
-                    if (S[i][j] == '/' && vi + vj == 3) {
+                    if (S[i][j] == '/' && vi + vj == i * 4 + j * 4 + 3) {
                         vc[vi][vj] = 0;
                     }
                 }
@@ -46,6 +46,13 @@ int main() {
     }
 
     int response = 0;
+
+    for (int i = 0; i < 4 * N; ++i) {
+        for (int j = 0; j < 4 * M; ++j) {
+            cout << vc[i][j] << " ";
+        }
+        cout << "\n";
+    }
 
     for (int i = 0; i < 4 * N; ++i) {
         for (int j = 0; j < 4 * M; ++j) {
