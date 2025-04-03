@@ -30,7 +30,7 @@ int main() {
     vector visited(4 * N, vector<bool>(4 * M, false));
 
     for (int i = 0; i < N; ++i) {
-        for (size_t j = 0; j < S.size(); ++j) {
+        for (int j = 0; j < M; ++j) {
             for (int vi = i * 4; vi < i * 4 + 4; ++vi) {
                 for (int vj = j * 4; vj < j * 4 + 4; ++vj) {
                     if (S[i][j] == '\\' && vi - 4 * i == vj - 4 * j) {
