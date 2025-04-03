@@ -49,13 +49,6 @@ int main() {
 
     for (int i = 0; i < 4 * N; ++i) {
         for (int j = 0; j < 4 * M; ++j) {
-            cout << vc[i][j] << " ";
-        }
-        cout << "\n";
-    }
-
-    for (int i = 0; i < 4 * N; ++i) {
-        for (int j = 0; j < 4 * M; ++j) {
             if (!visited[i][j] and vc[i][j]) {
                 dfs(i, j, visited, vc);
                 ++response;
