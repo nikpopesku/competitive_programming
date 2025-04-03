@@ -9,8 +9,8 @@ void dfs(int i, int j, vector<vector<bool>> &visited, vector<vector<int>> &vc) {
 
     for (auto &dx: {-1, 0, 1}) {
         for (auto &dy: {-1, 0, 1}) {
-            if (dx + dy == 1 and i + dx >= 0 and i + dx < 4 * N and j + dy >= 0 and j + dy < 4 * M and
-                !visited[i + dx][j + dy] && vc[i + dx][i + dy]) {
+            if (abs(dx) + abs(dy) == 1 and i + dx >= 0 and i + dx < 4 * N and j + dy >= 0 and j + dy < 4 * M and
+                !visited[i + dx][j + dy] && vc[i + dx][j + dy]) {
                 dfs(i + dx, j + dy, visited, vc);
             }
         }
