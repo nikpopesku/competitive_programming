@@ -1,31 +1,51 @@
-/*
- * This template is valid both in C and in C++,
- * so you can expand it with code from both languages.
- * NOTE: it is recommended to use this even if you don't
- * understand the following code.
- */
+#include <bits/stdc++.h>
 
-#include <stdio.h>
-#include <assert.h>
+using namespace std;
 
-// constraints
-#define MAXM 100000
+void dfs(int index, int level, vector<bool> &visited, vector<vector<int>> &adj_list, map<pair<int, int>, int> &R,
+         int &counter) {
+    visited[index] = true;
+    ++counter;
 
-// input data
-int N, M, i;
-int A[MAXM], B[MAXM], R[MAXM];
+    for (auto &neighbour: adj_list[index]) {
+        if (R[{index, neighbour}] >= level and !visited[neighbour]) {
+            dfs(neighbour, level, visited, adj_list, R, counter);
+        }
+    }
+}
+
 
 int main() {
-//  uncomment the following lines if you want to read/write from files
-//  freopen("input.txt", "r", stdin);
-//  freopen("output.txt", "w", stdout);
+    int N, M, i;
+
+    int val_a, val_b, val_r, min_level = 100000, max_level = 1;
 
     assert(2 == scanf("%d %d", &N, &M));
-    for (i = 0; i < M; i++)
-        assert(3 == scanf("%d %d %d", &A[i], &B[i], &R[i]));
+    map<pair<int, int>, int> R;
+    vector<vector<int>> adj_list(N);
 
-    // insert your code here
+    for (i = 0; i < M; i++) {
+        cin >> val_a >> val_b >> val_r;
+        adj_list[val_a].push_back(val_b);
+        adj_list[val_b].push_back(val_a);
+        R[{val_a, val_b}] = val_r;
+        if (val_r > max_level) max_level = val_r;
+        if (val_r < min_level) min_level = val_r;
+    }
 
-    printf("%d\n", 42); // print the result
-    return 0;
+    int left = min_level, right = max_level;
+
+    while (left < right) {
+        int counter = 0;
+        int m = left + (right - left) / 2;
+        vector<bool> visited(N, false);
+        dfs(0, m, visited, adj_list, R, counter);
+        if (counter == N) {
+            left = m;
+        } else {
+            right = m - 1;
+        }
+    }
+
+    cout << left << "\n";
 }
