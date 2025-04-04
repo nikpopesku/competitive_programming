@@ -29,6 +29,7 @@ int main() {
         adj_list[val_a].push_back(val_b);
         adj_list[val_b].push_back(val_a);
         R[{val_a, val_b}] = val_r;
+        R[{val_b, val_a}] = val_r;
         if (val_r > max_level) max_level = val_r;
         if (val_r < min_level) min_level = val_r;
     }
