@@ -37,7 +37,7 @@ int main() {
     }
 
     int left = min_level, right = max_level;
-    int result = 1;
+    int result = min_level;
 
     while (left <= right) {
         int counter = 0;
