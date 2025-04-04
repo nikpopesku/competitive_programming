@@ -18,8 +18,11 @@ void dfs(const int index, const int level, vector<bool> &visited, const vector<v
 
 
 int main() {
-    int N, M;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
 
+    int N, M;
     int val_a, val_b, val_r, min_level = 100000, max_level = 1;
 
     cin >> N >> M;
