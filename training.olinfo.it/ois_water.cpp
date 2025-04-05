@@ -12,7 +12,6 @@ int main() {
 
     cin >> N;
 
-    cout << N << "\n";
     vector<int> q;
 
     q.push_back(N);
