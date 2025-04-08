@@ -37,7 +37,7 @@ int main() {
         auto [rx, ry] = q.front();
         q.pop();
 
-        for (const auto & move: moves) {
+        for (const auto &move: moves) {
             int dx = rx + move.first;
             int dy = ry + move.second;
 
@@ -50,7 +50,7 @@ int main() {
 
 
     for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) cout << leap[i][j] << (j != N-1 ? " " : "");
+        for (int j = 0; j < N; ++j) cout << leap[i][j] << (j != N - 1 ? " " : "");
         cout << "\n";
     }
 }
