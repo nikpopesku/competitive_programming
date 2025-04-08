@@ -8,7 +8,8 @@ using namespace std;
 
 int main() {
     // Fast IO
-    ios_base::sync_with_stdio(false); cin.tie(nullptr);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 
     int N, M;
     cin >> N >> M;
@@ -27,7 +28,7 @@ int main() {
             current_moves.insert({dx, -dy});
             current_moves.insert({-dx, dy});
             current_moves.insert({-dx, -dy});
-            for(auto move : current_moves) {
+            for (auto move: current_moves) {
                 moves.push_back(move);
             }
         }
@@ -47,7 +48,7 @@ int main() {
         auto [r1, c1] = q.front(); // C++17 structured binding
         q.pop();
 
-        for (auto [dx, dy] : moves) {
+        for (auto [dx, dy]: moves) {
             int r2 = r1 + dx;
             int c2 = c1 + dy;
 
