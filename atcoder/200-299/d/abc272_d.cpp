@@ -24,7 +24,7 @@ int main() {
         q.pop();
 
         for (int i = 0; i < N; ++i) {
-            int val = M * M - (elem.first - i) * (elem.first - i);
+            int val = M - (elem.first - i) * (elem.first - i);
             int sq = round(sqrt(val));
             if (val != sq * sq) continue;
 
