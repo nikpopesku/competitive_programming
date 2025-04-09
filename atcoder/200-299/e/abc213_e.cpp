@@ -2,7 +2,6 @@
 #include <vector>
 #include <string>
 #include <deque>
-#include <queue> // For pair, although tuple is also fine
 #include <tuple> // For structured binding clarity (optional)
 #include <limits> // For numeric_limits
 
@@ -29,7 +28,7 @@ int main() {
     // Check if starting cell is valid (although problem implies it is)
     if (H > 0 && W > 0) {
         dist[0][0] = 0;
-        dq.push_front({0, 0});
+        dq.emplace_front(0, 0);
     } else {
         cout << 0 << endl; // Or handle as appropriate if 0x0 grid is possible
         return 0;
@@ -60,7 +59,7 @@ int main() {
                 // If we find a path with the same cost (d), update and push to front
                 if (d < dist[nr][nc]) {
                     dist[nr][nc] = d;
-                    dq.push_front({nr, nc});
+                    dq.emplace_front(nr, nc);
                 }
             }
         }
@@ -85,7 +84,7 @@ int main() {
                     // If we find a path with cost d + 1 that's better than the current dist[nr][nc]
                     if (d + 1 < dist[nr][nc]) {
                         dist[nr][nc] = d + 1;
-                        dq.push_back({nr, nc}); // Push to back for cost 1 moves
+                        dq.emplace_back(nr, nc); // Push to back for cost 1 moves
                     }
                 }
             }
@@ -112,7 +111,7 @@ int main() {
                 if(is_valid(nr, nc)){
                     if (d + 1 < dist[nr][nc]) {
                         dist[nr][nc] = d + 1;
-                        dq.push_back({nr, nc});
+                        dq.emplace_back(nr, nc);
                     }
                 }
             }
