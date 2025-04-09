@@ -12,7 +12,8 @@ const int INF = numeric_limits<int>::max() / 2; // Use a large value for infinit
 
 int main() {
     ios_base::sync_with_stdio(false); // Faster I/O
-    cin.tie(NULL);                   // Untie cin/cout
+    cin.tie(nullptr);
+    cout.tie(nullptr);
 
     int H, W;
     cin >> H >> W;
