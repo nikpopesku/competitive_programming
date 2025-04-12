@@ -9,7 +9,7 @@ using namespace std;
 class DisjointSet
 {
 public:
-    explicit DisjointSet(const int size): size(size, 1), parents(size)
+    explicit DisjointSet(const int size): size(size + 1, 1), parents(size + 1)
     {
         iota(parents.begin(), parents.end(), 0);
     }
@@ -63,14 +63,18 @@ int main()
 
         cin >> city1 >> city2;
 
-        if (!dsu.equal(city1 - 1, city2 - 1)) dsu.unite(city1 - 1, city2 - 1);
+        if (!dsu.equal(city1, city2)) dsu.unite(city1, city2);
     }
 
     set<int> visited;
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 1; i <= n; ++i)
     {
-        if (int parent = dsu.find(i); !visited.count(parent))visited.insert(parent);
+        int parent = dsu.find(i);
+        if (!visited.count(parent))
+        {
+            visited.insert(parent);
+        }
     }
 
     cout << visited.size() - 1 << "\n";
