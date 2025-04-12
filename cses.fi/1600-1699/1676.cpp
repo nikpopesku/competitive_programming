@@ -81,6 +81,4 @@ int main()
 
         cout << dsu.get_uniq() << " " << dsu.get_max_size() << "\n";
     }
-
-    cout << 1 << "\n";
 }
