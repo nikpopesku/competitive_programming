@@ -26,12 +26,14 @@ public:
 
     bool unite(int a, int b)
     {
-        if (find(a) == find(b)) return false;
+        int parent_a = find(a);
+        int parent_b = find(b);
+        if (parent_a == parent_b) return false;
 
-        if (size[a] < size[b]) swap(a, b);
+        if (size[parent_a] < size[parent_b]) swap(parent_a, parent_b);
 
-        parents[b] = a;
-        size[a] += size[b];
+        parents[parent_b] = parent_a;
+        size[parent_a] += size[parent_b];
 
         return true;
     }
