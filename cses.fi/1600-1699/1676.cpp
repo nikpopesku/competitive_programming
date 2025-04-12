@@ -1,15 +1,17 @@
 #include<iostream>
 #include<vector>
 #include<numeric>
+#include<set>
 
 using namespace std;
 
 class DisjointSetUnion
 {
 public:
-    explicit DisjointSetUnion(const int size): size(size, 1), parent(size)
+    explicit DisjointSetUnion(const int size): size(size, 1), parent(size), uniq(), max_size(1)
     {
         iota(parent.begin(), parent.end(), 0);
+        uniq = set(parent.begin() + 1, parent.end());
     }
 
     [[nodiscard]] int find(int index) const
@@ -20,6 +22,16 @@ public:
         }
 
         return index;
+    }
+
+    [[nodiscard]] size_t get_uniq() const
+    {
+        return uniq.size();
+    }
+
+    [[nodiscard]] int get_max_size() const
+    {
+        return max_size;
     }
 
     bool unify(const int a, const int b)
@@ -33,6 +45,8 @@ public:
 
         size[parent_a] += size[parent_b];
         parent[parent_b] = parent_a;
+        max_size = max(max_size, size[parent_a]);
+        uniq.erase(parent_b);
 
         return true;
     }
@@ -45,6 +59,8 @@ public:
 private:
     vector<int> size;
     vector<int> parent;
+    set<int> uniq;
+    int max_size;
 };
 
 int main()
@@ -54,8 +70,17 @@ int main()
     cout.tie(nullptr);
 
     int n, m;
-
     cin >> n >> m;
+    DisjointSetUnion dsu(n + 1);
+
+    for (int i = 0; i < m; ++i)
+    {
+        int val1, val2;
+        cin >> val1 >> val2;
+        dsu.unify(val1, val2);
+
+        cout << dsu.get_uniq() << " " << dsu.get_max_size() << "\n";
+    }
 
     cout << 1 << "\n";
 }
