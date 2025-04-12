@@ -1,7 +1,4 @@
 services:
-  python:
-    image: competitive_programming
-    container_name: competitive_programming
-    stdin_open: true
-    volumes:
-      - ./:/app
+  gcc:
+    build: .
+    tty: true

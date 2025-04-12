@@ -1,23 +1,26 @@
-FROM python:3.13.2-alpine
+FROM ubuntu:20.04
 
-# Keeps Python from generating .pyc files in the container
-ENV PYTHONDONTWRITEBYTECODE=1
+RUN DEBIAN_FRONTEND="noninteractive" apt-get update && apt-get -y install tzdata
 
-ENV PYTHONUNBUFFERED=1
-
-# Install & use pipenv
-COPY Pipfile Pipfile.lock ./
-RUN python -m pip install --upgrade pip
-RUN pip install pipenv
-RUN pipenv install --dev
-
-RUN set -x; \
-    apk update && \
-    apk add --no-cache \
-    bash
-
-WORKDIR /app
+RUN apt-get update \
+  && apt-get install -y build-essential \
+      gcc \
+      g++ \
+      gdb \
+      clang \
+      make \
+      ninja-build \
+      cmake \
+      autoconf \
+      automake \
+      libtool \
+      valgrind \
+      locales-all \
+      dos2unix \
+      rsync \
+      tar \
+      python \
+      python-dev \
+  && apt-get clean
 COPY . /app
-
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["python"]
+WORKDIR /app
