@@ -66,9 +66,6 @@ int main()
         if (!dsu.equal(city1 - 1, city2 - 1)) dsu.unite(city1 - 1, city2 - 1);
     }
 
-    int response = 0;
-    for (int i = 0; i < n; ++i) if (i > 0 and !dsu.equal(i, i - 1)) response++;
-
     set<int> visited;
 
     for (int i = 0; i < n; ++i)
