@@ -2,6 +2,7 @@
 #include<vector>
 #include<numeric>
 #include<utility>
+#include<set>
 
 using namespace std;
 
@@ -67,14 +68,18 @@ int main()
 
     int response = 0;
     for (int i = 0; i < n; ++i) if (i > 0 and !dsu.equal(i, i - 1)) response++;
-    cout << response << "\n";
 
+    set<int> visited;
 
     for (int i = 0; i < n; ++i)
     {
-        if (i > 0 and !dsu.equal(i, i - 1))
-        {
-            cout << dsu.find(i) + 1 << " " << dsu.find(i - 1) + 1 << "\n";
-        }
+        if (int parent = dsu.find(i); !visited.contains(parent))visited.insert(parent);
+    }
+
+    cout << visited.size() - 1 << "\n";
+
+    for (auto it1 = visited.begin(), it2 = ++visited.begin(); it2 != visited.end(); ++it1, ++it2)
+    {
+        cout << *it1 + 1 << " " << *it2 + 1 << "\n";
     }
 }
