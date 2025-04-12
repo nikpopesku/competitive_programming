@@ -24,7 +24,7 @@ public:
         return index;
     }
 
-    bool unite(int a, int b)
+    bool unite(const int a, const int b)
     {
         int parent_a = find(a);
         int parent_b = find(b);
@@ -72,8 +72,7 @@ int main()
 
     for (int i = 1; i <= n; ++i)
     {
-        int parent = dsu.find(i);
-        if (!visited.count(parent))
+        if (int parent = dsu.find(i); !visited.count(parent))
         {
             visited.insert(parent);
         }
@@ -83,6 +82,6 @@ int main()
 
     for (auto it1 = visited.begin(), it2 = ++visited.begin(); it2 != visited.end(); ++it1, ++it2)
     {
-        cout << *it1 + 1 << " " << *it2 + 1 << "\n";
+        cout << *it1 << " " << *it2 << "\n";
     }
 }
