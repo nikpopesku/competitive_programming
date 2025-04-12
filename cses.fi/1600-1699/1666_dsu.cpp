@@ -23,7 +23,7 @@ public:
         return index;
     }
 
-    [[nodiscard]] bool unite(int a, int b) const
+    [[nodiscard]] bool unite(int a, int b)
     {
         if (find(a) == find(b)) return false;
 
@@ -33,6 +33,11 @@ public:
         size[a] += size[b];
 
         return true;
+    }
+
+    [[nodiscard]] bool equal(const int a, const int b) const
+    {
+        return find(a) == find(b);
     }
 
 private:
