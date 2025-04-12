@@ -23,7 +23,7 @@ public:
         return index;
     }
 
-    [[nodiscard]] bool unite(int a, int b)
+    bool unite(int a, int b)
     {
         if (find(a) == find(b)) return false;
 
@@ -54,6 +54,27 @@ int main()
     int n, m;
     cin >> n >> m;
 
+    DisjointSet dsu(n);
 
-    cout << 1 << "\n";
+    for (int i = 0; i < m; ++i)
+    {
+        int city1, city2;
+
+        cin >> city1 >> city2;
+
+        if (!dsu.equal(city1 - 1, city2 - 1)) dsu.unite(city1 - 1, city2 - 1);
+    }
+
+    int response = 0;
+    for (int i = 0; i < n; ++i) if (i > 0 and !dsu.equal(i, i - 1)) response++;
+    cout << response << "\n";
+
+
+    for (int i = 0; i < n; ++i)
+    {
+        if (i > 0 and !dsu.equal(i, i - 1))
+        {
+            cout << dsu.find(i) + 1 << " " << dsu.find(i - 1) + 1 << "\n";
+        }
+    }
 }
