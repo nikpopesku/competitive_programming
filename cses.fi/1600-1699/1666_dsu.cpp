@@ -73,7 +73,7 @@ int main()
 
     for (int i = 0; i < n; ++i)
     {
-        if (int parent = dsu.find(i); !visited.contains(parent))visited.insert(parent);
+        if (int parent = dsu.find(i); !visited.count(parent))visited.insert(parent);
     }
 
     cout << visited.size() - 1 << "\n";
