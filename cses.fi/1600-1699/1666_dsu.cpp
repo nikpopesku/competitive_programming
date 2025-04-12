@@ -8,7 +8,7 @@ using namespace std;
 class DisjointSet
 {
 public:
-    explicit DisjointSet(const int size): parents(size), size(size, 1)
+    explicit DisjointSet(const int size): size(size, 1), parents(size)
     {
         iota(parents.begin(), parents.end(), 0);
     }
