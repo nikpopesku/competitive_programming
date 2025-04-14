@@ -77,10 +77,10 @@ int main()
 
     while (dsu.get_max_size() < n and !q.empty())
     {
-        auto [cost, city1, city2] = q.top();
+        tuple<long long, int, int> elem = q.top();
         q.pop();
 
-        if (dsu.unify(city1, city2)) response -= cost;
+        if (dsu.unify(get<1>(elem), get<2>(elem))) response -= get<0>(elem);
     }
 
     if (dsu.get_max_size() == n)
