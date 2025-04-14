@@ -70,7 +70,7 @@ int main()
     for (int i = 0; i < m; ++i)
     {
         cin >> city1 >> city2 >> cost;
-        q.emplace(cost, city1, city2);
+        q.emplace(-cost, city1, city2);
     }
 
     long long response = 0;
@@ -80,7 +80,7 @@ int main()
         auto [cost, city1, city2] = q.top();
         q.pop();
 
-        if (dsu.unify(city1, city2)) response += cost;
+        if (dsu.unify(city1, city2)) response -= cost;
     }
 
     if (dsu.get_max_size() == n)
