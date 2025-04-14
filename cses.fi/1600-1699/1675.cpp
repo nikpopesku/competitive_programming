@@ -9,7 +9,7 @@ using namespace std;
 class DisjointSetUnion
 {
 public:
-    explicit DisjointSetUnion(const int size): size(size, 1), parent(size)
+    explicit DisjointSetUnion(const int size): size(size, 1), parent(size), max_size(1)
     {
         iota(parent.begin(), parent.end(), 0);
     }
@@ -26,6 +26,11 @@ public:
         return a;
     }
 
+    [[nodiscard]] int get_max_size() const
+    {
+        return max_size;
+    }
+
     bool unify(const int a, const int b)
     {
         int parent_a = find(a);
@@ -37,6 +42,7 @@ public:
 
         size[parent_a] += size[parent_b];
         parent[parent_b] = parent_a;
+        max_size = max(max_size, size[parent_a]);
 
         return true;
     }
@@ -44,6 +50,7 @@ public:
 private:
     vector<int> size;
     vector<int> parent;
+    int max_size;
 };
 
 int main()
@@ -54,10 +61,11 @@ int main()
 
     int n, m;
     cin >> n >> m;
-    int city1, city2, cost;
+    int city1, city2;
+    long long cost;
     DisjointSetUnion dsu(n + 1);
 
-    priority_queue<tuple<int, int, int>> q;
+    priority_queue<tuple<long long, int, int>> q;
 
     for (int i = 0; i < m; ++i)
     {
@@ -65,5 +73,22 @@ int main()
         q.emplace(cost, city1, city2);
     }
 
-    cout << 1 << "\n";
+    long long response = 0;
+
+    while (dsu.get_max_size() < n and !q.empty())
+    {
+        auto [cost, city1, city2] = q.top();
+        q.pop();
+
+        if (dsu.unify(city1, city2)) response += cost;
+    }
+
+    if (dsu.get_max_size() == n)
+    {
+        cout << response << "\n";
+    }
+    else
+    {
+        cout << "IMPOSSIBLE\n";
+    }
 }
