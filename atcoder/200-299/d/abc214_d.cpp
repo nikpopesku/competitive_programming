@@ -65,7 +65,8 @@ int main()
     int n, u, v;
     long long w;
     std::cin >> n;
-    vector<Edge> edges(n - 1);
+    vector<Edge> edges;
+    edges.reserve(n - 1);
     for (int i = 0; i < n - 1; ++i)
     {
         cin >> u >> v >> w;
@@ -75,7 +76,7 @@ int main()
     sort(edges.begin(), edges.end());
 
     long long response = 0;
-    DisjointSetUnion dsu(n - 1);
+    DisjointSetUnion dsu(n);
 
     for (auto [u, v, w] : edges)
     {
