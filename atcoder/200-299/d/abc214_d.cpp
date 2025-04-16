@@ -94,15 +94,11 @@ int main()
     long long total_max_weight_sum = 0;
 
     // Process edges in sorted order
-    for (const auto& edge : edges)
+    for (const auto& [u, v, w] : edges)
     {
-        int u = edge.u;
-        int v = edge.v;
-        long long w = edge.w; // Use long long for weight calculation
-
         // Get sizes of the components before merging
-        long long size_u = dsu.size(u);
-        long long size_v = dsu.size(v);
+        const long long size_u = dsu.size(u);
+        const long long size_v = dsu.size(v);
 
         // The edge (u, v, w) is the maximum weight edge for paths
         // between any node in u's component and any node in v's component.
