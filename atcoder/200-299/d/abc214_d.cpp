@@ -15,10 +15,7 @@ public:
 
     [[nodiscard]] int find(int a) const
     {
-        while (a != parent[a])
-        {
-            a = parent[a];
-        }
+        while (a != parent[a]) a = parent[a];
 
         return a;
     }
@@ -72,7 +69,7 @@ int main()
     for (int i = 0; i < n - 1; ++i)
     {
         cin >> u >> v >> w;
-        edges.emplace_back(u, v, w);
+        edges.emplace_back(u - 1, v - 1, w);
     }
 
     sort(edges.begin(), edges.end());
