@@ -29,7 +29,7 @@ struct DSU
 
     // Unite the sets containing i and j, using union by size
     // Returns true if a merge happened, false otherwise
-    bool unite(int i, int j)
+    bool unite(const int i, const int j)
     {
         int root_i = find(i);
         int root_j = find(j);
@@ -48,7 +48,7 @@ struct DSU
     }
 
     // Get the size of the component containing i
-    long long size(int i)
+    long long size(const int i)
     {
         return sz[find(i)];
     }
