@@ -1,5 +1,21 @@
 #include <iostream>
+#include <vector>
+#include <numeric>
 
+using namespace std;
+
+class DisjointSetUnion
+{
+public:
+    explicit DisjointSetUnion(const int size): size(size, 1), parent(size)
+    {
+        iota(parent.begin(), parent.end(), 0);
+    }
+
+private:
+    vector<int> size;
+    vector<int> parent;
+};
 
 int main()
 {
