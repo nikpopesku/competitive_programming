@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <numeric>
+#include <algorithm>
 
 using namespace std;
 
@@ -50,9 +51,10 @@ private:
 
 struct Edge
 {
+
     int u, v, w;
 
-    Edge(int u, int v, int w): u(u), v(v), w(w)
+    Edge(const int u, const int v, const int w): u(u), v(v), w(w)
     {
     }
 
@@ -69,12 +71,26 @@ int main()
 
     int n, u, v, w;
     std::cin >> n;
-    vector<Edge> edges(n-1);
+    vector<Edge> edges(n - 1);
     for (int i = 0; i < n - 1; ++i)
     {
         cin >> u >> v >> w;
-        edges.push_back(u, v, w);
+        edges.emplace_back(u, v, w);
     }
 
-    std::cout << n << std::endl;
+    sort(edges.begin(), edges.end());
+
+    long long response = 0;
+    DisjointSetUnion dsu(n - 1);
+
+    for (auto [u, v, w] : edges)
+    {
+        const int size_u = dsu.get_size(u);
+        const int size_v = dsu.get_size(v);
+        response += w * size_u * size_v;
+
+        dsu.unify(u, v);
+    }
+
+    std::cout << response << std::endl;
 }
