@@ -23,7 +23,7 @@ public:
         return a;
     }
 
-    [[nodiscard]] int get_size(const int a) const
+    [[nodiscard]] long long get_size(const int a) const
     {
         return size[find(a)];
     }
@@ -45,18 +45,14 @@ public:
     }
 
 private:
-    vector<int> size;
+    vector<long long> size;
     vector<int> parent;
 };
 
 struct Edge
 {
-
-    int u, v, w;
-
-    Edge(const int u, const int v, const int w): u(u), v(v), w(w)
-    {
-    }
+    int u, v;
+    long long w;
 
     bool operator<(const Edge& other) const
     {
@@ -69,7 +65,8 @@ int main()
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    int n, u, v, w;
+    int n, u, v;
+    long long w;
     std::cin >> n;
     vector<Edge> edges(n - 1);
     for (int i = 0; i < n - 1; ++i)
@@ -85,8 +82,8 @@ int main()
 
     for (auto [u, v, w] : edges)
     {
-        const int size_u = dsu.get_size(u);
-        const int size_v = dsu.get_size(v);
+        const long long size_u = dsu.get_size(u);
+        const long long size_v = dsu.get_size(v);
         response += w * size_u * size_v;
 
         dsu.unify(u, v);
