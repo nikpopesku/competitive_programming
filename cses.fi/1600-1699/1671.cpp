@@ -18,7 +18,7 @@ int main()
     cin >> n >> m;
     int a, b;
     ll c;
-    vector<vector<pair<int, ll>>> adj_list;
+    vector adj_list(n, vector<pair<int, ll>>(0));
     vector dist(n, BIG);
     dist[0] = 0;
 
@@ -39,7 +39,7 @@ int main()
         pq.pop();
         if (cdist != dist[city]) continue;
 
-        for (auto const & neighbour: adj_list[city])
+        for (auto const& neighbour : adj_list[city])
         {
             if (cdist + neighbour.second < dist[neighbour.first])
             {
