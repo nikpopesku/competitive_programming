@@ -8,43 +8,40 @@ using namespace std;
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-
-    constexpr ll BIG = 1e9;
+    ios::sync_with_stdio(false);
+    constexpr ll BIG = 1e14;
 
     int n, m;
     cin >> n >> m;
     int a, b;
     ll c;
-    vector adj_list(n, vector<pair<int, ll>>(0));
+    vector adj_list(n, vector<pair<ll, int>>(0));
     vector dist(n, BIG);
     dist[0] = 0;
 
     for (int i = 0; i < m; ++i)
     {
         cin >> a >> b >> c;
-        adj_list[a - 1].emplace_back(b - 1, c);
+        adj_list[a - 1].emplace_back(c, b - 1);
     }
 
-    using T = pair<int, ll>;
+    using T = pair<ll, int>;
     priority_queue<T, vector<T>, greater<T>> pq;
 
     pq.emplace(0, 0);
 
     while (!pq.empty())
     {
-        auto const [city, cdist] = pq.top();
+        auto const [cdist, city] = pq.top();
         pq.pop();
         if (cdist != dist[city]) continue;
 
-        for (const auto& [neighbour_city, neighbour_distance] : adj_list[city])
+        for (const auto& [neighbour_distance, neighbour_city] : adj_list[city])
         {
             if (cdist + neighbour_distance < dist[neighbour_city])
             {
                 dist[neighbour_city] = cdist + neighbour_distance;
-                pq.emplace(neighbour_city, dist[neighbour_city]);
+                pq.emplace(dist[neighbour_city], neighbour_city);
             }
         }
     }
