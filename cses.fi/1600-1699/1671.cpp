@@ -1,0 +1,53 @@
+#include<iostream>
+#include<vector>
+#include <queue>
+
+using namespace std;
+
+#define ll long long
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    constexpr ll BIG = 1e18;
+
+    int n, m;
+    cin >> n >> m;
+    int a, b;
+    ll c;
+    vector<vector<pair<int, ll>>> adj_list;
+    vector dist(n, BIG);
+    dist[0] = 0;
+
+    for (int i = 0; i < m; ++i)
+    {
+        cin >> a >> b >> c;
+        adj_list[a - 1].push_back({b - 1, c});
+    }
+
+    using T = pair<int, ll>;
+    priority_queue<T, vector<T>, greater<T>> pq;
+
+    pq.push({0, 0});
+
+    while (!pq.empty())
+    {
+        auto const [city, cdist] = pq.top();
+        pq.pop();
+        if (cdist != dist[city]) continue;
+
+        for (auto const & neighbour: adj_list[city])
+        {
+            if (cdist + neighbour.second < dist[neighbour.first])
+            {
+                dist[neighbour.first] = cdist + neighbour.second;
+                pq.push({neighbour.first, dist[neighbour.first]});
+            }
+        }
+    }
+
+    for (int i = 0; i < n; ++i) cout << dist[i] << " ";
+}
