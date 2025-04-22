@@ -25,13 +25,13 @@ int main()
     for (int i = 0; i < m; ++i)
     {
         cin >> a >> b >> c;
-        adj_list[a - 1].push_back({b - 1, c});
+        adj_list[a - 1].emplace_back(b - 1, c);
     }
 
     using T = pair<int, ll>;
     priority_queue<T, vector<T>, greater<T>> pq;
 
-    pq.push({0, 0});
+    pq.emplace(0, 0);
 
     while (!pq.empty())
     {
@@ -44,7 +44,7 @@ int main()
             if (cdist + neighbour.second < dist[neighbour.first])
             {
                 dist[neighbour.first] = cdist + neighbour.second;
-                pq.push({neighbour.first, dist[neighbour.first]});
+                pq.emplace(neighbour.first, dist[neighbour.first]);
             }
         }
     }
