@@ -39,12 +39,12 @@ int main()
         pq.pop();
         if (cdist != dist[city]) continue;
 
-        for (auto const& neighbour : adj_list[city])
+        for (const auto& [neighbour_city, neighbour_distance] : adj_list[city])
         {
-            if (cdist + neighbour.second < dist[neighbour.first])
+            if (cdist + neighbour_distance < dist[neighbour_city])
             {
-                dist[neighbour.first] = cdist + neighbour.second;
-                pq.emplace(neighbour.first, dist[neighbour.first]);
+                dist[neighbour_city] = cdist + neighbour_distance;
+                pq.emplace(neighbour_city, dist[neighbour_city]);
             }
         }
     }
