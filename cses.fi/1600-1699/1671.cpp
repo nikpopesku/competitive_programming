@@ -12,7 +12,7 @@ int main()
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    constexpr ll BIG = 1e18;
+    constexpr ll BIG = 1e9;
 
     int n, m;
     cin >> n >> m;
