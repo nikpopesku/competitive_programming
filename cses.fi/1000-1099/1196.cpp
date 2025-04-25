@@ -9,7 +9,7 @@ using ll = long long;
 // Define a type alias for the pair in the priority queue: {cost, node}
 using P = std::pair<ll, int>;
 
-const int MAXN = 100005; // Maximum number of nodes + 1
+constexpr int MAXN = 100005; // Maximum number of nodes + 1
 
 // Adjacency list: adj[u] contains pairs {v, w} for edges u -> v with weight w
 std::vector<std::pair<int, int>> adj[MAXN];
@@ -95,7 +95,7 @@ int main()
     // Output the k shortest path costs to node n.
     // They will be in non-decreasing order in dist[n].
     bool first = true;
-    for (ll path_cost : dist[n])
+    for (const ll path_cost : dist[n])
     {
         // C++11 range-based for loop
         if (!first)
@@ -113,7 +113,4 @@ int main()
     //     first = false;
     // }
     // std::cout << "\n";
-
-
-    return 0;
 }
