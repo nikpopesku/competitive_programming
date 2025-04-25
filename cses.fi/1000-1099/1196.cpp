@@ -17,7 +17,8 @@ std::vector<std::pair<int, int>> adj[MAXN];
 // dist[i] will store the costs of the k shortest paths found to node i
 std::vector<ll> dist[MAXN];
 
-int main() {
+int main()
+{
     // Faster I/O
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
@@ -28,7 +29,8 @@ int main() {
     std::cin >> n >> m >> k;
 
     // Read graph edges
-    for (int i = 0; i < m; ++i) {
+    for (int i = 0; i < m; ++i)
+    {
         int u, v, w;
         std::cin >> u >> v >> w;
         // Add directed edge u -> v with weight w
@@ -39,9 +41,10 @@ int main() {
     std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
 
     // Start Dijkstra from node 1 with initial cost 0
-    pq.push({0, 1});
+    pq.emplace(0, 1);
 
-    while (!pq.empty()) {
+    while (!pq.empty())
+    {
         // Get the state {current_cost, current_node} with the smallest cost
         auto [current_cost, u] = pq.top();
         pq.pop();
@@ -49,7 +52,8 @@ int main() {
         // If we have already found k shortest paths to node u,
         // this path and any further paths derived from it via u
         // cannot be among the top k for u. Skip.
-        if (dist[u].size() >= k) {
+        if (dist[u].size() >= k)
+        {
             continue;
         }
 
@@ -64,10 +68,11 @@ int main() {
         // }
 
         // Explore neighbors (relax edges)
-        for (const auto& edge : adj[u]) {
-            int v = edge.first; // Neighbor node
-            int weight = edge.second; // Edge weight
-            ll new_cost = current_cost + (ll)weight;
+        for (const auto& [fst, snd] : adj[u])
+        {
+            int v = fst; // Neighbor node
+            const int weight = snd; // Edge weight
+            ll new_cost = current_cost + static_cast<ll>(weight);
 
             // Only proceed if neighbor v hasn't received k paths yet.
             // If dist[v].size() == k, pushing more paths for v is unnecessary
@@ -77,20 +82,24 @@ int main() {
             // We always push the potential path to the queue.
             // The check at the start of the loop ensures we only process
             // the necessary number of paths arriving at each node.
-             if (dist[v].size() < k) {
-                 pq.push({new_cost, v});
-             }
-             // Note: We don't compare new_cost with existing distances in dist[v] here.
-             // We rely on the priority queue and the count check (dist[u].size() < k)
-             // to manage finding the k shortest paths correctly.
+            if (dist[v].size() < k)
+            {
+                pq.emplace(new_cost, v);
+            }
+            // Note: We don't compare new_cost with existing distances in dist[v] here.
+            // We rely on the priority queue and the count check (dist[u].size() < k)
+            // to manage finding the k shortest paths correctly.
         }
     }
 
     // Output the k shortest path costs to node n.
     // They will be in non-decreasing order in dist[n].
     bool first = true;
-    for (ll path_cost : dist[n]) { // C++11 range-based for loop
-        if (!first) {
+    for (ll path_cost : dist[n])
+    {
+        // C++11 range-based for loop
+        if (!first)
+        {
             std::cout << " ";
         }
         std::cout << path_cost;
