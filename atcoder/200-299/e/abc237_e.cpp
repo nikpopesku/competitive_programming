@@ -1,8 +1,11 @@
+#include <algorithm>
 #include<iostream>
 #include <queue>
 #include<vector>
 
 using namespace std;
+
+#define ll long long
 
 
 int main()
@@ -11,6 +14,7 @@ int main()
     cin.tie(nullptr);
     cout.tie(nullptr);
 
+    constexpr ll SMALL = -1e18;
     int N, M;
 
     cin >> N >> M;
@@ -23,7 +27,7 @@ int main()
     }
 
     int space1, space2;
-    int happiness = 0;
+    vector happiness(N + 1, SMALL);
 
     for (int j = 0; j < M; ++j)
     {
@@ -46,12 +50,25 @@ int main()
     }
 
     priority_queue<pair<int, int>> pq;
+    ll max_happiness = 0;
     pq.push({0, 1});
 
     while (!pq.empty())
     {
+        auto [cost, space] = pq.top();
+        pq.pop();
 
+        for (auto& [price, new_space] : adj[space])
+        {
+            if (ll new_cost = cost + static_cast<ll>(price); new_cost > spaces[new_space])
+            {
+                pq.push({new_cost, new_space});
+
+                max_happiness = max(max_happiness, new_cost);
+            }
+        }
     }
 
-    cout << happiness << '\n';
+
+    cout << max_happiness << '\n';
 }
