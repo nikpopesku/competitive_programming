@@ -1,7 +1,7 @@
 #include <algorithm>
-#include<iostream>
+#include <iostream>
 #include <queue>
-#include<vector>
+#include <vector>
 
 using namespace std;
 
