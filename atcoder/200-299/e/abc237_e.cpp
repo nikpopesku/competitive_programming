@@ -55,13 +55,13 @@ int main()
 
     while (!pq.empty())
     {
-        auto [happy, space] = pq.top();
+        const auto [happy, space] = pq.top();
         pq.pop();
         if (happy <= happiness[space]) continue;
 
         happiness[space] = happy;
 
-        for (auto& [price, new_space] : adj[space])
+        for (const auto& [price, new_space] : adj[space])
         {
             if (ll new_happiness = happy + static_cast<ll>(price); new_happiness > happiness[new_space])
             {
