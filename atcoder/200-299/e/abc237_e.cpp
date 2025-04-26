@@ -36,7 +36,7 @@ int main()
         else
         {
             cost_inverse = spaces[space2] - spaces[space1];
-            cost = 2 * cost_inverse;
+            cost = -2 * cost_inverse;
         }
 
         adj[space1].push_back({cost, space2});
