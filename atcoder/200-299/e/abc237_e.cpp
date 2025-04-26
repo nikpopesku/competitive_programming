@@ -55,16 +55,18 @@ int main()
 
     while (!pq.empty())
     {
-        auto [cost, space] = pq.top();
+        auto [happy, space] = pq.top();
         pq.pop();
+        if (happy < happiness[space]) continue;
+
+        happiness[space] = happy;
 
         for (auto& [price, new_space] : adj[space])
         {
-            if (ll new_cost = cost + static_cast<ll>(price); new_cost > spaces[new_space])
+            if (ll new_happiness = happy + static_cast<ll>(price); new_happiness > happiness[new_space])
             {
-                pq.emplace(new_cost, new_space);
-
-                max_happiness = max(max_happiness, new_cost);
+                pq.emplace(new_happiness, new_space);
+                max_happiness = max(max_happiness, new_happiness);
             }
         }
     }
