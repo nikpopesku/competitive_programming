@@ -22,6 +22,7 @@ int main()
     }
 
     int space1, space2;
+    int happiness = 0;
 
     for (int j = 0; j < M; ++j)
     {
@@ -43,5 +44,5 @@ int main()
         adj[space2].push_back({cost_inverse, space1});
     }
 
-    cout << 1 << '\n';
+    cout << happiness << '\n';
 }
