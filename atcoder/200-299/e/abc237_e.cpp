@@ -66,10 +66,11 @@ int main()
             if (ll new_happiness = happy + static_cast<ll>(price); new_happiness > happiness[new_space])
             {
                 pq.emplace(new_happiness, new_space);
-                max_happiness = max(max_happiness, new_happiness);
             }
         }
     }
+
+    for (int i = 1; i <= N; ++i) max_happiness = max(max_happiness, happiness[i]);
 
 
     cout << max_happiness << '\n';
