@@ -1,4 +1,5 @@
 #include<iostream>
+#include <queue>
 #include<vector>
 
 using namespace std;
@@ -42,6 +43,14 @@ int main()
 
         adj[space1].push_back({cost, space2});
         adj[space2].push_back({cost_inverse, space1});
+    }
+
+    priority_queue<pair<int, int>> pq;
+    pq.push({0, 1});
+
+    while (!pq.empty())
+    {
+
     }
 
     cout << happiness << '\n';
