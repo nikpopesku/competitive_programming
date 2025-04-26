@@ -45,13 +45,13 @@ int main()
             cost = -2 * cost_inverse;
         }
 
-        adj[space1].push_back({cost, space2});
-        adj[space2].push_back({cost_inverse, space1});
+        adj[space1].emplace_back(cost, space2);
+        adj[space2].emplace_back(cost_inverse, space1);
     }
 
     priority_queue<pair<int, int>> pq;
     ll max_happiness = 0;
-    pq.push({0, 1});
+    pq.emplace(0, 1);
 
     while (!pq.empty())
     {
@@ -62,7 +62,7 @@ int main()
         {
             if (ll new_cost = cost + static_cast<ll>(price); new_cost > spaces[new_space])
             {
-                pq.push({new_cost, new_space});
+                pq.emplace(new_cost, new_space);
 
                 max_happiness = max(max_happiness, new_cost);
             }
