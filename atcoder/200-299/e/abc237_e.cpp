@@ -28,11 +28,11 @@ int main()
 
     int space1, space2;
     vector happiness(N + 1, SMALL);
+    int cost, cost_inverse;
 
     for (int j = 0; j < M; ++j)
     {
         cin >> space1 >> space2;
-        int cost, cost_inverse;
 
         if (spaces[space1] >= spaces[space2])
         {
