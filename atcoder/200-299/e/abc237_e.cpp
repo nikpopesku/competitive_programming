@@ -49,7 +49,7 @@ int main()
         adj[space2].emplace_back(cost_inverse, space1);
     }
 
-    priority_queue<pair<int, int>> pq;
+    priority_queue<pair<ll, int>> pq;
     ll max_happiness = 0;
     pq.emplace(0, 1);
 
