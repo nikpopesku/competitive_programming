@@ -57,7 +57,7 @@ int main()
     {
         auto [happy, space] = pq.top();
         pq.pop();
-        if (happy < happiness[space]) continue;
+        if (happy <= happiness[space]) continue;
 
         happiness[space] = happy;
 
