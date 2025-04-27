@@ -30,12 +30,11 @@ int main()
 
     priority_queue<pair<ll, int>> pq;
 
-    for (int i = 1; i <= N; ++i)
+    for (int start_town = 1; start_town <= N; ++start_town)
     {
-        if (min_walk[i] != BIG) continue;
+        if (min_walk[start_town] != BIG) continue;
         int count = 0;
-        const int start_town = i;
-        pq.emplace(0, i);
+        pq.emplace(0, start_town);
 
         while (!pq.empty())
         {
@@ -43,19 +42,16 @@ int main()
             pq.pop();
             bool there_are_neighbours = false;
 
-            if (town == start_town and count > 0 and cost < min_walk[start_town])
-            {
-                min_walk[i] = cost;
-                break;
-            }
+            if (cost > min_walk[start_town]) continue;
             if (count > N + 1) break;
 
             for (auto& [time, new_town] : adj[town])
             {
-                ll new_cost = cost + static_cast<ll>(time);
-
-                pq.emplace(new_cost, new_town);
-                there_are_neighbours = true;
+                if (ll new_cost = cost + static_cast<ll>(time); new_cost < min_walk[start_town])
+                {
+                    pq.emplace(new_cost, new_town);
+                    there_are_neighbours = true;
+                }
             }
 
             if (there_are_neighbours) ++count;
