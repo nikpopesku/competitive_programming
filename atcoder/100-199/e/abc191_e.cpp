@@ -38,7 +38,8 @@ int main()
 
     for (int start_town = 1; start_town <= N; ++start_town)
     {
-        priority_queue<pair<ll, int>> pq;
+        using T = pair<ll, int>;
+        priority_queue<T, vector<T>, greater<>> pq;
         vector dist(N + 1, INF);
         ll current_min_walk = self_loop[start_town];
 
