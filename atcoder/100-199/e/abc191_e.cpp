@@ -35,7 +35,7 @@ int main()
         if (min_walk[i] != BIG) continue;
         int count = 0;
         const int start_town = i;
-        pq.push({0, i});
+        pq.emplace(0, i);
 
         while (!pq.empty())
         {
@@ -54,7 +54,7 @@ int main()
             {
                 ll new_cost = cost + static_cast<ll>(time);
 
-                pq.push({new_cost, new_town});
+                pq.emplace(new_cost, new_town);
                 there_are_neighbours = true;
             }
 
