@@ -63,5 +63,5 @@ int main()
     }
 
 
-    for (int i = 1; i <= N; ++i) cout << min_walk[i] << ' ';
+    for (int i = 1; i <= N; ++i) cout << (min_walk[i] != BIG ? min_walk[i] : -1) << "\n";
 }
