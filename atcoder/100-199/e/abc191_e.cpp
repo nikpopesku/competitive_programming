@@ -39,7 +39,7 @@ int main()
 
         while (!pq.empty())
         {
-            const auto& [cost, town] = pq.top();
+            const auto [cost, town] = pq.top();
             pq.pop();
             bool there_are_neighbours = false;
 
