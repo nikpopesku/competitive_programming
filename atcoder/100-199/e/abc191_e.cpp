@@ -29,10 +29,10 @@ int main()
     }
 
     using T = pair<ll, int>;
-    priority_queue<T, vector<T>, greater<>> pq;
 
     for (int start_town = 1; start_town <= N; ++start_town)
     {
+        priority_queue<T, vector<T>, greater<>> pq;
         if (min_walk[start_town] != BIG) continue;
         int count = 0;
         pq.emplace(0, start_town);
