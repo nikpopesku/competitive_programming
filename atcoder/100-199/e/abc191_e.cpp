@@ -67,9 +67,9 @@ int main()
                     current_min_walk = min(current_min_walk, new_cost);
                 }
 
-                if (new_cost < dist[town])
+                if (new_cost < dist[new_town])
                 {
-                    dist[town] = new_cost;
+                    dist[new_town] = new_cost;
                     pq.emplace(new_cost, new_town);
                 }
             }
