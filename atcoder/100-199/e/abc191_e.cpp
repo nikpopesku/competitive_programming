@@ -62,7 +62,7 @@ int main()
             {
                 ll new_cost = cost + static_cast<ll>(time);
 
-                if (town == start_town)
+                if (new_town == start_town)
                 {
                     current_min_walk = min(current_min_walk, new_cost);
                 }
