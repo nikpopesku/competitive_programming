@@ -27,7 +27,7 @@ int main()
         cin >> A >> B >> C;
         if (B == A)
         {
-            self_loop[i] = min(self_loop[i], static_cast<ll>(C));
+            self_loop[A] = min(self_loop[A], static_cast<ll>(C));
         }
         else
         {
