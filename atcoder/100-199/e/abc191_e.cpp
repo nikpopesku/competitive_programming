@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 #include <vector>
 
 using namespace std;
@@ -12,18 +13,55 @@ int main()
     cin.tie(nullptr);
     cout.tie(nullptr);
 
+    constexpr ll BIG = 1e18;
+
     int N, M, A, B, C;
 
     cin >> N >> M;
-    vector<vector<pair<int, int>>> adj(N+1);
+    vector<vector<pair<int, int>>> adj(N + 1);
+    vector min_walk(N + 1, BIG);
 
     for (int i = 0; i < M; ++i)
     {
         cin >> A >> B >> C;
 
-        adj[a].emplace_back(C, B);
+        adj[A].emplace_back(C, B);
+    }
+
+    priority_queue<pair<ll, int>> pq;
+
+    for (int i = 1; i <= N; ++i)
+    {
+        if (min_walk[i] != BIG) continue;
+        int count = 0;
+        const int start_town = i;
+        pq.push({0, i});
+
+        while (!pq.empty())
+        {
+            const auto& [cost, town] = pq.top();
+            pq.pop();
+            bool there_are_neighbours = false;
+
+            if (town == start_town and count > 0 and cost < min_walk[start_town])
+            {
+                min_walk[i] = cost;
+                break;
+            }
+            if (count > N + 1) break;
+
+            for (auto& [time, new_town] : adj[town])
+            {
+                ll new_cost = cost + static_cast<ll>(time);
+
+                pq.push({new_cost, new_town});
+                there_are_neighbours = true;
+            }
+
+            if (there_are_neighbours) ++count;
+        }
     }
 
 
-    cout << -1 << '\n';
+    for (int i = 1; i <= N; ++i) cout << min_walk[i] << ' ';
 }
