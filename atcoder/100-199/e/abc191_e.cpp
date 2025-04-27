@@ -50,7 +50,6 @@ int main()
                 pq.emplace(cost, town);
                 dist[town] = cost;
             }
-
         }
 
 
