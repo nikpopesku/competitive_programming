@@ -28,7 +28,8 @@ int main()
         adj[A].emplace_back(C, B);
     }
 
-    priority_queue<pair<ll, int>> pq;
+    using T = pair<ll, int>;
+    priority_queue<T, vector<T>, greater<>> pq;
 
     for (int start_town = 1; start_town <= N; ++start_town)
     {
