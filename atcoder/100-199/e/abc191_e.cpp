@@ -53,16 +53,25 @@ int main()
 
         while (!pq.empty())
         {
-            auto [time, town] = pq.top();
+            auto [cost, town] = pq.top();
             pq.pop();
 
-            if (time > dist[town]) continue;
+            if (cost > dist[town]) continue;
 
-            ll new_cost = time + static_cast<ll>(cost);
-
-            if (town == start_town)
+            for (auto [time, new_town] : adj[town])
             {
-                current_min_walk = min(current_min_walk, new_cost);
+                ll new_cost = cost + static_cast<ll>(time);
+
+                if (town == start_town)
+                {
+                    current_min_walk = min(current_min_walk, new_cost);
+                }
+
+                if (new_cost < dist[town])
+                {
+                    dist[town] = new_cost;
+                    pq.emplace(new_cost, new_town);
+                }
             }
         }
 
