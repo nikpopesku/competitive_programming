@@ -45,6 +45,11 @@ int main()
             if (cost > min_walk[start_town]) continue;
             if (count > N + 1) break;
 
+            if (town == start_town and count > 0)
+            {
+                min_walk[start_town] = cost;
+            }
+
             for (auto& [time, new_town] : adj[town])
             {
                 if (ll new_cost = cost + static_cast<ll>(time); new_cost < min_walk[start_town])
