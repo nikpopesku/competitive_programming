@@ -31,7 +31,7 @@ int main()
     using T = pair<ll, int>;
     priority_queue<T, vector<T>, greater<>> pq;
     pq.push({0, 1});
-    vector time(N+1, INF);
+    vector time(N + 1, INF);
 
     while (!pq.empty())
     {
@@ -40,7 +40,7 @@ int main()
 
         if (city_time > time[city]) continue;
 
-        for (auto [new_city, C, D]: adj[city])
+        for (auto [new_city, C, D] : adj[city])
         {
             ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1)));
 
