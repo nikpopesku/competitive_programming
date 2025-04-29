@@ -29,30 +29,44 @@ int main()
     }
 
     using T = pair<ll, int>;
-    priority_queue<T, vector<T>, greater<>> pq;
-    pq.emplace(1, 1);
-    vector time(N + 1, INF);
-    time[1] = 1;
 
-    while (!pq.empty())
+    ll extreme_D = INF;
+    ll ultimate_response = INF;
+
+    for (auto [new_city, C, D] : adj[1])
     {
-        auto [city_time, city] = pq.top();
-        pq.pop();
-
-        if (city_time > time[city]) continue;
-
-        for (auto [new_city, C, D] : adj[city])
-        {
-            if (ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1))); new_time < time[new_city])
-            {
-                time[new_city] = new_time;
-                pq.emplace(new_time, new_city);
-            }
-        }
+        extreme_D = min(extreme_D, static_cast<ll>(D));
     }
 
-    ll response = 0;
-    for (int i = 1; i <= N; ++i) response = max(response, time[i]);
+    for (int i = 0; i <= extreme_D; ++i)
+    {
+        priority_queue<T, vector<T>, greater<>> pq;
+        vector time(N + 1, INF);
 
-    cout << (response == INF ? -1 : response) << "\n";
+        pq.emplace(i, 1);
+
+        while (!pq.empty())
+        {
+            auto [city_time, city] = pq.top();
+            pq.pop();
+
+            if (city_time > time[city]) continue;
+
+            for (auto [new_city, C, D] : adj[city])
+            {
+                if (ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1))); new_time < time[new_city])
+                {
+                    time[new_city] = new_time;
+                    pq.emplace(new_time, new_city);
+                }
+            }
+        }
+
+        ll response = 0;
+        for (int j = 1; j <= N; ++j) response = max(response, time[i]);
+        ultimate_response = min(ultimate_response, response);
+    }
+
+
+    cout << (ultimate_response == INF ? -1 : ultimate_response) << "\n";
 }
