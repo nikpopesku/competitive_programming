@@ -52,5 +52,8 @@ int main()
         }
     }
 
-    cout << 1 << "\n";
+    ll response = 0;
+    for (int i = 1; i <= N; ++i) response = max(response, time[i]);
+
+    cout << (response == INF ? -1 : response) << "\n";
 }
