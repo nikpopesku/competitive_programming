@@ -53,7 +53,7 @@ int main()
 
             if (city_time > time[city]) continue;
 
-            for (auto & elem : adj[city])
+            for (auto& elem : adj[city])
             {
                 int new_city = get<0>(elem);
                 C = get<1>(elem);
