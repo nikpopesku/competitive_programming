@@ -1,8 +1,14 @@
+#include <cmath>
 #include <iostream>
+#include <limits>
+#include <queue>
 #include <vector>
 
 using namespace std;
 
+#define ll long long
+
+ll INF = numeric_limits<ll>::max() / 2;
 
 int main()
 {
@@ -20,6 +26,30 @@ int main()
         cin >> A >> B >> C >> D;
         adj[A].push_back({B, C, D});
         adj[B].push_back({A, C, D});
+    }
+
+    using T = pair<ll, int>;
+    priority_queue<T, vector<T>, greater<>> pq;
+    pq.push({0, 1});
+    vector time(N+1, INF);
+
+    while (!pq.empty())
+    {
+        auto [city_time, city] = pq.top();
+        pq.pop();
+
+        if (city_time > time[city]) continue;
+
+        for (auto [new_city, C, D]: adj[city])
+        {
+            ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1)));
+
+            if (new_time < time[new_city])
+            {
+                time[new_city] = new_time;
+                pq.push({new_time, new_city});
+            }
+        }
     }
 
     cout << 1 << "\n";
