@@ -53,8 +53,11 @@ int main()
 
             if (city_time > time[city]) continue;
 
-            for (auto & [new_city, C, D] : adj[city])
+            for (auto & elem : adj[city])
             {
+                int new_city = get<0>(elem);
+                C = get<1>(elem);
+                D = get<2>(elem);
                 if (ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1))); new_time < time[
                     new_city])
                 {
