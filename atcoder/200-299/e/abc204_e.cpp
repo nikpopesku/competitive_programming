@@ -55,7 +55,8 @@ int main()
 
             for (auto & [new_city, C, D] : adj[city])
             {
-                if (ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1))); new_time < time[new_city])
+                if (ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1))); new_time < time[
+                    new_city])
                 {
                     time[new_city] = new_time;
                     pq.emplace(new_time, new_city);
