@@ -16,25 +16,28 @@ using namespace std;
 const ll INF = numeric_limits<ll>::max() / 3; // Use 3 just to be safer
 
 // Function to find the integer k >= 0 that minimizes k + floor(D / (k + 1))
-ll find_t_best(ll D) {
-     if (D == 0) return 0;
-     // Approximate minimum occurs near sqrt(D) - 1
-     ll k0 = static_cast<ll>(sqrt((long double)D));
-     // We only need to check k >= 0
-     ll best_k = max(0LL, k0 - 2); // Start checking slightly earlier just in case
-     ll min_f_k = -1; // Sentinel for first value
+ll find_t_best(ll D)
+{
+    if (D == 0) return 0;
+    // Approximate minimum occurs near sqrt(D) - 1
+    ll k0 = static_cast<ll>(sqrt((long double)D));
+    // We only need to check k >= 0
+    ll best_k = max(0LL, k0 - 2); // Start checking slightly earlier just in case
+    ll min_f_k = -1; // Sentinel for first value
 
 
-     // Check a small range around k0. k + D/(k+1) is convex-like.
-     // Checking k0-2, k0-1, k0, k0+1, k0+2 should be sufficient.
-     for(ll k_try = max(0LL, k0 - 2); k_try <= k0 + 2; ++k_try) {
-         ll current_f_k = k_try + D / (k_try + 1); // Integer division == floor
-         if (min_f_k == -1 || current_f_k < min_f_k) {
-             min_f_k = current_f_k;
-             best_k = k_try;
-         }
-     }
-     return best_k;
+    // Check a small range around k0. k + D/(k+1) is convex-like.
+    // Checking k0-2, k0-1, k0, k0+1, k0+2 should be sufficient.
+    for (ll k_try = max(0LL, k0 - 2); k_try <= k0 + 2; ++k_try)
+    {
+        ll current_f_k = k_try + D / (k_try + 1); // Integer division == floor
+        if (min_f_k == -1 || current_f_k < min_f_k)
+        {
+            min_f_k = current_f_k;
+            best_k = k_try;
+        }
+    }
+    return best_k;
 }
 
 
@@ -79,7 +82,8 @@ int main()
         pq.pop();
 
         // If we found a shorter path already, skip
-        if (current_time_at_city > time[city]) {
+        if (current_time_at_city > time[city])
+        {
             continue;
         }
 
@@ -118,9 +122,12 @@ int main()
 
     // Output the result
     ll final_time = time[N];
-    if (final_time == INF) {
+    if (final_time == INF)
+    {
         cout << -1 << "\n";
-    } else {
+    }
+    else
+    {
         cout << final_time << "\n";
     }
 
