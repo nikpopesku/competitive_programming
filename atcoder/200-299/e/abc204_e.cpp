@@ -24,13 +24,13 @@ int main()
     for (int i = 1; i <= M; ++i)
     {
         cin >> A >> B >> C >> D;
-        adj[A].push_back({B, C, D});
-        adj[B].push_back({A, C, D});
+        adj[A].emplace_back(B, C, D);
+        adj[B].emplace_back(A, C, D);
     }
 
     using T = pair<ll, int>;
     priority_queue<T, vector<T>, greater<>> pq;
-    pq.push({0, 1});
+    pq.emplace(0, 1);
     vector time(N + 1, INF);
 
     while (!pq.empty())
@@ -42,12 +42,10 @@ int main()
 
         for (auto [new_city, C, D] : adj[city])
         {
-            ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1)));
-
-            if (new_time < time[new_city])
+            if (ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1))); new_time < time[new_city])
             {
                 time[new_city] = new_time;
-                pq.push({new_time, new_city});
+                pq.emplace(new_time, new_city);
             }
         }
     }
