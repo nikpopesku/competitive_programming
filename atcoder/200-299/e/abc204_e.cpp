@@ -44,6 +44,7 @@ int main()
         vector time(N + 1, INF);
 
         pq.emplace(i, 1);
+        time[1] = i;
 
         while (!pq.empty())
         {
@@ -52,7 +53,7 @@ int main()
 
             if (city_time > time[city]) continue;
 
-            for (auto [new_city, C, D] : adj[city])
+            for (auto & [new_city, C, D] : adj[city])
             {
                 if (ll new_time = city_time + C + static_cast<ll>(trunc(D / (city_time + 1))); new_time < time[new_city])
                 {
@@ -63,7 +64,7 @@ int main()
         }
 
         ll response = 0;
-        for (int j = 1; j <= N; ++j) response = max(response, time[i]);
+        for (int j = 1; j <= N; ++j) response = max(response, time[j]);
         ultimate_response = min(ultimate_response, response);
     }
 
