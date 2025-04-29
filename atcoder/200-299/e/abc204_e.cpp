@@ -30,8 +30,9 @@ int main()
 
     using T = pair<ll, int>;
     priority_queue<T, vector<T>, greater<>> pq;
-    pq.emplace(0, 1);
+    pq.emplace(1, 1);
     vector time(N + 1, INF);
+    time[1] = 1;
 
     while (!pq.empty())
     {
