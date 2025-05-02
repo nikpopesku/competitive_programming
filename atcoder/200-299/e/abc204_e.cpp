@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iostream>
 #include <limits>
 #include <queue>
@@ -9,9 +10,23 @@ using namespace std;
 
 ll INF = numeric_limits<ll>::max() / 3;
 
-ll calculate_best(ll D)
+ll calculate_best(const ll D)
 {
-    return D;
+    if (D == 0) return 0;
+
+    const auto d_double = static_cast<long double>(D);
+    ll best = static_cast<ll>(sqrt((d_double)));
+    ll response = -1;
+
+    for (ll index = max(0LL, best - 2); index <= best + 2; ++best)
+    {
+        if (const ll expression = index + D / (index + 1); response == -1 || expression < response)
+        {
+            response = expression;
+        }
+    }
+
+    return response;
 }
 
 int main()
