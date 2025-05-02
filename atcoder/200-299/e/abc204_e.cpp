@@ -74,7 +74,7 @@ int main()
 
     // Start at city 1 at time 0
     time[1] = 0;
-    pq.push({0, 1});
+    pq.emplace(0, 1);
 
     while (!pq.empty())
     {
@@ -115,7 +115,7 @@ int main()
             if (arrival_at_neighbor < time[neighbor])
             {
                 time[neighbor] = arrival_at_neighbor;
-                pq.push({arrival_at_neighbor, neighbor});
+                pq.emplace(arrival_at_neighbor, neighbor);
             }
         }
     }
