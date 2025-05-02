@@ -14,11 +14,10 @@ ll calculate_best(const ll D)
 {
     if (D == 0) return 0;
 
-    const auto d_double = static_cast<long double>(D);
-    ll best = static_cast<ll>(sqrt((d_double)));
+    const ll best = static_cast<ll>(sqrt(static_cast<long double>(D)));
     ll response = -1;
 
-    for (ll index = max(0LL, best - 2); index <= best + 2; ++best)
+    for (ll index = max(0LL, best - 2); index <= best + 2; ++index)
     {
         if (const ll expression = index + D / (index + 1); response == -1 || expression < response)
         {
