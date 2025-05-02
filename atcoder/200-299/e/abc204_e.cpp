@@ -92,9 +92,8 @@ int main()
         // if (city == N) break; // This optimization is valid for non-negative weights
 
         // Explore neighbors
-        for (auto& [fst, snd] : adj[city])
+        for (auto& [neighbor, snd] : adj[city])
         {
-            int neighbor = fst;
             const ll C = snd.first;
             const ll D = snd.second;
 
