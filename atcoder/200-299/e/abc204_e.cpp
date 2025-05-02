@@ -16,11 +16,11 @@ using namespace std;
 const ll INF = numeric_limits<ll>::max() / 3; // Use 3 just to be safer
 
 // Function to find the integer k >= 0 that minimizes k + floor(D / (k + 1))
-ll find_t_best(ll D)
+ll find_t_best(const ll D)
 {
     if (D == 0) return 0;
     // Approximate minimum occurs near sqrt(D) - 1
-    ll k0 = static_cast<ll>(sqrt((long double)D));
+    const ll k0 = static_cast<ll>(sqrt(static_cast<long double>(D)));
     // We only need to check k >= 0
     ll best_k = max(0LL, k0 - 2); // Start checking slightly earlier just in case
     ll min_f_k = -1; // Sentinel for first value
