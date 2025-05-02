@@ -37,8 +37,9 @@ int main()
     int N;
     int M; // Use int for N, M as per constraints (<= 2*10^5)
     cin >> N >> M;
-    int A, B, C, D;
-    vector<vector<tuple<int, int, int>>> adj(N + 1);
+    int A, B;
+    ll C, D;
+    vector<vector<tuple<int, ll, ll>>> adj(N + 1);
 
     for (int i = 0; i < M; ++i)
     {
@@ -62,7 +63,7 @@ int main()
         {
             ll best_time = calculate_best(D);
             const ll departure_time = max(best_time, time_at_city);
-            const ll travel_time = static_cast<ll>(C) + static_cast<ll>(D) / (departure_time + 1);
+            const ll travel_time = C + D / (departure_time + 1);
 
             if (const ll time_at_neighbour = travel_time + departure_time; time_at_neighbour < time[neighbour_city])
             {
