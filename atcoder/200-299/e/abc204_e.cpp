@@ -61,6 +61,8 @@ int main()
         auto& [time_at_city, city] = pq.top();
         pq.pop();
 
+        if (time_at_city > time[city]) continue;
+
         for (auto& elem : adj[city])
         {
             auto& [neighbour_city, second] = elem;
@@ -72,7 +74,7 @@ int main()
             if (const ll time_at_neighbour = travel_time + departure_time; time_at_neighbour < time[neighbour_city])
             {
                 time[neighbour_city] = time_at_neighbour;
-                pq.emplace(time_at_city, neighbour_city);
+                pq.emplace(time_at_neighbour, neighbour_city);
             }
         }
     }
