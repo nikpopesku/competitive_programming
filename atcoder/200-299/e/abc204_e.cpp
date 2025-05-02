@@ -16,12 +16,14 @@ ll calculate_best(const ll D)
 
     const ll best = static_cast<ll>(sqrt(static_cast<long double>(D)));
     ll response = -1;
+    ll min_expression = 0;
 
     for (ll index = max(0LL, best - 2); index <= best + 2; ++index)
     {
-        if (const ll expression = index + D / (index + 1); response == -1 || expression < response)
+        if (const ll expression = index + D / (index + 1); response == -1 || expression < min_expression)
         {
-            response = expression;
+            response = index;
+            min_expression = expression;
         }
     }
 
@@ -67,7 +69,7 @@ int main()
 
             if (const ll time_at_neighbour = travel_time + departure_time; time_at_neighbour < time[neighbour_city])
             {
-                time[neighbour_city] = time_at_city;
+                time[neighbour_city] = time_at_neighbour;
                 pq.emplace(time_at_city, neighbour_city);
             }
         }
