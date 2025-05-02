@@ -72,4 +72,13 @@ int main()
             }
         }
     }
+
+    if (const ll travel_time = time[N]; travel_time == INF)
+    {
+        cout << -1 << "\n";
+    }
+    else
+    {
+        cout << travel_time << "\n";
+    }
 }
