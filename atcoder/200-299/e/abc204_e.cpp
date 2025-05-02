@@ -16,7 +16,7 @@ ll calculate_best(const ll D)
 
     const ll best = static_cast<ll>(sqrt(static_cast<long double>(D)));
     ll response = -1;
-    ll min_expression = 0;
+    ll min_expression = INF;
 
     for (ll index = max(0LL, best - 2); index <= best + 2; ++index)
     {
@@ -63,9 +63,8 @@ int main()
 
         if (time_at_city > time[city]) continue;
 
-        for (auto& elem : adj[city])
+        for (auto& [neighbour_city, second] : adj[city])
         {
-            auto& [neighbour_city, second] = elem;
             auto& [C, D] = second;
             ll best_time = calculate_best(D);
             const ll departure_time = max(best_time, time_at_city);
