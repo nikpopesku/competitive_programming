@@ -50,7 +50,8 @@ int main()
     using T = pair<ll, int>;
     priority_queue<T, vector<T>, greater<>> pq;
     pq.emplace(0, 1);
-    vector<ll> time(N + 1, INF);
+    vector time(N + 1, INF);
+    time[1] = 0;
 
     while (!pq.empty())
     {
@@ -61,11 +62,9 @@ int main()
         {
             ll best_time = calculate_best(D);
             const ll departure_time = max(best_time, time_at_city);
-            const ll travel_time = C = D / (departure_time + 1);
+            const ll travel_time = static_cast<ll>(C) + static_cast<ll>(D) / (departure_time + 1);
 
-            ll time_at_neighbour = travel_time + departure_time;
-
-            if (time_at_neighbour < time[neighbour_city])
+            if (const ll time_at_neighbour = travel_time + departure_time; time_at_neighbour < time[neighbour_city])
             {
                 time[neighbour_city] = time_at_city;
                 pq.emplace(time_at_city, neighbour_city);
