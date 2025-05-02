@@ -67,7 +67,7 @@ int main()
     // Dijkstra setup
     // Pair: {current_earliest_arrival_time, city_index}
     using T = pair<ll, int>;
-    priority_queue<T, vector<T>, greater<T>> pq; // Min-heap
+    priority_queue<T, vector<T>, greater<>> pq; // Min-heap
 
     // time[i] stores the earliest known arrival time at city i
     vector<ll> time(N + 1, INF);
@@ -92,23 +92,23 @@ int main()
         // if (city == N) break; // This optimization is valid for non-negative weights
 
         // Explore neighbors
-        for (auto& edge : adj[city])
+        for (auto& [fst, snd] : adj[city])
         {
-            int neighbor = edge.first;
-            ll C = edge.second.first;
-            ll D = edge.second.second;
+            int neighbor = fst;
+            const ll C = snd.first;
+            const ll D = snd.second;
 
             // Find the best integer time k >= 0 to start waiting from
             // This k minimizes k + floor(D / (k + 1))
             ll t_best = find_t_best(D);
 
             // Calculate the actual departure time from 'city'
-            ll departure_time = max(current_time_at_city, t_best);
+            const ll departure_time = max(current_time_at_city, t_best);
 
             // Calculate arrival time at 'neighbor'
             // Check for potential overflow before division
-            ll travel_duration = C + D / (departure_time + 1); // integer division is floor
-            ll arrival_at_neighbor = departure_time + travel_duration;
+            const ll travel_duration = C + D / (departure_time + 1); // integer division is floor
+            const ll arrival_at_neighbor = departure_time + travel_duration;
 
 
             // Relax the edge
@@ -121,8 +121,7 @@ int main()
     }
 
     // Output the result
-    ll final_time = time[N];
-    if (final_time == INF)
+    if (const ll final_time = time[N]; final_time == INF)
     {
         cout << -1 << "\n";
     }
@@ -130,6 +129,4 @@ int main()
     {
         cout << final_time << "\n";
     }
-
-    return 0;
 }
