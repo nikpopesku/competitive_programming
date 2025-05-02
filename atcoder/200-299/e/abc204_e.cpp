@@ -41,13 +41,13 @@ int main()
     cin >> N >> M;
     int A, B;
     ll C, D;
-    vector<vector<tuple<int, ll, ll>>> adj(N + 1);
+    vector<vector<pair<int, pair<ll, ll>>>> adj(N + 1);
 
     for (int i = 0; i < M; ++i)
     {
         cin >> A >> B >> C >> D;
-        adj[A].emplace_back(B, C, D);
-        adj[B].emplace_back(A, C, D);
+        adj[A].push_back({B, {C, D}});
+        adj[B].push_back({A, {C, D}});
     }
 
     using T = pair<ll, int>;
@@ -61,8 +61,10 @@ int main()
         auto& [time_at_city, city] = pq.top();
         pq.pop();
 
-        for (auto& [neighbour_city, C, D] : adj[city])
+        for (auto& elem : adj[city])
         {
+            auto& [neighbour_city, second] = elem;
+            auto& [C, D] = second;
             ll best_time = calculate_best(D);
             const ll departure_time = max(best_time, time_at_city);
             const ll travel_time = C + D / (departure_time + 1);
