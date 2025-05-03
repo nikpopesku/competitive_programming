@@ -10,8 +10,23 @@ int main()
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int N, M, A, B, C;
+    int N, X;
+    string s;
 
-    cin >> N >> M;
-    cout << 1 << "\n";
+    cin >> N >> X;
+    cin >> s;
+    int response = X;
+
+    for (int i = 0; i < N; ++i)
+    {
+        if (s[i] == 'o')
+        {
+            ++response;
+        }
+        else if (response > 0)
+        {
+            --response;
+        }
+    }
+    cout << response << "\n";
 }
