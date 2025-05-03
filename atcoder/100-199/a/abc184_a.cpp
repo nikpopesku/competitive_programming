@@ -10,8 +10,9 @@ int main()
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int N, M, A, B, C;
+    int a, b, c, d;
 
-    cin >> N >> M;
-    cout << 1 << "\n";
+    cin >> a >> b;
+    cin >> c >> d;
+    cout << a * d - b * c << "\n";
 }
