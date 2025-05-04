@@ -14,8 +14,17 @@ int main()
     cin >> A >> B >> C;
 
     vector dp(101, vector(101, vector<float>(101, -1.0)));
-    dp[100][100][100] = 0;
 
+    for (int a = 100; a >= A; --a)
+    {
+        for (int b = 100; b >= B; --b)
+        {
+            for (int c = 100; c >= C; --c)
+            {
+                if (a == 100 or b == 100 or c == 100) dp[a][b][c] = 0.0;
+            }
+        }
+    }
 
     for (int a = 99; a >= A; --a)
     {
@@ -23,8 +32,9 @@ int main()
         {
             for (int c = 99; c >= C; --c)
             {
-                const int N = (a + b + c);
-                dp[a][b][c] = 1 + (a / N) * dp[a + 1][b][c] + (b / N) * dp[a][b + 1][c] + (c / N) * dp[a][b][c + 1];
+                const float N = static_cast<float>(a + b + c);
+                dp[a][b][c] = 1.0 + (a / N) * dp[a + 1][b][c] + (b / N) * dp[a][b +
+                    1][c] + (c / N) * dp[a][b][c + 1];
             }
         }
     }
