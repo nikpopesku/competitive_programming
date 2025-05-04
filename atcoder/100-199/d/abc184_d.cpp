@@ -39,5 +39,5 @@ int main()
         }
     }
 
-    cout << std::setprecision (10) << dp[A][B][C] << "\n";
+    cout << std::setprecision(10) << dp[A][B][C] << "\n";
 }
