@@ -12,6 +12,7 @@ int main()
     int A, B, C;
     cin >> A >> B >> C;
 
-    const double response = static_cast<double>((100 - A) * A  + (100 - B) * B + (100 - C) * C) / static_cast<double>(A + B + C);
+    const double response = static_cast<double>((100 - A) * A + (100 - B) * B + (100 - C) * C) / static_cast<double>(A +
+        B + C);
     cout << format("{}", response) << "\n";
 }
