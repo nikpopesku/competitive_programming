@@ -13,7 +13,7 @@ int main()
     int A, B, C;
     cin >> A >> B >> C;
 
-    vector dp(101, vector(101, vector<double>(101, -1.0)));
+    vector dp(101, vector(101, vector(101, -1.0)));
 
     for (int a = 100; a >= A; --a)
     {
