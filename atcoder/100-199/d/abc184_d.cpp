@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ int main()
     int A, B, C;
     cin >> A >> B >> C;
 
-    vector dp(101, vector(101, vector<float>(101, -1.0)));
+    vector dp(101, vector(101, vector<double>(101, -1.0)));
 
     for (int a = 100; a >= A; --a)
     {
@@ -31,12 +32,12 @@ int main()
         {
             for (int c = 99; c >= C; --c)
             {
-                const float N = static_cast<float>(a + b + c);
+                const double N = a + b + c;
                 dp[a][b][c] = 1.0 + (a / N) * dp[a + 1][b][c] + (b / N) * dp[a][b +
                     1][c] + (c / N) * dp[a][b][c + 1];
             }
         }
     }
 
-    cout << format("{}", dp[A][B][C]) << "\n";
+    cout << std::setprecision (10) << dp[A][B][C] << "\n";
 }
