@@ -1,3 +1,4 @@
+#include <format>
 #include <iostream>
 
 using namespace std;
@@ -11,6 +12,6 @@ int main()
     int A, B, C;
     cin >> A >> B >> C;
 
-    double response = ((100 - A) * A  + (100 - B) * B + (100 - C) * C) / (A + B + C);
-    cout << response << "\n";
+    const double response = static_cast<double>((100 - A) * A  + (100 - B) * B + (100 - C) * C) / static_cast<double>(A + B + C);
+    cout << format("{}", response) << "\n";
 }
