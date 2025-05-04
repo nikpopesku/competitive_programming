@@ -1,7 +1,5 @@
 #include <iostream>
 
-using ll = long long;
-
 using namespace std;
 
 int main()
@@ -10,30 +8,9 @@ int main()
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    ll r1, c1, r2, c2;
-    cin >> r1 >> c1 >> r2 >> c2;
+    int A, B, C;
+    cin >> A >> B >> C;
 
-    if (r1 == r2 && c1 == c2)
-    {
-        cout << "0\n";
-
-        return 0;
-    }
-
-    if (r1 + c1 == r2 + c2 || r1 - c1 == r2 - c2 || abs(r1 - r2) + abs(c1 - c2) <= 3)
-    {
-        cout << "1\n";
-
-        return 0;
-    }
-
-    if ((r1 + c1) % 2 == (r2 + c2) % 2 || (r1 - c1) % 2 == (r2 - c2) % 2 || abs(r1 - r2) + abs(c1 - c2) <= 6 ||
-        abs((r1 - c1) - (r2 - c2)) <= 3 || abs((r1 + c1) - (r2 + c2)) <= 3)
-    {
-        cout << "2\n";
-
-        return 0;
-    }
-
-    cout << "3\n";
+    double response = ((100 - A) * A  + (100 - B) * B + (100 - C) * C) / (A + B + C);
+    cout << response << "\n";
 }
