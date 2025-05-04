@@ -1,5 +1,6 @@
 #include <format>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -12,7 +13,21 @@ int main()
     int A, B, C;
     cin >> A >> B >> C;
 
-    const double response = static_cast<double>((100 - A) * A + (100 - B) * B + (100 - C) * C) / static_cast<double>(A +
-        B + C);
-    cout << format("{}", response) << "\n";
+    vector dp(101, vector(101, vector<float>(101, -1.0)));
+    dp[100][100][100] = 0;
+
+
+    for (int a = 99; a >= A; --a)
+    {
+        for (int b = 99; b >= B; --b)
+        {
+            for (int c = 99; c >= C; --c)
+            {
+                const int N = (a + b + c);
+                dp[a][b][c] = 1 + (a / N) * dp[a + 1][b][c] + (b / N) * dp[a][b + 1][c] + (c / N) * dp[a][b][c + 1];
+            }
+        }
+    }
+
+    cout << format("{}", dp[A][B][C]) << "\n";
 }
