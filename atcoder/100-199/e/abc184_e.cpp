@@ -33,14 +33,20 @@ int main()
         }
     }
 
+    int response = 0;
+
     while (!pq.empty())
     {
         auto & [coord, distance] = pq.pop();
         pq.top();
         auto & [x, y] = coord;
 
+        if (grid[x][y] == 'G') break;
+
         if (distance > dist[x][y]) continue;
+
+        ++response;
     }
 
-    cout << 1 << "\n";
+    cout << response << "\n";
 }
