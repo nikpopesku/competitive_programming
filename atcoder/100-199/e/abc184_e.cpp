@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <iomanip>
 
 using namespace std;
 
@@ -10,8 +9,17 @@ int main()
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int A, B, C;
-    cin >> A >> B >> C;
+    int H, W;
+    cin >> H >> W;
+    vector grid(H, vector<string>(W));
+
+    for (int i = 1; i <= H; ++i)
+    {
+        for (int j = 1; j <= W; ++j)
+        {
+            cin >> grid[i][j];
+        }
+    }
 
     cout << 1 << "\n";
 }
