@@ -1,7 +1,10 @@
 #include <iostream>
+#include <limits>
 #include <vector>
 
 using namespace std;
+
+int INF = numeric_limits<int>::max() / 2;
 
 int main()
 {
@@ -12,6 +15,7 @@ int main()
     int H, W;
     cin >> H >> W;
     vector grid(H, vector<string>(W));
+    vector dist(H, vector(W, INF));
 
     for (int i = 1; i <= H; ++i)
     {
