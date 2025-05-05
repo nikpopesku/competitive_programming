@@ -37,13 +37,26 @@ int main()
 
     while (!pq.empty())
     {
-        auto & [coord, distance] = pq.pop();
+        auto& [coord, distance] = pq.pop();
         pq.top();
-        auto & [x, y] = coord;
+        auto& [x, y] = coord;
 
         if (grid[x][y] == 'G') break;
 
         if (distance > dist[x][y]) continue;
+        for (pair<int, int> direction : {{1, 0}, {-1, 0}, {0, 1}, {0, -1}})
+        {
+            int new_x = x + direction.first;
+            int new_y = y + direction.second;
+
+            if (new_x < 1 or new_x > H or new_y < 1 or new_y > W) continue;
+
+            if (grid[new_x][new_y] != '#' and grid[new_x][new_y] != 'S' and response < dist[new_x][new_y])
+            {
+                pq.push({{new_x, new_y}, response});
+                dist[new_x][new_y] = response;
+            }
+        }
 
         ++response;
     }
