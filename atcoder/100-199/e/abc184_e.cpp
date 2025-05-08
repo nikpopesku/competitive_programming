@@ -28,9 +28,9 @@ int main()
     while (!pq.empty())
     {
         ++response;
-        auto& [coord, distance] = pq.top();
+        const auto [coord, distance] = pq.top();
         pq.pop();
-        auto& [x, y] = coord;
+        const auto& [x, y] = coord;
 
         if (grid[x][y] == 'G') break;
 
