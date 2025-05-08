@@ -18,11 +18,12 @@ int main()
     vector<string> grid(H);
     vector dist(H, vector(W, INF));
     priority_queue<pair<pair<int, int>, int>> pq;
-    for (int i = 1; i <= H; ++i) cin >> grid[i];
+    for (int i = 0; i < H; ++i) cin >> grid[i];
 
     int response = 0;
     const vector direction_x = {1, -1, 0, 0};
     const vector direction_y = {0, 0, 1, -1};
+    pq.push({{0, 0}, 0});
 
     while (!pq.empty())
     {
@@ -30,7 +31,7 @@ int main()
         pq.pop();
         auto& [x, y] = coord;
 
-        if (grid[x][y] == "G") break;
+        if (grid[x][y] == 'G') break;
 
         if (distance > dist[x][y]) continue;
 
@@ -43,7 +44,7 @@ int main()
 
             if (new_x < 1 or new_x > H or new_y < 1 or new_y > W) continue;
 
-            if (grid[new_x][new_y] != "#" and grid[new_x][new_y] != "S" and response < dist[new_x][new_y])
+            if (grid[new_x][new_y] != '#' and grid[new_x][new_y] != 'S' and response < dist[new_x][new_y])
             {
                 pq.push({{new_x, new_y}, response});
                 dist[new_x][new_y] = response;
