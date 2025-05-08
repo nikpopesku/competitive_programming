@@ -44,10 +44,12 @@ int main()
         if (grid[x][y] == "G") break;
 
         if (distance > dist[x][y]) continue;
-        for (const pair<int, int> direction : {{1, 0}, {-1, 0}, {0, 1}, {0, -1}})
+        vector direction_x = {1, -1, 0, 0};
+        vector direction_y = {0, 0, 1, -1};
+        for (int i = 0; i < 4; ++i)
         {
-            int new_x = x + direction.first;
-            int new_y = y + direction.second;
+            int new_x = x + direction_x[i];
+            int new_y = y + direction_y[i];
 
             if (new_x < 1 or new_x > H or new_y < 1 or new_y > W) continue;
 
