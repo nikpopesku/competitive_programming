@@ -34,6 +34,8 @@ int main()
     }
 
     int response = 0;
+    const vector direction_x = {1, -1, 0, 0};
+    const vector direction_y = {0, 0, 1, -1};
 
     while (!pq.empty())
     {
@@ -44,8 +46,6 @@ int main()
         if (grid[x][y] == "G") break;
 
         if (distance > dist[x][y]) continue;
-        vector direction_x = {1, -1, 0, 0};
-        vector direction_y = {0, 0, 1, -1};
         for (int i = 0; i < 4; ++i)
         {
             int new_x = x + direction_x[i];
