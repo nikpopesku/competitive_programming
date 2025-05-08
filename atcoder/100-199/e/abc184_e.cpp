@@ -27,6 +27,7 @@ int main()
 
     while (!pq.empty())
     {
+        ++response;
         auto& [coord, distance] = pq.top();
         pq.pop();
         auto& [x, y] = coord;
@@ -35,14 +36,12 @@ int main()
 
         if (distance > dist[x][y]) continue;
 
-        ++response;
-
         for (int i = 0; i < 4; ++i)
         {
             int new_x = x + direction_x[i];
             int new_y = y + direction_y[i];
 
-            if (new_x < 1 or new_x > H or new_y < 1 or new_y > W) continue;
+            if (new_x < 0 or new_x >= H or new_y < 0 or new_y >= W) continue;
 
             if (grid[new_x][new_y] != '#' and grid[new_x][new_y] != 'S' and response < dist[new_x][new_y])
             {
