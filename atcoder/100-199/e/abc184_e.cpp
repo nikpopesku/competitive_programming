@@ -15,23 +15,10 @@ int main()
 
     int H, W;
     cin >> H >> W;
-    vector grid(H, vector<string>(W));
+    vector<string> grid(H);
     vector dist(H, vector(W, INF));
     priority_queue<pair<pair<int, int>, int>> pq;
-
-
-    for (int i = 1; i <= H; ++i)
-    {
-        for (int j = 1; j <= W; ++j)
-        {
-            cin >> grid[i][j];
-            if (grid[i][j] == "S")
-            {
-                dist[i][j] = 0;
-                pq.push({{i, j}, 0});
-            }
-        }
-    }
+    for (int i = 1; i <= H; ++i) cin >> grid[i];
 
     int response = 0;
     const vector direction_x = {1, -1, 0, 0};
@@ -46,6 +33,9 @@ int main()
         if (grid[x][y] == "G") break;
 
         if (distance > dist[x][y]) continue;
+
+        ++response;
+
         for (int i = 0; i < 4; ++i)
         {
             int new_x = x + direction_x[i];
@@ -59,8 +49,6 @@ int main()
                 dist[new_x][new_y] = response;
             }
         }
-
-        ++response;
     }
 
     cout << response << "\n";
