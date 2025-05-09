@@ -52,6 +52,7 @@ int main()
 
     const vector direction_x = {1, -1, 0, 0};
     const vector direction_y = {0, 0, 1, -1};
+    dist[start_x][start_y] = 0;
     pq.push({{start_x, start_y}, 0});
 
     while (!pq.empty())
@@ -72,7 +73,6 @@ int main()
                     pq.push({{new_x, new_y}, distance + 1});
                     dist[new_x][new_y] = distance + 1;
                     found = true;
-                    break;
                 }
             }
 
@@ -87,7 +87,7 @@ int main()
 
             if (new_x < 0 or new_x >= H or new_y < 0 or new_y >= W) continue;
 
-            if (grid[new_x][new_y] == '#' or grid[new_x][new_y] == 'S' or distance + 1 >= dist[new_x][new_y]) continue;
+            if (grid[new_x][new_y] == '#' or distance + 1 >= dist[new_x][new_y]) continue;
 
             pq.push({{new_x, new_y}, distance + 1});
             dist[new_x][new_y] = distance + 1;
