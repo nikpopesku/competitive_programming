@@ -1,6 +1,7 @@
 #include <iostream>
 #include <limits>
 #include <queue>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -18,12 +19,28 @@ int main()
     vector<string> grid(H);
     vector dist(H, vector(W, INF));
     priority_queue<pair<pair<int, int>, int>> pq;
-    for (int i = 0; i < H; ++i) cin >> grid[i];
+    int start_x = 0, start_y = 0;
+
+    for (int i = 0; i < H; ++i)
+    {
+        cin >> grid[i];
+
+        for (int j = 0; j < W; ++j)
+        {
+            if (grid[i][j] == 'S')
+            {
+                start_x = i;
+                start_y = j;
+            }
+        }
+    }
+
 
     int response = 0;
     const vector direction_x = {1, -1, 0, 0};
     const vector direction_y = {0, 0, 1, -1};
-    pq.push({{0, 0}, 0});
+    unordered_map<string, pair<int, int>> mp;
+    pq.push({{start_x, start_y}, 0});
 
     while (!pq.empty())
     {
@@ -34,6 +51,7 @@ int main()
         if (grid[x][y] == 'G') break;
 
         if (distance > dist[x][y]) continue;
+
 
         for (int i = 0; i < 4; ++i)
         {
