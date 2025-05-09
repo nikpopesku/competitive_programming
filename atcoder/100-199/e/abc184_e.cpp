@@ -22,6 +22,7 @@ int main()
     priority_queue<T, vector<T>, greater<>> pq;
     unordered_map<char, vector<pair<int, int>>> mp;
     int start_x = 0, start_y = 0;
+    int end_x = 0, end_y = 0;
 
     for (int i = 0; i < H; ++i)
     {
@@ -33,6 +34,12 @@ int main()
             {
                 start_x = i;
                 start_y = j;
+            }
+
+            if (grid[i][j] == 'G')
+            {
+                end_x = i;
+                end_y = j;
             }
 
             if (grid[i][j] >= 'a' and grid[i][j] <= 'z')
@@ -53,12 +60,6 @@ int main()
         const auto [coord, distance] = pq.top();
         pq.pop();
         const auto& [x, y] = coord;
-
-        if (grid[x][y] == 'G')
-        {
-            response = distance + 1;
-            break;
-        }
 
         if (distance > dist[x][y]) continue;
 
@@ -94,5 +95,5 @@ int main()
         }
     }
 
-    cout << response << "\n";
+    cout << dist[end_x][end_y] << "\n";
 }
