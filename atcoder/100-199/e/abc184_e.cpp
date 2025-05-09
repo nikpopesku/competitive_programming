@@ -19,6 +19,7 @@ int main()
     vector<string> grid(H);
     vector dist(H, vector(W, INF));
     priority_queue<pair<pair<int, int>, int>> pq;
+    unordered_map<char, vector<pair<int, int>>> mp;
     int start_x = 0, start_y = 0;
 
     for (int i = 0; i < H; ++i)
@@ -32,6 +33,11 @@ int main()
                 start_x = i;
                 start_y = j;
             }
+
+            if (grid[i][j] >= 'a' and grid[i][j] <= 'z')
+            {
+                mp[grid[i][j]].emplace_back(i, j);
+            }
         }
     }
 
@@ -39,7 +45,6 @@ int main()
     int response = 0;
     const vector direction_x = {1, -1, 0, 0};
     const vector direction_y = {0, 0, 1, -1};
-    unordered_map<string, pair<int, int>> mp;
     pq.push({{start_x, start_y}, 0});
 
     while (!pq.empty())
