@@ -18,7 +18,8 @@ int main()
     cin >> H >> W;
     vector<string> grid(H);
     vector dist(H, vector(W, INF));
-    priority_queue<pair<pair<int, int>, int>> pq;
+    using T = pair<pair<int, int>, int>;
+    priority_queue<T, vector<T>, greater<>> pq;
     unordered_map<char, vector<pair<int, int>>> mp;
     int start_x = 0, start_y = 0;
 
@@ -53,9 +54,30 @@ int main()
         pq.pop();
         const auto& [x, y] = coord;
 
-        if (grid[x][y] == 'G') break;
+        if (grid[x][y] == 'G')
+        {
+            response = distance + 1;
+            break;
+        }
 
         if (distance > dist[x][y]) continue;
+
+        if (grid[x][y] >= 'a' and grid[x][y] <= 'z')
+        {
+            bool found = false;
+            for (auto& [new_x, new_y] : mp[grid[x][y]])
+            {
+                if ((new_x != x or new_y != y) and distance + 1 < dist[new_x][new_y])
+                {
+                    pq.push({{new_x, new_y}, distance + 1});
+                    dist[new_x][new_y] = distance + 1;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) continue;
+        }
 
 
         for (int i = 0; i < 4; ++i)
@@ -65,14 +87,11 @@ int main()
 
             if (new_x < 0 or new_x >= H or new_y < 0 or new_y >= W) continue;
 
-            if (grid[new_x][new_y] != '#' and grid[new_x][new_y] != 'S' and response < dist[new_x][new_y])
-            {
-                pq.push({{new_x, new_y}, response});
-                dist[new_x][new_y] = response;
-            }
-        }
+            if (grid[new_x][new_y] == '#' or grid[new_x][new_y] == 'S' or distance + 1 >= dist[new_x][new_y]) continue;
 
-        ++response;
+            pq.push({{new_x, new_y}, distance + 1});
+            dist[new_x][new_y] = distance + 1;
+        }
     }
 
     cout << response << "\n";
