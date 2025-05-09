@@ -65,18 +65,16 @@ int main()
 
         if (grid[x][y] >= 'a' and grid[x][y] <= 'z')
         {
-            bool found = false;
             for (auto& [new_x, new_y] : mp[grid[x][y]])
             {
-                if ((new_x != x or new_y != y) and distance + 1 < dist[new_x][new_y])
+                if ((new_x == x && new_y == y)) continue;
+
+                if (distance + 1 < dist[new_x][new_y])
                 {
                     pq.push({{new_x, new_y}, distance + 1});
                     dist[new_x][new_y] = distance + 1;
-                    found = true;
                 }
             }
-
-            if (found) continue;
         }
 
 
