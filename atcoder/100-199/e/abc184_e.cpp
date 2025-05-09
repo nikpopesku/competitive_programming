@@ -27,7 +27,6 @@ int main()
 
     while (!pq.empty())
     {
-        ++response;
         const auto [coord, distance] = pq.top();
         pq.pop();
         const auto& [x, y] = coord;
@@ -49,6 +48,8 @@ int main()
                 dist[new_x][new_y] = response;
             }
         }
+
+        ++response;
     }
 
     cout << response << "\n";
