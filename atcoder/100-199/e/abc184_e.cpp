@@ -95,5 +95,5 @@ int main()
         }
     }
 
-    cout << dist[end_x][end_y] << "\n";
+    cout << (dist[end_x][end_y] == INF ? -1 : dist[end_x][end_y]) << "\n";
 }
