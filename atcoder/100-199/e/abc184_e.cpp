@@ -50,7 +50,6 @@ int main()
     }
 
 
-    int response = 0;
     const vector direction_x = {1, -1, 0, 0};
     const vector direction_y = {0, 0, 1, -1};
     pq.push({{start_x, start_y}, 0});
