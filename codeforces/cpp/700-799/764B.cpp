@@ -12,7 +12,7 @@ int main()
     {
         cin >> a >> b >> c;
 
-        if ((c + a) % (2 * b) == 0)
+        if ((c + a) % (2 * b) == 0 and c != -a)
         {
             std::cout << "YES\n";
             continue;
