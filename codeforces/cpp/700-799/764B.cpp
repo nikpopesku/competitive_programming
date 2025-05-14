@@ -12,17 +12,17 @@ int main()
     {
         cin >> a >> b >> c;
 
-        if ((c + a) % (2 * b) == 0 and c != -a)
+        if (c + a >= 2 * b and (c + a) % (2 * b) == 0)
         {
             std::cout << "YES\n";
             continue;
         }
-        if ((2 * b - c) % a == 0 and 2 * b != c)
+        if (2 * b - c >= a and (2 * b - c) % a == 0)
         {
             std::cout << "YES\n";
             continue;
         }
-        if ((2 * b - a) % c == 0 and 2 * b != a)
+        if (2 * b - a >= c and (2 * b - a) % c == 0)
         {
             std::cout << "YES\n";
             continue;
