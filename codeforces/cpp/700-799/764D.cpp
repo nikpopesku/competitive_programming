@@ -30,7 +30,7 @@ int main()
         if (base % 2 != 0) --base;
 
 
-        int additional = k <= counter ? 1 : 0;
+        const int additional = k <= counter ? 1 : 0;
         cout << base + additional << "\n";
     }
 }
