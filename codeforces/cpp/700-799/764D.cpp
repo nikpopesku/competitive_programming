@@ -19,18 +19,20 @@ int main()
 
         for (char i : s) ch[i]++;
 
-        int counter = 0;
+        int counter_odd = 0;
 
         for (const auto& it : ch)
         {
-            if (it.second % 2 == 1) ++counter;
+            if (it.second % 2 == 1) ++counter_odd;
         }
 
-        int base = (s.size() - counter) / 2;
+        int counter_even = s.size() - counter_odd;
+        int base = counter_even / 2;
         if (base % 2 != 0) --base;
 
 
-        const int additional = k <= counter ? 1 : 0;
+        int additional = k <= counter_odd ? 1 : 0;
+        if (counter_even / 2 % 2 == 1 and counter_odd < k) ++additional;
         cout << base + additional << "\n";
     }
 }
