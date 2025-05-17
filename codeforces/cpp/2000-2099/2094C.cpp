@@ -17,15 +17,15 @@ int main()
         vector vc(2 * n, -1);
         vector<int> h(2 * n);
         iota(h.begin(), h.end(), 1);
-        set<int> s (h.begin(), s.end());
+        set<int> s(h.begin(), s.end());
 
 
         for (int i = 1; i <= n; ++i)
         {
             for (int j = 1; j <= n; ++j)
             {
-                cin >> vc[i+j];
-                s.erase(vc[i+j]);
+                cin >> vc[i + j];
+                s.erase(vc[i + j]);
             }
         }
 
