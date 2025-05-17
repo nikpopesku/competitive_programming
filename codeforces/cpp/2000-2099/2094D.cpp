@@ -50,6 +50,12 @@ int main()
         cin >> p;
         cin >> s;
 
+        if (s.size() < p.size() or s.size() > 2 * p.size())
+        {
+            cout << "NO\n";
+            continue;
+        }
+
         cout << solve(p, s) << "\n";
     }
 }
