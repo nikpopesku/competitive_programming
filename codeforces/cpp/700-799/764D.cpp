@@ -1,54 +1,38 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include <map> // Or array for fixed alphabet size
+#include <unordered_map>
 
-void solve()
-{
-    int n, k;
-    std::cin >> n >> k;
-    std::string s;
-    std::cin >> s;
-
-    std::map<char, int> counts; // Using map for flexibility, array<int, 26> is also good
-    for (char c : s)
-    {
-        counts[c]++;
-    }
-
-    int total_pairs = 0;
-    int odd_count_chars = 0;
-
-    for (auto const& [key, val] : counts)
-    {
-        total_pairs += val / 2; // Count pairs
-        if (val % 2 != 0)
-        {
-            odd_count_chars++; // Count characters with odd occurrences
-        }
-    }
-
-    int base_length_per_palindrome = (total_pairs / k) * 2; // Each palindrome gets this many characters from pairs
-
-    const int remaining_pairs = total_pairs % k;
-
-    if (const int flexible_chars = remaining_pairs * 2 + odd_count_chars; flexible_chars >= k)
-    {
-        base_length_per_palindrome++; // If enough flexible characters, each palindrome can get a middle character
-    }
-
-    std::cout << base_length_per_palindrome << std::endl;
-}
+using namespace std;
 
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    int t;
-    std::cin >> t;
+    int t, n, k;
+    string s;
+    cin >> t;
+
     while (t--)
     {
-        solve();
+        cin >> n >> k;
+        cin >> s;
+        unordered_map<char, int> mp;
+
+        for (auto& c : s) mp[c]++;
+        int pairs = 0;
+        int odd = 0;
+
+        for (auto& elem : mp)
+        {
+            pairs += elem.second / 2;
+            if (elem.second % 2 == 1)
+            {
+               odd += 1;
+            }
+        }
+
+        int response = (pairs / k) * 2;
+        response += ((pairs % k) + odd) / k;
+
+        cout << response << "\n";
     }
-    return 0;
 }
