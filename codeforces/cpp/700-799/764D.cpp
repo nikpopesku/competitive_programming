@@ -26,7 +26,7 @@ int main()
             pairs += elem.second / 2;
             if (elem.second % 2 == 1)
             {
-               odd += 1;
+                odd += 1;
             }
         }
 
