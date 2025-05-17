@@ -4,14 +4,8 @@ using namespace std;
 
 string nxt(string k)
 {
-    if (k.empty())
-    {
-        return "";
-    }
-
     string response;
     response += k[0];
-
     int i = 1;
 
     while (k[i] == k[0])
