@@ -32,7 +32,7 @@ void solve()
 
     const int remaining_pairs = total_pairs % k;
 
-    if (int flexible_chars = remaining_pairs * 2 + odd_count_chars; flexible_chars >= k)
+    if (const int flexible_chars = remaining_pairs * 2 + odd_count_chars; flexible_chars >= k)
     {
         base_length_per_palindrome++; // If enough flexible characters, each palindrome can get a middle character
     }
