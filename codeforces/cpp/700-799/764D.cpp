@@ -21,7 +21,7 @@ int main()
         int pairs = 0;
         int odd = 0;
 
-        for (auto& elem : mp)
+        for (const auto& elem : mp)
         {
             pairs += elem.second / 2;
             if (elem.second % 2 == 1)
@@ -30,8 +30,8 @@ int main()
             }
         }
 
-        int response = (pairs / k) * 2;
-        response += ((pairs % k) + odd) / k;
+        int response = pairs / k * 2;
+        response += (pairs % k + odd) / k;
 
         cout << response << "\n";
     }
