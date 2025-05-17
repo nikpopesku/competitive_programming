@@ -2,13 +2,13 @@
 
 using namespace std;
 
-string nxt(string k)
+string nxt(string k, int index)
 {
     string response;
-    response += k[0];
-    int i = 1;
+    response += k[index];
+    int i = index + 1;
 
-    while (k[i] == k[0])
+    while (k[i] == k[index])
     {
         response += k[i];
         ++i;
@@ -17,23 +17,24 @@ string nxt(string k)
     return response;
 }
 
-string solve(string p, string s)
+string solve(const string& p, const string& s)
 {
-    while (!s.empty() and !p.empty())
+    int index_p = 0;
+    int index_s = 0;
+
+    while (index_p < p.size() and index_s < s.size())
     {
-        string p0 = nxt(p);
-        p = p.substr(p0.size());
-        string s0 = nxt(s);
-        s = s.substr(s0.size());
+        string p0 = nxt(p, index_p);
+        index_p += static_cast<int>(p0.size());
+        string s0 = nxt(s, index_s);
+        index_s += static_cast<int>(s0.size());
 
         if (s0[0] != p0[0]) return "NO";
         if (s0.size() < p0.size() or s0.size() > p0.size() * 2) return "NO";
-        if (!p.empty() and s.empty()) return "NO";
-        if (!s.empty() and p.empty()) return "NO";
     }
 
-    if (!p.empty() and s.empty()) return "NO";
-    if (!s.empty() and p.empty()) return "NO";
+    if (index_p < p.size() and index_s == s.size()) return "NO";
+    if (index_s < s.size() and index_p == p.size()) return "NO";
 
     return "YES";
 }
