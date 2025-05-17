@@ -2,6 +2,49 @@
 
 using namespace std;
 
+string nxt(string k)
+{
+    if (k == '')
+    {
+        return "";
+    }
+
+    string response;
+    response += k[0];
+
+    int i = 1;
+
+    while(k[i] == k[0])
+    {
+        response += k[i];
+        ++i;
+    }
+
+    return response;
+}
+
+string solve(string p, string s)
+{
+    while (!s.empty() and !p.empty())
+    {
+        const string p0 = nxt(p);
+        p = p.substr(p0.size());
+        const string s0 = nxt(s);
+        s = s.substr(s0.size());
+
+        if (s0.size() < p0.size() or s0.size() > p0.size() * 2)
+        {
+            return "NO";
+        }
+
+        if (!p.empty() and s.empty()) return "NO";
+        if (!s.empty() and p.empty()) return "NO";
+    }
+
+
+    return "YES";
+}
+
 int main()
 {
     int t;
@@ -13,50 +56,6 @@ int main()
         cin >> p;
         cin >> s;
 
-        char cur_p_char = p[0];
-        int cur_p_size = 1;
-        int s_index = 0;
-        string response = "YES";
-
-        for (int i = 1; i < p.size(); ++i)
-        {
-            if (p[i] == cur_p_char)
-            {
-                ++cur_p_size;
-                continue;
-            }
-
-            if (s.size() - s_index < cur_p_size)
-            {
-                response = "NO";
-                break;
-            }
-            int cur_s_size = 0;
-
-            for (int j = s_index; j < s.size(); ++j)
-            {
-                if (s[j] == cur_p_char)
-                {
-                    ++cur_s_size;
-                    s_index = j;
-                    continue;
-                }
-
-
-                if (cur_s_size < cur_p_size or cur_s_size > cur_p_size * 2)
-                {
-                    response = "NO";
-                }
-
-                break;
-            }
-
-            cur_p_char = p[i];
-            cur_p_size = 1;
-
-            if (response == "NO") break;
-        }
-
-        cout << response << "\n";
+        cout << solve(p, s) << "\n";
     }
 }
