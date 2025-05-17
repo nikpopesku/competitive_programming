@@ -4,7 +4,7 @@ using namespace std;
 
 string nxt(string k)
 {
-    if (k == '')
+    if (k.empty())
     {
         return "";
     }
