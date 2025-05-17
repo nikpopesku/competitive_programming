@@ -14,7 +14,7 @@ string nxt(string k)
 
     int i = 1;
 
-    while(k[i] == k[0])
+    while (k[i] == k[0])
     {
         response += k[i];
         ++i;
