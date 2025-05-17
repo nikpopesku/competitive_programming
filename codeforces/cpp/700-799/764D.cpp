@@ -31,7 +31,7 @@ int main()
         }
 
         int response = pairs / k * 2;
-        response += (pairs % k + odd) / k;
+        response += pairs % k * 2 + odd >= k ? 1 : 0;
 
         cout << response << "\n";
     }
