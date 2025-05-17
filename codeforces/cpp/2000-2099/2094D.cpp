@@ -26,11 +26,8 @@ string solve(string p, string s)
         string s0 = nxt(s);
         s = s.substr(s0.size());
 
-        if (s0.size() < p0.size() or s0.size() > p0.size() * 2)
-        {
-            return "NO";
-        }
-
+        if (s0[0] != p0[0]) return "NO";
+        if (s0.size() < p0.size() or s0.size() > p0.size() * 2) return "NO";
         if (!p.empty() and s.empty()) return "NO";
         if (!s.empty() and p.empty()) return "NO";
     }
