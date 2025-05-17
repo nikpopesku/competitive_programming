@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string nxt(string k, int index)
+string nxt(const string& k, const int index)
 {
     string response;
     response += k[index];
