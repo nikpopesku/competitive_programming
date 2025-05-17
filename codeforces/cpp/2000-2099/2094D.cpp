@@ -27,9 +27,9 @@ string solve(string p, string s)
 {
     while (!s.empty() and !p.empty())
     {
-        const string p0 = nxt(p);
+        string p0 = nxt(p);
         p = p.substr(p0.size());
-        const string s0 = nxt(s);
+        string s0 = nxt(s);
         s = s.substr(s0.size());
 
         if (s0.size() < p0.size() or s0.size() > p0.size() * 2)
@@ -41,6 +41,8 @@ string solve(string p, string s)
         if (!s.empty() and p.empty()) return "NO";
     }
 
+    if (!p.empty() and s.empty()) return "NO";
+    if (!s.empty() and p.empty()) return "NO";
 
     return "YES";
 }
