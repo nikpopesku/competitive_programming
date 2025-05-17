@@ -17,23 +17,24 @@ int main()
         vector vc(2 * n, -1);
         vector<int> h(2 * n);
         iota(h.begin(), h.end(), 1);
-        set<int> s(h.begin(), s.end());
+        set s(h.begin(), h.end());
 
-
-        for (int i = 1; i <= n; ++i)
+        for (int i = 0; i < n; ++i)
         {
-            for (int j = 1; j <= n; ++j)
+            for (int j = 0; j < n; ++j)
             {
-                cin >> vc[i + j];
-                s.erase(vc[i + j]);
+                cin >> vc[i + j + 1];
+                s.erase(vc[i + j + 1]);
             }
         }
 
         auto it = s.begin();
 
-        for (int i = 1; i <= 2 * n; ++i)
+        for (int i = 0; i < 2 * n; ++i)
         {
-            cout << (vc[i] != -1 ? vc[i] : *it++) << " ";
+            cout << (vc[i] != -1 ? vc[i] : *it) << " ";
+            ++it;
         }
+        cout << "\n";
     }
 }
