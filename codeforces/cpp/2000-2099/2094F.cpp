@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <numeric> // Only for completeness, not strictly used in this specific logic
 
 // Helper function to print the grid (optional, can be in solve)
 void print_grid(const std::vector<std::vector<int>>& grid, const int n, const int m)
