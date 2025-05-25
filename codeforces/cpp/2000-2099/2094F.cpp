@@ -3,7 +3,7 @@
 #include <numeric> // Only for completeness, not strictly used in this specific logic
 
 // Helper function to print the grid (optional, can be in solve)
-void print_grid(const std::vector<std::vector<int>>& grid, int n, int m)
+void print_grid(const std::vector<std::vector<int>>& grid, const int n, const int m)
 {
     for (int i = 0; i < n; ++i)
     {
@@ -20,7 +20,7 @@ void solve()
     int n, m, k;
     std::cin >> n >> m >> k;
 
-    std::vector<std::vector<int>> grid(n, std::vector<int>(m));
+    std::vector grid(n, std::vector<int>(m));
 
     if (m % k != 0)
     {
@@ -42,7 +42,7 @@ void solve()
         {
             for (int j = 0; j < m; ++j)
             {
-                grid[i][j] = ((j * n + i) % k) + 1;
+                grid[i][j] = (j * n + i) % k + 1;
             }
         }
     }
@@ -55,7 +55,7 @@ void solve()
         {
             for (int j = 0; j < m; ++j)
             {
-                grid[i][j] = ((i + j) % k) + 1;
+                grid[i][j] = (i + j) % k + 1;
             }
         }
     }
