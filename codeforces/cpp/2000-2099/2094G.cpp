@@ -1,58 +1,53 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <map>
-#include <set>
-
+#include <bits/stdc++.h>
 using namespace std;
+#define int long long
 
-void solve()
-{
-    int q, type, value, response = 0;
-    multimap<int, int> mp;
-    cin >> q;
+void solve() {
+    int norm = 0, rev = 0;
+    int q; cin >> q;
+    int tot = 0;
+    int n = 0;
+    deque<int> qNorm, qRev;
+    int p = 0;
+    while (q--) {
+        int s; cin >> s;
+        if (s == 1) {
+            int last = qNorm.back();
+            qNorm.pop_back();
+            qNorm.push_front(last);
+            norm += (tot - last);
+            norm -= last * n;
+            norm += last;
 
-    for (int i = 0; i < q; ++i)
-    {
-        cin >> type;
-
-        if (type == 2)
-        {
-            for (auto& [fst, snd] : mp)
-            {
-                const int previous = snd;
-                snd = static_cast<int>(mp.size()) - snd - 1;
-                response += (snd - previous) * fst;
-            }
+            last = qRev.front();
+            qRev.pop_front();
+            qRev.push_back(last);
+            rev -= (tot - last);
+            rev += last * n;
+            rev -= last;
         }
-        else if (type == 3)
-        {
-            cin >> value;
-            mp.insert({value, mp.size()});
-            response += value * static_cast<int>(mp.size());
+        else if (s == 2) {
+            swap(rev, norm);
+            swap(qNorm, qRev);
         }
-        else
-        {
-            for (auto& [fst, snd] : mp)
-            {
-                const int previous = snd;
-                snd = (snd + 1) % static_cast<int>(mp.size());
-                response += (snd - previous) * fst;
-            }
+        else if (s == 3) {
+            n++;
+            int k; cin >> k;
+            qNorm.push_back(k);
+            qRev.push_front(k);
+            norm += k * n;
+            rev += tot;
+            rev += k;
+            tot += k;
         }
-
-        cout << response << "\n";
+        cout << norm << "\n";
     }
 }
 
-int main()
-{
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    int t;
-    std::cin >> t;
-    while (t--)
-    {
-        solve();
-    }
+signed main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t; cin >> t;
+    while (t--) solve();
+    return 0;
 }

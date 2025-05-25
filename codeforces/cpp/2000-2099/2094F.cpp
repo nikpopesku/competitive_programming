@@ -1,65 +1,66 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-#define int long long
-
 void solve()
 {
-    int norm = 0, rev = 0;
-    int q;
-    cin >> q;
-    int tot = 0;
-    int n = 0;
-    deque<int> qNorm, qRev;
-    int p = 0;
-    while (q--)
-    {
-        int s;
-        cin >> s;
-        if (s == 1)
-        {
-            int last = qNorm.back();
-            qNorm.pop_back();
-            qNorm.push_front(last);
-            norm += (tot - last);
-            norm -= last * n;
-            norm += last;
+    int n, m, k;
+    cin >> n >> m >> k;
+    vector vc(n, vector<int>(m));
 
-            last = qRev.front();
-            qRev.pop_front();
-            qRev.push_back(last);
-            rev -= (tot - last);
-            rev += last * n;
-            rev -= last;
-        }
-        else if (s == 2)
+    if (m % k != 0)
+    {
+        for (int i = 0; i < n; ++i)
         {
-            swap(rev, norm);
-            swap(qNorm, qRev);
+            for (int j = 0; j < m; ++j)
+            {
+                vc[i][j] = (i * m + j) % k + 1;
+            }
         }
-        else if (s == 3)
+    }
+    else if (n % k != 0)
+    {
+        for (int i = 0; i < n; ++i)
         {
-            n++;
-            int k;
-            cin >> k;
-            qNorm.push_back(k);
-            qRev.push_front(k);
-            norm += k * n;
-            rev += tot;
-            rev += k;
-            tot += k;
+            for (int j = 0; j < m; ++j)
+            {
+                vc[i][j] = (j * n + i) % k + 1;
+            }
         }
-        cout << norm << "\n";
+    }
+    else
+    {
+        for (int i = 0; i < n; ++i)
+        {
+            for (int j = 0; j < m; ++j)
+            {
+                vc[i][j] = (j + i) % k + 1;
+            }
+        }
+    }
+
+
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < m; ++j)
+        {
+            cout << vc[i][j] << " ";
+        }
+
+        cout << "\n";
     }
 }
 
-signed main()
+int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
     int t;
-    cin >> t;
-    while (t--) solve();
+    std::cin >> t;
+    while (t--)
+    {
+        solve();
+    }
     return 0;
 }
