@@ -1,13 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <map>
+#include <set>
 
 using namespace std;
 
-void calc(const vector<int>& vc)
+void calc(const multimap<int, int>& mp)
 {
     int response = 0;
-    for (int i = 0; i < vc.size(); ++i) response += (i + 1) * vc[i];
+    for (const auto& [fst, snd] : mp) response += fst * (snd + 1);
 
     cout << response << "\n";
 }
@@ -15,7 +17,7 @@ void calc(const vector<int>& vc)
 void solve()
 {
     int q, type, value;
-    vector<int> vc;
+    multimap<int, int> mp;
     cin >> q;
 
     for (int i = 0; i < q; ++i)
@@ -24,19 +26,25 @@ void solve()
 
         if (type == 2)
         {
-            ranges::reverse(vc);
+            for (auto& e : mp)
+            {
+                e.second = static_cast<int>(mp.size()) - e.second;
+            }
         }
         else if (type == 3)
         {
             cin >> value;
-            vc.push_back(value);
+            mp.insert({value, mp.size()});
         }
         else
         {
-            rotate(vc.rbegin(), vc.rbegin() + 1, vc.rend());
+            for (auto& e : mp)
+            {
+                e.second = (e.second + 1) % static_cast<int>(mp.size());
+            }
         }
 
-        calc(vc);
+        calc(mp);
     }
 }
 
