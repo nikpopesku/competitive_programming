@@ -1,56 +1,60 @@
 #include <iostream>
 #include <vector>
+#include <numeric> // Only for completeness, not strictly used in this specific logic
 
-using namespace std;
-
-#define ll long long
-
-void solve()
-{
-    ll n;
-    cin >> n;
-    vector cn(30, 0LL);
-    vector<ll> v(n);
-
-    for (ll i = 0; i < n; ++i)
-    {
-        cin >> v[i];
-
-        for (ll j = 0; j < 30; ++j)
-        {
-            cn[j] += (v[i] >> j) & 1;
+// Helper function to print the grid (optional, can be in solve)
+void print_grid(const std::vector<std::vector<int>>& grid, int n, int m) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            std::cout << grid[i][j] << (j == m - 1 ? "" : " ");
         }
+        std::cout << "\n";
     }
-
-    ll abs_max = 0;
-
-    for (ll i = 0; i < n; ++i)
-    {
-        ll cur_max = 0;
-
-        for (ll j = 0; j < 30; ++j)
-        {
-            if (const ll val = (v[i] >> j) & 1; val == 1LL)
-            {
-                cur_max += (n - cn[j]) * (1 << j);
-            }
-            else
-            {
-                cur_max += cn[j] * (1 << j);
-            }
-        }
-
-        abs_max = max(abs_max, cur_max);
-    }
-
-    cout << abs_max << "\n";
 }
 
-signed main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+void solve() {
+    int n, m, k;
+    std::cin >> n >> m >> k;
+
+    std::vector<std::vector<int>> grid(n, std::vector<int>(m));
+
+    if (m % k != 0) {
+        // Case 1: Row-major fill
+        // Works because m % k != 0 ensures vertical adjacency.
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                grid[i][j] = ((i * m + j) % k) + 1;
+            }
+        }
+    } else if (n % k != 0) {
+        // Case 2: m % k == 0 AND n % k != 0. Column-major fill.
+        // Works because n % k != 0 ensures horizontal adjacency.
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                grid[i][j] = ((j * n + i) % k) + 1;
+            }
+        }
+    } else {
+        // Case 3: m % k == 0 AND n % k == 0. Diagonal fill.
+        // Works because both n and m being multiples of k ensures frequency,
+        // and (i+j) pattern ensures adjacency.
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                grid[i][j] = ((i + j) % k) + 1;
+            }
+        }
+    }
+
+    print_grid(grid, n, m);
+}
+
+int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
     int t;
-    cin >> t;
-    while (t--) solve();
+    std::cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }
