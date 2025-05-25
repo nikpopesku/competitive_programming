@@ -31,7 +31,6 @@ ll solve(const int n)
         }
 
         abs_max = max(abs_max, cur_max);
-
     }
 
     return abs_max;
