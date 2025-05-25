@@ -1,61 +1,34 @@
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <set>
-
+#include <bits/stdc++.h>
 using namespace std;
+#define int long long
 
-#define ll long long
-
-ll solve(const int n)
-{
-    vector<ll> a(n);
-    priority_queue<ll> pq;
-    set<ll> s;
-    ll abs_max = 0;
-
-    for (int i = 0; i < n; ++i)
-    {
-        cin >> a[i];
-
-        if (!s.contains(a[i]))
-        {
-            pq.push(a[i]);
-            s.insert(a[i]);
+void solve() {
+    int n; cin >> n;
+    int arr[n+1];
+    vector<int> cnt(30, 0);
+    for (int i = 1; i <= n; i++) {
+        cin >> arr[i];
+        for (int j = 0; j < 30; j++) {
+            cnt[j] += ((arr[i] >> j) & 1);
         }
     }
-
-    while (!pq.empty())
-    {
-        const auto elem = pq.top();
-        pq.pop();
-
-        if (elem * (n - 1) * 2 < abs_max) break;
-
-        ll cur_max = 0;
-
-        for (int i = 0; i < n; ++i)
-        {
-            cur_max += elem ^ a[i];
+    int ans = 0;
+    for (int i = 1; i <= n; i++) {
+        int tot = 0;
+        for (int j = 0; j < 30; j++) {
+            bool f = ((arr[i] >> j) & 1);
+            if (f) tot += (1 << j) * (n - cnt[j]);
+            else tot += (1 << j) * cnt[j];
         }
-
-        abs_max = max(abs_max, cur_max);
+        ans = max(ans, tot);
     }
-
-    return abs_max;
+    cout << ans << "\n";
 }
 
-int main()
-{
-    int t;
-    cin >> t;
-
-    while (t--)
-    {
-        int n;
-        cin >> n;
-
-
-        cout << solve(n) << "\n";
-    }
+signed main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t; cin >> t;
+    while (t--) solve();
+    return 0;
 }
