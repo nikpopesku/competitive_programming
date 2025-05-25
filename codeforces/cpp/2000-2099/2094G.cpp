@@ -7,7 +7,7 @@ using namespace std;
 void calc(const vector<int>& vc)
 {
     int response = 0;
-    for (int i = 0; i < vc.size(); ++i) response += i * vc[i];
+    for (int i = 0; i < vc.size(); ++i) response += (i + 1) * vc[i];
 
     cout << response << "\n";
 }
@@ -15,11 +15,12 @@ void calc(const vector<int>& vc)
 void solve()
 {
     int q, type, value;
+    vector<int> vc;
     cin >> q;
 
     for (int i = 0; i < q; ++i)
     {
-        vector<int> vc;
+
         cin >> type;
 
         if (type == 2)
