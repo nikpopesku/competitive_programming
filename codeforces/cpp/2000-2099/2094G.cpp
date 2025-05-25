@@ -20,7 +20,6 @@ void solve()
 
     for (int i = 0; i < q; ++i)
     {
-
         cin >> type;
 
         if (type == 2)
