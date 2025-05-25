@@ -7,16 +7,16 @@ using namespace std;
 
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
-    vector cn(30, 0);
+    vector cn(30, 0LL);
     vector<ll> v(n);
 
-    for (int i = 0; i < n; ++i)
+    for (ll i = 0; i < n; ++i)
     {
         cin >> v[i];
 
-        for (int j = 0; j < 30; ++j)
+        for (ll j = 0; j < 30; ++j)
         {
             cn[j] += (v[i] >> j) & 1;
         }
@@ -24,19 +24,19 @@ void solve()
 
     ll abs_max = 0;
 
-    for (int i = 0; i < n; ++i)
+    for (ll i = 0; i < n; ++i)
     {
         ll cur_max = 0;
 
-        for (int j = 0; j < 30; ++j)
+        for (ll j = 0; j < 30; ++j)
         {
-            if (ll val = (v[i] >> j) & 1; val == 1)
+            if (const ll val = (v[i] >> j) & 1; val == 1LL)
             {
-                cur_max += (n - cn[j]) * (val << j);
+                cur_max += (n - cn[j]) * (1 << j);
             }
             else
             {
-                cur_max += cn[j] * (val << j);
+                cur_max += cn[j] * (1 << j);
             }
         }
 
