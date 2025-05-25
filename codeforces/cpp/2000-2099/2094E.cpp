@@ -17,11 +17,11 @@ ll solve(const int n)
     for (int i = 0; i < n; ++i)
     {
         cin >> a[i];
-        s.insert(a[i]);
 
         if (!s.contains(a[i]))
         {
             pq.push(a[i]);
+            s.insert(a[i]);
         }
     }
 
