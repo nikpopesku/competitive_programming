@@ -6,17 +6,9 @@
 
 using namespace std;
 
-void calc(const multimap<int, int>& mp)
-{
-    int response = 0;
-    for (const auto& [fst, snd] : mp) response += fst * (snd + 1);
-
-    cout << response << "\n";
-}
-
 void solve()
 {
-    int q, type, value;
+    int q, type, value, response = 0;
     multimap<int, int> mp;
     cin >> q;
 
@@ -26,25 +18,30 @@ void solve()
 
         if (type == 2)
         {
-            for (auto& e : mp)
+            for (auto& [fst, snd] : mp)
             {
-                e.second = static_cast<int>(mp.size()) - e.second - 1;
+                const int previous = snd;
+                snd = static_cast<int>(mp.size()) - snd - 1;
+                response += (snd - previous) * fst;
             }
         }
         else if (type == 3)
         {
             cin >> value;
             mp.insert({value, mp.size()});
+            response += value * static_cast<int>(mp.size());
         }
         else
         {
-            for (auto& e : mp)
+            for (auto& [fst, snd] : mp)
             {
-                e.second = (e.second + 1) % static_cast<int>(mp.size());
+                const int previous = snd;
+                snd = (snd + 1) % static_cast<int>(mp.size());
+                response += (snd - previous) * fst;
             }
         }
 
-        calc(mp);
+        cout << response << "\n";
     }
 }
 
