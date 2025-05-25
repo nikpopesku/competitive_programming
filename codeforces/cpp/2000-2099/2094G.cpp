@@ -28,7 +28,7 @@ void solve()
         {
             for (auto& e : mp)
             {
-                e.second = static_cast<int>(mp.size()) - e.second;
+                e.second = static_cast<int>(mp.size()) - e.second - 1;
             }
         }
         else if (type == 3)
