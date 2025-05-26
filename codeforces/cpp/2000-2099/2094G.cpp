@@ -35,7 +35,14 @@ void solve()
         }
         else
         {
+            value = dq_normal.back();
+            dq_normal.pop_back();
+            dq_normal.push_front(value);
 
+
+            value = dq_reversed.back();
+            dq_reversed.pop_back();
+            dq_reversed.push_front(value);
         }
 
         cout << normal_r << "\n";
