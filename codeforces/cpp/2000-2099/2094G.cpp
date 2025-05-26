@@ -22,7 +22,7 @@ void solve()
             total_sum += value;
 
             dq_normal.push_back(value);
-            normal_r = value * cnt;
+            normal_r += value * cnt;
 
             dq_reversed.push_front(value);
             reverse_r += value;
