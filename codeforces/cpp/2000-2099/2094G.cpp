@@ -19,7 +19,6 @@ void solve()
         {
             cin >> value;
             ++cnt;
-            total_sum += value;
 
             dq_normal.push_back(value);
             normal_r += value * cnt;
@@ -27,6 +26,8 @@ void solve()
             dq_reversed.push_front(value);
             reverse_r += value;
             reverse_r += total_sum;
+
+            total_sum += value;
         }
         else if (type == 2)
         {
@@ -43,9 +44,9 @@ void solve()
             normal_r += total_sum - value;
 
 
-            value = dq_reversed.back();
-            dq_reversed.pop_back();
-            dq_reversed.push_front(value);
+            value = dq_reversed.front();
+            dq_reversed.pop_front();
+            dq_reversed.push_back(value);
             reverse_r -= value;
             reverse_r -= total_sum - value;
             reverse_r += value * cnt;
