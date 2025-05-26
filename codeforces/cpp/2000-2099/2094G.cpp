@@ -19,12 +19,14 @@ void solve()
         {
             cin >> value;
             ++cnt;
+            total_sum += value;
 
             dq_normal.push_back(value);
-            total_sum += value;
             normal_r = value * cnt;
 
             dq_reversed.push_front(value);
+            reverse_r += value;
+            reverse_r += total_sum;
         }
         else if (type == 2)
         {
@@ -33,6 +35,7 @@ void solve()
         }
         else
         {
+
         }
 
         cout << normal_r << "\n";
