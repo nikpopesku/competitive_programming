@@ -4,6 +4,23 @@ using namespace std;
 
 #define int long long
 
+int f(int k, const vector<int>& a, const int& l, const int& r)
+{
+    int ans = 0;
+
+    for (int i = l; i <= r; ++i)
+    {
+        while (k % a[i] == 0)
+        {
+            k = k / a[i];
+        }
+
+        ans += k;
+    }
+
+    return ans;
+}
+
 void solve()
 {
     int n, q;
@@ -19,6 +36,8 @@ void solve()
     for (int i = 0; i < q; ++i)
     {
         cin >> k >> l >> r;
+
+        cout << f(k, a, l, r) << "\n";
     }
 }
 
