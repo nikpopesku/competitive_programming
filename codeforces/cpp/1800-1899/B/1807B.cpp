@@ -1,30 +1,45 @@
 #include <iostream>
-#include <cmath>
+#include <queue>
 
-using namespace std::string_literals;
+using namespace std;
 
-int main() {
-    int t;
-    long long n;
-    std::cin >> t;
+void solve()
+{
+    int n, value;
+    cin >> n;
+    int even_sum = 0, odd_sum = 0;
 
-    for (int i = 0; i < t; i++) {
-        std::cin >> n;
-        long long left = sqrt(n) - 1;
-        long long right = sqrt(n) + 1;
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> value;
 
-        while (left + 1 < right) {
-            long long m = left + (right - left) / 2;
-
-            if (m*m + 1 <= n) {
-                left = m;
-            } else {
-                right = m - 1;
-            }
+        if (value % 2 == 1)
+        {
+            odd_sum += value;
         }
-
-        std::cout << left << std::endl;
+        else
+        {
+            even_sum += value;
+        }
     }
 
-    return 0;
+    if (even_sum > odd_sum)
+    {
+        cout << "YES\n";
+    }
+    else
+    {
+        cout << "NO\n";
+    }
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        solve();
+    }
 }
