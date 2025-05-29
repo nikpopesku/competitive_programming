@@ -32,7 +32,8 @@ void solve()
     cout << (response ? "YES" : "NO") << "\n";
 }
 
-int main() {
+int main()
+{
     int t;
     cin >> t;
 
