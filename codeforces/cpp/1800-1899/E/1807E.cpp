@@ -3,28 +3,30 @@
 
 using namespace std;
 
+#define ll long long
+
 void solve()
 {
-    int n, value;
+    ll n, value;
     cin >> n;
-    vector<int> a(n);
+    vector<ll> a(n);
     vector partial_sum(n + 1, 0);
 
-    for (int i = 0; i < n; ++i)
+    for (ll i = 0; i < n; ++i)
     {
         cin >> a[i];
         partial_sum[i + 1] = partial_sum[i] + a[i];
     }
 
-    int l = 0, r = n - 1;
+    ll l = 0, r = n - 1;
 
     while (l < r)
     {
-        const int m = l + (r - l) / 2;
+        const ll m = l + (r - l) / 2;
 
         cout << "? " << m - l + 1 << " ";
 
-        for (int i = l; i <= m; ++i)
+        for (ll i = l; i <= m; ++i)
         {
             cout << i + 1 << " ";
         }
