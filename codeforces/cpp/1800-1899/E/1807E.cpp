@@ -45,7 +45,7 @@ void solve()
         }
     }
 
-    cout << "! " << l + 1;
+    cout << "! " << l + 1 << endl;
 }
 
 int main()
