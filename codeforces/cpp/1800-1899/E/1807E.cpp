@@ -35,7 +35,7 @@ void solve()
 
         cin >> value;
 
-        if (value > partial_sum[m + 1])
+        if (value > partial_sum[m + 1] - partial_sum[l])
         {
             l = m + 1;
         }
