@@ -37,11 +37,11 @@ void solve()
 
         if (value > partial_sum[m + 1] - partial_sum[l])
         {
-            l = m + 1;
+            r = m;
         }
         else
         {
-            r = m;
+            l = m + 1;
         }
     }
 
