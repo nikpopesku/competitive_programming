@@ -23,7 +23,7 @@ void solve()
         cin >> l >> r >> k;
     }
 
-    cout << (partial_sum[r] - partial_sum[l - 1] + (r - l - 1) * k) % 2 == 1 ? "YES" : "NO" << "\n";
+    cout << (partial_sum[r] - partial_sum[l - 1] + (r - l - 1) * k % 2 == 1 ? "YES" : "NO") << "\n";
 }
 
 int main()
