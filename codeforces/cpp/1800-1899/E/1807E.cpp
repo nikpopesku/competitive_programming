@@ -26,7 +26,7 @@ void solve()
 
         for (int i = l; i <= m; ++i)
         {
-            cout << i << " ";
+            cout << i + 1 << " ";
         }
 
         cout << endl;
