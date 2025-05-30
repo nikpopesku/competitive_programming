@@ -10,7 +10,7 @@ void solve()
     ll n, value;
     cin >> n;
     vector<ll> a(n);
-    vector partial_sum(n + 1, 0);
+    vector partial_sum(n + 1, 0LL);
 
     for (ll i = 0; i < n; ++i)
     {
