@@ -7,17 +7,26 @@ void solve()
 {
     int n;
     cin >> n;
+    vector a(1, 1);
     vector<int> c(n);
-    string response = "YES";
 
     for (int i = 0; i < n; ++i)
     {
         cin >> c[i];
     }
 
-    if (c.size() == 1)
+    while (a.size() < c.size())
     {
-        cout << (c[0] == 1 ? "YES" : "NO") << "\n";
+    }
+    string response = "YES";
+
+    for (int i = 0; i < c.size(); ++i)
+    {
+        if (c[i] != a[i])
+        {
+            response = "NO";
+            break;
+        }
     }
 
     cout << response << "\n";
