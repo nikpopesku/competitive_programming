@@ -1,43 +1,53 @@
-#include <iostream>
-#include <vector>
-
+#include "bits/stdc++.h"
 using namespace std;
+
+#define ll long long
+
+#define          all(v)              v.begin(), v.end()
+#define         rall(v)              v.rbegin(),v.rend()
+
+#define            pb                push_back
+#define          sz(a)               (int)a.size()
 
 void solve()
 {
     int n;
     cin >> n;
-    vector a(1, 1);
-    vector<int> c(n);
-
+    vector<int> a(n);
     for (int i = 0; i < n; ++i)
     {
-        cin >> c[i];
+        cin >> a[i];
     }
-
-    while (a.size() < c.size())
+    sort(all(a));
+    if (a[0] != 1)
     {
+        cout << "NO\n";
+        return;
     }
-
-    string response = "YES";
-
-    for (int i = 0; i < c.size(); ++i)
+    vector dp(5005, 0);
+    dp[1] = 1;
+    for (int i = 1; i < n; ++i)
     {
-        if (c[i] != a[i])
+        if (!dp[a[i]])
         {
-            response = "NO";
-            break;
+            cout << "NO\n";
+            return;
+        }
+        for (int j = 5000; j >= a[i]; --j)
+        {
+            dp[j] |= dp[j - a[i]];
         }
     }
-
-    cout << response << "\n";
+    cout << "YES\n";
 }
 
-int main()
+int32_t main()
 {
-    int t;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    int t = 1;
     cin >> t;
-
     while (t--)
     {
         solve();
