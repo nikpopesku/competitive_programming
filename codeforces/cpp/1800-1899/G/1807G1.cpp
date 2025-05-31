@@ -18,6 +18,7 @@ void solve()
     while (a.size() < c.size())
     {
     }
+
     string response = "YES";
 
     for (int i = 0; i < c.size(); ++i)
