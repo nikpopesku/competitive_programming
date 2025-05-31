@@ -15,6 +15,11 @@ void solve()
         cin >> c[i];
     }
 
+    if (c.size() == 1)
+    {
+        cout << (c[0] == 1 ? "YES" : "NO") << "\n";
+    }
+
     cout << response << "\n";
 }
 
