@@ -3,22 +3,17 @@ using namespace std;
 
 #define ll long long
 
-#define          all(v)              v.begin(), v.end()
-#define         rall(v)              v.rbegin(),v.rend()
-
-#define            pb                push_back
-#define          sz(a)               (int)a.size()
-
 void solve()
 {
     int n;
     cin >> n;
-    vector<int> a(n);
+    vector<int> a(n, 0);
     for (int i = 0; i < n; ++i)
     {
         cin >> a[i];
     }
-    sort(all(a));
+
+    sort(a.begin(), a.end());
     if (a[0] != 1)
     {
         cout << "NO\n";
@@ -26,6 +21,7 @@ void solve()
     }
     vector dp(5005, 0);
     dp[1] = 1;
+
     for (int i = 1; i < n; ++i)
     {
         if (!dp[a[i]])
@@ -33,11 +29,16 @@ void solve()
             cout << "NO\n";
             return;
         }
+
         for (int j = 5000; j >= a[i]; --j)
         {
-            dp[j] |= dp[j - a[i]];
+            if (dp[j - a[i]])
+            {
+                dp[j] = 1;
+            }
         }
     }
+
     cout << "YES\n";
 }
 
