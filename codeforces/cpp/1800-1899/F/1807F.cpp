@@ -42,13 +42,13 @@ void solve()
         visited.insert({current.first, current.second, next_move.first, next_move.second});
 
         bool hit = false;
-        if (current.first == 0 or current.first == n - 1)
+        if ((current.first == 1 and next_move.first == -1) or (current.first == n and next_move.first == 1))
         {
             next_move.first = -next_move.first;
             hit = true;
         }
 
-        if (current.second == 0 or current.second == m - 1)
+        if ((current.second == 1 and next_move.second == -1) or (current.second == m and next_move.second == 1))
         {
             next_move.second = -next_move.second;
             hit = true;
