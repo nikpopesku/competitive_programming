@@ -1,4 +1,6 @@
-#include "bits/stdc++.h"
+#include "iostream"
+#include "vector"
+#include "algorithm"
 
 using namespace std;
 
@@ -12,18 +14,21 @@ void solve() {
         cin >> a[i];
     }
     sort(all(a));
-    if (a[0] != 1) {
+    int sum = a[0];
+    if (sum != 1) {
         cout << "NO\n";
         return;
     }
-    long long sum = a[0];
+
     for (int i = 1; i < n; ++i) {
         if (sum < a[i]) {
             cout << "NO\n";
             return;
         }
+
         sum += a[i];
     }
+
     cout << "YES\n";
 }
 
