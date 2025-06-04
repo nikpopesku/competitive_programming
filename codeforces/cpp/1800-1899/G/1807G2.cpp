@@ -14,7 +14,7 @@ void solve() {
         cin >> a[i];
     }
     sort(all(a));
-    int sum = a[0];
+    long long sum = a[0];
     if (sum != 1) {
         cout << "NO\n";
         return;
@@ -32,7 +32,7 @@ void solve() {
     cout << "YES\n";
 }
 
-int32_t main() {
+int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
