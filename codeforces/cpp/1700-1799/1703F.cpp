@@ -8,7 +8,7 @@ void solve()
 {
     long long n, value;
     cin >> n;
-    set<long long> keys, values;
+    multiset<long long> keys, values;
 
     for (long long i = 1; i <= n; ++i)
     {
