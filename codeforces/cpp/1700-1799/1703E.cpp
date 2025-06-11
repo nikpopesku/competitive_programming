@@ -25,9 +25,7 @@ void solve()
     {
         for (int j = 0; j < k; ++j)
         {
-            int sz = vc[i][j] + vc[i + k][j] + vc[i + k][j + k] + vc[i][j + k];
-
-            if (sz == 1 or sz == 3)
+            if (const int sz = vc[i][j] + vc[i + k][j] + vc[i + k][j + k] + vc[i][j + k]; sz == 1 or sz == 3)
             {
                 response += 1;
             }
