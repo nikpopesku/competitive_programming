@@ -25,13 +25,13 @@ void solve()
     {
         for (int j = 0; j < k; ++j)
         {
-            int s = vc[i][j] + vc[i + k][j] + vc[i + k][j + k] + vc[i][j + k];
+            int sz = vc[i][j] + vc[i + k][j] + vc[i + k][j + k] + vc[i][j + k];
 
-            if (s == 1 or s == 3)
+            if (sz == 1 or sz == 3)
             {
                 response += 1;
             }
-            else if (s == 2)
+            else if (sz == 2)
             {
                 response += 2;
             }
