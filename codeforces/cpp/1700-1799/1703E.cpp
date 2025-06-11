@@ -15,7 +15,7 @@ void solve()
         cin >> s;
         for (int j = 0; j < n; ++j)
         {
-            vc[i][j] = s[j];
+            vc[i][j] = s[j] == '1' ? 1 : 0;
         }
     }
 
