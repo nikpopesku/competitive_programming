@@ -31,7 +31,8 @@ void solve()
         {
             ++counter;
             ++it_values;
-        } else
+        }
+        else
         {
             response += counter;
             ++it_keys;
