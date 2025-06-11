@@ -9,7 +9,7 @@ bool match(map<int, vector<string>>& mp, const int j, const string& st, set<stri
 {
     for (auto& s1 : mp[j])
     {
-        if (st.find(s1) == 0 and s.contains(st.substr(st.size() - s1.size() - 1, st.size()))) return true;
+        if (st.find(s1) == 0 and s.contains(st.substr(st.size() - s1.size(), st.size()))) return true;
     }
 
     return false;
