@@ -5,28 +5,16 @@
 
 using namespace std;
 
-bool match(map<int, vector<string>>& mp, const int j, const string& st, const set<string>& s)
-{
-    for (auto& s1 : mp[j])
-    {
-        if (st.find(s1) == 0 and s.contains(st.substr(j))) return true;
-    }
-
-    return false;
-}
-
 void solve()
 {
     int n;
     cin >> n;
     vector<string> vc(n);
-    map<int, vector<string>> mp;
     set<string> s;
 
     for (int i = 0; i < n; ++i)
     {
         cin >> vc[i];
-        mp[static_cast<int>(vc[i].size())].push_back(vc[i]);
         s.insert(vc[i]);
     }
     string response;
@@ -43,7 +31,7 @@ void solve()
 
         for (int j = 1; j <= vc[i].size() - 1; ++j)
         {
-            if (match(mp, j, vc[i], s))
+            if (s.contains(vc[i].substr(0, j)) and s.contains(vc[i].substr(j)))
             {
                 found = true;
                 break;
