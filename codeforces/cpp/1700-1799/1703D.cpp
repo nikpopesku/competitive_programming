@@ -5,11 +5,11 @@
 
 using namespace std;
 
-bool match(map<int, vector<string>>& mp, const int j, const string& st, set<string>& s)
+bool match(map<int, vector<string>>& mp, const int j, const string& st, const set<string>& s)
 {
     for (auto& s1 : mp[j])
     {
-        if (st.find(s1) == 0 and s.contains(st.substr(st.size() - s1.size(), st.size()))) return true;
+        if (st.find(s1) == 0 and s.contains(st.substr(j))) return true;
     }
 
     return false;
