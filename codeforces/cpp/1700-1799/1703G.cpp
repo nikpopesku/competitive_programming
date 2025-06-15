@@ -5,9 +5,9 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
+    int n, k, sum = 0;
     cin >> n >> k;
-    vector<int> a(n), partial_sum(n + 1, 0);
+    vector<int> a(n);
 
     int response = 0;
 
@@ -15,7 +15,22 @@ void solve()
     for (int i = 0; i < n; ++i)
     {
         cin >> a[i];
-        partial_sum[i + 1] = partial_sum[i] + a[i];
+        sum += a[i];
+    }
+
+    for (int i = 0; i < n; ++i)
+    {
+        if (sum / 2 > k)
+        {
+            response += a[i] - k;
+            sum -= a[i];
+        }
+        else
+        {
+            response += a[i] / 2;
+            sum -= a[i];
+            sum /= 2;
+        }
     }
 
     cout << response << "\n";
