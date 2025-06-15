@@ -26,7 +26,11 @@ void solve()
         if (value == 0) ++zeros;
     }
 
-    for (ll i = zeros; i > zeros - (k + 1) / 2; --i) answer2 *= i;
+    if (zeros <= k / 2)
+    {
+        for (ll i = zeros; i > zeros - (k + 1) / 2; --i) answer2 *= i;
+    }
+
 
     cout << (answer1 - answer2) % MODULO << "\n";
 }
