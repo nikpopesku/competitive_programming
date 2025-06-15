@@ -32,6 +32,8 @@ void solve()
         sum += a[i] - k;
     }
 
+    response = max(response, sum);
+
     cout << response << "\n";
 }
 
