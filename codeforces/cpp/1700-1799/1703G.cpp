@@ -23,12 +23,12 @@ void solve()
         long long now = sum;
         for (int j = i; j < min(n, i + 32); ++j)
         {
-            const int copy = a[j];
-            now += copy >> j - i + 1;
+            int copy = a[j];
+            copy >>= j - i + 1;
+            now += copy;
         }
 
         response = max(response, now);
-
         sum += a[i] - k;
     }
 
