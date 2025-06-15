@@ -18,23 +18,22 @@ void solve()
         cin >> a[i];
     }
 
-    for (int i = 0; i < n; ++i)
+    for (int i = -1; i < n; i++)
     {
         long long now = sum;
-        for (int j = i; j < min(n, i + 32); ++j)
+        for (int j = i + 1; j < min(n, i + 32); j++)
         {
             int copy = a[j];
-            copy >>= j - i + 1;
+            copy >>= j - i;
             now += copy;
         }
-
         response = max(response, now);
-        sum += a[i] - k;
+        if (i + 1 != n)
+        {
+            sum += a[i + 1] - k;
+        }
     }
-
-    response = max(response, sum);
-
-    cout << response << "\n";
+    cout << response << endl;
 }
 
 int main()
