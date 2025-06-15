@@ -3,9 +3,23 @@
 
 using namespace std;
 
+bool is_bigger(const vector<int>& a, const int& k, const int& i, const int& n)
+{
+    int local_sum = 0;
+    for (int j = i; j < n; ++j)
+    {
+        local_sum += a[j] / 2;
+
+        if (local_sum > k) break;
+    }
+
+    return local_sum > k;
+}
+
+
 void solve()
 {
-    int n, k, sum = 0;
+    int n, k;
     cin >> n >> k;
     vector<int> a(n);
 
@@ -15,21 +29,17 @@ void solve()
     for (int i = 0; i < n; ++i)
     {
         cin >> a[i];
-        sum += a[i];
     }
 
     for (int i = 0; i < n; ++i)
     {
-        if (sum / 2 > k)
+        if (is_bigger(a, k, i, n))
         {
             response += a[i] - k;
-            sum -= a[i];
         }
         else
         {
             response += a[i] / 2;
-            sum -= a[i];
-            sum /= 2;
         }
     }
 
