@@ -13,8 +13,11 @@ void solve()
     ll zeros = 0;
     ll answer1 = 1;
     ll answer2 = 1;
+    ll fact = 1;
 
-    for (int i = n; i > k; --i) answer1 *= i;
+    for (int i = n; i > n - k; --i) answer1 *= i;
+    for (int i = 1; i <= k; ++i) fact *= i;
+    answer1 /= fact;
 
 
     for (int i = 0; i < n; ++i)
