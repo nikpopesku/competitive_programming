@@ -3,7 +3,7 @@ using namespace std;
 
 void solve()
 {
-    int left = 2, right = 999, previous = 999, value;
+    int left = 2, right = 99, previous = 99, value;
 
     while (left < right)
     {
@@ -19,12 +19,12 @@ void solve()
         }
         else
         {
-            left = m;
+            left = m + 1;
             right = previous;
         }
     }
 
-    cout << "! " << left << "endl";
+    cout << "! " << left << endl;
 }
 
 int main()
