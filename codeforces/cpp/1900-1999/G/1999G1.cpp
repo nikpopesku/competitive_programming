@@ -3,7 +3,7 @@ using namespace std;
 
 void solve()
 {
-    int left = 2, right = 99, previous = 99, value;
+    int left = 2, right = 999, previous = 999, value;
 
     while (left < right)
     {
@@ -13,13 +13,8 @@ void solve()
 
         if (value == (right + 1) * left)
         {
-            previous = m;
+            previous = right;
             right = m;
-        }
-        else if (value == (left + 1) * (right + 1))
-        {
-            right = left;
-            left = 2;
         }
         else
         {
