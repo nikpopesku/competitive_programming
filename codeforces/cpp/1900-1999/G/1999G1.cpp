@@ -7,15 +7,19 @@ void solve()
 
     while (left < right)
     {
-
-        const int m = left + (right - left) / 2;
+        const int m = left + (right - left + 1) / 2;
         cout << "? " << left << " " << right << endl;
         cin >> value;
 
-        if (value > left * right)
+        if (value == (right + 1) * left)
         {
-            previous = right;
+            previous = m;
             right = m;
+        }
+        else if (value == (left + 1) * (right + 1))
+        {
+            right = left;
+            left = 2;
         }
         else
         {
