@@ -1,51 +1,42 @@
-#include <iostream>
+#include <bits/stdc++.h>
+
 using namespace std;
 
-void solve()
-{
-    int left = 1, right = 999, value;
+const int MAX = 200'007;
+const int MOD = 1'000'000'007;
 
-    while (left + 2 < right)
-    {
-        const int delta = (right - left) / 3;
-        const int new_left = left + delta;
-        const int new_right = right - delta;
-        cout << "? " << new_left << " " << new_right << endl;
-        cin >> value;
-        if (value == -1) return;
+void solve() {
+    int l = 1, r = 999;
+    while (r - l > 2) {
+        int a = (2 * l + r) / 3;
+        int b = (2 * r + l) / 3;
+        cout << "? " << a << ' ' << b << endl;
+        int resp; cin >> resp;
 
-        if (value == new_left * new_right)
-        {
-            left = new_right;
+        if (resp == (a + 1) * (b + 1)) {
+            r = a;
         }
-        else if (value == (new_left + 1) * (new_right + 1))
-        {
-            left = new_left;
+        else if (resp == a * b) {
+            l = b;
         }
-        else
-        {
-            left = new_left;
-            right = new_right;
+        else {
+            l = a; r = b;
         }
     }
+    if (r - l == 2) {
+        cout << "? 1 " << l + 1 << endl;
+        int resp; cin >> resp;
 
-    if (right - left == 2)
-    {
-        cout << "? 1 " << left + 1 << endl;
-        cin >> value;
+        if (resp == l + 1) {l = l + 1;}
+        else {r = l + 1;}
 
-        if (value != left + 1) { right = left + 1; }
     }
-
-    cout << "! " << right << endl;
+    cout << "! " << r << endl;
 }
 
-int main()
-{
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int tt; cin >> tt; for (int i = 1; i <= tt; i++) {solve();}
+    // solve();
 }
