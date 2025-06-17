@@ -21,7 +21,8 @@ void solve()
         else if (value == (new_left + 1) * (new_right + 1))
         {
             left = new_left;
-        } else
+        }
+        else
         {
             left = new_left;
             right = new_right;
