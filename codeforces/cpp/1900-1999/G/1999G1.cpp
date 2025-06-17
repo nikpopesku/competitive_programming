@@ -3,27 +3,25 @@ using namespace std;
 
 void solve()
 {
-    int left = 2, right = 999, previous = 999, value;
+    int left = 1, right = 999, value;
 
-    while (left < right)
+    while (left + 1 < right)
     {
         const int m = left + (right - left + 1) / 2;
-        cout << "? " << left << " " << right << endl;
+        cout << "? " << m << " " << m << endl;
         cin >> value;
 
-        if (value == (right + 1) * left)
+        if (value == (m + 1) * (m + 1))
         {
-            previous = right;
             right = m;
         }
         else
         {
-            left = m + 1;
-            right = previous;
+            left = m;
         }
     }
 
-    cout << "! " << left << endl;
+    cout << "! " << right << endl;
 }
 
 int main()
