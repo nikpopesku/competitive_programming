@@ -17,6 +17,24 @@ void solve()
     for (int i = 0; i < q; ++i)
     {
         cin >> l >> r;
+
+        int max_count = 1;
+
+        for (int j = l - 1; j < r; ++j)
+        {
+            int current_count = 1;
+            for (int j_right = j + 1; j_right < r; ++j_right)
+            {
+                if (a[j_right] == a[j] + j_right - j)
+                {
+                    ++current_count;
+                }
+            }
+
+            max_count = max(max_count, current_count);
+        }
+
+        cout << r - l + 1 - max_count << "\n";
     }
 }
 
