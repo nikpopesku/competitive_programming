@@ -22,16 +22,17 @@ void solve()
 
         for (int j = l - 1; j < r; ++j)
         {
-            int current_count = 1;
+            int current_count_plus = 1;
             for (int j_right = j + 1; j_right < r; ++j_right)
             {
-                if (a[j_right] - a[j] ==  abs(j_right - j))
-                {
-                    ++current_count;
-                }
+                if (a[j_right] - a[j] == j_right - j) ++current_count_plus;
+            }
+            for (int j_left = j - 1; j_left >= l; --j_left)
+            {
+                if (a[j] - a[j_left] == j - j_left) ++current_count_plus;
             }
 
-            max_count = max(max_count, current_count);
+            max_count = max(max_count, current_count_plus);
         }
 
         cout << r - l + 1 - max_count << "\n";
