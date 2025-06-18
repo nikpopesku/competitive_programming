@@ -1,49 +1,58 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
+#include "bits/stdc++.h"
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx,avx2,sse,sse2")
+#define fast ios_base::sync_with_stdio(0) , cin.tie(0) , cout.tie(0)
+#define endl '\n'
 #define int long long
+#define f first
+#define mp make_pair
+#define s second
+using namespace std;
 
 void solve()
 {
-    int n, k, q, l, r;
+    int n, k, q;
     cin >> n >> k >> q;
-    vector<int> a(n);
-    for (int i = 0; i < n; ++i)
+    int a[n + 1];
+    for (int i = 1; i <= n; i++) cin >> a[i];
+    map<int,int> m;
+    multiset<int> tot;
+    for (int i = 1; i <= n; i++) tot.insert(0);
+    for (int i = 1; i < k; i++)
     {
-        cin >> a[i];
+        tot.erase(tot.find(m[a[i] - i]));
+        m[a[i] - i]++;
+        tot.insert(m[a[i] - i]);
     }
-
-    for (int i = 0; i < q; ++i)
+    int ret[n + 1];
+    for (int i = k; i <= n; i++)
     {
+        tot.erase(tot.find(m[a[i] - i]));
+        m[a[i] - i]++;
+        tot.insert(m[a[i] - i]);
+        int p = i - k + 1;
+        ret[p] = k - *tot.rbegin();
+        tot.erase(tot.find(m[a[p] - p]));
+        m[a[p] - p]--;
+        tot.insert(m[a[p] - p]);
+    }
+    while (q--)
+    {
+        int l, r;
         cin >> l >> r;
-
-        int max_count = 1;
-
-        for (int j = l - 1; j < r; ++j)
-        {
-            int current_count_plus = 1;
-            for (int j_right = j + 1; j_right < r; ++j_right)
-            {
-                if (a[j_right] - a[j] == j_right - j) ++current_count_plus;
-            }
-            for (int j_left = j - 1; j_left >= l; --j_left)
-            {
-                if (a[j] - a[j_left] == j - j_left) ++current_count_plus;
-            }
-
-            max_count = max(max_count, current_count_plus);
-        }
-
-        cout << r - l + 1 - max_count << "\n";
+        cout << ret[l] << endl;
     }
+    tot.clear();
+    m.clear();
 }
 
 signed main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+    fast;
     int t;
     cin >> t;
-    while (t--) solve();
+    while (t--)
+    {
+        solve();
+    }
 }
