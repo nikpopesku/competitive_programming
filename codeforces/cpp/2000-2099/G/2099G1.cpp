@@ -14,9 +14,11 @@ void solve()
     int n, k, q;
     cin >> n >> k >> q;
     int a[n + 1];
+
     for (int i = 1; i <= n; i++) cin >> a[i];
     map<int,int> m;
     multiset<int> tot;
+
     for (int i = 1; i <= n; i++) tot.insert(0);
     for (int i = 1; i < k; i++)
     {
@@ -24,7 +26,9 @@ void solve()
         m[a[i] - i]++;
         tot.insert(m[a[i] - i]);
     }
+    
     int ret[n + 1];
+
     for (int i = k; i <= n; i++)
     {
         tot.erase(tot.find(m[a[i] - i]));
@@ -36,12 +40,14 @@ void solve()
         m[a[p] - p]--;
         tot.insert(m[a[p] - p]);
     }
+
     while (q--)
     {
         int l, r;
         cin >> l >> r;
         cout << ret[l] << endl;
     }
+
     tot.clear();
     m.clear();
 }
