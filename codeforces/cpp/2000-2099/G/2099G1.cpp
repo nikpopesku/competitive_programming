@@ -25,7 +25,7 @@ void solve()
             int current_count = 1;
             for (int j_right = j + 1; j_right < r; ++j_right)
             {
-                if (a[j_right] == a[j] + j_right - j)
+                if (a[j_right] - a[j] ==  abs(j_right - j))
                 {
                     ++current_count;
                 }
