@@ -1,51 +1,48 @@
+#include <algorithm>
 #include <iostream>
 #include <set>
+#include <vector>
 
 using namespace std;
 
 #define ll long long
 
-set<char> vowels = {'a', 'e'};
-set<char> consonants = {'b', 'c', 'd'};
-
-string backtrack(const string& s, const int index, const string& result)
-{
-    if (index == s.size())
-    {
-        return result;
-    }
-
-    string response1, response2;
-
-    for (int i = index; i < min(static_cast<int>(s.size()), index + 3); ++i)
-    {
-        if (i - index == 1 and consonants.count(s[index]) and vowels.count(s[i]))
-        {
-            response1 = backtrack(s, index + 2, result + (!result.empty() ? "." : "") + s[index] + s[i]);
-        }
-        if (response1.empty() and i - index == 2 and consonants.count(s[index]) and vowels.count(s[i - 1]) and
-            consonants.count(s[i]))
-        {
-            response2 = backtrack(s, index + 3,
-                                  result + (!result.empty() ? "." : "") + s[index] + s[index + 1] + s[index + 2]);
-        }
-    }
-
-    if (!response1.empty()) return response1;
-    if (!response2.empty()) return response2;
-
-    return "";
-}
+set vowels = {'a', 'e'};
+set consonants = {'b', 'c', 'd'};
 
 void solve()
 {
+    string s;
     int n;
     cin >> n;
-    string s;
     cin >> s;
 
-    cout << backtrack(s, 0, "") << "\n";
+    string response;
+
+    vector<char> v = {};
+
+    for (auto it = s.rbegin(); it != s.rend(); ++it)
+    {
+        v.push_back(*it);
+        if (v.size() == 2 and vowels.count(v[0]) and consonants.count(v[1]))
+        {
+            const string r(v.cbegin(), v.cend());
+            response += (!response.empty() ? "." : "") + r;
+            v = {};
+        }
+        if (v.size() == 3 and consonants.count(v[0]) and vowels.count(v[1]) and consonants.count(v[2]))
+        {
+            const string r(v.cbegin(), v.cend());
+            response += (!response.empty() ? "." : "") + r;
+            v = {};
+        }
+    }
+
+    reverse(response.begin(), response.end());
+
+    cout << response << "\n";
 }
+
 
 int main()
 {
