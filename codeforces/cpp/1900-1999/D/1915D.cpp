@@ -8,7 +8,7 @@ using namespace std;
 set<char> vowels = {'a', 'e'};
 set<char> consonants = {'b', 'c', 'd'};
 
-string backtrack(const string & s, const int index, string result)
+string backtrack(const string& s, const int index, const string& result)
 {
     if (index == s.size())
     {
@@ -21,11 +21,13 @@ string backtrack(const string & s, const int index, string result)
     {
         if (i - index == 1 and consonants.count(s[index]) and vowels.count(s[i]))
         {
-            response1 = backtrack(s, index + 2, result + "." + s[index] + s[i]);
+            response1 = backtrack(s, index + 2, result + (!result.empty() ? "." : "") + s[index] + s[i]);
         }
-        if (response1.empty() and i - index == 2 and consonants.count(s[index]) and vowels.count(s[i-1]) and consonants.count(s[i]))
+        if (response1.empty() and i - index == 2 and consonants.count(s[index]) and vowels.count(s[i - 1]) and
+            consonants.count(s[i]))
         {
-            response2 = backtrack(s, index + 3, result + "." + s[index] + s[index + 1] + s[index + 2]);
+            response2 = backtrack(s, index + 3,
+                                  result + (!result.empty() ? "." : "") + s[index] + s[index + 1] + s[index + 2]);
         }
     }
 
@@ -37,7 +39,6 @@ string backtrack(const string & s, const int index, string result)
 
 void solve()
 {
-
     int n;
     cin >> n;
     string s;
