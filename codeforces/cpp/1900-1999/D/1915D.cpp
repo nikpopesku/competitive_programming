@@ -44,7 +44,7 @@ void solve()
     string s;
     cin >> s;
 
-    cout << backtrack(s, 2, "") << "\n";
+    cout << backtrack(s, 0, "") << "\n";
 }
 
 int main()
