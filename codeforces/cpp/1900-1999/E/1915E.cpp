@@ -14,12 +14,12 @@ void solve() {
 
     for (int i = 0; i < n; ++i) {
         cin >> v[i];
-        if (i > 0 and i % 2 == 1) {
-            partial_sum_odd[i] = partial_sum_odd[i - 1] + v[i];
-            partial_sum_even[i] = partial_sum_even[i - 1];
-        } else if (i > 0) {
-            partial_sum_odd[i] = partial_sum_odd[i - 1];
-            partial_sum_even[i] = partial_sum_even[i - 1] + v[i];
+        if (i % 2 == 1) {
+            partial_sum_odd[i + 1] = partial_sum_odd[i] + v[i];
+            partial_sum_even[i + 1] = partial_sum_even[i];
+        } else {
+            partial_sum_odd[i + 1] = partial_sum_odd[i];
+            partial_sum_even[i + 1] = partial_sum_even[i] + v[i];
         }
     }
 
