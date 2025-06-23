@@ -1,25 +1,23 @@
 #include <iostream>
 #include <set>
-#include <vector>
 
 using namespace std;
 
 void solve() {
     int n;
     cin >> n;
-    vector<int> v(n);
-    int diff = 0;
-    set<int> s;
+    long long diff = 0, value;
+    set<long long> s;
     s.insert(0);
 
     bool response = false;
 
     for (int i = 0; i < n; ++i) {
-        cin >> v[i];
+        cin >> value;
         if (i % 2 == 1) {
-            diff += v[i];
+            diff += value;
         } else {
-            diff -= v[i];
+            diff -= value;
         }
 
         if (!response and s.count(diff)) {
