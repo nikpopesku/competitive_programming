@@ -1,42 +1,35 @@
-#include <algorithm>
 #include <iostream>
 #include <set>
 #include <vector>
 
 using namespace std;
 
-#define ll long long
-
 void solve() {
     int n;
     cin >> n;
-    vector<int> v(n), partial_sum_even(n + 1, 0), partial_sum_odd(n + 1, 0);
+    vector<int> v(n);
+    int diff = 0;
+    set<int> s;
+    s.insert(0);
+
+    bool response = false;
 
     for (int i = 0; i < n; ++i) {
         cin >> v[i];
         if (i % 2 == 1) {
-            partial_sum_odd[i + 1] = partial_sum_odd[i] + v[i];
-            partial_sum_even[i + 1] = partial_sum_even[i];
+            diff += v[i];
         } else {
-            partial_sum_odd[i + 1] = partial_sum_odd[i];
-            partial_sum_even[i + 1] = partial_sum_even[i] + v[i];
+            diff -= v[i];
+        }
+
+        if (!response and s.count(diff)) {
+            response = true;
+        } else {
+            s.insert(diff);
         }
     }
 
-    string response = "NO";
-
-    for (int l = 0; l <= n - 1; ++l) {
-        for (int r = l + 1; r <= n; ++r) {
-            if (partial_sum_even[r] - partial_sum_even[l] == partial_sum_odd[r] - partial_sum_odd[l]) {
-                response = "YES";
-                break;
-            }
-        }
-
-        if (response == "YES") break;
-    }
-
-    cout << response << "\n";
+    cout << (response ? "YES" : "NO") << "\n";
 
 }
 
