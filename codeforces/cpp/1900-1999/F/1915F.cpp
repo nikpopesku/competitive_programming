@@ -23,7 +23,7 @@ void solve() {
 
     for (auto &p: arr) cin >> p.second >> p.first;
 
-    sort(arr.begin(), arr.end());
+    ranges::sort(arr);
 
     ans = 0;
     st.clear();
