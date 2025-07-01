@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <ranges>
 
 using namespace std;
 
@@ -46,10 +45,10 @@ auto solve() {
     }
 
     ranges::sort(end_points);
-    end_points.erase(unique(end_points.begin(), end_points.end()), end_points.end());
+    end_points.erase(ranges::unique(end_points).begin(), end_points.end());
 
-    for (auto &interval: intervals) {
-        interval.end = ranges::lower_bound(end_points, interval.end) - end_points.begin();
+    for (auto &[start, end]: intervals) {
+        end = ranges::lower_bound(end_points, end) - end_points.begin();
     }
 
     ranges::sort(intervals, [](const auto &a, const auto &b) {
