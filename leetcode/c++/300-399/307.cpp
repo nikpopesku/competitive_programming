@@ -13,7 +13,7 @@ public:
         }
     }
 
-    void update(int idx, const int val) {
+    void update(const int idx, const int val) {
         const int delta = val - nums[idx];
 
         nums[idx] = val;
@@ -51,12 +51,6 @@ private:
         return response;
     }
 };
-
-
-
-
-
-
 
 
 int main() {
