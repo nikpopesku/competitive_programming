@@ -5,30 +5,28 @@ using namespace std;
 
 class NumArray {
 public:
-    explicit NumArray(const vector<int> &nums) : nums(nums) {
+    explicit NumArray(const vector<int>& nums): nums(nums) {
         bit.assign(nums.size(), 0);
 
-        for (size_t i = 0; i < bit.size(); i++) {
+        for (int i = 0; i < nums.size(); ++i) {
             add_delta(i, nums[i]);
         }
     }
 
-    void update(const int idx, const int val) {
-        const int delta = val - nums[idx];
+    void update(int i, int val) {
+        const int delta = val - nums[i];
 
-        nums[idx] = val;
+        nums[i] = val;
 
-        add_delta(idx, delta);
+        add_delta(i, delta);
     }
 
-    [[nodiscard]] int sumRange(const int l, const int r) const {
-        return sum(r) - sum(l - 1);
+    int sumRange(const int left, const int right) {
+        return sum(right) - sum(left - 1);
     }
-
 private:
     vector<int> bit;
     vector<int> nums;
-
 
     void add_delta(int i, const int delta) {
         while (i < nums.size()) {
@@ -38,8 +36,7 @@ private:
         }
     }
 
-
-    [[nodiscard]] int sum(int i) const {
+    int sum(int i) {
         int response = 0;
 
         while (i >= 0) {
@@ -51,7 +48,6 @@ private:
         return response;
     }
 };
-
 
 int main() {
     const vector v = {1, 3, 5};
