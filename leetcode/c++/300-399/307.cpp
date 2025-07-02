@@ -44,15 +44,15 @@ private:
 
 
     [[nodiscard]] int sum(int r) const {
-        int ret = 0;
+        int response = 0;
 
         while (r >= 0) {
-            ret += bit[r];
+            response += bit[r];
 
             r = (r & (r + 1)) - 1;
         }
 
-        return ret;
+        return response;
     }
 };
 
