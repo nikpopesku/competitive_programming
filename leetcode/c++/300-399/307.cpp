@@ -28,7 +28,7 @@ public:
 
 private:
     vector<int> bit;
-    vector<int>& nums;
+    vector<int> &nums;
 
 
     void add(size_t idx, const int delta) {
