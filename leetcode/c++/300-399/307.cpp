@@ -4,8 +4,7 @@ using namespace std;
 
 class NumArray {
 public:
-    NumArray(vector<int> &nums) {
-        nums = nums;
+    explicit NumArray(const vector<int> &nums): nums(nums) {
     }
 
     void update(int index, int val) {
