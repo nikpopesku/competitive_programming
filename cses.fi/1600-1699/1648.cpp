@@ -21,7 +21,7 @@ public:
         add_delta(i, delta);
     }
 
-    int sum_range(const int l, const int r) const {
+    [[nodiscard]] int sum_range(const int l, const int r) const {
         return sum(r) - sum(l - 1);
     }
 
@@ -37,7 +37,7 @@ private:
         }
     }
 
-    int sum(int i) const {
+    [[nodiscard]] int sum(int i) const {
         int response = 0;
 
         while (i >= 0) {
@@ -63,17 +63,15 @@ int main() {
         cin >> v[i];
     }
 
-    const auto f = new FenWick(v);
+    auto f = FenWick(v);
 
     for (int i = 0; i < q; ++i) {
         cin >> type >> l >> r;
 
         if (type == 2) {
-            cout << f->sum_range(l, r) << "\n";
+            cout << f.sum_range(l, r) << "\n";
         } else {
-            f->update(l, r);
+            f.update(l, r);
         }
     }
-
-    delete f;
 }
