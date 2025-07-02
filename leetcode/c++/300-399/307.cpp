@@ -5,7 +5,7 @@ using namespace std;
 
 class NumArray {
 public:
-    explicit NumArray(const vector<int>& nums): nums(nums) {
+    explicit NumArray(const vector<int> &nums): nums(nums) {
         bit.assign(nums.size(), 0);
 
         for (int i = 0; i < nums.size(); ++i) {
@@ -13,7 +13,7 @@ public:
         }
     }
 
-    void update(int i, int val) {
+    void update(const int i, const int val) {
         const int delta = val - nums[i];
 
         nums[i] = val;
@@ -21,9 +21,10 @@ public:
         add_delta(i, delta);
     }
 
-    int sumRange(const int left, const int right) {
+    [[nodiscard]] int sumRange(const int left, const int right) const {
         return sum(right) - sum(left - 1);
     }
+
 private:
     vector<int> bit;
     vector<int> nums;
@@ -36,7 +37,7 @@ private:
         }
     }
 
-    int sum(int i) {
+    [[nodiscard]] int sum(int i) const {
         int response = 0;
 
         while (i >= 0) {
