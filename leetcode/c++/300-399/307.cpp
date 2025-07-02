@@ -9,7 +9,7 @@ public:
         bit.assign(nums.size(), 0);
 
         for (size_t i = 0; i < bit.size(); i++) {
-            add(i, nums[i]);
+            add_delta(i, nums[i]);
         }
     }
 
@@ -34,7 +34,7 @@ private:
     vector<int> nums;
 
 
-    void add(size_t idx, const int delta) {
+    void add_delta(size_t idx, const int delta) {
         while (idx < nums.size()) {
             bit[idx] += delta;
 
