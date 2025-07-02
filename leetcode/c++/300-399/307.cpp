@@ -6,7 +6,7 @@ using namespace std;
 class NumArray {
 public:
     explicit NumArray(const vector<int> &nums) : nums(nums) {
-        this->n = static_cast<int>(nums.size());
+        n = static_cast<int>(nums.size());
         bit.assign(n, 0);
 
         for (size_t i = 0; i < bit.size(); i++)
@@ -18,9 +18,10 @@ public:
             bit[idx] += delta;
     }
 
-    void update(int idx, int val) {
+    void update(int idx, const int val) {
         for (; idx < n; idx = idx | (idx + 1))
-            bit[idx] += val;
+            bit[idx] += val - nums[idx];
+        nums[idx] = val;
     }
 
     [[nodiscard]] int sumRange(const int l, const int r) const {
