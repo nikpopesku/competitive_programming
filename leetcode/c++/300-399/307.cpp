@@ -17,8 +17,10 @@ public:
 
         nums[idx] = val;
 
-        for (; static_cast<size_t>(idx) < bit.size(); idx = idx | (idx + 1)) {
+        while (idx < bit.size()) {
             bit[idx] += delta;
+
+            idx = idx | (idx + 1);
         }
     }
 
