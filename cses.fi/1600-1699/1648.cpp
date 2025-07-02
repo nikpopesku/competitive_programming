@@ -29,9 +29,9 @@ private:
     vector<int> num;
     vector<int> bit;
 
-    void add_delta(int i, const int value) {
+    void add_delta(int i, const int delta) {
         while (i < bit.size()) {
-            bit[i] += value;
+            bit[i] += delta;
 
             i = i | i + 1;
         }
