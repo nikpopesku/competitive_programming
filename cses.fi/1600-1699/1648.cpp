@@ -55,9 +55,10 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     int n, q, type, l, r;
-    vector<int> v;
 
     cin >> n >> q;
+
+    vector<int> v(n);
 
     for (int i = 0; i < n; ++i) {
         cin >> v[i];
