@@ -8,8 +8,9 @@ public:
     explicit NumArray(const vector<int> &nums) : nums(nums) {
         bit.assign(nums.size(), 0);
 
-        for (size_t i = 0; i < bit.size(); i++)
+        for (size_t i = 0; i < bit.size(); i++) {
             add(i, nums[i]);
+        }
     }
 
     void update(int idx, const int val) {
