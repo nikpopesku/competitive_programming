@@ -5,7 +5,7 @@ using namespace std;
 
 class NumArray {
 public:
-    explicit NumArray(vector<int> &nums) : nums(nums) {
+    explicit NumArray(const vector<int> &nums) : nums(nums) {
         bit.assign(nums.size(), 0);
 
         for (size_t i = 0; i < bit.size(); i++)
@@ -28,7 +28,7 @@ public:
 
 private:
     vector<int> bit;
-    vector<int> &nums;
+    vector<int> nums;
 
 
     void add(size_t idx, const int delta) {
