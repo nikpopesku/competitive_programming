@@ -1,19 +1,19 @@
-#include <iostream>
 #include <vector>
+
+using namespace std;
 
 class NumArray {
 public:
-    NumArray(vector<int>& nums) {
+    NumArray(vector<int> &nums) {
         nums = nums;
     }
 
     void update(int index, int val) {
-
     }
 
     int sumRange(int left, int right) {
-
     }
+
 private:
     vector<int> nums;
 };
