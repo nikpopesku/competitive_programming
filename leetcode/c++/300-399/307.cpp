@@ -42,8 +42,11 @@ private:
     [[nodiscard]] int sum(int r) const {
         int ret = 0;
 
-        for (; r >= 0; r = (r & (r + 1)) - 1)
+        while (r >= 0) {
             ret += bit[r];
+
+            r = (r & (r + 1)) - 1;
+        }
 
         return ret;
     }
@@ -51,7 +54,7 @@ private:
 
 
 int main() {
-    vector v = {1, 3, 5};
+    const vector v = {1, 3, 5};
     auto na = NumArray(v);
     cout << na.sumRange(0, 2) << "\n";
 
