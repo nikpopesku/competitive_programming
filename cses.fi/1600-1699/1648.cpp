@@ -9,11 +9,12 @@ public:
         bit.assign(num.size(), 0);
 
         for (int i = 0; i < num.size(); ++i) {
-            add_delta(bit[i], num[i]);
+            add_delta(i, num[i]);
         }
     }
 
-    void update(const int i, const int value) {
+    void update(const int j, const int value) {
+        const int i = j - 1;
         const int delta = value - num[i];
 
         num[i] = value;
@@ -22,7 +23,7 @@ public:
     }
 
     [[nodiscard]] int sum_range(const int l, const int r) const {
-        return sum(r) - sum(l - 1);
+        return sum(r - 1) - sum(l - 2);
     }
 
 private:
