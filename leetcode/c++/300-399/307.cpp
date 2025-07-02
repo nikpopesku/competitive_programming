@@ -34,8 +34,11 @@ private:
 
 
     void add(size_t idx, const int delta) {
-        for (; idx < nums.size(); idx = idx | (idx + 1))
+        while (idx < nums.size()) {
             bit[idx] += delta;
+
+            idx = idx | (idx + 1);
+        }
     }
 
 
