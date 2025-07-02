@@ -30,22 +30,22 @@ private:
     vector<int> nums;
 
 
-    void add_delta(size_t idx, const int delta) {
-        while (idx < nums.size()) {
-            bit[idx] += delta;
+    void add_delta(int i, const int delta) {
+        while (i < nums.size()) {
+            bit[i] += delta;
 
-            idx = idx | (idx + 1);
+            i = i | (i + 1);
         }
     }
 
 
-    [[nodiscard]] int sum(int r) const {
+    [[nodiscard]] int sum(int i) const {
         int response = 0;
 
-        while (r >= 0) {
-            response += bit[r];
+        while (i >= 0) {
+            response += bit[i];
 
-            r = (r & (r + 1)) - 1;
+            i = (i & (i + 1)) - 1;
         }
 
         return response;
