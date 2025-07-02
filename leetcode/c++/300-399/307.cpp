@@ -13,9 +13,13 @@ public:
     }
 
     void update(int idx, const int val) {
-        for (; idx < nums.size(); idx = idx | (idx + 1))
-            bit[idx] += val - nums[idx];
+        const int delta = val - nums[idx];
+
         nums[idx] = val;
+
+        for (; static_cast<size_t>(idx) < bit.size(); idx = idx | (idx + 1)) {
+            bit[idx] += delta;
+        }
     }
 
     [[nodiscard]] int sumRange(const int l, const int r) const {
@@ -45,7 +49,7 @@ private:
 
 
 int main() {
-    vector<int> v = {1, 3, 5};
+    vector v = {1, 3, 5};
     auto na = NumArray(v);
     cout << na.sumRange(0, 2) << "\n";
 
