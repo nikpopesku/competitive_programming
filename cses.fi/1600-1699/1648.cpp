@@ -5,7 +5,7 @@ using namespace std;
 
 class FenWick {
 public:
-    explicit FenWick(const vector<int>& num): num(num) {
+    explicit FenWick(const vector<int> &num): num(num) {
         bit.assign(num.size(), 0);
 
         for (int i = 0; i < num.size(); ++i) {
@@ -63,7 +63,7 @@ int main() {
         cin >> v[i];
     }
 
-    auto f = new FenWick(v);
+    const auto f = new FenWick(v);
 
     for (int i = 0; i < q; ++i) {
         cin >> type >> l >> r;
@@ -71,7 +71,9 @@ int main() {
         if (type == 2) {
             cout << f->sum_range(l, r) << "\n";
         } else {
-            f->update(k, u);
+            f->update(l, r);
         }
     }
+
+    delete f;
 }
