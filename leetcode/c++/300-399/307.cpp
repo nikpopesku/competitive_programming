@@ -18,11 +18,7 @@ public:
 
         nums[idx] = val;
 
-        while (idx < bit.size()) {
-            bit[idx] += delta;
-
-            idx = idx | (idx + 1);
-        }
+        add_delta(idx, delta);
     }
 
     [[nodiscard]] int sumRange(const int l, const int r) const {
@@ -55,6 +51,12 @@ private:
         return response;
     }
 };
+
+
+
+
+
+
 
 
 int main() {
