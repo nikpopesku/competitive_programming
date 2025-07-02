@@ -8,8 +8,9 @@ public:
     explicit NumArray(const vector<int> &nums) : nums(nums) {
         this->n = static_cast<int>(nums.size());
         bit.assign(n, 0);
+
         for (size_t i = 0; i < bit.size(); i++)
-            add(i, bit[i]);
+            add(i, nums[i]);
     }
 
     void add(size_t idx, const int delta) {
