@@ -38,13 +38,16 @@ auto solve() {
     int n;
     cin >> n;
     vector<Interval> intervals(n);
+
     vector<int> end_points;
+
     for (int i = 0; i < n; ++i) {
         cin >> intervals[i].start >> intervals[i].end;
         end_points.push_back(intervals[i].end);
     }
 
     ranges::sort(end_points);
+
     end_points.erase(ranges::unique(end_points).begin(), end_points.end());
 
     for (auto &[start, end]: intervals) {
@@ -60,6 +63,7 @@ auto solve() {
 
     long long inversions = 0;
     FenwickTree<int> ft(n);
+
     for (int i = 0; i < n; ++i) {
         inversions += ft.query(n - 1) - ft.query(intervals[i].end - 1);
         ft.update(intervals[i].end, 1);
