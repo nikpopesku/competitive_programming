@@ -14,7 +14,7 @@ public:
     }
 
 private:
-    vector<int> nums;
+    vector<int> nums = {};
 };
 
 
