@@ -13,7 +13,7 @@ public:
         }
     }
 
-    void update(int i, int value) {
+    void update(const int i, const int value) {
         const int delta = value - num[i];
 
         num[i] = value;
@@ -21,7 +21,7 @@ public:
         add_delta(i, delta);
     }
 
-    int sum_range(int l, int r) {
+    int sum_range(const int l, const int r) const {
         return sum(r) - sum(l - 1);
     }
 
@@ -54,12 +54,24 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    int n, q;
+    int n, q, type, l, r;
     vector<int> v;
 
     cin >> n >> q;
 
     for (int i = 0; i < n; ++i) {
         cin >> v[i];
+    }
+
+    auto f = new FenWick(v);
+
+    for (int i = 0; i < q; ++i) {
+        cin >> type >> l >> r;
+
+        if (type == 2) {
+            cout << f->sum_range(l, r) << "\n";
+        } else {
+            f->update(k, u);
+        }
     }
 }
