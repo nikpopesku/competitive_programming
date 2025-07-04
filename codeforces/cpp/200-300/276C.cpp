@@ -19,9 +19,9 @@ int main()
         cin >> a[i];
     }
 
-    vector<long long> count(n+1, 0);
+    vector<long long> count(n + 1, 0);
 
-    for (int i = 0 ; i < q; ++i)
+    for (int i = 0; i < q; ++i)
     {
         cin >> l >> r;
 
@@ -35,13 +35,13 @@ int main()
 
     for (int i = 1; i < n; ++i)
     {
-        count[i] += count[i-1];
+        count[i] += count[i - 1];
     }
 
     ranges::sort(a);
     ranges::sort(count.begin(), count.begin() + n);
 
-    long long response  = 0;
+    long long response = 0;
 
     for (int i = 0; i < n; ++i)
     {
