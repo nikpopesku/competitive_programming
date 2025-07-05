@@ -36,11 +36,12 @@ public:
         {
             response += bit[i];
 
-            i  = (i & i + 1) - 1;
+            i = (i & i + 1) - 1;
         }
 
         return response;
     }
+
 private:
     vector<int> bit;
     int n = 0;
