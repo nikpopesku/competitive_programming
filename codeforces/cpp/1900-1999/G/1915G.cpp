@@ -31,7 +31,6 @@ auto solve()
     priority_queue<pair<int, int>> q;
     q.emplace(0, 0);
     set<int> visited;
-    visited.insert(0);
     long long response = 0;
 
 
