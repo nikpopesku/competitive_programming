@@ -44,11 +44,11 @@ auto solve()
 
         for (auto [adj_city, distance] : adj[city])
         {
-            auto new_slow_factor = min(slow_factor_city, slow[adj_city]);
+            ll new_slow_factor = min(slow_factor_city, slow[adj_city]);
 
-            if (dist[adj_city][new_slow_factor] > dist[city][slow_factor_city] + distance * slow_factor_city)
+            if (dist[adj_city][new_slow_factor] > dist[city][slow_factor_city] + static_cast<ll>(distance) * static_cast<ll>(slow_factor_city))
             {
-                dist[adj_city][new_slow_factor] = dist[city][slow_factor_city] + distance * slow_factor_city;
+                dist[adj_city][new_slow_factor] = dist[city][slow_factor_city] + static_cast<ll>(distance) * static_cast<ll>(slow_factor_city);
                 q.emplace(-dist[adj_city][new_slow_factor], adj_city, new_slow_factor);
             }
         }
@@ -56,7 +56,7 @@ auto solve()
 
     auto response = inf;
 
-    for (auto value : dist[n])
+    for (ll value : dist[n])
     {
         response = min(response, value);
     }
