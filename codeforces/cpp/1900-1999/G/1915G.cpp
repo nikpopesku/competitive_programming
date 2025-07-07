@@ -5,56 +5,49 @@
 
 using namespace std;
 
+#define ll long long
+
+constexpr ll inf = 1e18;
+
 auto solve()
 {
     int n, m;
     cin >> n >> m;
     int u, v, w;
-    vector<map<int, int>> adj_list(n + 1);
-    vector<int> slow(n + 1);
+    vector<vector<pair<int, int>>> adj(n + 1);
+    vector<ll> slow(n + 1);
 
     for (int i = 0; i < m; ++i)
     {
         cin >> u >> v >> w;
-        if (adj_list[u].contains(v))
-        {
-            adj_list[u][v] = min(adj_list[u][v], w);
-        }
-        else
-        {
-            adj_list[u][v] = w;
-        }
+        adj[u].emplace_back(v, w);
+        adj[v].emplace_back(u, w);
     }
 
     for (int i = 1; i <= n; ++i) cin >> slow[i];
-    priority_queue<pair<int, int>> q;
-    q.emplace(0, 1);
-    map<int, int> times;
+    priority_queue<tuple<ll, ll, ll>> q;
+    q.emplace(0LL, 0LL, slow[0]);
+
+    vector dist(n, vector(n, inf));
+    vector visited(n, vector(n, false));
+
 
     while (!q.empty())
     {
-        auto [minus_weight, city] = q.top();
+        auto [time, city, slow_factor] = q.top();
         q.pop();
 
-        if (times.contains(city) and times[city] < -1 * minus_weight)
+        for (auto [adj_city, distance] : adj[city])
         {
-            continue;
-        }
+            auto new_slow_factor = min(slow_factor, slow[adj_city]);
 
-        times[city] = -1 * minus_weight;
-
-        for (auto [new_city, new_weight] : adj_list[city])
-        {
-            int new_total_path_weight = -new_weight * slow[city] + minus_weight;
-            if (times.contains(new_city) and new_total_path_weight < -1 * times[new_city])
+            if (dist[adj_city][slow_factor] > dist[adj_city][new_slow_factor] + time * new_slow_factor)
             {
-                continue;
+                dist[adj_city][slow_factor] = dist[adj_city][new_slow_factor] + time * new_slow_factor;
+                q.emplace(-dist[adj_city][new_slow_factor] + time * new_slow_factor, adj_city, new_slow_factor);
             }
-            q.emplace(new_total_path_weight, new_city);
         }
     }
-
-    cout << times[n] << "\n";
 }
 
 int main()
