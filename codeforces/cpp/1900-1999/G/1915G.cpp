@@ -2,7 +2,6 @@
 #include <vector>
 #include <map>
 #include <queue>
-#include <set>
 
 using namespace std;
 
@@ -48,7 +47,7 @@ auto solve()
 
         for (auto [new_city, new_weight] : adj_list[city])
         {
-            int new_total_path_weight = -new_weight * slow[new_city] + minus_weight;
+            int new_total_path_weight = -new_weight * slow[city] + minus_weight;
             if (times.contains(new_city) and new_total_path_weight < -1 * times[new_city])
             {
                 continue;
@@ -57,7 +56,7 @@ auto solve()
         }
     }
 
-    cout << times[n - 1] << "\n";
+    cout << times[n-1] << "\n";
 }
 
 int main()
