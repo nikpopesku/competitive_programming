@@ -10,8 +10,8 @@ auto solve()
     int n, m;
     cin >> n >> m;
     int u, v, w;
-    vector<map<int, int>> adj_list(n+1);
-    vector<int> slow(n+1);
+    vector<map<int, int>> adj_list(n + 1);
+    vector<int> slow(n + 1);
 
     for (int i = 0; i < m; ++i)
     {
