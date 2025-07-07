@@ -48,9 +48,9 @@ auto solve()
         {
             auto new_slow_factor = min(slow_factor_city, slow[adj_city]);
 
-            if (dist[adj_city][new_slow_factor] > - time + distance * slow[city])
+            if (dist[adj_city][new_slow_factor] > -time + distance * slow[city])
             {
-                dist[adj_city][new_slow_factor] = - time + distance * slow[city];
+                dist[adj_city][new_slow_factor] = -time + distance * slow[city];
                 q.emplace(-dist[adj_city][new_slow_factor], adj_city, new_slow_factor);
             }
         }
