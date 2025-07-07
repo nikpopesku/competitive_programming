@@ -32,33 +32,32 @@ auto solve()
     for (int i = 0; i < n; ++i) cin >> slow[i];
     priority_queue<pair<int, int>> q;
     q.emplace(0, 0);
-    set<int> visited;
-    long long response = 0;
-
+    map<int, int> times;
 
     while (!q.empty())
     {
         auto [minus_weight, city] = q.top();
         q.pop();
 
-        if (visited.contains(city)) continue;
-
-        visited.insert(city);
-
-        if (city == n - 1)
+        if (times.contains(city) and times[city] < -1 * minus_weight)
         {
-            response = -minus_weight;
-            break;
+            continue;
         }
+
+        times[city] = -1 * minus_weight;
 
         for (auto [new_city, new_weight] : adj_list[city])
         {
-            if (visited.contains(new_city)) continue;
-            q.emplace(-new_weight * slow[city] + minus_weight, new_city);
+            int new_total_path_weight = -new_weight * slow[new_city] + minus_weight;
+            if (times.contains(new_city) and new_total_path_weight < -1 * times[new_city])
+            {
+                continue;
+            }
+            q.emplace(new_total_path_weight, new_city);
         }
     }
 
-    cout << response << "\n";
+    cout << times[n-1] << "\n";
 }
 
 int main()
