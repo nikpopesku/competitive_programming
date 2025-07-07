@@ -36,6 +36,7 @@ auto solve()
     {
         auto [time, city, slow_factor] = q.top();
         q.pop();
+        visited[city][slow_factor] = true;
 
         for (auto [adj_city, distance] : adj[city])
         {
@@ -48,6 +49,15 @@ auto solve()
             }
         }
     }
+
+    auto response = inf;
+
+    for (auto value : dist[n - 1])
+    {
+        response = min(response, value);
+    }
+
+    cout << response << "\n";
 }
 
 int main()
