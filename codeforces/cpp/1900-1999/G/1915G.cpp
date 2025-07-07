@@ -28,8 +28,8 @@ auto solve()
     priority_queue<tuple<ll, ll, ll>> q;
     q.emplace(0LL, 1LL, slow[1]);
 
-    vector dist(n+1, vector(n+1, inf));
-    vector visited(n+1, vector(n+1, false));
+    vector dist(n + 1, vector(n + 1, inf));
+    vector visited(n + 1, vector(n + 1, false));
     dist[1][slow[1]] = 0;
 
 
