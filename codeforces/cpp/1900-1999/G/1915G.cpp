@@ -57,7 +57,7 @@ auto solve()
         }
     }
 
-    cout << times[n-1] << "\n";
+    cout << times[n - 1] << "\n";
 }
 
 int main()
