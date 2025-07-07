@@ -29,7 +29,7 @@ auto solve()
 
     for (int i = 0; i < n; ++i) cin >> slow[i];
     priority_queue<pair<int, int>> q;
-    q.push({0, 0});
+    q.emplace(0, 0);
     set<int> visited;
     visited.insert(0);
     long long response = 0;
@@ -53,7 +53,7 @@ auto solve()
         for (auto [new_city, new_weight] : adj_list[city])
         {
             if (visited.contains(new_city)) continue;
-            q.push({-new_weight * slow[city] + minus_weight, new_city});
+            q.emplace(-new_weight * slow[city] + minus_weight, new_city);
         }
     }
 
