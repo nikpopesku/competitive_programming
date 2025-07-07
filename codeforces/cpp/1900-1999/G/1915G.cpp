@@ -10,6 +10,7 @@ auto solve()
     cin >> n >> m;
     int u, v, w;
     vector<map<int, int>> adj_list(n);
+    vector<int> slow(n);
 
     for (int i = 0; i < m; ++i)
     {
@@ -23,6 +24,8 @@ auto solve()
             adj_list[u][v] = w;
         }
     }
+
+    for (int i = 0; i < n;  ++i) cin >> slow[i];
 }
 
 int main()
