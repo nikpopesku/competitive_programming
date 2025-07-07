@@ -17,6 +17,8 @@ auto solve()
     for (int i = 0; i < m; ++i)
     {
         cin >> u >> v >> w;
+        --u;
+        --v;
         if (adj_list[u].contains(v))
         {
             adj_list[u][v] = min(adj_list[u][v], w);
