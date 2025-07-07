@@ -10,14 +10,12 @@ auto solve()
     int n, m;
     cin >> n >> m;
     int u, v, w;
-    vector<map<int, int>> adj_list(n);
-    vector<int> slow(n);
+    vector<map<int, int>> adj_list(n+1);
+    vector<int> slow(n+1);
 
     for (int i = 0; i < m; ++i)
     {
         cin >> u >> v >> w;
-        --u;
-        --v;
         if (adj_list[u].contains(v))
         {
             adj_list[u][v] = min(adj_list[u][v], w);
@@ -28,9 +26,9 @@ auto solve()
         }
     }
 
-    for (int i = 0; i < n; ++i) cin >> slow[i];
+    for (int i = 1; i <= n; ++i) cin >> slow[i];
     priority_queue<pair<int, int>> q;
-    q.emplace(0, 0);
+    q.emplace(0, 1);
     map<int, int> times;
 
     while (!q.empty())
@@ -56,7 +54,7 @@ auto solve()
         }
     }
 
-    cout << times[n-1] << "\n";
+    cout << times[n] << "\n";
 }
 
 int main()
