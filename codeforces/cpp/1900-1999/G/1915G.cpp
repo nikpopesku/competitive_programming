@@ -20,6 +20,7 @@ auto solve()
     for (int i = 0; i < m; ++i)
     {
         cin >> u >> v >> w;
+        --u; --v;
         adj[u].emplace_back(v, w);
         adj[v].emplace_back(u, w);
     }
@@ -36,16 +37,19 @@ auto solve()
     {
         auto [time, city, slow_factor] = q.top();
         q.pop();
+
+        if (!visited[city][slow_factor] || dist[city][slow_factor] == inf) continue;
+
         visited[city][slow_factor] = true;
+
+        auto new_slow_factor = min(slow_factor, slow[city]);
 
         for (auto [adj_city, distance] : adj[city])
         {
-            auto new_slow_factor = min(slow_factor, slow[adj_city]);
-
-            if (dist[adj_city][slow_factor] > dist[adj_city][new_slow_factor] + time * new_slow_factor)
+            if (dist[adj_city][new_slow_factor] > dist[adj_city][slow_factor] + time * new_slow_factor)
             {
-                dist[adj_city][slow_factor] = dist[adj_city][new_slow_factor] + time * new_slow_factor;
-                q.emplace(-dist[adj_city][new_slow_factor] + time * new_slow_factor, adj_city, new_slow_factor);
+                dist[adj_city][new_slow_factor] = dist[adj_city][slow_factor] + time * new_slow_factor;
+                q.emplace(-dist[adj_city][new_slow_factor], adj_city, new_slow_factor);
             }
         }
     }
