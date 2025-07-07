@@ -14,25 +14,23 @@ auto solve()
     int n, m;
     cin >> n >> m;
     int u, v, w;
-    vector<vector<pair<int, int>>> adj(n);
-    vector<ll> slow(n);
+    vector<vector<pair<int, int>>> adj(n + 1);
+    vector<ll> slow(n + 1);
 
     for (int i = 0; i < m; ++i)
     {
         cin >> u >> v >> w;
-        --u;
-        --v;
         adj[u].emplace_back(v, w);
         adj[v].emplace_back(u, w);
     }
 
-    for (int i = 0; i < n; ++i) cin >> slow[i];
+    for (int i = 1; i <= n; ++i) cin >> slow[i];
     priority_queue<tuple<ll, ll, ll>> q;
-    q.emplace(0LL, 0LL, 0LL);
+    q.emplace(0LL, 1LL, slow[1]);
 
-    vector dist(n, vector(n, inf));
-    vector visited(n, vector(n, false));
-    dist[0][0] = 0;
+    vector dist(n+1, vector(n+1, inf));
+    vector visited(n+1, vector(n+1, false));
+    dist[1][slow[1]] = 0;
 
 
     while (!q.empty())
@@ -48,9 +46,9 @@ auto solve()
         {
             auto new_slow_factor = min(slow_factor_city, slow[adj_city]);
 
-            if (dist[adj_city][new_slow_factor] > -time + distance * slow[city])
+            if (dist[adj_city][new_slow_factor] > dist[city][slow_factor_city] + distance * slow_factor_city)
             {
-                dist[adj_city][new_slow_factor] = -time + distance * slow[city];
+                dist[adj_city][new_slow_factor] = dist[city][slow_factor_city] + distance * slow_factor_city;
                 q.emplace(-dist[adj_city][new_slow_factor], adj_city, new_slow_factor);
             }
         }
@@ -58,7 +56,7 @@ auto solve()
 
     auto response = inf;
 
-    for (auto value : dist[n - 1])
+    for (auto value : dist[n])
     {
         response = min(response, value);
     }
