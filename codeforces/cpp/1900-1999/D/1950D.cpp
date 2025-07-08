@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <math.h>
 
 using namespace std;
@@ -9,6 +10,7 @@ void solve()
     cin >> n;
     int i = 2;
     string response = "YES";
+    vector<int> numbers = {};
     for (const char j : to_string(n))
     {
         if (j - '0' > 1)
@@ -32,6 +34,7 @@ void solve()
     {
         if (n % i == 0)
         {
+            numbers.push_back(i);
             string s = to_string(i);
             for (const char j : s)
             {
@@ -49,8 +52,9 @@ void solve()
 
         ++i;
     }
+    numbers.push_back(n);
 
-    cout << response << "\n";
+    cout << (numbers.size() == 1 ? "NO" : response) << "\n";
 }
 
 int main()
