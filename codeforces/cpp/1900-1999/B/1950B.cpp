@@ -29,7 +29,7 @@ void solve()
                 elem = '.';
             }
 
-            cout << elem << " ";
+            cout << elem;
         }
 
         cout << "\n";
