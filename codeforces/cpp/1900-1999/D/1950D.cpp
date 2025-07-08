@@ -9,9 +9,7 @@ void solve()
     cin >> n;
     int i = 2;
     string response = "YES";
-
-    const string s = to_string(n);
-    for (const char j : s)
+    for (const char j : to_string(n))
     {
         if (j - '0' > 1)
         {
