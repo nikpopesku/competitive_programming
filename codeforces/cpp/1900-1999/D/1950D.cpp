@@ -7,32 +7,52 @@ void solve()
 {
     int n;
     cin >> n;
-    int i = 1;
-    string response = "YES\n";
+    int i = 2;
+    string response = "YES";
+
+    const string s = to_string(n);
+    for (const char j : s)
+    {
+        if (j - '0' > 1)
+        {
+            response = "NO";
+
+            break;
+        }
+    }
+
+    if (response == "YES")
+    {
+        cout << response << "\n";
+
+        return;
+    }
+
+    response = "YES";
 
     while (i <= static_cast<int>(sqrt(n)))
     {
         if (n % i == 0)
         {
-            string s = static_cast<string>(i);
-            for (int j = 0; s.size(); ++j)
+            string s = to_string(i);
+            for (const char j : s)
             {
-                if (s[i] >= '2')
+                if (j - '0' > 1)
                 {
-                    response = "NO\n";
+                    response = "NO";
                     break;
                 }
             }
 
             n /= i;
-            i = 1;
+            i = 2;
             continue;
         }
 
         ++i;
     }
 
-    cout << response;
+    cout << response << "\n";
 }
 
 int main()
