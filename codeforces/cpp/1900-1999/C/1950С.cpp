@@ -7,13 +7,6 @@ void solve()
     string inp;
     cin >> inp;
 
-    if (inp == "00:00")
-    {
-        cout << "12:00 AM\n";
-
-        return;
-    }
-
     int hour = (inp[0] - '0') * 10 + (inp[1] - '0');
     string part_of_day = "AM";
 
@@ -24,6 +17,11 @@ void solve()
         {
             hour -= 12;
         }
+    }
+
+    if (hour == 0)
+    {
+        hour += 12;
     }
 
     if (hour < 10)
