@@ -7,11 +7,11 @@ const int MOD = 1'000'000'007;
 
 vector<int> binary_decimals;
 
-bool ok(int n)
+bool ok(const int n)
 {
     if (n == 1) { return true; }
     bool ans = false;
-    for (int i : binary_decimals)
+    for (const int i : binary_decimals)
     {
         if (n % i == 0)
         {
