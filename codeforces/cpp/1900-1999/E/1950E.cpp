@@ -18,7 +18,7 @@ void solve()
     }
 
     int i = 2;
-    int sq = sqrt(n);
+    int sq = static_cast<int>(sqrt(n));
     vector<int> factors;
 
     while (i <= sq and n > 1)
@@ -27,7 +27,7 @@ void solve()
         {
             factors.push_back(i);
             n /= i;
-            sq = sqrt(n);
+            sq = static_cast<int>(sqrt(n));
             i = 2;
 
             continue;
