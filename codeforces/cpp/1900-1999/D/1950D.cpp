@@ -2,8 +2,8 @@
 
 using namespace std;
 
-const int MAX = 100'007;
-const int MOD = 1'000'000'007;
+constexpr int MAX = 100'007;
+constexpr int MOD = 1'000'000'007;
 
 vector<int> binary_decimals;
 
