@@ -1,52 +1,77 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
 constexpr int MAX = 100'007;
-constexpr int MOD = 1'000'000'007;
 
-vector<int> binary_decimals;
 
-bool ok(const int n)
+bool ok(const int n, vector<int>& binary_decimals)
 {
-    if (n == 1) { return true; }
-    bool ans = false;
-    for (const int i : binary_decimals)
+    if (n == 1)
     {
-        if (n % i == 0)
-        {
-            ans |= ok(n / i);
-        }
+        return true;
     }
-    return ans;
+
+    bool response = false;
+
+    for (const int k: binary_decimals)
+    {
+        if (n % k == 0)
+        {
+            response |= ok(n / k, binary_decimals);
+        }
+
+        if (response) break;
+    }
+
+    return response;
 }
 
-void solve()
+void solve(vector<int>& binary_decimals)
 {
     int n;
     cin >> n;
-    cout << (ok(n) ? "YES\n" : "NO\n");
+
+    cout << (ok(n, binary_decimals) ? "YES" :  "NO") << "\n";
 }
 
 int main()
 {
-    for (int i = 2; i < MAX; i++)
+
+    vector<int> binary_decimals;
+
+    int t;
+    cin >> t;
+
+    int i = 2;
+
+    while (i <= MAX)
     {
-        int curr = i;
-        bool bad = false;
-        while (curr)
+        int current = i;
+        bool flag = true;
+
+        while (current)
         {
-            if (curr % 10 > 1)
+            if (current % 10 > 1)
             {
-                bad = true;
+                flag = false;
                 break;
             }
-            curr /= 10;
+
+            current /= 10;
         }
-        if (!bad) { binary_decimals.push_back(i); }
+
+        if (flag)
+        {
+            binary_decimals.push_back(i);
+        }
+
+        i++;
     }
-    int tt;
-    cin >> tt;
-    for (int i = 1; i <= tt; i++) { solve(); }
-    // solve();
+
+    while (t--)
+    {
+        solve(binary_decimals);
+    }
 }
