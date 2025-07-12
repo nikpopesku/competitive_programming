@@ -30,29 +30,31 @@ void solve()
     for (const auto f:factors)
     {
         const int k = s.size() / f;
-        int total_counter = 0;
+        int total_counter_prefix = 0;
+        int total_counter_suffix = 0;
 
         for (int k0 = 0; k0 < k; ++k0)
         {
-            int counter = 0;
+            int counter_prefix = 0;
+            int counter_suffix = 0;
 
             for (i = 0; i < f;++i)
             {
                 if (s[i] != s[k0 * f + i])
                 {
-                    ++counter;
+                    ++counter_prefix;
+                }
+                if (s[(k - 1) * f + i] != s[k0 * f + i])
+                {
+                    ++counter_suffix;
                 }
             }
 
-            total_counter += counter;
-
-            if (counter > 1 or total_counter > 1)
-            {
-                break;
-            }
+            total_counter_prefix += counter_prefix;
+            total_counter_suffix += counter_suffix;
         }
 
-        if (total_counter <= 1)
+        if (total_counter_prefix <= 1 or total_counter_suffix <= 1)
         {
             cout << f << "\n";
             break;
