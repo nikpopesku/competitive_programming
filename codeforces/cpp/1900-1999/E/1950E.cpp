@@ -30,25 +30,32 @@ void solve()
 
     for (const auto f:factors)
     {
-        int counter = 0;
+        const int k = s.size() / f;
+        int total_counter = 0;
 
-        for (i = 0; i < s.size();++i)
+        for (int k0 = 0; k0 < k; ++k0)
         {
-            if (s[i % f] != s[i])
+            int counter = 0;
+
+            for (i = 0; i < f;++i)
             {
-                ++counter;
+                if (s[i] != s[k0 * f + i])
+                {
+                    ++counter;
+                }
+            }
+
+            total_counter += counter;
+
+            if (counter > 1 or total_counter > 1)
+            {
+                break;
             }
         }
 
-        if (f > 1 and counter <= s.size() / f)
+        if (total_counter <= 1)
         {
             cout << f << "\n";
-            break;
-        }
-
-        if (f == 1 and counter <= 1)
-        {
-            cout << "1\n";
             break;
         }
     }
