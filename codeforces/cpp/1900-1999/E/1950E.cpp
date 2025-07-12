@@ -13,27 +13,16 @@ void solve()
     cin >> s;
 
     int i = 2;
-    int sq = static_cast<int>(sqrt(n));
     vector factors = {1, s.size()};
 
-    while (i <= sq and n > 1)
+    while (i <= n / 2 and n > 1)
     {
         if (n % i == 0)
         {
             factors.push_back(i);
-            n /= i;
-            sq = static_cast<int>(sqrt(n));
-            i = 2;
-
-            continue;
         }
 
         i++;
-    }
-
-    if (n > 1)
-    {
-        factors.push_back(n);
     }
 
     ranges::sort(factors);
@@ -49,13 +38,17 @@ void solve()
             {
                 ++counter;
             }
-
-            if (counter > 1) break;
         }
 
-        if (counter <= 1)
+        if (f > 1 and counter <= s.size() / f)
         {
             cout << f << "\n";
+            break;
+        }
+
+        if (f == 1 and counter <= 1)
+        {
+            cout << "1\n";
             break;
         }
     }
