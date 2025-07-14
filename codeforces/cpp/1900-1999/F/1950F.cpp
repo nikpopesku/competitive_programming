@@ -1,26 +1,54 @@
-#include <bits/stdc++.h>
+#include <iostream>
 
 using namespace std;
 
 void solve() {
     int a, b, c;
     cin >> a >> b >> c;
-    if (a + 1 != c) {cout << -1 << '\n'; return;}
-    if (a + b + c == 1) {cout << 0 << '\n'; return;}
-    int curr = 1, next = 0, res = 1;
-    for (int i = 0; i < a + b; i++) {
-        if (!curr) {
-            swap(next, curr);
-            res++;
-        }
-        curr--;
-        next++;
-        if (i < a) {next++;}
+    if (c != a + 1)
+    {
+        cout << "-1\n";
+        return;
     }
-    cout << res << '\n';
+
+    if (a + b + c == 1)
+    {
+        cout << "0\n";
+        return;
+    }
+
+
+
+    int current = 1;
+    int response = 1;
+    int next = 0;
+
+    for (int i = 0; i < a + b; ++i)
+    {
+        if (current == 0)
+        {
+            swap(current, next);
+            ++response;
+        }
+
+        ++next;
+        --current;
+
+        if (i < a)
+        {
+            ++next;
+        }
+    }
+
+    cout << response << "\n";
+
 }
 
 int main() {
-    int tt; cin >> tt; for (int i = 1; i <= tt; i++) {solve();}
-    // solve();
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
 }
