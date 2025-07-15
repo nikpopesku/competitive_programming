@@ -1,67 +1,77 @@
-#include "bits/stdc++.h"
-using namespace std;
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
 
-#define all(x) x.begin(),x.end()
+using namespace std;
 
 void solve()
 {
     int n;
     cin >> n;
-    vector<int> s(n), g(n);
-    vector<string> aa(n), bb(n);
-    vector<string> vals;
+    vector<string> genre(n), artist(n);
     for (int i = 0; i < n; ++i)
     {
-        string a, b;
-        cin >> a >> b;
-        vals.push_back(a);
-        vals.push_back(b);
-        aa[i] = a, bb[i] = b;
+        cin >> genre[i] >> artist[i];
     }
-    sort(all(vals));
-    vals.erase(unique(all(vals)), vals.end());
+
+    if (n == 0)
+    {
+        cout << 0 << endl;
+        return;
+    }
+
+    vector adj(n, vector<int>(n));
     for (int i = 0; i < n; ++i)
     {
-        s[i] = lower_bound(all(vals), aa[i]) - vals.begin();
-        g[i] = lower_bound(all(vals), bb[i]) - vals.begin();
-    }
-    vector<vector<int>> dp(1 << n, vector<int>(n, 0));
-    for (int i = 0; i < n; ++i) dp[1 << i][i] = 1;
-    for (int mask = 0; mask < (1 << n); ++mask)
-    {
-        for (int lst = 0; lst < n; ++lst)
+        for (int j = 0; j < n; ++j)
         {
-            if (!dp[mask][lst]) continue;
-            for (int i = 0; i < n; ++i)
+            if (i == j) continue;
+            if (genre[i] == genre[j] || artist[i] == artist[j])
             {
-                if (mask >> i & 1) continue;
-                if (s[lst] == s[i] || g[lst] == g[i])
+                adj[i][j] = 1;
+            }
+        }
+    }
+
+    vector<vector<int>> dp(1 << n, vector<int>(n, 0));
+    for (int i = 0; i < n; ++i)
+    {
+        dp[1 << i][i] = 1;
+    }
+
+    int max_len = 1;
+    for (int mask = 1; mask < (1 << n); ++mask)
+    {
+        for (int i = 0; i < n; ++i)
+        {
+            if (dp[mask][i] > 0)
+            {
+                for (int j = 0; j < n; ++j)
                 {
-                    dp[mask | (1 << i)][i] |= dp[mask][lst];
+                    if (!(mask & (1 << j)) && adj[i][j])
+                    {
+                        const int next_mask = mask | (1 << j);
+                        dp[next_mask][j] = max(dp[next_mask][j], dp[mask][i] + 1);
+                        max_len = max(max_len, dp[next_mask][j]);
+                    }
                 }
             }
         }
     }
-    int ans = 0;
-    for (int mask = 0; mask < (1 << n); ++mask)
-    {
-        for (int i = 0; i < n; ++i)
-        {
-            if (dp[mask][i])
-            {
-                ans = max(ans, __builtin_popcount(mask));
-            }
-        }
-    }
-    cout << n - ans << "\n";
+
+    cout << n - max_len << endl;
 }
 
-void main()
+int main()
 {
-    int t = 1;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
     cin >> t;
     while (t--)
     {
         solve();
     }
+    return 0;
 }
