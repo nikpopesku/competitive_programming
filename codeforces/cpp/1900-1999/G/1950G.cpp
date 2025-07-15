@@ -34,7 +34,7 @@ void solve()
         }
     }
 
-    vector<vector<int>> dp(1 << n, vector<int>(n, 0));
+    vector dp(1 << n, vector(n, 0));
     for (int i = 0; i < n; ++i)
     {
         dp[1 << i][i] = 1;
