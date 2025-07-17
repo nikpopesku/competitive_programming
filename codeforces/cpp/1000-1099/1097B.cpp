@@ -5,14 +5,23 @@ using namespace std;
 
 void solve()
 {
-    int n;
+    int n, value;
     cin >> n;
-    vector<int> v(n);
+
+    int comb1 = 0;
+    int comb2 = 0;
 
     for (int i = 0; i < n; ++i)
     {
-        cin >> v[i];
+        cin >> value;
+
+        comb1 ^= value;
+        comb2 += value;
     }
+
+
+    cout << (comb1 == 0 || comb2 % 360 == 0 ? "YES" : "NO") << "\n";
+
 }
 
 int main()

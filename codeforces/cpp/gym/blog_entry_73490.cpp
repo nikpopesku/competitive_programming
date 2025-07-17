@@ -20,12 +20,14 @@ string to_binary(int x)
 
 int main()
 {
-    cout << "13 = " << to_binary(13) << endl; // 1101
+    cout << "10 = " << to_binary(10) << endl;
 
-    int x = 53;
-    int y = 28;
-    cout << "53 = " << to_binary(x) << endl; // 1101
-    cout << "28 = " << to_binary(y) << endl; // 1101
+    int x = 20;
+    int y = 30;
+    cout << "20 = " << to_binary(x) << endl;
+    cout << "30 = " << to_binary(y) << endl;
+
+    cout << ((10 ^ 20) ^ 30) << endl;
 
     cout << "x & y = " << to_binary(x & y) << " x | y = " << to_binary(x | y) << " x ^ y = " << to_binary(x ^ y);
 }
