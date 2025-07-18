@@ -24,7 +24,7 @@ void solve()
 
         while (j < n)
         {
-            if (i & (1 << j))
+            if (i & 1 << j)
             {
                 sum += c[j];
                 min_c = min(min_c, c[j]);
