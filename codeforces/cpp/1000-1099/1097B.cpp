@@ -15,13 +15,12 @@ void solve()
 
     for (int i = 0; i <= std::pow(2, n - 1); ++i)
     {
-        int value = i;
         int j = 0;
         int sum = 0;
 
         while (j <= n - 1)
         {
-            sum += (value & (1 << j) ? 1 : -1) * v[j];
+            sum += (i & (1 << j) ? 1 : -1) * v[j];
             ++j;
         }
 
