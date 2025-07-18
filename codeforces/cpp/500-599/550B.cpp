@@ -20,6 +20,7 @@ void solve()
         int sum = 0;
         int min_c = 1e9;
         int max_c = 1;
+        int count = 0;
 
 
         while (j < n)
@@ -29,11 +30,12 @@ void solve()
                 sum += c[j];
                 min_c = min(min_c, c[j]);
                 max_c = max(max_c, c[j]);
+                ++count;
             }
             ++j;
         }
 
-        if (sum >= l && sum <= r and max_c - min_c >= x) ++total_ways;
+        if (count >= 2 && sum >= l && sum <= r and max_c - min_c >= x) ++total_ways;
     }
 
     cout << total_ways << "\n";
