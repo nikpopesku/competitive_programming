@@ -1,27 +1,38 @@
 #include <iostream>
+#include <cmath>
 #include <vector>
 
 using namespace std;
 
 void solve()
 {
-    int n, value;
+    int n;
     cin >> n;
+    vector<int> v(n);
+    bool response = false;
 
-    int comb1 = 0;
-    int comb2 = 0;
+    for (int i = 0; i < n; ++i) cin >> v[i];
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i <= std::pow(2, n - 1); ++i)
     {
-        cin >> value;
+        int value = i;
+        int j = 0;
+        int sum = 0;
 
-        comb1 ^= value;
-        comb2 += value;
+        while (j <= n - 1)
+        {
+            sum += (value & (1 << j) ? 1 : -1) * v[j];
+            ++j;
+        }
+
+        if (sum % 360 == 0)
+        {
+            response = true;
+            break;
+        }
     }
 
-
-    cout << (comb1 == 0 || comb2 % 360 == 0 ? "YES" : "NO") << "\n";
-
+    cout << (response ? "YES" : "NO") << "\n";
 }
 
 int main()
