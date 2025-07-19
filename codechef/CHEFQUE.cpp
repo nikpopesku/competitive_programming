@@ -4,7 +4,7 @@
 
 using namespace std;
 
-constexpr long long MAX = pow(2, 32);
+constexpr long long MAX = static_cast<long long>(pow(2, 32));
 
 int main()
 {
@@ -39,7 +39,7 @@ int main()
 
     long long sum = 0;
 
-    for (long long i  = 0; i < MAX; ++i)
+    for (long long i = 0; i < MAX; ++i)
     {
         if (bit & 1 << i) sum += i;
     }
