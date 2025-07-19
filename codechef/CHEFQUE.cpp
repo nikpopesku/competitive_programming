@@ -35,11 +35,5 @@ int main()
         }
     }
 
-
-    // for (long long i = 0; i < MAX; ++i)
-    // {
-    //     if (bit & 1 << i) sum += i;
-    // }
-
     cout << sum << "\n";
 }
