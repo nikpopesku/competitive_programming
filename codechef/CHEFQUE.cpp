@@ -1,6 +1,5 @@
 #include <iostream>
 #include <bitset>
-#include <cmath>
 
 using namespace std;
 
