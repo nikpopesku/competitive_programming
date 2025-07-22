@@ -1,16 +1,18 @@
 #include <iostream>
 #include <bitset>
+#include <cstdint>
 
 using namespace std;
 
-constexpr size_t MAX = 1UL << 31;
 
 int main()
 {
+    constexpr uint64_t MAX = 1ULL << 32;
+
     long long q, s1, a, b;
     cin >> q >> s1 >> a >> b;
-    unsigned long long s = s1 % MAX;
-    unsigned long long sum = 0;
+    uint64_t s = s1 % MAX;
+    uint64_t sum = 0;
     bitset<MAX> bit(0);
 
     if (s1 % 2 == 1)
@@ -22,14 +24,14 @@ int main()
     {
         s = (a * s + b) % MAX;
 
-        if (s % 2 == 1 and !bit[1 << (s / 2)])
+        if (s % 2 == 1 and !bit[s / 2])
         {
-            bit |= 1 << s;
+            bit[s / 2] = true;
             sum += s / 2;
         }
-        else if (s % 2 == 0 && bit[1 << (s / 2)])
+        else if (s % 2 == 0 && bit[s / 2])
         {
-            bit &= ~(1 << s);
+            bit[s / 2] = false;
             sum -= s / 2;
         }
     }
