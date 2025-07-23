@@ -6,50 +6,43 @@ using namespace std;
 class Solution
 {
 public:
-    static vector<int> findSubtreeSizes(vector<int>& parent, const string& s)
+    vector<int> findSubtreeSizes(const vector<int>& parent, const string& s)
     {
-        for (int i = 1; i < parent.size(); ++i)
-        {
-            int current = parent[i];
-            while (current != -1 && s[current] != s[i])
-            {
-                current = parent[current];
-            }
+        const int n = static_cast<int>(parent.size());
+        vector<vector<int>> children(n);
 
-            if (current != -1 && s[current] == s[i])
-            {
-                parent[i] = current;
-            }
+        // Build adjacency from initial parent info
+        for (int i = 1; i < n; ++i) {
+            children[parent[i]].push_back(i);
         }
 
-        vector size(parent.size(), -1);
+        vector ans(n, 0);
+        vector<vector<int>> d(26);
 
-        vector<vector<int>> child(parent.size());
-        for (int i = 1; i < parent.size(); ++i)
-        {
-            child[parent[i]].push_back(i);
-        }
-        getSize(0, child, size);
-
-        return size;
+        // d[ch] will contain stack of current ancestors whose character is 'a'+ch
+        dfs(0, -1, ans, s, children, d);
+        return ans;
     }
 
-    static int getSize(const int node, vector<vector<int>>& child, vector<int>& size)
-    {
-        if (size[node] != -1)
-        {
-            return size[node];
+     void dfs(const int node, const int fa, vector<int>& ans, const string& s, const vector<vector<int>>& children, vector<vector<int>>& d) {
+        ans[node] = 1;
+        int c = s[node] - 'a';
+        d[c].push_back(node);
+
+        for (const int ch : children[node]) {
+            dfs(ch, node, ans, s, children, d);
         }
 
-        size[node] = 1;
+        // The closest ancestor with same char is second last element in d[c];
+        // if none, use fa
+        int closestAncestorWithSameChar = (d[c].size() > 1) ? d[c][d[c].size() - 2] : fa;
 
-        for (const auto c : child[node])
-        {
-            size[node] += getSize(c, child, size);
+        if (closestAncestorWithSameChar != -1) {
+            ans[closestAncestorWithSameChar] += ans[node];
         }
 
-        return size[node];
-    }
+        d[c].pop_back();
+    };
 };
 
 
@@ -57,9 +50,9 @@ int main()
 {
     Solution s;
 
-    vector a = {-1, 0, 0, 1, 1, 1};
+    vector a = {-1,0,4,0,1};
 
-    for (const vector response = s.findSubtreeSizes(a, "abaabc"); auto i : response)
+    for (const vector response = s.findSubtreeSizes(a, "abbba"); auto i : response)
     {
         cout << i << " ";
     }
