@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<int> findSubtreeSizes(vector<int>& parent, string s)
+    static vector<int> findSubtreeSizes(vector<int>& parent, const string& s)
     {
         for (int i = 0; i < parent.size(); ++i)
         {
@@ -21,6 +21,8 @@ public:
                 parent[i] = current;
             }
         }
+
+        return parent;
     }
 };
 
