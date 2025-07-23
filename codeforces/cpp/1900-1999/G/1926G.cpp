@@ -21,10 +21,7 @@ void solve()
     cin >> s;
     int response = 0;
 
-    for (int i = 0; i < s.size(); ++i)
-    {
-        if (s[i] == 'S') ++response;
-    }
+    for (const char i : s) if (i == 'S') ++response;
 
     cout << response << "\n";
 }
