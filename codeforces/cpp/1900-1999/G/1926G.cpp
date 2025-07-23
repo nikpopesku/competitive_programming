@@ -5,14 +5,16 @@ using namespace std;
 
 void solve()
 {
-    int n;
+    int n, value;
     cin >> n;
-    vector a(n-1, 0);
+    vector<vector<int>> adj_list(n+1);
     string s;
 
     for (int i = 2; i <= n; ++i)
     {
-        cin >> a[i-2];
+        cin >> value;
+        adj_list[value].push_back(i);
+        adj_list[i].push_back(value);
     }
 
     cin >> s;
