@@ -17,7 +17,16 @@ void solve()
         adj_list[i].push_back(value);
     }
 
+
     cin >> s;
+    int response = 0;
+
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (s[i] == 'S') ++response;
+    }
+
+    cout << response << "\n";
 }
 
 int main()
