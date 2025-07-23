@@ -8,7 +8,7 @@ class Solution
 public:
     static vector<int> findSubtreeSizes(vector<int>& parent, const string& s)
     {
-        for (int i = 0; i < parent.size(); ++i)
+        for (int i = 1; i < parent.size(); ++i)
         {
             int current = parent[i];
             while (current != -1 && s[current] != s[i])
@@ -16,7 +16,7 @@ public:
                 current = parent[current];
             }
 
-            if (s[current] == s[i])
+            if (current != -1 && s[current] == s[i])
             {
                 parent[i] = current;
             }
@@ -25,7 +25,10 @@ public:
         vector size(parent.size(), -1);
 
         vector<vector<int>> child(parent.size());
-        for (int i = 0; i < parent.size(); ++i) child[parent[i]].push_back(i);
+        for (int i = 1; i < parent.size(); ++i)
+        {
+            child[parent[i]].push_back(i);
+        }
         getSize(0, child, size);
 
         return size;
@@ -56,7 +59,7 @@ int main()
 
     vector a = {-1, 0, 0, 1, 1, 1};
 
-    for (const vector response = s.findSubtreeSizes(a, "abaabc"); auto i: response)
+    for (const vector response = s.findSubtreeSizes(a, "abaabc"); auto i : response)
     {
         cout << i << " ";
     }
