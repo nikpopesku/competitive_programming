@@ -6,8 +6,7 @@ using namespace std;
 #define INF (int)1e18
  
 int n;
- constexpr
- int N = 1e5 + 69;
+constexpr int N = 1e5 + 69;
 int dp[N][3];
 string s; 
 vector <int> adj[N];
