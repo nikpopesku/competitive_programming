@@ -22,7 +22,30 @@ public:
             }
         }
 
-        return parent;
+        vector size(parent.size(), -1);
+
+        vector<vector<int>> child(parent.size());
+        for (int i = 0; i < parent.size(); ++i) child[parent[i]].push_back(i);
+        getSize(0, child, size);
+
+        return size;
+    }
+
+    static int getSize(const int node, vector<vector<int>>& child, vector<int>& size)
+    {
+        if (size[node] != -1)
+        {
+            return size[node];
+        }
+
+        size[node] = 1;
+
+        for (const auto c : child[node])
+        {
+            size[node] += getSize(c, child, size);
+        }
+
+        return size[node];
     }
 };
 
