@@ -7,7 +7,7 @@ void solve()
 {
     int n, value;
     cin >> n;
-    vector<vector<int>> adj_list(n+1);
+    vector<vector<int>> adj_list(n + 1);
     string s;
 
     for (int i = 2; i <= n; ++i)
