@@ -41,7 +41,7 @@ public:
             answer[nearestCommonAncestor] += answer[node];
         }
 
-        stack.pop_back();
+        stack[c].pop_back();
     }
 };
 
