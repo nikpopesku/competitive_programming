@@ -50,9 +50,9 @@ int main()
 {
     Solution s;
 
-    vector a = {-1, 0, 0, 1, 1, 1};
+    vector a = {-1,0,4,0,1};
 
-    for (const vector response = s.findSubtreeSizes(a, "abaabc"); auto i : response)
+    for (const vector response = s.findSubtreeSizes(a, "abbba"); auto i : response)
     {
         cout << i << " ";
     }
