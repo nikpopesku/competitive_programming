@@ -29,9 +29,7 @@ public:
     {
         int min_cameras = 0;
 
-        dfs(root, min_cameras);
-
-        if (min_cameras == 0 && root)
+        if (dfs(root, min_cameras))
         {
             ++min_cameras;
         }
@@ -77,9 +75,5 @@ int main()
     const int response = Solution::minCameraCover(root);
     cout << response << " ";
 
-    delete node4;
-    delete node3;
-    delete node2;
-    delete node1;
     delete root;
 }
