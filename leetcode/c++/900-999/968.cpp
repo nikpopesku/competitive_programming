@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -21,41 +20,45 @@ struct TreeNode
     {
     }
 };
-
+//states: 0 - not covered; 1 - has camera; 2 - is covered
 class Solution
 {
 public:
     static int minCameraCover(const TreeNode* root)
     {
         int min_cameras = 0;
-        dfs(root, nullptr, min_cameras);
+        if (dfs(root, min_cameras) == 0)
+        {
+            ++min_cameras;
+        }
 
         return min_cameras;
     }
 
-    static bool dfs(const TreeNode* node, const TreeNode* parent, int& min_cameras)
+private:
+    static int dfs(const TreeNode* node, int& min_cameras)
     {
         if (node == nullptr)
         {
-            return false;
+            return 2;
         }
 
-        const bool left = dfs(node->left, node, min_cameras);
-        const bool right = dfs(node->right, node, min_cameras);
+        const int left = dfs(node->left, min_cameras);
+        const int right = dfs(node->right, min_cameras);
 
-        if ((node->left || node->right) && !left && !right)
+        if (left == 1 || right == 1)
+        {
+            return 2;
+        }
+
+        if (left == 0 || right == 0)
         {
             ++min_cameras;
 
-            return true;
+            return 1;
         }
 
-        if (parent == nullptr && !left && !right)
-        {
-            ++min_cameras;
-        }
-
-        return false;
+        return 0;
     }
 };
 
