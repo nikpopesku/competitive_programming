@@ -31,6 +31,11 @@ public:
 
         dfs(root, min_cameras);
 
+        if (min_cameras == 0 && root)
+        {
+            ++min_cameras;
+        }
+
         return min_cameras;
     }
 
@@ -63,18 +68,18 @@ public:
 
 int main()
 {
-    Solution s;
+    auto* node4 = new TreeNode(0);
+    auto* node3 = new TreeNode(0, nullptr, node4);
+    auto* node2 = new TreeNode(0, nullptr, node3);
+    auto* node1 = new TreeNode(0, nullptr, node2);
+    const TreeNode* root  = node1; // or just 'root' if you want to refer directly
 
-    TreeNode* left_left = new TreeNode(0);
-    TreeNode* left_right = new TreeNode(0);
-    TreeNode* left = new TreeNode(0, left_left, left_right);
-    TreeNode* t = new TreeNode(0, left, nullptr);
-
-    const int response = s.minCameraCover(t);
+    const int response = Solution::minCameraCover(root);
     cout << response << " ";
 
-    delete left_left;
-    delete left_right;
-    delete left;
-    delete t;
+    delete node4;
+    delete node3;
+    delete node2;
+    delete node1;
+    delete root;
 }
