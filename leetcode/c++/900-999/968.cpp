@@ -50,7 +50,7 @@ public:
             return true;
         }
 
-        if (parent == nullptr)
+        if (parent == nullptr && !left && !right)
         {
             ++min_cameras;
         }
@@ -65,16 +65,16 @@ int main()
     auto* node4 = new TreeNode(0);
     auto* node3 = new TreeNode(0, nullptr, node4);
     auto* node2 = new TreeNode(0, nullptr, node3);
-    auto* node1 = new TreeNode(0, nullptr, node2);
+    const auto* root = new TreeNode(0, nullptr, node2);
 
-    cout << Solution::minCameraCover(node1) << " ";
+    cout << Solution::minCameraCover(root) << " ";
 
-    delete node1;
+    delete root;
 
     auto* leftGrandchild = new TreeNode(0);
     auto* rightGrandchild = new TreeNode(0);
     auto* leftChild = new TreeNode(0, leftGrandchild, rightGrandchild);
-    auto* root = new TreeNode(0, leftChild, nullptr);
+    root = new TreeNode(0, leftChild, nullptr);
 
     cout << Solution::minCameraCover(root) << " ";
 
