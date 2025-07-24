@@ -66,10 +66,17 @@ int main()
     auto* node3 = new TreeNode(0, nullptr, node4);
     auto* node2 = new TreeNode(0, nullptr, node3);
     auto* node1 = new TreeNode(0, nullptr, node2);
-    const TreeNode* root  = node1; // or just 'root' if you want to refer directly
 
-    const int response = Solution::minCameraCover(root);
-    cout << response << " ";
+    cout << Solution::minCameraCover(node1) << " ";
+
+    delete node1;
+
+    auto* leftGrandchild = new TreeNode(0);
+    auto* rightGrandchild = new TreeNode(0);
+    auto* leftChild = new TreeNode(0, leftGrandchild, rightGrandchild);
+    auto* root = new TreeNode(0, leftChild, nullptr);
+
+    cout << Solution::minCameraCover(root) << " ";
 
     delete root;
 }
