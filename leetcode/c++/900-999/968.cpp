@@ -25,29 +25,43 @@ struct TreeNode
 class Solution
 {
 public:
-    int minCameraCover(TreeNode* root)
+    static int minCameraCover(const TreeNode* root)
     {
-        vector<TreeNode*> stack;
         int min_cameras = 10;
 
-        dfs(root, stack, min_cameras);
+        dfs(root, min_cameras);
+
+        return min_cameras;
     }
 
-    void dfs(TreeNode* node, vector<TreeNode*> stack, int min_cameras)
+    static bool dfs(const TreeNode* node, int& min_cameras)
     {
-        stack.push_back(node);
-
-        if (node->left)
+        if (node == nullptr)
         {
-            dfs(node->left, stack, min_cameras);
+            return false;
         }
 
-        if (node->right)
+        if (!node->left && !node->right)
         {
-            dfs(node->right, stack, min_cameras);
+            return false;
         }
 
-        stack.pop_back();
+        const bool left = dfs(node->left, min_cameras);
+        const bool right = dfs(node->right, min_cameras);
+
+        if (left || right)
+        {
+            ++min_cameras;
+
+            return false;
+        }
+
+        if (node->left || node->right)
+        {
+            return true;
+        }
+
+        return false;
     }
 };
 
