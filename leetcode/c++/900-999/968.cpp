@@ -28,35 +28,31 @@ public:
     static int minCameraCover(const TreeNode* root)
     {
         int min_cameras = 0;
-
-        if (dfs(root, min_cameras))
-        {
-            ++min_cameras;
-        }
+        dfs(root, nullptr, min_cameras);
 
         return min_cameras;
     }
 
-    static bool dfs(const TreeNode* node, int& min_cameras)
+    static bool dfs(const TreeNode* node, const TreeNode* parent, int& min_cameras)
     {
         if (node == nullptr)
         {
             return false;
         }
 
-        const bool left = dfs(node->left, min_cameras);
-        const bool right = dfs(node->right, min_cameras);
+        const bool left = dfs(node->left, node, min_cameras);
+        const bool right = dfs(node->right, node, min_cameras);
 
-        if (left || right)
+        if ((node->left || node->right) && !left && !right)
         {
             ++min_cameras;
 
-            return false;
+            return true;
         }
 
-        if (node->left || node->right)
+        if (parent == nullptr)
         {
-            return true;
+            ++min_cameras;
         }
 
         return false;
