@@ -41,11 +41,6 @@ public:
             return false;
         }
 
-        if (!node->left && !node->right)
-        {
-            return false;
-        }
-
         const bool left = dfs(node->left, min_cameras);
         const bool right = dfs(node->right, min_cameras);
 
