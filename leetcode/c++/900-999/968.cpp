@@ -27,7 +27,7 @@ class Solution
 public:
     static int minCameraCover(const TreeNode* root)
     {
-        int min_cameras = 10;
+        int min_cameras = 0;
 
         dfs(root, min_cameras);
 
@@ -65,18 +65,16 @@ int main()
 {
     Solution s;
 
-    TreeNode* right = new TreeNode(3);
-    TreeNode* left_left = new TreeNode(4);
-    TreeNode* left_right = new TreeNode(5);
-    TreeNode* left = new TreeNode(2, left_left, left_right);
-    TreeNode* t = new TreeNode(1, left, right);
+    TreeNode* left_left = new TreeNode(0);
+    TreeNode* left_right = new TreeNode(0);
+    TreeNode* left = new TreeNode(0, left_left, left_right);
+    TreeNode* t = new TreeNode(0, left, nullptr);
 
     const int response = s.minCameraCover(t);
     cout << response << " ";
 
     delete left_left;
     delete left_right;
-    delete right;
     delete left;
     delete t;
 }
