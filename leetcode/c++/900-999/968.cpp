@@ -22,10 +22,32 @@ struct TreeNode
     }
 };
 
-class Solution {
+class Solution
+{
 public:
-    int minCameraCover(TreeNode* root) {
+    int minCameraCover(TreeNode* root)
+    {
+        vector<TreeNode*> stack;
+        int min_cameras = 10;
 
+        dfs(root, stack, min_cameras);
+    }
+
+    void dfs(TreeNode* node, vector<TreeNode*> stack, int min_cameras)
+    {
+        stack.push_back(node);
+
+        if (node->left)
+        {
+            dfs(node->left, stack, min_cameras);
+        }
+
+        if (node->right)
+        {
+            dfs(node->right, stack, min_cameras);
+        }
+
+        stack.pop_back();
     }
 };
 
