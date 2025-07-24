@@ -46,16 +46,16 @@ private:
         const int left = dfs(node->left, min_cameras);
         const int right = dfs(node->right, min_cameras);
 
-        if (left == 1 || right == 1)
-        {
-            return 2;
-        }
-
         if (left == 0 || right == 0)
         {
             ++min_cameras;
 
             return 1;
+        }
+
+        if (left == 1 || right == 1)
+        {
+            return 2;
         }
 
         return 0;
