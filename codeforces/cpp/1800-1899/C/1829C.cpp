@@ -18,8 +18,8 @@ void solve()
         cin >> minutes >> s;
 
         if (s == "11") min_common = min(min_common, minutes);
-        if (s[0] == '1' && minutes < min1) min1 = minutes;
-        if (s[1] == '1' && minutes < min2) min2 = minutes;
+        if (s[0] == '1') min1 = min(min1, minutes);
+        if (s[1] == '1') min2 = min(min2, minutes);
     }
 
 
