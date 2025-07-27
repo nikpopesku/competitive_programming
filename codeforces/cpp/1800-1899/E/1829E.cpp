@@ -45,7 +45,7 @@ void solve()
 
     for (ll i = 0; i < n; ++i)
     {
-        for (ll j = 0; j < n; ++j)
+        for (ll j = 0; j < m; ++j)
         {
             if (v[i][j] > 0 && !visited.contains({i, j}))
             {
