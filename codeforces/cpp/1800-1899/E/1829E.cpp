@@ -6,22 +6,31 @@ using namespace std;
 
 #define ll long long
 
-ll dfs(ll i, ll j, set<pair<ll, ll>>& visited, vector<vector<ll>>& v, ll& n, ll& m)
+ll dfs(set<pair<ll, ll>>& visited, vector<vector<ll>>& v, const ll& n, const ll& m, vector<pair<ll, ll>>& stack)
 {
-    visited.insert({i, j});
-    ll response = v[i][j];
+    ll response = 0;
 
     vector<pair<ll, ll>> directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
-    for (auto [x, y] : directions)
+    while (!stack.empty())
     {
-        ll new_x = i + x;
-        ll new_y = j + y;
+        auto [i, j] = stack.back();
+        stack.pop_back();
+        if (visited.contains({i, j})) continue;
 
-        if (new_x >= 0 and new_x < n and new_y >= 0 and new_y < m and !visited.contains({new_x, new_y}) and v[new_x][
-            new_y] > 0)
+        visited.insert({i, j});
+        response += v[i][j];
+
+        for (auto [x, y]: directions)
         {
-            response += dfs(new_x, new_y, visited, v, n, m);
+            ll new_x = i + x;
+            ll new_y = j + y;
+
+            if (new_x >= 0 and new_x < n and new_y >= 0 and new_y < m and !visited.contains({new_x, new_y}) and v[new_x][
+                new_y] > 0)
+            {
+                stack.emplace_back(new_x, new_y);
+            }
         }
     }
 
@@ -34,6 +43,7 @@ void solve()
     cin >> n >> m;
     vector v(n, vector(m, 0LL));
     set<pair<ll, ll>> visited;
+
 
     for (ll i = 0; i < n; ++i)
     {
@@ -49,7 +59,8 @@ void solve()
         {
             if (v[i][j] > 0 && !visited.contains({i, j}))
             {
-                max_value = max(max_value, dfs(i, j, visited, v, n, m));
+                vector<pair<ll, ll>> stack = {{i, j}};
+                max_value = max(max_value, dfs(visited, v, n, m, stack));
             }
         }
     }
