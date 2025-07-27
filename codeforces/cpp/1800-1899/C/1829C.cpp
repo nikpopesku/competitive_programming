@@ -8,9 +8,9 @@ void solve()
     int n, minutes;
     cin >> n;
     string s;
-    int min1 = 2 * 1e5;
-    int min2 = 2 * 1e5;
-    int min_common = 4 * 1e5;
+    int min1 = 3 * 1e5;
+    int min2 = 3 * 1e5;
+    int min_common = 6 * 1e5;
 
 
     for (int i = 0; i < n; ++i)
@@ -23,7 +23,7 @@ void solve()
     }
 
 
-    if (min1 < 2 * 1e5 && min2 < 2 * 1e5)
+    if (min1 < 3 * 1e5 && min2 < 3 * 1e5)
     {
         cout << min(min1 + min2, min_common) << "\n";
     }
