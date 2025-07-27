@@ -23,6 +23,8 @@ void solve()
         }
     }
 
+    max_blank_space = max(max_blank_space, current);
+
     cout << max_blank_space <<"\n";
 }
 
