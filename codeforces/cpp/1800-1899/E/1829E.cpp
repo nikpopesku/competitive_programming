@@ -9,12 +9,14 @@ int dfs(int i, int j, set<pair<int, int>>& visited, vector<vector<int>>& v, int&
     visited.insert({i, j});
     int response = v[i][j];
 
-    for (auto [x, y] : {{1, 0}, {-1, 0}, {0, 1}, {0, -1}})
+    vector<pair<int, int>> directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+    for (auto [x, y] : directions)
     {
         int new_x = i + x;
         int new_y = j + y;
 
-        if (new_x >= 0 and new_x < n and new_y >= 0 and new_y < m and !visited.contains(new_x, new_y) and v[new_x][
+        if (new_x >= 0 and new_x < n and new_y >= 0 and new_y < m and !visited.contains({new_x, new_y}) and v[new_x][
             new_y] > 0)
         {
             response += dfs(new_x, new_y, visited, v, n, m);
@@ -50,7 +52,7 @@ void solve()
         }
     }
 
-    cout << max_value <<"\n";
+    cout << max_value << "\n";
 }
 
 int main()
