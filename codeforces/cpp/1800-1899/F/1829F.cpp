@@ -5,7 +5,6 @@
 using namespace std;
 
 constexpr int VERTICES = 200;
-constexpr int EDGES = 1000;
 
 void solve()
 {
