@@ -20,14 +20,24 @@ pair<ll,ll> find(const vector<vector<ll>>& v, const ll n)
     return {};
 }
 
-void solve(vector<vector<ll>>& v)
+void solve(const vector<vector<ll>>& v)
 {
     ll n;
     cin >> n;
-    auto [i, j] = find(v, n);
+    auto [start_row, start_col] = find(v, n);
+    ll len = 1;
+    ll response = 0;
+
+    for (ll i = start_row; i >= 0; --i)
+    {
+        for (ll j = start_col; j < start_col + len; ++j)
+        {
+            response += v[i][j] * v[i][j];
+        }
+    }
 
 
-    cout << 4 << "\n";
+    cout << response << "\n";
 }
 
 int main()
