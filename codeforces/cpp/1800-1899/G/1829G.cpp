@@ -32,7 +32,7 @@ void solve(const vector<vector<ll>>& v)
     {
         for (ll j = max(start_col, 0LL); j < min(start_col + len, N); ++j)
         {
-            response += v[i][j] * v[i][j];
+            response += v[i][j];
         }
         ++len;
         --start_col;
@@ -52,7 +52,8 @@ int main()
     {
         for (int j = 0; j < len; ++j)
         {
-            v[i][j] = index++;
+            v[i][j] = index * index;
+            ++index;
         }
         ++len;
     }
