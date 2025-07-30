@@ -30,11 +30,12 @@ void solve(const vector<vector<ll>>& v)
 
     for (ll i = start_row; i >= 0; --i)
     {
-        for (ll j = start_col; j < start_col + len; ++j)
+        for (ll j = max(start_col, 0LL); j < min(start_col + len, N); ++j)
         {
             response += v[i][j] * v[i][j];
         }
         ++len;
+        --start_col;
     }
 
 
@@ -44,23 +45,16 @@ void solve(const vector<vector<ll>>& v)
 int main()
 {
     vector v(N, vector<ll>(N, 0));
-    ll start = N / 2;
     ll len = 1;
     ll index = 1;
 
     for (int i = 0; i < N; ++i)
     {
-        int len_counter = 0;
-        for (int j = 0; j < N; ++j)
+        for (int j = 0; j < len; ++j)
         {
-            if (len_counter < len && j >= start)
-            {
-                v[i][j] = index++;
-                ++len_counter;
-            }
+            v[i][j] = index++;
         }
         ++len;
-        --start;
     }
     int t;
     cin >> t;
