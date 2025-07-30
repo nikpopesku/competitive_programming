@@ -11,12 +11,35 @@ pair<ll,ll> find(const vector<vector<ll>>& v, const ll n)
 {
     const ll dd = n * n;
 
-    for (int i = 0; i < N; ++i)
+    ll left = 0;
+    ll right = N - 1;
+    ll i = 0;
+
+    while (left < right)
     {
-        for (int j = 0; j < N; ++j)
+        const ll mid = left + (right - left) / 2;
+
+        if (v[mid][0] <= dd && ((mid < N - 1 && v[mid + 1][0] > dd) || mid == N - 1))
         {
-            if (v[i][j] == dd) return {i, j};
+            i = mid;
+            break;
         }
+
+        if (v[mid][0] > dd)
+        {
+            right = mid;
+        }
+        else
+        {
+            left = mid + 1;
+        }
+    }
+
+    if (i == 0) i = left;
+
+    for (int j = 0; j < N; ++j)
+    {
+        if (v[i][j] == dd) return {i, j};
     }
 
     return {};
