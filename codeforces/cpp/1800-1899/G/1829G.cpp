@@ -34,6 +34,7 @@ void solve(const vector<vector<ll>>& v)
         {
             response += v[i][j] * v[i][j];
         }
+        ++len;
     }
 
 
