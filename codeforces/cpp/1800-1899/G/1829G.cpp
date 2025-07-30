@@ -9,11 +9,13 @@ constexpr ll N = 2023;
 
 pair<ll,ll> find(const vector<vector<ll>>& v, const ll n)
 {
+    const ll dd = n * n;
+
     for (int i = 0; i < N; ++i)
     {
         for (int j = 0; j < N; ++j)
         {
-            if (v[i][j] == n) return {i, j};
+            if (v[i][j] == dd) return {i, j};
         }
     }
 
