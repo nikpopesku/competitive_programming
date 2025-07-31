@@ -16,11 +16,10 @@ void solve()
         cin >> a[i];
         for (int mask = 0; mask < (1 << 6); ++mask)
         {
-            dp[i][mask] += dp[i - 1][mask];
-            if (dp[i][mask] >= mod) dp[i][mask] -= mod;
-            dp[i][mask & a[i]] += dp[i - 1][mask];
-            if (dp[i][mask & a[i]] >= mod) dp[i][mask & a[i]] -= mod;
+            dp[i][mask] = (dp[i][mask] + dp[i - 1][mask]) % mod;
+            dp[i][mask & a[i]] = (dp[i][mask & a[i]] + dp[i - 1][mask]) % mod;
         }
+
         dp[i][a[i]] = (dp[i][a[i]] + 1) % mod;
     }
     int ans = 0;
