@@ -3,12 +3,6 @@ using namespace std;
 
 #define ll long long
 
-#define          all(v)              v.begin(), v.end()
-#define         rall(v)              v.rbegin(),v.rend()
-
-#define            pb                push_back
-#define          sz(a)               (int)a.size()
-
 constexpr int mod = 1e9 + 7;
 
 void solve()
