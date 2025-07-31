@@ -9,14 +9,14 @@ using namespace std;
 #define            pb                push_back
 #define          sz(a)               (int)a.size()
 
-const int mod = 1e9 + 7;
+constexpr int mod = 1e9 + 7;
 
 void solve()
 {
     int n, x;
     cin >> n >> x;
     vector<int> a(n + 1);
-    vector<vector<int>> dp(n + 1, vector<int>(1 << 6, 0));
+    vector dp(n + 1, vector(1 << 6, 0));
     for (int i = 1; i <= n; ++i)
     {
         cin >> a[i];
@@ -42,9 +42,10 @@ void solve()
 
 int32_t main()
 {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
     int t = 1;
     cin >> t;
     while (t--)
