@@ -1,8 +1,6 @@
 #include "bits/stdc++.h"
 using namespace std;
 
-#define ll long long
-
 constexpr int mod = 1e9 + 7;
 
 void solve()
