@@ -19,11 +19,13 @@ void solve()
             if (condition)
             {
                 s1.insert(i);
-            } else
+            }
+            else
             {
                 s2.insert(i);
             }
-        } else
+        }
+        else
         {
             condition = !condition;
         }
