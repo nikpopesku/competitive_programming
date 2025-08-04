@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -6,19 +7,39 @@ void solve()
 {
     string s;
     cin >> s;
-    int res = 1;
-    bool ex = false;
-    for (int i = 0; i + 1 < static_cast<int>(s.size()); i++)
+
+    int counter = 1;
+    int case_flag = 0;
+
+    for (int i = 1; i < s.size(); ++i)
     {
-        res += (s[i] != s[i + 1]);
-        ex |= (s[i] == '0' && s[i + 1] == '1');
+        if (s[i] == '0')
+        {
+            if (s[i - 1] == '1')
+            {
+                ++counter;
+            }
+        }
+        else
+        {
+            if (s[i - 1] == '0')
+            {
+                ++counter;
+                case_flag = 1;
+            }
+        }
     }
-    cout << res - ex << '\n';
+
+    cout << (counter - case_flag) << "\n";
 }
 
 int main()
 {
-    int tt;
-    cin >> tt;
-    for (int i = 1; i <= tt; i++) { solve(); }
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        solve();
+    }
 }
