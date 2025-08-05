@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int find(const int value, const vector& a, const int& n)
+int find(const int value, const vector<int> & a, const int& n)
 {
     int left = 0, right = n;
 
