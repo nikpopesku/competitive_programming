@@ -56,6 +56,8 @@ void solve()
 
         cout << response << " ";
     }
+
+    cout << "\n";
 }
 
 int main()
