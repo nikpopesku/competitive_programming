@@ -45,7 +45,7 @@ void solve()
         cin >> value;
 
         const int index = find(value, a, n);
-        int response = a[index];
+        int response = b[index];
 
         if (index < a.size() - 1)
         {
