@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 #define  ll long long
 
@@ -50,7 +51,10 @@ void solve()
 
         if (index < a.size() - 1)
         {
-            response += (value - a[index]) / (a[index + 1] - a[index]) * (b[index + 1] - b[index]);
+            response += static_cast<ll>(trunc(
+                static_cast<double>(value - a[index]) / static_cast<double>(a[index + 1] - a[index]) * static_cast<
+                    double>(
+                    b[index + 1] - b[index])));
         }
 
         cout << response << " ";
