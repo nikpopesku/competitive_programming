@@ -1,21 +1,8 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <array>
-#include <set>
-#include <map>
-#include <queue>
-#include <stack>
-#include <list>
 #include <chrono>
 #include <random>
-#include <cstdlib>
-#include <cmath>
-#include <ctime>
-#include <cstring>
-#include <iomanip>
-#include <bitset>
-#include <cassert>
+
 typedef long long ll;
 using namespace std;
 
@@ -41,8 +28,7 @@ void solve()
         int l = 0, r = k;
         while (l <= r)
         {
-            int mid = l + r >> 1;
-            if (a[mid] > c)
+            if (const int mid = l + r >> 1; a[mid] > c)
             {
                 r = mid - 1;
             }
@@ -56,7 +42,7 @@ void solve()
             cout << b[r] << " ";
             continue;
         }
-        long long ans = b[r] + (c - a[r]) * (b[r + 1] - b[r]) / (a[r + 1] - a[r]);
+        const long long ans = b[r] + (c - a[r]) * (b[r + 1] - b[r]) / (a[r + 1] - a[r]);
         cout << ans << " ";
     }
     cout << endl;
