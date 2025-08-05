@@ -15,7 +15,8 @@ int find(const int value, const vector& a, const int& n)
         if (a[m] > value)
         {
             right = m - 1;
-        } else
+        }
+        else
         {
             left = m;
         }
