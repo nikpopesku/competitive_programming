@@ -4,11 +4,11 @@
 
 using namespace std;
 
-int find(const int value, const vector<int> & a, const int& n)
+int find(const int value, const vector<int>& a, const int& n)
 {
-    int left = 0, right = n;
+    int left = 0, right = a.size() - 1;
 
-    while (left < right)
+    while (left + 1 < right)
     {
         int m = left + (right - left) / 2;
 
@@ -22,22 +22,22 @@ int find(const int value, const vector<int> & a, const int& n)
         }
     }
 
-    return left;
+    return a[right] == value ? right : left;
 }
 
 void solve()
 {
     int n, k, q, value;
     cin >> n >> k >> q;
-    vector a(k, 0);
-    vector b(k, 0);
+    vector a(k + 1, 0);
+    vector b(k + 1, 0);
 
-    for (int i = 0; i < k; ++i)
+    for (int i = 1; i <= k; ++i)
     {
         cin >> a[i];
     }
 
-    for (int i = 0; i < k; ++i)
+    for (int i = 1; i <= k; ++i)
     {
         cin >> b[i];
     }
@@ -46,15 +46,15 @@ void solve()
     {
         cin >> value;
 
-        int index = find(value, a, n);
+        const int index = find(value, a, n);
         int response = a[index];
 
-        if (index < n)
+        if (index < a.size() - 1)
         {
             response += trunc((a[index + 1] - a[index]) / (b[index + 1] - b[index]) * (value - a[index]));
         }
 
-        cout << response << "\n";
+        cout << response << " ";
     }
 }
 
