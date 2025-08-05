@@ -50,7 +50,8 @@ void solve()
         if (index < a.size() - 1)
         {
             response += static_cast<int>(trunc(
-                static_cast<double>(value - a[index]) / static_cast<double>(a[index + 1] - a[index]) * static_cast<double>(
+                static_cast<double>(value - a[index]) / static_cast<double>(a[index + 1] - a[index]) * static_cast<
+                    double>(
                     b[index + 1] - b[index])));
         }
 
