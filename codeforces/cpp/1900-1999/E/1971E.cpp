@@ -51,7 +51,7 @@ void solve()
 
         if (index < a.size() - 1)
         {
-            response += static_cast<int>(trunc((a[index + 1] - a[index]) / (b[index + 1] - b[index]) * (value - a[index])));
+            response += static_cast<int>(trunc(static_cast<float>(value - a[index]) / static_cast<float>(a[index + 1] - a[index]) * static_cast<float>(b[index + 1] - b[index])));
         }
 
         cout << response << " ";
