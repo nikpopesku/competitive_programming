@@ -1,73 +1,71 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
+#include <array>
+#include <set>
+#include <map>
+#include <queue>
+#include <stack>
+#include <list>
+#include <chrono>
+#include <random>
+#include <cstdlib>
 #include <cmath>
-
-#define  ll long long
-
+#include <ctime>
+#include <cstring>
+#include <iomanip>
+#include <bitset>
+#include <cassert>
+typedef long long ll;
 using namespace std;
-
-ll find(const ll value, const vector<ll>& a)
-{
-    ll left = 0, right = static_cast<ll>(a.size()) - 1;
-
-    while (left + 1 < right)
-    {
-        if (const ll m = left + (right - left) / 2; a[m] > value)
-        {
-            right = m - 1;
-        }
-        else
-        {
-            left = m;
-        }
-    }
-
-    return a[right] == value ? right : left;
-}
 
 void solve()
 {
-    ll n, k, q, value;
+    int n, k, q;
     cin >> n >> k >> q;
-    vector a(k + 1, 0LL);
-    vector b(k + 1, 0LL);
-
-    for (ll i = 1; i <= k; ++i)
+    vector<long long> a(k + 1), b(k + 1);
+    a[0] = 0;
+    b[0] = 0;
+    for (int i = 1; i <= k; i++)
     {
         cin >> a[i];
     }
-
-    for (ll i = 1; i <= k; ++i)
+    for (int i = 1; i <= k; i++)
     {
         cin >> b[i];
     }
-
-    for (ll i = 0; i < q; ++i)
+    for (int i = 0; i < q; i++)
     {
-        cin >> value;
-
-        const ll index = find(value, a);
-        long long response = b[index];
-
-        if (index < a.size() - 1)
+        long long c;
+        cin >> c;
+        int l = 0, r = k;
+        while (l <= r)
         {
-            response += static_cast<ll>(trunc(
-                static_cast<double>(value - a[index]) / static_cast<double>(a[index + 1] - a[index]) * static_cast<
-                    double>(
-                    b[index + 1] - b[index])));
+            int mid = l + r >> 1;
+            if (a[mid] > c)
+            {
+                r = mid - 1;
+            }
+            else
+            {
+                l = mid + 1;
+            }
         }
-
-        cout << response << " ";
+        if (a[r] == c)
+        {
+            cout << b[r] << " ";
+            continue;
+        }
+        long long ans = b[r] + (c - a[r]) * (b[r + 1] - b[r]) / (a[r + 1] - a[r]);
+        cout << ans << " ";
     }
-
-    cout << "\n";
+    cout << endl;
 }
 
-int main()
+int32_t main()
 {
-    ll t;
+    int t = 1;
     cin >> t;
-
     while (t--)
     {
         solve();
