@@ -2,15 +2,17 @@
 #include <vector>
 #include <cmath>
 
+#define  ll long long
+
 using namespace std;
 
-int find(const int value, const vector<int>& a, const int& n)
+ll find(const ll value, const vector<ll>& a)
 {
-    int left = 0, right = static_cast<int>(a.size()) - 1;
+    ll left = 0, right = static_cast<ll>(a.size()) - 1;
 
     while (left + 1 < right)
     {
-        if (const int m = left + (right - left) / 2; a[m] > value)
+        if (const ll m = left + (right - left) / 2; a[m] > value)
         {
             right = m - 1;
         }
@@ -25,31 +27,31 @@ int find(const int value, const vector<int>& a, const int& n)
 
 void solve()
 {
-    int n, k, q, value;
+    ll n, k, q, value;
     cin >> n >> k >> q;
-    vector a(k + 1, 0);
-    vector b(k + 1, 0);
+    vector a(k + 1, 0LL);
+    vector b(k + 1, 0LL);
 
-    for (int i = 1; i <= k; ++i)
+    for (ll i = 1; i <= k; ++i)
     {
         cin >> a[i];
     }
 
-    for (int i = 1; i <= k; ++i)
+    for (ll i = 1; i <= k; ++i)
     {
         cin >> b[i];
     }
 
-    for (int i = 0; i < q; ++i)
+    for (ll i = 0; i < q; ++i)
     {
         cin >> value;
 
-        const int index = find(value, a, n);
-        int response = b[index];
+        const ll index = find(value, a);
+        long long response = b[index];
 
         if (index < a.size() - 1)
         {
-            response += static_cast<int>(trunc(
+            response += static_cast<ll>(trunc(
                 static_cast<double>(value - a[index]) / static_cast<double>(a[index + 1] - a[index]) * static_cast<
                     double>(
                     b[index + 1] - b[index])));
@@ -63,7 +65,7 @@ void solve()
 
 int main()
 {
-    int t;
+    ll t;
     cin >> t;
 
     while (t--)
