@@ -6,13 +6,11 @@ using namespace std;
 
 int find(const int value, const vector<int>& a, const int& n)
 {
-    int left = 0, right = a.size() - 1;
+    int left = 0, right = static_cast<int>(a.size()) - 1;
 
     while (left + 1 < right)
     {
-        int m = left + (right - left) / 2;
-
-        if (a[m] > value)
+        if (const int m = left + (right - left) / 2; a[m] > value)
         {
             right = m - 1;
         }
