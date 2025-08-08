@@ -9,8 +9,6 @@ void solve()
     int r;
     cin >> r;
 
-    // int a[VAL];
-    // for (int& i : a) i = 0;
     int x = r;
     int y = 0;
 
@@ -39,7 +37,7 @@ void solve()
     cout << 4 * response << "\n";
 }
 
-int32_t main()
+int main()
 {
     int t = 1;
     cin >> t;
