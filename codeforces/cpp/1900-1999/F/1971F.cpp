@@ -10,7 +10,7 @@ void solve()
     cin >> r;
 
     int a[VAL];
-    for (int & i : a) i = 0;
+    for (int& i : a) i = 0;
 }
 
 int32_t main()
