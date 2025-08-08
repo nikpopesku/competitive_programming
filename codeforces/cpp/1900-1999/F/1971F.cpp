@@ -18,17 +18,22 @@ void solve()
 
     while (x > 0)
     {
-        int val = x * x + y * y;
+        const int val = x * x + y * y;
         if (val >= r * r && val < (r + 1) * (r + 1))
         {
             ++response;
             ++y;
+            continue;
         }
-        else
+
+        if (val >= (r + 1) * (r + 1))
         {
             --x;
             --y;
+            continue;
         }
+
+        ++y;
     }
 
     cout << 4 * response << "\n";
