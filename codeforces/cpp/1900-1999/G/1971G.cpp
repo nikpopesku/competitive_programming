@@ -11,8 +11,8 @@ void solve()
     cin >> n;
     vector<int> a(n), response(n);
     int group_counter = 0;
-    vector<set<int>> positions;
-    vector<multiset<int>> values;
+    map<int, set<int>> positions;
+    map<int, multiset<int>> values;
     map<int, int> mp;
 
     for (int i = 0; i < n; ++i)
@@ -36,8 +36,23 @@ void solve()
             ++group_counter;
         }
 
-        positions[mp[a[i]]].insert(i);
-        values[mp[a[i]]].insert(a[i]);
+        if (positions[mp[a[i]]].empty())
+        {
+            positions[mp[a[i]]] = {i};
+        }
+        else
+        {
+            positions[mp[a[i]]].insert(i);
+        }
+
+        if (values[mp[a[i]]].empty())
+        {
+            values[mp[a[i]]] = {a[i]};
+        }
+        else
+        {
+            values[mp[a[i]]].insert(a[i]);
+        }
     }
 
     for (int i = 0; i < group_counter; ++i)
@@ -57,6 +72,8 @@ void solve()
     {
         cout << response[i] << " ";
     }
+
+    cout << "\n";
 }
 
 int main()
