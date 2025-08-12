@@ -46,7 +46,7 @@ namespace atcoder
 
             [[nodiscard]] int num_vertices() const { return _n; }
 
-            void add_edge(int from, int to) { edges.push_back({from, {to}}); }
+            void add_edge(int from, const int to) { edges.push_back({from, {to}}); }
 
             // @return pair of (# of scc, scc id)
             [[nodiscard]] std::pair<int, std::vector<int>> scc_ids() const
@@ -96,20 +96,20 @@ namespace atcoder
                 return {group_num, ids};
             }
 
-            std::vector<std::vector<int>> scc()
+            [[nodiscard]] std::vector<std::vector<int>> scc() const
             {
-                auto ids = scc_ids();
-                int group_num = ids.first;
+                auto [fst, snd] = scc_ids();
+                int group_num = fst;
                 std::vector<int> counts(group_num);
-                for (auto x : ids.second) counts[x]++;
-                std::vector<std::vector<int>> groups(ids.first);
+                for (auto x : snd) counts[x]++;
+                std::vector<std::vector<int>> groups(fst);
                 for (int i = 0; i < group_num; i++)
                 {
                     groups[i].reserve(counts[i]);
                 }
                 for (int i = 0; i < _n; i++)
                 {
-                    groups[ids.second[i]].push_back(i);
+                    groups[snd[i]].push_back(i);
                 }
                 return groups;
             }
