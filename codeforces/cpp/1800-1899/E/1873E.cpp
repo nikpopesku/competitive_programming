@@ -42,7 +42,7 @@ void solve()
         cin >> v[i + 1];
     }
 
-    ll left = 1, right = 1e9;
+    ll left = 1, right = 1e18;
 
     while (left + 1 < right)
     {
