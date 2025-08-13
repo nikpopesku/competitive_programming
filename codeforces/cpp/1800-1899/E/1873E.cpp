@@ -3,11 +3,11 @@
 
 using namespace std;
 
-int calc(vector<int>& v, const int& m)
+long long calc(vector<int>& v, const int& m)
 {
     v[0] = m;
     v[v.size() - 1] = m;
-    int response = 0;
+    long long response = 0;
 
     int left = 0, right = v.size() - 1;
 
@@ -31,22 +31,23 @@ int calc(vector<int>& v, const int& m)
 
 void solve()
 {
-    int n, x;
+    long long n, x;
     cin >> n >> x;
     vector v(n + 2, 0);
 
-    for (int i = 0; i < n; ++i)
+    for (long long i = 0; i < n; ++i)
     {
         cin >> v[i + 1];
     }
 
-    int left = 1, right = 1e9;
+    long long left = 1, right = 1e9;
 
     while (left + 1 < right)
     {
-        const int m = left + (right - left) / 2;
+        const long long m = left + (right - left) / 2;
+        long long value = calc(v, m);
 
-        if (calc(v, m) > x)
+        if (value > x)
         {
             right = m - 1;
         }
@@ -61,7 +62,7 @@ void solve()
 
 int main()
 {
-    int t;
+    long long t;
     cin >> t;
 
     while (t--)
