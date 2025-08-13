@@ -5,70 +5,71 @@
 
 using namespace std;
 
-ll calc(vector<ll>& v, const ll& m)
+// This function checks if a target height 'h' is achievable with 'x' liters of water.
+bool is_possible(ll h, ll x, int n, vector<ll>& a)
 {
-    v[0] = m;
-    v[v.size() - 1] = m;
-    ll response = 0;
-
-    int left = 0, right = v.size() - 1;
-
-    while (left < right)
+    ll water_needed = 0;
+    for (int i = 0; i < n; ++i)
     {
-        if (v[left] < v[right])
+        if (h > a[i])
         {
-            response += min(v[right], m) - min(v[left], m);
-            ++left;
+            water_needed += (h - a[i]);
         }
-        else
+        // If water needed already exceeds x, we can stop early.
+        if (water_needed > x)
         {
-            response += min(v[left], m) - min(v[right], m);
-            --right;
+            return false;
         }
     }
-
-
-    return response;
+    return water_needed <= x;
 }
 
 void solve()
 {
-    ll n, x;
+    int n;
+    ll x;
     cin >> n >> x;
-    vector v(n + 2, 0LL);
-
-    for (ll i = 0; i < n; ++i)
+    vector<ll> a(n);
+    for (int i = 0; i < n; ++i)
     {
-        cin >> v[i + 1];
+        cin >> a[i];
     }
 
-    ll left = 1, right = 1e18;
+    // Binary search for the maximum possible height 'h'.
+    // A safe upper bound for h is x (max water) + 10^9 (max coral height).
+    ll low = 1, high = 2000000007, ans = 0;
 
-    while (left + 1 < right)
+    while (low <= high)
     {
-        const ll m = left + (right - left) / 2;
-        ll value = calc(v, m);
+        ll mid = low + (high - low) / 2;
 
-        if (value > x)
+        if (is_possible(mid, x, n, a))
         {
-            right = m - 1;
+            // This height 'mid' is achievable. Let's try for an even higher one.
+            ans = mid; // Store this valid answer.
+            low = mid + 1; // Move the lower bound up.
         }
         else
         {
-            left = m;
+            // This height 'mid' is too high. We need to try a lower height.
+            high = mid - 1; // Move the upper bound down.
         }
     }
 
-    cout << (calc(v, right) <= x ? right : left) << "\n";
+    cout << ans << "\n";
 }
 
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     int t;
     cin >> t;
-
     while (t--)
     {
         solve();
     }
+
+    return 0;
 }
