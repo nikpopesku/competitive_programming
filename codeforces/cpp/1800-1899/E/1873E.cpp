@@ -3,9 +3,27 @@
 
 using namespace std;
 
-int calc(vector<int>& v, int m)
+int calc(const vector<int>& v, const int& m)
 {
-    return 5;
+    int response = 0;
+
+    int left = 0, right = v.size() - 1;
+
+    while (left < right)
+    {
+        if (v[left] < v[right])
+        {
+            response += min(v[right], m) - min(v[left], m);
+            ++left;
+        } else
+        {
+            ++right;
+            response += min(v[left], m) - min(v[right], m);
+        }
+    }
+
+
+    return response;
 }
 
 void solve()
@@ -19,7 +37,7 @@ void solve()
         cin >> v[i + 1];
     }
 
-    int left = 1, right = 10e9;
+    int left = 1, right = 1e9;
 
     while (left < right)
     {
