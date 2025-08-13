@@ -3,8 +3,10 @@
 
 using namespace std;
 
-int calc(const vector<int>& v, const int& m)
+int calc(vector<int>& v, const int& m)
 {
+    v[0] = m;
+    v[v.size() - 1] = m;
     int response = 0;
 
     int left = 0, right = v.size() - 1;
@@ -15,10 +17,11 @@ int calc(const vector<int>& v, const int& m)
         {
             response += min(v[right], m) - min(v[left], m);
             ++left;
-        } else
+        }
+        else
         {
-            ++right;
             response += min(v[left], m) - min(v[right], m);
+            --right;
         }
     }
 
@@ -37,14 +40,11 @@ void solve()
         cin >> v[i + 1];
     }
 
-    int left = 1, right = 1e9;
+    int left = 1, right = 10;
 
-    while (left < right)
+    while (left + 1 < right)
     {
         const int m = left + (right - left) / 2;
-
-        v[0] = m;
-        v[n + 1] = m;
 
         if (calc(v, m) > x)
         {
@@ -56,7 +56,7 @@ void solve()
         }
     }
 
-    cout << left << "\n";
+    cout << (calc(v, right) <= x ? right : left) << "\n";
 }
 
 int main()
