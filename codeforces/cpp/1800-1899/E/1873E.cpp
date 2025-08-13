@@ -6,7 +6,7 @@
 using namespace std;
 
 // This function checks if a target height 'h' is achievable with 'x' liters of water.
-bool is_possible(ll h, ll x, int n, vector<ll>& a)
+bool is_possible(const ll h, const ll x, const int n, const vector<ll>& a)
 {
     ll water_needed = 0;
     for (int i = 0; i < n; ++i)
@@ -41,9 +41,7 @@ void solve()
 
     while (low <= high)
     {
-        ll mid = low + (high - low) / 2;
-
-        if (is_possible(mid, x, n, a))
+        if (const ll mid = low + (high - low) / 2; is_possible(mid, x, n, a))
         {
             // This height 'mid' is achievable. Let's try for an even higher one.
             ans = mid; // Store this valid answer.
@@ -62,7 +60,7 @@ void solve()
 int main()
 {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    cin.tie(nullptr);
 
     int t;
     cin >> t;
