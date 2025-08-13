@@ -5,7 +5,7 @@
 
 using namespace std;
 
-ll calc(const vector<ll>& v, const ll& m)
+bool calc(const vector<ll>& v, const ll& m, const ll& x)
 {
     ll response = 0;
 
@@ -15,10 +15,12 @@ ll calc(const vector<ll>& v, const ll& m)
         {
             response += m - i;
         }
+
+        if (response > x) return false;
     }
 
 
-    return response;
+    return response <= x;
 }
 
 void solve()
@@ -36,17 +38,17 @@ void solve()
 
     while (left + 1 < right)
     {
-        if (const ll m = left + (right - left) / 2; calc(v, m) > x)
-        {
-            right = m - 1;
-        }
-        else
+        if (const ll m = left + (right - left) / 2; calc(v, m, x))
         {
             left = m;
         }
+        else
+        {
+            right = m - 1;
+        }
     }
 
-    cout << (calc(v, right) <= x ? right : left) << "\n";
+    cout << (calc(v, right, x) ? right : left) << "\n";
 }
 
 int main()
