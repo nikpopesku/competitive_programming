@@ -11,11 +11,7 @@ bool calc(const vector<ll>& v, const ll& m, const ll& x)
 
     for (const ll i : v)
     {
-        if (m > i)
-        {
-            response += m - i;
-        }
-
+        if (m > i) response += m - i;
         if (response > x) return false;
     }
 
