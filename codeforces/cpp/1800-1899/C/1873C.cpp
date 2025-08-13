@@ -4,33 +4,27 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int response = 1;
-    int min_value = 10;
-    int value;
-    int count_zero = 0;
-    for (int i = 0; i < n; ++i)
+    string s;
+    int response = 0;
+
+    for (int i = 0; i < 10; ++i)
     {
-        cin >> value;
-        min_value = min(min_value, value);
-        if (value > 0) response *= value;
-        if (value == 0) ++count_zero;
+        cin >> s;
+
+        for (int j = 0; j < 10; ++j)
+        {
+            if (s[j] == 'X')
+            {
+                if (i == 0 || i == 9 || j == 0 || j == 9) response += 1;
+                else if (i == 1 || i == 8 || j == 1 || j == 8) response += 2;
+                else if (i == 2 || i == 7 || j == 2 || j == 7) response += 3;
+                else if (i == 3 || i == 6 || j == 3 || j == 6) response += 4;
+                else if (i == 4 || i == 5 || j == 4 || j == 5) response += 5;
+            }
+        }
     }
 
-    if (count_zero >= 2)
-    {
-        cout << "0\n";
-        return;
-    }
-
-    if (count_zero == 1)
-    {
-        cout << response << "\n";
-        return;
-    }
-
-    cout << response / min_value * (min_value + 1) << "\n";
+    cout << response << "\n";
 }
 
 int main()
