@@ -1,13 +1,15 @@
 #include <iostream>
 #include <vector>
 
+#define ll long long
+
 using namespace std;
 
-long long calc(vector<long long>& v, const long long& m)
+ll calc(vector<ll>& v, const ll& m)
 {
     v[0] = m;
     v[v.size() - 1] = m;
-    long long response = 0;
+    ll response = 0;
 
     int left = 0, right = v.size() - 1;
 
@@ -31,21 +33,21 @@ long long calc(vector<long long>& v, const long long& m)
 
 void solve()
 {
-    long long n, x;
+    ll n, x;
     cin >> n >> x;
     vector v(n + 2, 0LL);
 
-    for (long long i = 0; i < n; ++i)
+    for (ll i = 0; i < n; ++i)
     {
         cin >> v[i + 1];
     }
 
-    long long left = 1, right = 1e9;
+    ll left = 1, right = 1e9;
 
     while (left + 1 < right)
     {
-        const long long m = left + (right - left) / 2;
-        long long value = calc(v, m);
+        const ll m = left + (right - left) / 2;
+        ll value = calc(v, m);
 
         if (value > x)
         {
@@ -62,7 +64,7 @@ void solve()
 
 int main()
 {
-    long long t;
+    int t;
     cin >> t;
 
     while (t--)
