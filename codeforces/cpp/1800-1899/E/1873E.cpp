@@ -3,7 +3,7 @@
 
 using namespace std;
 
-long long calc(vector<int>& v, const int& m)
+long long calc(vector<long long>& v, const long long& m)
 {
     v[0] = m;
     v[v.size() - 1] = m;
@@ -33,7 +33,7 @@ void solve()
 {
     long long n, x;
     cin >> n >> x;
-    vector v(n + 2, 0);
+    vector v(n + 2, 0LL);
 
     for (long long i = 0; i < n; ++i)
     {
