@@ -29,7 +29,7 @@ void solve()
 
     for (ll i = 0; i < n; ++i)
     {
-        cin >> v[i + 1];
+        cin >> v[i];
     }
 
     ll left = 1, right = 1e18;
