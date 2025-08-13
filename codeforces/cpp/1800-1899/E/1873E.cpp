@@ -5,69 +5,60 @@
 
 using namespace std;
 
-// This function checks if a target height 'h' is achievable with 'x' liters of water.
-bool is_possible(const ll h, const ll x, const int n, const vector<ll>& a)
+ll calc(vector<ll>& v, const ll& m)
 {
-    ll water_needed = 0;
-    for (int i = 0; i < n; ++i)
+    ll response = 0;
+
+    for (const ll i : v)
     {
-        if (h > a[i])
+        if (m > i)
         {
-            water_needed += (h - a[i]);
-        }
-        // If water needed already exceeds x, we can stop early.
-        if (water_needed > x)
-        {
-            return false;
+            response += m - i;
         }
     }
-    return water_needed <= x;
+
+
+    return response;
 }
 
 void solve()
 {
-    int n;
-    ll x;
+    ll n, x;
     cin >> n >> x;
-    vector<ll> a(n);
-    for (int i = 0; i < n; ++i)
+    vector v(n, 0LL);
+
+    for (ll i = 0; i < n; ++i)
     {
-        cin >> a[i];
+        cin >> v[i + 1];
     }
 
-    // Binary search for the maximum possible height 'h'.
-    // A safe upper bound for h is x (max water) + 10^9 (max coral height).
-    ll low = 1, high = 2000000007, ans = 0;
+    ll left = 1, right = 1e18;
 
-    while (low <= high)
+    while (left + 1 < right)
     {
-        if (const ll mid = low + (high - low) / 2; is_possible(mid, x, n, a))
+        const ll m = left + (right - left) / 2;
+        ll value = calc(v, m);
+
+        if (value > x)
         {
-            // This height 'mid' is achievable. Let's try for an even higher one.
-            ans = mid; // Store this valid answer.
-            low = mid + 1; // Move the lower bound up.
+            right = m - 1;
         }
         else
         {
-            // This height 'mid' is too high. We need to try a lower height.
-            high = mid - 1; // Move the upper bound down.
+            left = m;
         }
     }
 
-    cout << ans << "\n";
+    cout << (calc(v, right) <= x ? right : left) << "\n";
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     int t;
     cin >> t;
+
     while (t--)
     {
         solve();
     }
-
-    return 0;
 }
