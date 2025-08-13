@@ -156,7 +156,7 @@ namespace atcoder
 
         bool satisfiable()
         {
-            auto id = scc.scc_ids().second;
+            const auto id = scc.scc_ids().second;
             for (int i = 0; i < _n; i++)
             {
                 if (id[2 * i] == id[2 * i + 1]) return false;
