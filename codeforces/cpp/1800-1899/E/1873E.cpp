@@ -5,7 +5,7 @@
 
 using namespace std;
 
-ll calc(vector<ll>& v, const ll& m)
+ll calc(const vector<ll>& v, const ll& m)
 {
     ll response = 0;
 
@@ -36,10 +36,7 @@ void solve()
 
     while (left + 1 < right)
     {
-        const ll m = left + (right - left) / 2;
-        ll value = calc(v, m);
-
-        if (value > x)
+        if (const ll m = left + (right - left) / 2; calc(v, m) > x)
         {
             right = m - 1;
         }
