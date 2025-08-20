@@ -24,11 +24,10 @@ void solve()
         {
             current_a += a[i];
             ++current_max;
-
-            max_value = max(max_value, current_max);
         }
         else
         {
+            max_value = max(max_value, current_max);
             current_max = a[i] <= k ? 1 : 0;
             current_a = a[i] <= k ? a[i] : 0;
         }
