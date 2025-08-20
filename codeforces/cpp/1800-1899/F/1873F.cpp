@@ -30,8 +30,15 @@ void solve()
             else if (current_max > 0)
             {
                 max_value = max(max_value, current_max);
-                current_a -= a[i - current_max];
-                --current_max;
+
+                while (current_max > 0 && current_a + a[i] > k)
+                {
+                    current_a -= a[i - current_max];
+                    --current_max;
+                }
+
+                current_a += a[i];
+                ++current_max;
             }
         }
         else
