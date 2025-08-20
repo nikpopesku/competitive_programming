@@ -20,10 +20,19 @@ void solve()
     for (int i = 0; i < n; ++i)
     {
         cin >> h[i];
-        if (i > 0 && h[i - 1] % h[i] == 0 && current_a + a[i] <= k)
+        if (i > 0 && h[i - 1] % h[i] == 0)
         {
-            current_a += a[i];
-            ++current_max;
+            if (current_a + a[i] <= k)
+            {
+                current_a += a[i];
+                ++current_max;
+            }
+            else if (current_max > 0)
+            {
+                max_value = max(max_value, current_max);
+                current_a -= a[i - current_max];
+                --current_max;
+            }
         }
         else
         {
