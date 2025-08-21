@@ -12,6 +12,13 @@ void solve()
 
     int i = 0;
     int response = 0;
+
+    if (s.size() < 2)
+    {
+        cout << "0\n";
+        return;
+    }
+
     while (i <= s.size() - 2)
     {
         if (s[i] == 'A' && s[i + 1] == 'B')
