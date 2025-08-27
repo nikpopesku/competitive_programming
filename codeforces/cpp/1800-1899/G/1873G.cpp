@@ -2,19 +2,18 @@
 
 using namespace std;
 
-constexpr int MAX = 200'007;
-constexpr int MOD = 1'000'000'007;
-
 void solve()
 {
     string s;
     cin >> s;
-    int n = s.length(), cnt = 0;
+    const int n = s.length();
     bool all = (s[0] == 'B' || s[n - 1] == 'B');
+
     for (int i = 0; i < n - 1; i++)
     {
         if (s[i] == s[i + 1] && s[i] == 'B') { all = true; }
     }
+
     vector<int> lens;
     int curr = 0;
     for (int i = 0; i < n; i++)
@@ -51,5 +50,4 @@ int main()
     int tt;
     cin >> tt;
     for (int i = 1; i <= tt; i++) { solve(); }
-    // solve();
 }
