@@ -17,6 +17,8 @@ void solve()
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
+
+    cout << "YES\n";
 }
 
 
