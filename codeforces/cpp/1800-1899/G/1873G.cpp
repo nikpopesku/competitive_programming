@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -6,42 +8,62 @@ void solve()
 {
     string s;
     cin >> s;
-    const int n = s.length();
-    bool all = (s[0] == 'B' || s[n - 1] == 'B');
+    bool all = (s[0] == 'B' || s[s.size() - 1] == 'B');
 
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < s.size() - 1; ++i)
     {
-        if (s[i] == s[i + 1] && s[i] == 'B') { all = true; }
-    }
-
-    vector<int> lens;
-    int curr = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (s[i] == 'A') { curr++; }
-        else
+        if (s[i] == s[i + 1] && s[i] == 'B')
         {
-            if (curr != 0) { lens.push_back(curr); }
-            curr = 0;
+            all = true;
+            break;
         }
     }
-    if (curr != 0) { lens.push_back(curr); }
-    ranges::sort(lens);
 
-    if (lens.empty())
+    int current = 0;
+    vector<int> length;
+
+    for (int i = 0; i < s.size() - 1; ++i)
     {
-        cout << 0 << '\n';
+        if (s[i] == 'A')
+        {
+            ++current;
+        }
+        else
+        {
+            if (current > 0)
+            {
+                length.push_back(current);
+            }
+        }
+    }
+
+    if (current)
+    {
+        length.push_back(current);
+    }
+
+    ranges::sort(length);
+
+    if (length.empty())
+    {
+        cout << "0\n";
         return;
     }
 
-    int tot = 0;
-    if (all) { tot += lens[0]; }
-    for (int i = 1; i < lens.size(); i++)
+    int response = 0;
+    if (all)
     {
-        tot += lens[i];
+        response += length[0];
     }
-    cout << tot << '\n';
+
+    for (int i = 1; i < length.size() - 1; ++i)
+    {
+        response += length[i];
+    }
+
+    cout << response << "\n";
 }
+
 
 int main()
 {
