@@ -22,7 +22,7 @@ void solve()
     int current = 0;
     vector<int> length;
 
-    for (int i = 0; i < s.size() - 1; ++i)
+    for (int i = 0; i < s.size(); ++i)
     {
         if (s[i] == 'A')
         {
@@ -33,6 +33,7 @@ void solve()
             if (current > 0)
             {
                 length.push_back(current);
+                current = 0;
             }
         }
     }
@@ -56,7 +57,7 @@ void solve()
         response += length[0];
     }
 
-    for (int i = 1; i < length.size() - 1; ++i)
+    for (int i = 1; i < length.size(); ++i)
     {
         response += length[i];
     }
