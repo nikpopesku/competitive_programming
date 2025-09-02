@@ -4,6 +4,26 @@
 
 using namespace std;
 
+int dfsEntryNode(int node, int parent, map<int, vector<int>> adj, vector<bool> visited)
+{
+    for (const int neighbour: adj[node])
+    {
+        if (neighbour == parent) continue;;
+
+        if (visited[neighbour])
+        {
+            return visited[neighbour];
+        }
+
+        if (dfsEntryNode(neighbour, node, adj, visited))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void solve()
 {
     int n, a, b;
@@ -17,6 +37,9 @@ void solve()
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
+
+    vector visited(n, false);
+    int entryNode = dfsEntryNode(a, -1);
 
     cout << "YES\n";
 }
