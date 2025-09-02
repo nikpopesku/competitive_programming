@@ -4,8 +4,10 @@
 
 using namespace std;
 
-int dfsEntryNode(int node, int parent, map<int, vector<int>> adj, vector<bool> visited)
+int dfsEntryNode(const int node, const int parent, map<int, vector<int>> adj, vector<bool> visited)
 {
+    visited[node] = true;
+
     for (const int neighbour : adj[node])
     {
         if (neighbour == parent) continue;;
