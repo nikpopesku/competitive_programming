@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int dfsEntryNode(const int node, const int parent, map<int, vector<int>> adj, vector<bool> visited)
+int dfsEntryNode(const int node, const int parent, map<int, vector<int>>& adj, vector<bool>& visited)
 {
     visited[node] = true;
 
