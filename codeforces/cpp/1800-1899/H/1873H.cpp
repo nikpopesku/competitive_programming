@@ -10,17 +10,19 @@ vector<bool> vis(N);
 int entry_node = -1;
 vector<int> path;
 
-bool dfs1(int u, int p)
+bool dfs1(const int u, const int p)
 {
     vis[u] = true;
-    for (auto v : adj[u])
+    for (const auto v : adj[u])
     {
         if (v != p && vis[v])
         {
             entry_node = v;
             return true;
         }
-        else if (v != p && !vis[v])
+
+
+        if (v != p && !vis[v])
         {
             if (dfs1(v, u))
             {
@@ -28,19 +30,21 @@ bool dfs1(int u, int p)
             }
         }
     }
+
     return false;
 }
 
-int dfs2(int u)
+int dfs2(const int u)
 {
     vis[u] = true;
     int distbruh = N;
-    for (auto v : adj[u])
+    for (const auto v : adj[u])
     {
         if (v == entry_node)
         {
             return 1;
         }
+
         if (!vis[v])
         {
             int dist = dfs2(v) + 1;
@@ -63,7 +67,8 @@ void solve()
     }
     dfs1(b, -1);
     vis.assign(n + 1, false);
-    int distMarcel = N, distValeriu = 0;
+    int distMarcel, distValeriu = 0;
+
     if (entry_node == a)
     {
         distMarcel = 0;
@@ -72,7 +77,9 @@ void solve()
     {
         distMarcel = dfs2(a);
     }
+
     vis.assign(n + 1, false);
+
     if (entry_node == b)
     {
         distValeriu = 0;
@@ -81,6 +88,7 @@ void solve()
     {
         distValeriu = dfs2(b);
     }
+
     if (distValeriu < distMarcel)
     {
         cout << "YES" << endl;
@@ -89,6 +97,7 @@ void solve()
     {
         cout << "NO" << endl;
     }
+
     for (int i = 1; i <= n; i++)
     {
         adj[i].clear();
