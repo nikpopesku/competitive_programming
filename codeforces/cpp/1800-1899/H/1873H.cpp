@@ -24,9 +24,25 @@ int dfsEntryNode(int node, int parent, map<int, vector<int>> adj, vector<bool> v
     return false;
 }
 
-int dfsDistance(int node)
+int dfsDistance(int node, int entryNode, map<int, vector<int>> adj, vector<bool> visited)
 {
-    return 4;
+    visited[node] = true;
+    int distance = 0;
+
+    if (node == entryNode)
+    {
+        return distance;
+    }
+
+    for (const int neighbour : adj[node])
+    {
+        if (!visited[neighbour])
+        {
+            distance = 1 + dfsDistance(neighbour, entryNode, adj, visited);
+        }
+    }
+
+    return distance;
 }
 
 void solve()
@@ -44,25 +60,27 @@ void solve()
     }
 
     vector visited(n + 1, false);
-    int entryNode = dfsEntryNode(a, -1, adj, visited);
+    const int entryNode = dfsEntryNode(a, -1, adj, visited);
     int marcelDistance, valeriuDistance;
 
+    visited.assign(n + 1, false);
     if (entryNode == a)
     {
         marcelDistance = 0;
     }
     else
     {
-        marcelDistance = dfsDistance(a);
+        marcelDistance = dfsDistance(a, entryNode, adj, visited);
     }
 
+    visited.assign(n + 1, false);
     if (entryNode == b)
     {
         valeriuDistance = 0;
     }
     else
     {
-        valeriuDistance = dfsDistance(b);
+        valeriuDistance = dfsDistance(b, entryNode, adj, visited);
     }
 
     if (valeriuDistance < marcelDistance)
