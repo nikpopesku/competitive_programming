@@ -6,7 +6,7 @@ using namespace std;
 
 int dfsEntryNode(int node, int parent, map<int, vector<int>> adj, vector<bool> visited)
 {
-    for (const int neighbour: adj[node])
+    for (const int neighbour : adj[node])
     {
         if (neighbour == parent) continue;;
 
@@ -24,6 +24,11 @@ int dfsEntryNode(int node, int parent, map<int, vector<int>> adj, vector<bool> v
     return false;
 }
 
+int dfsDistance(int node)
+{
+    return 4;
+}
+
 void solve()
 {
     int n, a, b;
@@ -38,10 +43,36 @@ void solve()
         adj[v].push_back(u);
     }
 
-    vector visited(n, false);
-    int entryNode = dfsEntryNode(a, -1);
+    vector visited(n + 1, false);
+    int entryNode = dfsEntryNode(a, -1, adj, visited);
+    int marcelDistance, valeriuDistance;
 
-    cout << "YES\n";
+    if (entryNode == a)
+    {
+        marcelDistance = 0;
+    }
+    else
+    {
+        marcelDistance = dfsDistance(a);
+    }
+
+    if (entryNode == b)
+    {
+        valeriuDistance = 0;
+    }
+    else
+    {
+        valeriuDistance = dfsDistance(b);
+    }
+
+    if (valeriuDistance < marcelDistance)
+    {
+        cout << "YES\n";
+    }
+    else
+    {
+        cout << "NO\n";
+    }
 }
 
 
