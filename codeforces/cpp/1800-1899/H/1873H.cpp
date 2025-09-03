@@ -1,117 +1,106 @@
-#include <iostream>
-#include <vector>
-#include <map>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-constexpr int N = 200005;
+const int N = 200005;
 
 vector<int> adj[N];
+vector<bool> vis(N);
 
-int dfsEntryNode(const int node, const int parent, vector<bool>& visited)
+int entry_node = -1;
+vector<int> path;
+
+bool dfs1(int u, int p)
 {
-    visited[node] = true;
-
-    for (const int neighbour : adj[node])
+    vis[u] = true;
+    for(auto v : adj[u])
     {
-        if (neighbour == parent) continue;;
-
-        if (visited[neighbour])
+        if(v != p && vis[v])
         {
-            return neighbour;
+            entry_node = v;
+            return true;
         }
-
-        const int entryNode = dfsEntryNode(neighbour, node, visited);
-
-        if (entryNode != -1)
+        else if(v != p && !vis[v])
         {
-            return entryNode;
+            if(dfs1(v, u))
+            {
+                return true;
+            }
         }
     }
-
-    return -1;
+    return false;
 }
 
-int dfsDistance(const int node, const int entryNode, vector<bool> visited)
+int dfs2(int u)
 {
-    visited[node] = true;
-    int distance = N;
-
-    if (node == entryNode)
+    vis[u] = true;
+    int distbruh = N;
+    for(auto v : adj[u])
     {
-        return 1;
-    }
-
-    for (const int neighbour : adj[node])
-    {
-        if (!visited[neighbour])
+        if(v == entry_node)
         {
-            int dist = 1 + dfsDistance(neighbour, entryNode, visited);
-            distance = min(distance, dist);
+            return 1;
+        }
+        if(!vis[v])
+        {
+            int dist = dfs2(v)+1;
+            distbruh = min(dist, distbruh);
         }
     }
-
-    return distance;
+    return distbruh;
 }
 
 void solve()
 {
     int n, a, b;
     cin >> n >> a >> b;
-    int u, v;
-
-    for (int i = 0; i < n; ++i)
+    for(int i = 0; i < n; i++)
     {
+        int u, v;
         cin >> u >> v;
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-
-    vector visited(n + 1, false);
-    const int entryNode = dfsEntryNode(b, -1, visited);
-    int marcelDistance, valeriuDistance;
-
-    visited.assign(n + 1, false);
-    if (entryNode == a)
+    vis.assign(n+1, false);
+    dfs1(b, -1);
+    vis.assign(n+1, false);
+    int distMarcel = N, distValeriu = 0;
+    if(entry_node == a)
     {
-        marcelDistance = 0;
+        distMarcel = 0;
     }
     else
     {
-        marcelDistance = dfsDistance(a, entryNode, visited);
+        distMarcel = dfs2(a);
     }
-
-    visited.assign(n + 1, false);
-    if (entryNode == b)
+    vis.assign(n+1, false);
+    if(entry_node == b)
     {
-        valeriuDistance = 0;
+        distValeriu = 0;
     }
     else
     {
-        valeriuDistance = dfsDistance(b, entryNode, visited);
+        distValeriu = dfs2(b);
     }
-
-    if (valeriuDistance < marcelDistance)
+    if(distValeriu < distMarcel)
     {
-        cout << "YES\n";
+        cout << "YES" << endl;
     }
     else
     {
-        cout << "NO\n";
+        cout << "NO" << endl;
     }
-
-    for (int i = 1; i <= n; i++)
+    for(int i = 1; i <= n; i++)
     {
         adj[i].clear();
+        vis[i] = false;
     }
 }
 
-
-int main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int tt;
-    cin >> tt;
-    for (int i = 1; i <= tt; i++) { solve(); }
+int32_t main(){
+    int t = 1;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
 }
