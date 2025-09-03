@@ -4,6 +4,8 @@
 
 using namespace std;
 
+constexpr int N = 200005;
+
 int dfsEntryNode(const int node, const int parent, map<int, vector<int>>& adj, vector<bool>& visited)
 {
     visited[node] = true;
@@ -31,18 +33,19 @@ int dfsEntryNode(const int node, const int parent, map<int, vector<int>>& adj, v
 int dfsDistance(const int node, const int entryNode, map<int, vector<int>> adj, vector<bool> visited)
 {
     visited[node] = true;
-    int distance = 0;
+    int distance = N;
 
     if (node == entryNode)
     {
-        return distance;
+        return 1;
     }
 
     for (const int neighbour : adj[node])
     {
         if (!visited[neighbour])
         {
-            distance = 1 + dfsDistance(neighbour, entryNode, adj, visited);
+            int dist = 1 + dfsDistance(neighbour, entryNode, adj, visited);
+            distance = min(distance, dist);
         }
     }
 
