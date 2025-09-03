@@ -17,13 +17,18 @@ int dfsEntryNode(const int node, const int parent, map<int, vector<int>>& adj, v
             return neighbour;
         }
 
-        return dfsEntryNode(neighbour, node, adj, visited);
+        const int entryNode = dfsEntryNode(neighbour, node, adj, visited);
+
+        if (entryNode != -1)
+        {
+            return entryNode;
+        }
     }
 
     return -1;
 }
 
-int dfsDistance(int node, int entryNode, map<int, vector<int>> adj, vector<bool> visited)
+int dfsDistance(const int node, const int entryNode, map<int, vector<int>> adj, vector<bool> visited)
 {
     visited[node] = true;
     int distance = 0;
