@@ -6,7 +6,9 @@ using namespace std;
 
 constexpr int N = 200005;
 
-int dfsEntryNode(const int node, const int parent, map<int, vector<int>>& adj, vector<bool>& visited)
+vector<int> adj[N];
+
+int dfsEntryNode(const int node, const int parent, vector<bool>& visited)
 {
     visited[node] = true;
 
@@ -19,7 +21,7 @@ int dfsEntryNode(const int node, const int parent, map<int, vector<int>>& adj, v
             return neighbour;
         }
 
-        const int entryNode = dfsEntryNode(neighbour, node, adj, visited);
+        const int entryNode = dfsEntryNode(neighbour, node, visited);
 
         if (entryNode != -1)
         {
@@ -30,7 +32,7 @@ int dfsEntryNode(const int node, const int parent, map<int, vector<int>>& adj, v
     return -1;
 }
 
-int dfsDistance(const int node, const int entryNode, map<int, vector<int>> adj, vector<bool> visited)
+int dfsDistance(const int node, const int entryNode, vector<bool> visited)
 {
     visited[node] = true;
     int distance = N;
@@ -44,7 +46,7 @@ int dfsDistance(const int node, const int entryNode, map<int, vector<int>> adj, 
     {
         if (!visited[neighbour])
         {
-            int dist = 1 + dfsDistance(neighbour, entryNode, adj, visited);
+            int dist = 1 + dfsDistance(neighbour, entryNode, visited);
             distance = min(distance, dist);
         }
     }
@@ -57,7 +59,6 @@ void solve()
     int n, a, b;
     cin >> n >> a >> b;
     int u, v;
-    map<int, vector<int>> adj;
 
     for (int i = 0; i < n; ++i)
     {
@@ -67,7 +68,7 @@ void solve()
     }
 
     vector visited(n + 1, false);
-    const int entryNode = dfsEntryNode(b, -1, adj, visited);
+    const int entryNode = dfsEntryNode(b, -1, visited);
     int marcelDistance, valeriuDistance;
 
     visited.assign(n + 1, false);
@@ -77,7 +78,7 @@ void solve()
     }
     else
     {
-        marcelDistance = dfsDistance(a, entryNode, adj, visited);
+        marcelDistance = dfsDistance(a, entryNode, visited);
     }
 
     visited.assign(n + 1, false);
@@ -87,7 +88,7 @@ void solve()
     }
     else
     {
-        valeriuDistance = dfsDistance(b, entryNode, adj, visited);
+        valeriuDistance = dfsDistance(b, entryNode, visited);
     }
 
     if (valeriuDistance < marcelDistance)
@@ -97,6 +98,11 @@ void solve()
     else
     {
         cout << "NO\n";
+    }
+
+    for(int i = 1; i <= n; i++)
+    {
+        adj[i].clear();
     }
 }
 
