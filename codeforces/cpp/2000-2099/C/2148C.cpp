@@ -3,17 +3,18 @@
 
 using namespace std;
 
-int calc_response(const int& new_time, const int& new_side, const int& response, const int& current_side, int current_time)
+int calc_response(const int& new_time, const int& new_side, const int& response, const int& current_side, const int& current_time)
 {
     int new_response = response;
+    int new_current_time = current_time;
     if (const int min_val = current_side != new_side ? 1 : 0; new_time >= current_time + min_val)
     {
         const int val = new_time - current_time - min_val;
         new_response += val / 2 * 2;
-        current_time = new_time - min_val;
+        new_current_time = new_time - min_val;
     }
 
-    if (new_time > current_time)
+    if (new_time > new_current_time)
     {
         ++new_response;
     }
