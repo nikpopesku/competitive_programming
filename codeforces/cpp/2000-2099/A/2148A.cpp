@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 int main()
 {
     int t;
@@ -9,7 +11,7 @@ int main()
     {
         int x, n;
         cin >> x >> n;
-        cout << (n % 2 == 0 ? "0" : x) << "\n";
+        cout << (n % 2 == 0 ? 0 : x) << "\n";
     }
 
     return 0;
