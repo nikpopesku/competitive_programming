@@ -3,7 +3,8 @@
 
 using namespace std;
 
-int calc_response(const int& new_time, const int& new_side, const int& response, const int& current_side, const int& current_time)
+int calc_response(const int& new_time, const int& new_side, const int& response, const int& current_side,
+                  const int& current_time)
 {
     if (current_side != new_side)
     {
