@@ -3,24 +3,22 @@
 
 using namespace std;
 
-int calc_response(const int& new_time, const int& new_side, int& response, int& current_side, int& current_time)
+int calc_response(const int& new_time, const int& new_side, const int& response, const int& current_side, int current_time)
 {
+    int new_response = response;
     if (const int min_val = current_side != new_side ? 1 : 0; new_time >= current_time + min_val)
     {
         const int val = new_time - current_time - min_val;
-        response += val / 2 * 2;
+        new_response += val / 2 * 2;
         current_time = new_time - min_val;
     }
 
     if (new_time > current_time)
     {
-        ++response;
+        ++new_response;
     }
 
-    current_time = new_time;
-    current_side = new_side;
-
-    return response;
+    return new_response;
 }
 
 int main()
@@ -42,6 +40,9 @@ int main()
             cin >> new_time >> new_side;
 
             response = calc_response(new_time, new_side, response, current_side, current_time);
+
+            current_time = new_time;
+            current_side = new_side;
         }
 
         cout << max(calc_response(m, 0, response, current_side, current_time),
