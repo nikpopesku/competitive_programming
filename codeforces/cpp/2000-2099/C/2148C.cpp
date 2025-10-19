@@ -5,7 +5,7 @@ using namespace std;
 
 int calc_response(const int& new_time, const int& new_side, int& response, int& current_side, int& current_time)
 {
-    if (const int min_val = current_side != new_side ? 1 : 0; a >= current_time + min_val)
+    if (const int min_val = current_side != new_side ? 1 : 0; new_time >= current_time + min_val)
     {
         const int val = new_time - current_time - min_val;
         response += val / 2 * 2;
