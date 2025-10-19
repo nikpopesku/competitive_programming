@@ -44,9 +44,7 @@ int main()
             response = calc_response(a, b, response, current_side, current_time);
         }
 
-        response = calc_response(a, b, response, current_side, current_time);
-
-        cout << response << "\n";
+        cout << max(calc_response(m, 0, response, current_side, current_time), calc_response(m, 1, response, current_side, current_time)) << "\n";
     }
 
     return 0;
