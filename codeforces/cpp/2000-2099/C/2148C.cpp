@@ -5,7 +5,7 @@ using namespace std;
 
 int calc_response(const int& a, const int& b, int& response, int& current_side, int& current_time)
 {
-    if (int min_val = current_side != b ? 1 : 0; a >= current_time + min_val)
+    if (const int min_val = current_side != b ? 1 : 0; a >= current_time + min_val)
     {
         const int val = a - current_time - min_val;
         response += val / 2 * 2;
@@ -44,7 +44,8 @@ int main()
             response = calc_response(a, b, response, current_side, current_time);
         }
 
-        cout << max(calc_response(m, 0, response, current_side, current_time), calc_response(m, 1, response, current_side, current_time)) << "\n";
+        cout << max(calc_response(m, 0, response, current_side, current_time),
+                    calc_response(m, 1, response, current_side, current_time)) << "\n";
     }
 
     return 0;
