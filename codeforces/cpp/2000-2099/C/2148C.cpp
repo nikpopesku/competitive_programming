@@ -23,29 +23,24 @@ int main()
             cin >> a[i] >> b[i];
             --a[i];
 
-            if (a[i] >= current_time + 2)
+            int min_val = current_side != b[i] ? 1 : 0;
+            if (a[i] >= current_time + min_val)
             {
-                response += a[i] - current_time - 2;
-                current_time = a[i] - 2;
+                const int val = a[i] - current_time - min_val;
+                response += val / 2 * 2;
+                current_time = a[i] - min_val;
             }
 
             if (a[i] > current_time)
             {
-                if (a[i] % 2 == 0)
-                {
-                    response += current_side != b[i] ? 2 : 1;
-                }
-                else if (current_side != b[i])
-                {
-                    ++response;
-                }
+                ++response;
             }
 
             current_time = a[i];
             current_side = b[i];
         }
 
-        cout << n + m << "\n";
+        cout << response << "\n";
     }
 
     return 0;
