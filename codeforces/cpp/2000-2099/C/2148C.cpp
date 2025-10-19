@@ -3,9 +3,9 @@
 
 using namespace std;
 
-int calc_response(const int& a, const int& b, int& response, int& current_side, int& current_time)
+int calc_response(const int& a, const int& side, int& response, int& current_side, int& current_time)
 {
-    if (const int min_val = current_side != b ? 1 : 0; a >= current_time + min_val)
+    if (const int min_val = current_side != side ? 1 : 0; a >= current_time + min_val)
     {
         const int val = a - current_time - min_val;
         response += val / 2 * 2;
@@ -18,7 +18,7 @@ int calc_response(const int& a, const int& b, int& response, int& current_side, 
     }
 
     current_time = a;
-    current_side = b;
+    current_side = side;
 
     return response;
 }
@@ -32,16 +32,16 @@ int main()
     {
         int n, m;
         cin >> n >> m;
-        int a, b;
+        int a, side;
         int current_side = 0;
         int current_time = 0;
         int response = 0;
 
         for (int i = 0; i < n; ++i)
         {
-            cin >> a >> b;
+            cin >> a >> side;
 
-            response = calc_response(a, b, response, current_side, current_time);
+            response = calc_response(a, side, response, current_side, current_time);
         }
 
         cout << max(calc_response(m, 0, response, current_side, current_time),
