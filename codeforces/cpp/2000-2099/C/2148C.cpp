@@ -21,14 +21,15 @@ int main()
         for (int i = 0; i < n; ++i)
         {
             cin >> a[i] >> b[i];
+            --a[i];
 
-            if (a[i] - 1 >= current_time + 2)
+            if (a[i] >= current_time + 2)
             {
-                response += a[i] - 1 - current_time;
-                a[i] -= current_time - 1;
+                response += a[i] - current_time - 2;
+                current_time = a[i] - 2;
             }
 
-            if (a[i] > 0)
+            if (a[i] > current_time)
             {
                 if (a[i] % 2 == 0)
                 {
@@ -40,7 +41,7 @@ int main()
                 }
             }
 
-            current_time = a[i] - 1;
+            current_time = a[i];
             current_side = b[i];
         }
 
