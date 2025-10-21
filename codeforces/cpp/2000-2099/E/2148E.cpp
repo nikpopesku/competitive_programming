@@ -12,8 +12,12 @@ int solve(int &n, int &k, const map<int, int> &mp) {
         }
     }
 
-    for (int i = 1; i <= n / k; ++i) {
+    int response = n;
+
+    for (int i = 2; i <= n / k; ++i) {
     }
+
+    return response;
 }
 
 int main() {
