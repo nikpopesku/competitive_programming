@@ -35,8 +35,7 @@ int solve(const int &n, const int &k, unordered_map<int, int> &mp, const vector<
             }
             
             // Count this window if length is in [2, n/k]
-            int len = r - l + 1;
-            if (len >= 2 && len <= n / k) {
+            if (const int len = r - l + 1; len >= 2 && len <= n / k) {
                 response++;
             }
         }
