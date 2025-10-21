@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int solve(int &n, int &k, map<int, int> &mp, vector<int> &a) {
+int solve(const int &n, const int &k, map<int, int> &mp, vector<int> &a) {
     for (const auto &val: mp | views::values) {
         if (val % k != 0) {
             return 0;
