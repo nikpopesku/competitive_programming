@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int solve(int &n, int &k, const map<int, int> &mp) {
+int solve(int &n, int &k, map<int, int> &mp, vector<int> &a) {
     for (const auto &val: mp | views::values) {
         if (val % k != 0) {
             return 0;
@@ -13,8 +13,32 @@ int solve(int &n, int &k, const map<int, int> &mp) {
     }
 
     int response = n;
+    map<int, int> m;
 
-    for (int i = 2; i <= n / k; ++i) {
+    for (int len = 2; len <= n / k; ++len) {
+        int l = 0;
+
+        for (int i = 0; i <= len - 1; ++i) {
+            m[a[i]] += 1;
+        }
+
+
+        for (int r = len; r <= n - 1; ++r) {
+            for (auto &[number, frequency]: m) {
+                if (frequency > mp[number] / k) {
+                    return 0;
+                }
+            }
+
+            ++response;
+
+            m[a[r]] += 1;
+            m[a[l]] -= 1;
+            if (m[a[l]] == 0) {
+                m.erase(a[l]);
+            }
+            ++l;
+        }
     }
 
     return response;
@@ -35,7 +59,7 @@ int main() {
             mp[a[i]] += 1;
         }
 
-        cout << solve(n, k, mp) << "\n";
+        cout << solve(n, k, mp, a) << "\n";
     }
 
     return 0;
