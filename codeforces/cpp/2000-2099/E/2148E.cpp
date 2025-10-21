@@ -23,21 +23,23 @@ int solve(const int &n, const int &k, map<int, int> &mp, vector<int> &a) {
         }
 
 
-        for (int r = len; r <= n - 1; ++r) {
+        for (int r = len - 1; r <= n - 1; ++r) {
             for (auto &[number, frequency]: m) {
                 if (frequency > mp[number] / k) {
-                    return 0;
+                    return response;
                 }
             }
 
             ++response;
 
-            m[a[r]] += 1;
-            m[a[l]] -= 1;
-            if (m[a[l]] == 0) {
-                m.erase(a[l]);
+            if (r != n - 1) {
+                m[a[r + 1]] += 1;
+                m[a[l]] -= 1;
+                if (m[a[l]] == 0) {
+                    m.erase(a[l]);
+                }
+                ++l;
             }
-            ++l;
         }
     }
 
