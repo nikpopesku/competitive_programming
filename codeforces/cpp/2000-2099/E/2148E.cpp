@@ -13,9 +13,9 @@ int solve(const int &n, const int &k, map<int, int> &mp, vector<int> &a) {
     }
 
     int response = n;
-    map<int, int> m;
 
     for (int len = 2; len <= n / k; ++len) {
+        map<int, int> m;
         int l = 0;
 
         for (int i = 0; i <= len - 1; ++i) {
