@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <ranges>
 
 using namespace std;
 
-bool check(map<int, int> &mp, const map<int, int> &m, const int &k) {
+bool check(unordered_map<int, int> &mp, const unordered_map<int, int> &m, const int &k) {
     for (const auto &[number, frequency]: m) {
         if (frequency > mp[number] / k) {
             return false;
@@ -15,7 +15,7 @@ bool check(map<int, int> &mp, const map<int, int> &m, const int &k) {
     return true;
 }
 
-int solve(const int &n, const int &k, map<int, int> &mp, const vector<int> &a) {
+int solve(const int &n, const int &k, unordered_map<int, int> &mp, const vector<int> &a) {
     for (const auto &val: mp | views::values) {
         if (val % k != 0) {
             return 0;
@@ -25,7 +25,7 @@ int solve(const int &n, const int &k, map<int, int> &mp, const vector<int> &a) {
     int response = n;
 
     for (int len = 2; len <= n / k; ++len) {
-        map<int, int> m;
+        unordered_map<int, int> m;
         int l = 0;
 
         for (int i = 0; i <= len - 1; ++i) {
@@ -66,7 +66,7 @@ int main() {
         int n, k;
         cin >> n >> k;
         vector<int> a(n);
-        map<int, int> mp;
+        unordered_map<int, int> mp;
 
         for (int i = 0; i < n; ++i) {
             cin >> a[i];
