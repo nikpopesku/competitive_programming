@@ -1,12 +1,13 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <ranges>
 
 using namespace std;
 
-int solve(int &n, int &k, const map<int, int>& mp) {
-    for (auto &elem: mp) {
-        if (elem.second % k != 0) {
+int solve(int &n, int &k, const map<int, int> &mp) {
+    for (const auto &val: mp | views::values) {
+        if (val % k != 0) {
             return 0;
         }
     }
