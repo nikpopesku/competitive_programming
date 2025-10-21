@@ -5,19 +5,10 @@
 
 using namespace std;
 
-bool check(unordered_map<int, int> &mp, const unordered_map<int, int> &m, const int &k) {
-    for (const auto &[number, frequency]: m) {
-        if (frequency > mp[number] / k) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
 int solve(const int &n, const int &k, unordered_map<int, int> &mp, const vector<int> &a) {
-    for (const auto &val: mp | views::values) {
-        if (val % k != 0) {
+    // Check if all frequencies are divisible by k
+    for (const auto &[num, freq]: mp) {
+        if (freq % k != 0) {
             return 0;
         }
     }
@@ -26,31 +17,43 @@ int solve(const int &n, const int &k, unordered_map<int, int> &mp, const vector<
 
     for (int len = 2; len <= n / k; ++len) {
         unordered_map<int, int> m;
-        int l = 0;
-
-        for (int i = 0; i <= len - 1; ++i) {
-            m[a[i]] += 1;
+        int violations = 0; // Track number of elements exceeding limit
+        
+        // Initialize first window
+        for (int i = 0; i < len; ++i) {
+            int old_cnt = m[a[i]];
+            int limit = mp[a[i]] / k;
+            
+            // Update violation count
+            if (old_cnt == limit) violations++;
+            
+            m[a[i]]++;
         }
 
+        // Check first window
+        if (violations == 0) {
+            response++;
+        }
 
-        for (int r = len - 1; r <= n - 1; ++r) {
-            if (check(mp, m, k)) {
-                for (auto &[number, frequency]: m) {
-                    if (frequency > mp[number] / k) {
-                        return response;
-                    }
-                }
-
-                ++response;
-            }
-
-            if (r != n - 1) {
-                m[a[r + 1]] += 1;
-                m[a[l]] -= 1;
-                if (m[a[l]] == 0) {
-                    m.erase(a[l]);
-                }
-                ++l;
+        // Slide the window
+        for (int r = len; r < n; ++r) {
+            int left_val = a[r - len];
+            int right_val = a[r];
+            int limit_left = mp[left_val] / k;
+            int limit_right = mp[right_val] / k;
+            
+            // Remove left element
+            if (m[left_val] == limit_left + 1) violations--;
+            m[left_val]--;
+            if (m[left_val] == 0) m.erase(left_val);
+            
+            // Add right element
+            if (m[right_val] == limit_right) violations++;
+            m[right_val]++;
+            
+            // Check if current window is valid
+            if (violations == 0) {
+                response++;
             }
         }
     }
@@ -70,7 +73,7 @@ int main() {
 
         for (int i = 0; i < n; ++i) {
             cin >> a[i];
-            mp[a[i]] += 1;
+            mp[a[i]]++;
         }
 
         cout << solve(n, k, mp, a) << "\n";
