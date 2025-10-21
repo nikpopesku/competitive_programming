@@ -2,6 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include <ranges>
+#include <algorithm>
 
 using namespace std;
 
@@ -14,6 +15,37 @@ int solve(const int &n, const int &k, unordered_map<int, int> &mp, const vector<
     }
 
     long long response = n; // All subarrays of length 1 are valid
+    
+    // Special case: only one unique element
+    if (mp.size() == 1) {
+        long long max_len = n / k;
+        // Sum of valid windows for each starting position
+        // Position 0: (max_len - 1) windows (lengths 2 to max_len)
+        // Position 1: (max_len - 1) windows
+        // ...
+        // Position n - max_len: (max_len - 1) windows
+        // Position n - max_len + 1: (max_len - 2) windows (lengths 2 to max_len - 1)
+        // ...
+        // Position n - 2: 1 window (length 2)
+        
+        if (max_len >= 2) {
+            // Full windows: positions [0, n - max_len] contribute (max_len - 1) each
+            long long full_positions = max(0LL, n - max_len + 1);
+            response += full_positions * (max_len - 1);
+            
+            // Partial windows: positions [n - max_len + 1, n - 2]
+            // Position n - max_len + 1: max_len - 2 windows
+            // Position n - max_len + 2: max_len - 3 windows
+            // ...
+            // Position n - 2: 1 window
+            // This is sum of 1 + 2 + ... + (max_len - 2) = (max_len - 2) * (max_len - 1) / 2
+            long long partial_positions = min(max_len - 1, (long long)n - full_positions);
+            if (partial_positions > 0) {
+                response += (partial_positions - 1) * partial_positions / 2;
+            }
+        }
+        return response;
+    }
     
     // Precompute limits
     unordered_map<int, int> limit;
@@ -35,7 +67,8 @@ int solve(const int &n, const int &k, unordered_map<int, int> &mp, const vector<
             }
             
             // Count this window if length is in [2, n/k]
-            if (const int len = r - l + 1; len >= 2 && len <= n / k) {
+            int len = r - l + 1;
+            if (len >= 2 && len <= n / k) {
                 response++;
             }
         }
