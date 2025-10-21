@@ -7,52 +7,36 @@ using namespace std;
 
 int solve(const int &n, const int &k, unordered_map<int, int> &mp, const vector<int> &a) {
     // Check if all frequencies are divisible by k
-    for (const auto &[num, freq]: mp) {
+    for (const auto &freq: mp | views::values) {
         if (freq % k != 0) {
             return 0;
         }
     }
 
-    int response = n;
+    long long response = n; // All subarrays of length 1 are valid
+    
+    // Precompute limits
+    unordered_map<int, int> limit;
+    for (const auto &[num, freq]: mp) {
+        limit[num] = freq / k;
+    }
 
-    for (int len = 2; len <= n / k; ++len) {
-        unordered_map<int, int> m;
-        int violations = 0; // Track number of elements exceeding limit
+    // For each starting position, find maximum valid window
+    for (int l = 0; l < n; ++l) {
+        unordered_map<int, int> cnt;
         
-        // Initialize first window
-        for (int i = 0; i < len; ++i) {
-            int old_cnt = m[a[i]];
-            int limit = mp[a[i]] / k;
+        // Find the rightmost position where window [l, r] is valid
+        for (int r = l; r < n; ++r) {
+            cnt[a[r]]++;
             
-            // Update violation count
-            if (old_cnt == limit) violations++;
+            // If we exceeded the limit, stop
+            if (cnt[a[r]] > limit[a[r]]) {
+                break;
+            }
             
-            m[a[i]]++;
-        }
-
-        // Check first window
-        if (violations == 0) {
-            response++;
-        }
-
-        // Slide the window
-        for (int r = len; r < n; ++r) {
-            int left_val = a[r - len];
-            int right_val = a[r];
-            int limit_left = mp[left_val] / k;
-            int limit_right = mp[right_val] / k;
-            
-            // Remove left element
-            if (m[left_val] == limit_left + 1) violations--;
-            m[left_val]--;
-            if (m[left_val] == 0) m.erase(left_val);
-            
-            // Add right element
-            if (m[right_val] == limit_right) violations++;
-            m[right_val]++;
-            
-            // Check if current window is valid
-            if (violations == 0) {
+            // Count this window if length is in [2, n/k]
+            int len = r - l + 1;
+            if (len >= 2 && len <= n / k) {
                 response++;
             }
         }
@@ -62,6 +46,9 @@ int solve(const int &n, const int &k, unordered_map<int, int> &mp, const vector<
 }
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
     int t;
     cin >> t;
 
