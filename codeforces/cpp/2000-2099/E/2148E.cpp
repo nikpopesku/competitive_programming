@@ -34,16 +34,15 @@ int solve(const int &n, const int &k, map<int, int> &mp, const vector<int> &a) {
 
 
         for (int r = len - 1; r <= n - 1; ++r) {
-            if (!check(mp, m, k)) {
-                continue;
-            }
-            for (auto &[number, frequency]: m) {
-                if (frequency > mp[number] / k) {
-                    return response;
+            if (check(mp, m, k)) {
+                for (auto &[number, frequency]: m) {
+                    if (frequency > mp[number] / k) {
+                        return response;
+                    }
                 }
-            }
 
-            ++response;
+                ++response;
+            }
 
             if (r != n - 1) {
                 m[a[r + 1]] += 1;
