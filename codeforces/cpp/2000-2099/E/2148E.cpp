@@ -4,6 +4,16 @@
 
 using namespace std;
 
+int solve(int &n, int &k, const map<int, int>& mp) {
+    for (auto &elem: mp) {
+        if (elem.second % k != 0) {
+            return 0;
+        }
+    }
+
+    for (int i = 1; i <= n / k; ++i) {
+    }
+}
 
 int main() {
     int t;
@@ -20,13 +30,7 @@ int main() {
             mp[a[i]] += 1;
         }
 
-        for (auto &elem: mp) {
-            if (elem.second % k != 0) {
-                cout << "0\n";
-
-                continue;
-            }
-        }
+        cout << solve(n, k, mp) << "\n";
     }
 
     return 0;
