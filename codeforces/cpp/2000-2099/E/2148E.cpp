@@ -5,7 +5,17 @@
 
 using namespace std;
 
-int solve(const int &n, const int &k, map<int, int> &mp, vector<int> &a) {
+bool check(map<int, int> &mp, const map<int, int> &m, const int &k) {
+    for (const auto &[number, frequency]: m) {
+        if (frequency > mp[number] / k) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int solve(const int &n, const int &k, map<int, int> &mp, const vector<int> &a) {
     for (const auto &val: mp | views::values) {
         if (val % k != 0) {
             return 0;
@@ -24,6 +34,9 @@ int solve(const int &n, const int &k, map<int, int> &mp, vector<int> &a) {
 
 
         for (int r = len - 1; r <= n - 1; ++r) {
+            if (!check(mp, m, k)) {
+                continue;
+            }
             for (auto &[number, frequency]: m) {
                 if (frequency > mp[number] / k) {
                     return response;
