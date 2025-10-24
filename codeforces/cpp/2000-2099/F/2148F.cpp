@@ -7,15 +7,15 @@ using namespace std;
 #define ll long long
 
 void solve() {
-    int n, k, max_k = 0;
+    ll n, k, max_k = 0;
     string value;
     cin >> n;
     vector<string> a(n);
 
-    for (int i = 0; i < n; ++i) {
+    for (ll i = 0; i < n; ++i) {
         cin >> k;
         max_k = max(max_k, k);
-        for (int j = 0; j < k; ++j) {
+        for (ll j = 0; j < k; ++j) {
             cin >> value;
             a[i] += value;
         }
@@ -24,9 +24,9 @@ void solve() {
     ranges::sort(a.begin(), a.end());
     vector<char> response(max_k);
 
-    int i = 0;
+    ll i = 0;
     while (i < max_k) {
-        for (int j = 0; j < n; ++j) {
+        for (ll j = 0; j < n; ++j) {
             if (a[j].size() > i) {
                 for (; i < a[j].size(); ++i) {
                     response[i] = a[j][i];
