@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -6,32 +7,34 @@ using namespace std;
 #define ll long long
 
 void solve() {
-    int n, k, value;
+    int n, k, max_k = 0;
+    string value;
     cin >> n;
-    vector<int> response;
-    int current_length = 0;
+    vector<string> a(n);
+
     for (int i = 0; i < n; ++i) {
         cin >> k;
-        int lexicographically_minimum = 0;
+        max_k = max(max_k, k);
         for (int j = 0; j < k; ++j) {
             cin >> value;
-            if (j + 1 > current_length) {
-                response.push_back(value);
-                ++current_length;
-            } else {
-                if (lexicographically_minimum == 0 && value > response[j]) {
-                    lexicographically_minimum = -1;
-                }
-                if (lexicographically_minimum == 0 && value < response[j]) {
-                    lexicographically_minimum = 1;
-                }
+            a[i] += value;
+        }
+    }
 
-                if (lexicographically_minimum == 1) {
-                    response[j] = value;
+    ranges::sort(a.begin(), a.end());
+    vector<char> response(max_k);
+
+    int i = 0;
+    while (i < max_k) {
+        for (int j = 0; j < n; ++j) {
+            if (a[j].size() > i) {
+                for (; i < a[j].size(); ++i) {
+                    response[i] = a[j][i];
                 }
             }
         }
     }
+
 
     for (const auto &e: response) {
         cout << e << " ";
