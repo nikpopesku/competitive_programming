@@ -1,5 +1,8 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
 using namespace std;
+
 #define ll long long
 
 void solve() {
@@ -41,8 +44,8 @@ void solve() {
     cout << response << "\n";
 }
 
-int32_t main() {
-    cin.tie(nullptr)->sync_with_stdio(false);
+int main() {
+    basic_ostream<char>::sync_with_stdio(false);
     int tc = 1;
     cin >> tc;
     while (tc--) solve();
