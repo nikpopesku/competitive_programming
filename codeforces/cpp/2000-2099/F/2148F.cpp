@@ -12,13 +12,23 @@ void solve() {
     int current_length = 0;
     for (int i = 0; i < n; ++i) {
         cin >> k;
+        int lexicographically_minimum = 0;
         for (int j = 0; j < k; ++j) {
             cin >> value;
             if (j + 1 > current_length) {
                 response.push_back(value);
                 ++current_length;
             } else {
-                response[j] = value;
+                if (lexicographically_minimum == 0 && value > response[j]) {
+                    lexicographically_minimum = -1;
+                }
+                if (lexicographically_minimum == 0 && value < response[j]) {
+                    lexicographically_minimum = 1;
+                }
+
+                if (lexicographically_minimum == 1) {
+                    response[j] = value;
+                }
             }
         }
     }
@@ -26,6 +36,7 @@ void solve() {
     for (const auto &e: response) {
         cout << e << " ";
     }
+    cout << "\n";
 }
 
 int main() {
