@@ -1,32 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
+#define ll long long
 
 void solve() {
-    int n, k;
+    ll n, k;
     cin >> n >> k;
     vector<int> a(n), cnt(n + 1), ct(n + 1);
-    for (int i = 0; i < n; i++) {
+
+    for (ll i = 0; i < n; ++i) {
         cin >> a[i];
-        cnt[a[i]]++;
+
+        ++cnt[a[i]];
     }
-    for (int i = 0; i <= n; i++) {
+
+    for (ll i = 0; i <= n; ++i) {
         if (cnt[i] % k) {
-            return void(cout << 0 << endl);
+            cout << "0\n";
+
+            return;
         }
 
         cnt[i] /= k;
     }
-    int res = 0;
-    for (int l = 0, r = 0; r >= l and r < n; r++) {
-        ct[a[r]]++;
+
+    ll response = 0;
+
+    ll l = 0, r = 0;
+
+    for (l = 0, r = 0; r >= l && r < n; ++r) {
+        ++ct[a[r]];
+
         while (ct[a[r]] > cnt[a[r]]) {
-            ct[a[l]]--;
-            l++;
+            --ct[a[l]];
+            ++l;
         }
-        res += (r - l + 1);
+
+        response += r - l + 1;
     }
-    cout << res << endl;
+
+    cout << response << "\n";
 }
 
 int32_t main() {
