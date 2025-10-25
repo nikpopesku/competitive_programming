@@ -10,7 +10,7 @@ ostream& operator<<(ostream& out, vector<T>& a)
 {
     for (auto& x : a) out << x << ' ';
     return out;
-};
+}
 
 void solve()
 {
