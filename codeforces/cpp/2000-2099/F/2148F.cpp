@@ -49,13 +49,22 @@ void solve()
         sort(cur.begin(), cur.end());
         lex_min[i] = cur[0][2];
         int rk = 0;
-        for (auto & c: cur)
+        for (auto& c : cur)
         {
             rank[c[2]] = rk++;
         }
     }
 
     vector<int> ans;
+    while (static_cast<int>(ans.size()) < max_k)
+    {
+        const int tmp = static_cast<int>(ans.size());
+
+        for (int i = tmp; i < static_cast<int>(numbers[lex_min[tmp]].size()); ++i)
+        {
+            ans[i] = numbers[lex_min[tmp]][i];
+        }
+    }
 
     cout << ans << "\n";
 }
