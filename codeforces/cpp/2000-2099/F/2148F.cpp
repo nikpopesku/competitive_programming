@@ -44,7 +44,7 @@ void solve()
 
         for (const auto& j : g[i])
         {
-            cur.push_back({numbers[j][i], rank[i], j});
+            cur.push_back({numbers[j][i], rank[j], j});
         }
 
         sort(cur.begin(), cur.end());
