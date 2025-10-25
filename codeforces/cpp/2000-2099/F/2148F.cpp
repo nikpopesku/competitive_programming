@@ -36,7 +36,7 @@ void solve()
         }
     }
 
-    vector<int> lex_min, rank(n, -1);
+    vector<int> lex_min(max_k), rank(n, -1);
 
     for (int i = max_k - 1; i >= 0; --i)
     {
