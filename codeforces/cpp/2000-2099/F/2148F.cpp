@@ -22,12 +22,13 @@ void solve()
     {
         int k;
         cin >> k;
+        numbers[i].resize(k);
         max_k = max(max_k, k);
 
         for (int j = 0; j < k; ++j)
         {
             cin >> numbers[i][j];
-            if (g[j].size() == j)
+            if (static_cast<int>(g[j].size()) == j)
             {
                 g[j].emplace_back();
             }
