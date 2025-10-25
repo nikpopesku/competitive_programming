@@ -39,7 +39,7 @@ void solve()
     for (int i = max_k - 1; i >= 0; --i)
     {
         vector<array<int, 3>> cur;
-        for (auto& j : relevant[i])
+        for (const auto& j : relevant[i])
         {
             cur.push_back({g[j][i], rank[j], j});
         }
