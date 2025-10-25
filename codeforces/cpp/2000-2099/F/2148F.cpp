@@ -1,12 +1,6 @@
 #include <bits/stdc++.h>
-using namespace std;
 
-#define all(x) x.begin(), x.end()
-#define pb push_back
-#define FOR(i,a,b) for(int i = (a); i < (b); ++i)
-#define ROF(i,a,b) for(int i = (a); i >= (b); --i)
-#define trav(a,x) for(auto& a: x)
-#define sz(x) (int)x.size()
+using namespace std;
 
 template <class T>
 bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
@@ -24,40 +18,47 @@ void solve()
     cin >> n;
     vector<vector<int>> g(n), relevant;
     int max_k = 0;
-    FOR(i, 0, n)
+
+    for (int i = 0; i < n; ++i)
     {
         int k;
         cin >> k;
         g[i].resize(k);
         ckmax(max_k, k);
-        FOR(j, 0, k)
+
+        for (int j = 0; j < k; ++j)
         {
             cin >> g[i][j];
-            if (sz(relevant) == j) relevant.pb({});
-            relevant[j].pb(i);
+            if (static_cast<int>(relevant.size()) == j) relevant.emplace_back();
+            relevant[j].push_back(i);
         }
     }
+
     vector<int> lex_min(max_k), rank(n, -1);
-    ROF(i, max_k-1, 0)
+
+    for (int i = max_k - 1; i >= 0; --i)
     {
         vector<array<int, 3>> cur;
-        trav(j, relevant[i])
+        for (auto& j : relevant[i])
         {
-            cur.pb({g[j][i], rank[j], j});
+            cur.push_back({g[j][i], rank[j], j});
         }
-        sort(all(cur));
+        sort(cur.begin(), cur.end());
         lex_min[i] = cur[0][2];
         int rk = 0;
-        trav(j, cur) rank[j[2]] = rk++;
+        for (auto& j : cur) rank[j[2]] = rk++;
     }
+
     vector<int> ans;
-    while (sz(ans) < max_k)
+
+    while (static_cast<int>(ans.size()) < max_k)
     {
-        const int tmp = sz(ans);
+        const int tmp = static_cast<int>(ans.size());
         auto& v = g[lex_min[tmp]];
-        FOR(i, tmp, sz(v)) ans.pb(v[i]);
+        for (int i = tmp; i < static_cast<int>(v.size()); ++i) ans.push_back(v[i]);
     }
-    assert(sz(ans) == max_k);
+
+    assert(static_cast<int>(ans.size()) == max_k);
     cout << ans << "\n";
 }
 
