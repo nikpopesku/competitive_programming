@@ -28,9 +28,9 @@ void solve()
         for (int j = 0; j < k; ++j)
         {
             cin >> numbers[i][j];
-            if (static_cast<int>(g[j].size()) == j)
+            if (static_cast<int>(g.size()) == j)
             {
-                g[j].emplace_back();
+                g.emplace_back();
             }
             g[j].push_back(i);
         }
