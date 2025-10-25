@@ -63,7 +63,7 @@ void solve()
 
         for (int i = tmp; i < static_cast<int>(numbers[lex_min[tmp]].size()); ++i)
         {
-            ans[i] = numbers[lex_min[tmp]][i];
+            ans.push_back(numbers[lex_min[tmp]][i]);
         }
     }
 
