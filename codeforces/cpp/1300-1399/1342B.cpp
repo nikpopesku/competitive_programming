@@ -12,7 +12,7 @@ int main() {
         cin >> t;
 
         if (set s(t.begin(), t.end()); s.size() == 1) {
-            cout << t;
+            cout << t << "\n";
 
             continue;
         }
@@ -24,5 +24,7 @@ int main() {
         for (auto i = 0; i < static_cast<int>(t.size()); ++i) {
             cout << value;
         }
+
+        cout << "\n";
     }
 }
