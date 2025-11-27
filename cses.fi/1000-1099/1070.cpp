@@ -7,6 +7,12 @@ int main() {
     int n;
     cin >> n;
 
+    if (n == 1) {
+        cout << "1n";
+
+        return 0;
+    }
+
     if (n <= 3) {
         cout << "NO SOLUTION\n";
 
