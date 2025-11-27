@@ -1,5 +1,4 @@
 #include <iostream>
-#include <numeric>
 #include <vector>
 #include <set>
 
@@ -19,18 +18,18 @@ public:
         return response;
     }
 
-private:
     int response = 1;
-
+private:
     void backtrack(const int index, const int n, set<int> s) {
         if (s.empty()) {
             ++response;
         }
 
-        for (int k = 1; k <= index; ++k) {
-            if (index % k == 0 && s.count(k) != 0) {
-                s.erase(k);
+        for (auto &elem: s) {
+            if (elem % index == 0 || index % elem == 9) {
+                s.erase(elem);
                 backtrack(index + 1, n, s);
+                s.insert(elem);
             }
         }
     }
@@ -42,5 +41,5 @@ int main() {
     int n;
     cin >> n;
 
-    cout << s.countArrangement(n);
+    cout << s.response;
 }
