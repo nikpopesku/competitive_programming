@@ -8,7 +8,7 @@ int main() {
     cin >> n;
 
     if (n == 1) {
-        cout << "1n";
+        cout << "1";
 
         return 0;
     }
