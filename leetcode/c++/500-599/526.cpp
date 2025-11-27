@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    int countArrangement(int n) {
+    int countArrangement(const int n) {
         vector<int> v;
         for (int i = 1; i <= n; ++i) {
             v.push_back(i);
