@@ -25,7 +25,7 @@ private:
             ++response;
         }
 
-        for (auto elem: s) {
+        for (const auto elem: s) {
             if (elem % index == 0 || index % elem == 0) {
                 s.erase(elem);
                 backtrack(index + 1, n, s);
