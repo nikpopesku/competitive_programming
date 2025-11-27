@@ -1,37 +1,33 @@
 #include <iostream>
 #include <vector>
-#include <set>
+#include <cstring>
 
 using namespace std;
 
 class Solution {
 public:
     int countArrangement(const int n) {
-        vector<int> v;
-        for (int i = 1; i <= n; ++i) {
-            v.push_back(i);
-        }
-        const set s(v.begin(), v.end());
-
-        backtrack(1, n, s);
+        used = vector(n + 1, false);
+        backtrack(1, n);
 
         return response;
     }
 
     int response = 0;
-
+    vector<bool> used;
 private:
-    void backtrack(const int index, const int n, set<int> s) {
-        if (s.empty()) {
+    void backtrack(const int index, const int n) {
+        if (index > n) {
             ++response;
+
+            return;
         }
 
-        for (auto it = s.begin(); it != s.end();) {
-            auto elem = *it++;
-            if (elem % index == 0 || index % elem == 0) {
-                s.erase(elem);
-                backtrack(index + 1, n, s);
-                s.insert(elem);
+        for (int num = 1; num <= n; ++num) {
+            if (!used[num] && (num % index == 0 || index % num == 0)) {
+                used[num] = true;
+                backtrack(index + 1, n);
+                used[num] = false;
             }
         }
     }
@@ -43,7 +39,6 @@ int main() {
     int n;
     cin >> n;
 
-    s.countArrangement(n);
-
-    cout << s.response;
+    cout << s.countArrangement(n);
+    return 0;
 }
