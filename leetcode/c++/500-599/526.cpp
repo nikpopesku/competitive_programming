@@ -15,6 +15,7 @@ public:
 
     int response = 0;
     vector<bool> used;
+
 private:
     void backtrack(const int index, const int n) {
         if (index > n) {
