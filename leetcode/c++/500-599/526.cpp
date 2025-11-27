@@ -28,7 +28,7 @@ public:
         int response = 1;
 
         for (int i = 1; i <= n; ++i) {
-            response *= mp[i].size();
+            response *= static_cast<int>(mp[i].size());
         }
 
         return response;
