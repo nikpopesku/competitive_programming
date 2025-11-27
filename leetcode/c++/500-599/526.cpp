@@ -1,37 +1,38 @@
 #include <iostream>
+#include <numeric>
+#include <vector>
 #include <set>
-#include <unordered_map>
 
 using namespace std;
 
 class Solution {
 public:
     int countArrangement(int n) {
-        unordered_map<int, set<int> > mp = {
-            {1, {1}},
-            {2, {1, 2}},
-            {3, {1, 3}},
-            {4, {1, 2, 4}},
-            {5, {1, 5}},
-            {6, {1, 2, 3, 6}},
-            {7, {1, 7}},
-            {8, {1, 2, 4, 8}},
-            {9, {1, 3, 9}},
-            {10, {1, 2, 5, 10}},
-            {11, {1, 11}},
-            {12, {1, 2, 3, 4, 6, 12}},
-            {13, {1, 13}},
-            {14, {1, 2, 7, 14}},
-            {15, {1, 3, 5, 15}},
-        };
-
-        int response = 1;
-
+        vector<int> v;
         for (int i = 1; i <= n; ++i) {
-            response *= static_cast<int>(mp[i].size());
+            v.push_back(i);
         }
+        set s(v.begin(), v.end());
+
+        backtrack(1, n, s);
 
         return response;
+    }
+
+private:
+    int response = 1;
+
+    void backtrack(const int index, const int n, set<int> s) {
+        if (s.empty()) {
+            ++response;
+        }
+
+        for (int k = 1; k <= index; ++k) {
+            if (index % k == 0 && s.count(k) != 0) {
+                s.erase(k);
+                backtrack(index + 1, n, s);
+            }
+        }
     }
 };
 
