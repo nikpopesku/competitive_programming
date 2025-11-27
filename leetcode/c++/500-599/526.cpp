@@ -19,13 +19,15 @@ public:
     }
 
     int response = 0;
+
 private:
     void backtrack(const int index, const int n, set<int> s) {
         if (s.empty()) {
             ++response;
         }
 
-        for (const auto elem: s) {
+        for (auto it = s.begin(); it != s.end();) {
+            auto elem = *it++;
             if (elem % index == 0 || index % elem == 0) {
                 s.erase(elem);
                 backtrack(index + 1, n, s);
