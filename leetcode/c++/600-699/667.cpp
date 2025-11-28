@@ -14,7 +14,7 @@ public:
     string response;
 
 private:
-    void backtrack(vector<int> v, const int k, const int n, string s) {
+    void backtrack(vector<int> v, const int k, const int n, const string& s) {
         if (static_cast<int>(s.size()) == n) {
             if (check(s) == k) {
                 response = s;
