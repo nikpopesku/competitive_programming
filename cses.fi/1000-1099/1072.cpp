@@ -13,14 +13,13 @@ int main() {
         mp[i] = 0;
     }
 
-    vector<pair<int, int> > directions = {{1, 2}, {2, 1}, {-1, 2}, {-2, 1}, {1, -2}, {2, -1}, {-1, -2}, {-2, -1}};
-    vector<pair<int, int> > directions2 = {{1, 2}, {2, 1}, {1, -2}, {2, -1}};
+    vector<pair<int, int> > directions = {{1, 2}, {2, 1}, {1, -2}, {2, -1}};
     long long response = 0;
 
     for (int x = 0; x < n; ++x) {
         for (int y = 0; y < n; ++y) {
             int count = 0;
-            for (auto &[fst, snd]: directions2) {
+            for (auto &[fst, snd]: directions) {
                 pair nd = {x + fst, y + snd};
                 if (nd.first < n && nd.second >= 0 && nd.second < n) {
                     ++count;
