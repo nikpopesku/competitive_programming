@@ -19,7 +19,6 @@ public:
         return r;
     }
 
-
 private:
     string response;
 
