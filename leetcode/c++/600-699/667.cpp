@@ -29,7 +29,7 @@ private:
             s.insert(abs(v[i] - v[i - 1]));
         }
 
-        return s.count();
+        return s.size();
     }
 };
 
