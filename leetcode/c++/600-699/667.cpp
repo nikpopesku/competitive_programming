@@ -15,8 +15,11 @@ private:
     string response;
 
     void backtrack(vector<int> v, const int k, const int n, string s) {
-        if (static_cast<int>(s.size()) == n && check(s) == k) {
-            response = s;
+        if (static_cast<int>(s.size()) == n) {
+            if (check(s) == k) {
+                response = s;
+            }
+
 
             return;
         }
