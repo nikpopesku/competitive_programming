@@ -15,9 +15,13 @@ private:
     vector<int> response;
 
     void backtrack(vector<int> v, int k, int n) {
-        if (static_cast<int>(v.size()) == n && Solution::check(v) == k) {
+        if (static_cast<int>(v.size()) == n && check(v) == k) {
             response = v;
 
+            return;
+        }
+
+        if (check(v) > k) {
             return;
         }
     }
