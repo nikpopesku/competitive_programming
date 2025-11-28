@@ -8,7 +8,7 @@ class Solution {
 public:
     void constructArray(const int n, const int k) {
         const vector<int> v(n + 1, false);
-        backtrack(v, k, 0, "");
+        backtrack(v, k, n, "");
     }
 
     string response;
