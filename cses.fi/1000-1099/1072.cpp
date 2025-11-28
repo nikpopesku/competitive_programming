@@ -27,7 +27,7 @@ int main() {
                 }
             }
 
-            response += n * n - (x * n + y + count);
+            response += n * n - (x * n + y + 1 + count);
         }
     }
 
