@@ -15,7 +15,7 @@ int main() {
 
     vector<pair<int, int> > directions = {{1, 2}, {2, 1}, {-1, 2}, {-2, 1}, {1, -2}, {2, -1}, {-1, -2}, {-2, -1}};
     vector<pair<int, int> > directions2 = {{1, 2}, {2, 1}, {1, -2}, {2, -1}};
-    int response = 0;
+    long long response = 0;
 
     for (int x = 0; x < n; ++x) {
         for (int y = 0; y < n; ++y) {
