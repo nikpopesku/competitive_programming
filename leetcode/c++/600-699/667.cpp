@@ -7,33 +7,41 @@ using namespace std;
 class Solution {
 public:
     vector<int> constructArray(int n, int k) {
-        vector<int> v;
-        backtrack(v, k, 0);
+        vector<int> v(n + 1, false);
+        backtrack(v, k, 0, "");
     }
 
 private:
-    vector<int> response;
+    string response;
 
-    void backtrack(vector<int> v, const int k, int n) {
-        if (static_cast<int>(v.size()) == n && check(v) == k) {
-            response = v;
+    void backtrack(vector<int> v, const int k, const int n, string s) {
+        if (static_cast<int>(s.size()) == n && check(s) == k) {
+            response = s;
 
             return;
         }
 
-        if (check(v) > k) {
+        if (check(s) > k) {
             return;
+        }
+
+        for (int i = 1; i <= n; ++i) {
+            if (!v[i]) {
+                v[i] = true;
+                backtrack(v, k, n, s + to_string(i));
+                v[i] = false;
+            }
         }
     }
 
 
-    static size_t check(const vector<int> &v) {
-        set<int> s;
-        for (int i = 1; i < v.size(); ++i) {
-            s.insert(abs(v[i] - v[i - 1]));
+    static size_t check(const string &s) {
+        set<int> ss;
+        for (int i = 1; i < s.size(); ++i) {
+            ss.insert(abs(s[i] - '0' - (s[i - 1] - '0')));
         }
 
-        return s.size();
+        return ss.size();
     }
 };
 
