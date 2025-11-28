@@ -6,14 +6,16 @@ int main() {
     int n;
     cin >> n;
 
-    for (int i = 1; i <= n; ++i) {
-        const long long total = static_cast<long long>(i) * i * (static_cast<long long>(i) * i - 1) / 2;
-        long long attacking = 0;
-        if (i > 2) {
-            attacking = 4LL * (i - 1) * (i - 2);
-        }
-        cout << total - attacking << "\n";
-    }
+    long long total = 0;
+    long long attacking = 0;
 
-    return 0;
+    for (long long i = 1; i <= n; ++i) {
+        total = i * i * (i * i - 1) / 2;
+
+        if (i > 2) {
+            attacking = 2 * 2 * (i - 1) * (i - 2);
+        }
+
+        cout << (total - attacking) << "\n";
+    }
 }
