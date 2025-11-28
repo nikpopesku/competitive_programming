@@ -23,7 +23,7 @@ private:
     }
 
 
-    static int check(const vector<int> &v) {
+    static size_t check(const vector<int> &v) {
         set<int> s;
         for (int i = 1; i < v.size(); ++i) {
             s.insert(abs(v[i] - v[i - 1]));
