@@ -11,15 +11,14 @@ public:
         backtrack(v, k, 0, "");
     }
 
-private:
     string response;
 
+private:
     void backtrack(vector<int> v, const int k, const int n, string s) {
         if (static_cast<int>(s.size()) == n) {
             if (check(s) == k) {
                 response = s;
             }
-
 
             return;
         }
@@ -54,8 +53,10 @@ int main() {
     int n, k;
     cin >> n >> k;
 
-    for (const auto &e: s.constructArray(n, k)) {
-        cout << e << " ";
+    s.constructArray(n, k);
+
+    for (const auto &c: s.response) {
+        cout << c << " ";
     }
 
     return 0;
