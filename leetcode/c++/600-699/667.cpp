@@ -1,57 +1,35 @@
 #include <iostream>
 #include <vector>
-#include <set>
 
 using namespace std;
 
 class Solution {
 public:
     vector<int> constructArray(const int n, const int k) {
-        const vector<int> v(n + 1, false);
-        backtrack(v, k, n, "");
+        vector<int> result;
+        int left = 1, right = n;
 
-        vector<int> r;
-
-        for (const auto &c: response) {
-            r.push_back(c - '0');
-        }
-
-        return r;
-    }
-
-private:
-    string response;
-
-    void backtrack(vector<int> v, const int k, const int n, const string &s) {
-        if (static_cast<int>(s.size()) == n) {
-            if (check(s) == k) {
-                response = s;
-            }
-
-            return;
-        }
-
-        if (check(s) > k) {
-            return;
-        }
-
-        for (int i = 1; i <= n; ++i) {
-            if (!v[i]) {
-                v[i] = true;
-                backtrack(v, k, n, s + to_string(i));
-                v[i] = false;
+        // Create k distinct differences by alternating
+        for (int i = 0; i < k; ++i) {
+            if (i % 2 == 0) {
+                result.push_back(left++);
+            } else {
+                result.push_back(right--);
             }
         }
-    }
 
-
-    static size_t check(const string &s) {
-        set<int> ss;
-        for (int i = 1; i < s.size(); ++i) {
-            ss.insert(abs(s[i] - '0' - (s[i - 1] - '0')));
+        // Fill remaining with monotonic sequence
+        if (k % 2 == 0) {
+            for (int i = right; i >= left; --i) {
+                result.push_back(i);
+            }
+        } else {
+            for (int i = left; i <= right; ++i) {
+                result.push_back(i);
+            }
         }
 
-        return ss.size();
+        return result;
     }
 };
 
