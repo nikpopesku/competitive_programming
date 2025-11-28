@@ -14,7 +14,7 @@ public:
 private:
     vector<int> response;
 
-    void backtrack(vector<int> v, int k, int n) {
+    void backtrack(vector<int> v, const int k, int n) {
         if (static_cast<int>(v.size()) == n && check(v) == k) {
             response = v;
 
