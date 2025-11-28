@@ -6,8 +6,8 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> constructArray(int n, int k) {
-        vector<int> v(n + 1, false);
+    void constructArray(const int n, const int k) {
+        const vector<int> v(n + 1, false);
         backtrack(v, k, 0, "");
     }
 
