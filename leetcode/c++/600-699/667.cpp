@@ -6,30 +6,29 @@ using namespace std;
 class Solution {
 public:
     vector<int> constructArray(const int n, const int k) {
-        vector<int> result;
         int left = 1, right = n;
+        vector<int> response;
 
-        // Create k distinct differences by alternating
         for (int i = 0; i < k; ++i) {
-            if (i % 2 == 0) {
-                result.push_back(left++);
+            if (i % 2 == 1) {
+                response.push_back(left++);
             } else {
-                result.push_back(right--);
+                response.push_back(right--);
             }
         }
 
-        // Fill remaining with monotonic sequence
-        if (k % 2 == 0) {
+        if (k % 2 == 1) {
             for (int i = right; i >= left; --i) {
-                result.push_back(i);
+                response.push_back(i);
             }
         } else {
             for (int i = left; i <= right; ++i) {
-                result.push_back(i);
+                response.push_back(i);
             }
         }
 
-        return result;
+
+        return response;
     }
 };
 
