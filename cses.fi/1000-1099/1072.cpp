@@ -1,34 +1,19 @@
 #include <iostream>
-#include <vector>
-#include <map>
 
 using namespace std;
 
 int main() {
     int n;
     cin >> n;
-    map<int, int> mp;
 
     for (int i = 1; i <= n; ++i) {
-        mp[i] = 0;
-    }
-
-    vector<pair<int, int> > directions = {{1, 2}, {2, 1}, {1, -2}, {2, -1}};
-    long long response = 0;
-
-    for (int x = 0; x < n; ++x) {
-        for (int y = 0; y < n; ++y) {
-            int count = 0;
-            for (auto &[fst, snd]: directions) {
-                pair nd = {x + fst, y + snd};
-                if (nd.first < n && nd.second >= 0 && nd.second < n) {
-                    ++count;
-                }
-            }
-
-            response += n * n - (x * n + y + 1 + count);
+        long long total = (long long) i * i * ((long long) i * i - 1) / 2;
+        long long attacking = 0;
+        if (i > 2) {
+            attacking = 4LL * (i - 1) * (i - 2);
         }
+        cout << total - attacking << "\n";
     }
 
-    cout << response << "\n";
+    return 0;
 }
