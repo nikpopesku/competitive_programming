@@ -6,15 +6,24 @@ using namespace std;
 
 class Solution {
 public:
-    void constructArray(const int n, const int k) {
+    vector<int> constructArray(const int n, const int k) {
         const vector<int> v(n + 1, false);
         backtrack(v, k, n, "");
+
+        vector<int> r;
+
+        for (const auto &c: response) {
+            r.push_back(c - '0');
+        }
+
+        return r;
     }
 
-    string response;
 
 private:
-    void backtrack(vector<int> v, const int k, const int n, const string& s) {
+    string response;
+
+    void backtrack(vector<int> v, const int k, const int n, const string &s) {
         if (static_cast<int>(s.size()) == n) {
             if (check(s) == k) {
                 response = s;
@@ -53,9 +62,7 @@ int main() {
     int n, k;
     cin >> n >> k;
 
-    s.constructArray(n, k);
-
-    for (const auto &c: s.response) {
+    for (const auto &c: s.constructArray(n, k)) {
         cout << c << " ";
     }
 
