@@ -10,12 +10,12 @@ int main() {
     while (t--) {
         int x;
         cin >> x;
-
-        unordered_set<int> s;
         int response = 0;
 
-        for (int num = 1; num <= x; ++num) {
+        for (int num = 1; num <= 100; ++num) {
+            response = 0;
             int i = num;
+            unordered_set<int> s;
 
             while (i) {
                 int digit = i % 10;
@@ -32,15 +32,15 @@ int main() {
             }
 
             if (response == x) {
-                cout << num << "\n";
+                response = num;
                 break;
             }
 
-            response = -1;
+            response = 0;
+
+
         }
 
-        if (response == -1) {
-            cout << "-1\n";
-        }
+        cout << (response != 0 ? response : -1) << "\n";
     }
 }
