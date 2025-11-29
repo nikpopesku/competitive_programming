@@ -31,8 +31,8 @@ int main() {
                 response += digit;
             }
 
-            if (response == num) {
-                cout << i << "\n";
+            if (response == x) {
+                cout << num << "\n";
                 break;
             }
 
