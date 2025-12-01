@@ -1,5 +1,5 @@
 #include <iostream>
-#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -10,37 +10,29 @@ int main() {
     while (t--) {
         int x;
         cin >> x;
-        int response = 0;
+        vector<int> v(10, false);
 
-        for (int num = 1; num <= 100; ++num) {
-            response = 0;
-            int i = num;
-            unordered_set<int> s;
+        if (x > 45) {
+            cout << "-1\n";
 
-            while (i) {
-                int digit = i % 10;
-
-                i = i / 10;
-
-                if (s.contains(digit)) {
-                    response = -1;
-                    break;
-                }
-
-                s.insert(digit);
-                response += digit;
-            }
-
-            if (response == x) {
-                response = num;
-                break;
-            }
-
-            response = 0;
-
-
+            continue;
         }
 
-        cout << (response != 0 ? response : -1) << "\n";
+        while (x > 0) {
+            for (int i = 9; i >= 1; --i) {
+                if (!v[i] && x - i >= 0) {
+                    v[i] = true;
+                    x -= i;
+                }
+            }
+        }
+
+        for (int i = 1; i <= 9; ++i) {
+            if (v[i]) {
+                cout << i;
+            }
+        }
+
+        cout << "\n";
     }
 }
