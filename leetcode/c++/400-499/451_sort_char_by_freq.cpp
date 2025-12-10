@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <ranges>
 #include <set>
 #include <unordered_map>
 
@@ -8,7 +9,7 @@ using namespace std;
 
 class Solution {
 public:
-    string frequencySort(string s) {
+    string frequencySort(const string& s) {
         unordered_map<char, int> freq;
         map<int, set<char> > mp;
 
@@ -22,9 +23,9 @@ public:
 
         string ss;
 
-        for (auto it = mp.rbegin(); it != mp.rend(); ++it) {
-            for (auto &c: it->second) {
-                for (int i = 0; i < it->first; ++i) {
+        for (auto &[fst, snd] : std::ranges::reverse_view(mp)) {
+            for (auto &c: snd) {
+                for (int i = 0; i < fst; ++i) {
                     ss += c;
                 }
             }
