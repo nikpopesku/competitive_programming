@@ -1,5 +1,6 @@
 #include <ranges>
 #include <unordered_map>
+#include <iostream>
 
 using namespace std;
 
@@ -29,3 +30,9 @@ public:
         return true;
     }
 };
+
+int main() {
+    auto s = Solution();
+    cout << s.isAnagram("anagram", "nagaram") << endl;
+    cout << s.isAnagram("rat", "car") << endl;
+}
