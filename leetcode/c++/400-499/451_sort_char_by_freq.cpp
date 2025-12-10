@@ -16,8 +16,8 @@ public:
             ++freq[c];
         }
 
-        for (auto &e: freq) {
-            mp[e.first].insert(e.second);
+        for (auto &[c, f]: freq) {
+            mp[f].insert(c);
         }
 
         string ss;
