@@ -9,17 +9,18 @@ public:
         int left = 0, right = static_cast<int>(s.size() - 1);
 
         while (left <= right) {
-            if (s[left] > 'z' || s[left] > 'Z' || s[left] < 'a' || s[left] < 'A') {
+            int cl = tolower(s[left]), cr = tolower(s[right]);
+            if (cl > 'z' || cl < 'a') {
                 ++left;
                 continue;
             }
 
-            if (s[right] > 'z' || s[right] > 'Z' || s[right] < 'a' || s[right] < 'A') {
+            if (cr > 'z' || cr < 'a') {
                 --right;
                 continue;
             }
 
-            if (tolower(s[left]) != tolower(s[right])) {
+            if (cr != cl) {
                 return false;
             }
 
