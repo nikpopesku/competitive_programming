@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -9,13 +8,15 @@ public:
         int left = 0, right = static_cast<int>(s.size() - 1);
 
         while (left <= right) {
-            int cl = tolower(s[left]), cr = tolower(s[right]);
-            if (cl > 'z' || cl < 'a') {
+            const int cl = tolower(s[left]);
+            const int cr = tolower(s[right]);
+
+            if ((cl > 'z' || cl < 'a') && (cl > '9' || cl < '0')) {
                 ++left;
                 continue;
             }
 
-            if (cr > 'z' || cr < 'a') {
+            if ((cr > 'z' || cr < 'a') && (cr > '9' || cr < '0')) {
                 --right;
                 continue;
             }
@@ -38,6 +39,7 @@ int main() {
     cout << s.isPalindrome("A man, a plan, a canal: Panama") << endl;
     cout << s.isPalindrome("race a car") << endl;
     cout << s.isPalindrome(" ") << endl;
+    cout << s.isPalindrome("0P") << endl;
 
     return 0;
 }
