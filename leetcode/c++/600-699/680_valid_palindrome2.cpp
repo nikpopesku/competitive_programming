@@ -17,7 +17,10 @@ public:
                 }
 
                 ++counter;
+                continue;
             }
+            ++left;
+            --right;
         }
 
         return counter <= 1;
