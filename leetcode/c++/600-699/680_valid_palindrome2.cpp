@@ -33,6 +33,7 @@ int main() {
     cout << s.validPalindrome("aba") << endl;
     cout << s.validPalindrome("abca") << endl;
     cout << s.validPalindrome("abc") << endl;
+    cout << s.validPalindrome("aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga") << endl;
 
     return 0;
 }
