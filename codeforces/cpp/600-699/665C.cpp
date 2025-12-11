@@ -5,11 +5,12 @@ using namespace std;
 void solve() {
     string s;
     cin >> s;
+    const int n = static_cast<int>(s.size());
 
-    for (int i = 1; i < static_cast<int>(s.size()) - 1; ++i) {
+    for (int i = 1; i < n; ++i) {
         if (s[i - 1] == s[i]) {
             for (char c = 'a'; c < 'z'; ++c) {
-                if (c != s[i - 1] && c != s[i + 1]) {
+                if (c != s[i - 1] && (i == n - 1 || c != s[i + 1])) {
                     s[i] = c;
                     break;
                 }
