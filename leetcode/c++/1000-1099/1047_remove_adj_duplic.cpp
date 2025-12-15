@@ -1,20 +1,32 @@
 #include <iostream>
-#include <stack>
+#include <vector>
 
 using namespace std;
 
 class Solution {
 public:
-    string removeDuplicates(string s) {
-        stack<int> st;
+    string removeDuplicates(const string &s) {
+        vector<int> st;
 
-        for (auto &c: s) {
+        for (const auto &c: s) {
+            bool popped = false;
             while (!st.empty()) {
-                if (st.top() == c) {
-                    st.pop();
+                if (st[st.size() - 1] == c) {
+                    st.pop_back();
+                    popped = true;
+                } else {
+                    break;
                 }
             }
+
+            if (!popped) {
+                st.push_back(c);
+            }
         }
+
+        string t(st.begin(), st.end());
+
+        return t;
     }
 };
 
