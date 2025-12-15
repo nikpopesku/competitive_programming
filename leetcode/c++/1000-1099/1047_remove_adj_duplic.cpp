@@ -12,13 +12,8 @@ public:
 int main() {
     Solution s;
 
-    cout << s.validPalindrome("aba") << endl;
-    cout << s.validPalindrome("abca") << endl;
-    cout << s.validPalindrome("abc") << endl;
-    cout << s.validPalindrome(
-                "aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga")
-            <<
-            endl;
+    cout << s.removeDuplicates("abbaca") << endl;
+    cout << s.removeDuplicates("azxxzy") << endl;
 
     return 0;
 }
