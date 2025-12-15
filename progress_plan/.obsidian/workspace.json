@@ -4,39 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "e70dc74e388a3ed4",
+        "id": "1d8f9fcd2cbdb757",
         "type": "tabs",
         "children": [
           {
-            "id": "8a4038e0b5883190",
+            "id": "ee85a8469775d5b5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CP_PROGRESS_PLAN.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "CP_PROGRESS_PLAN"
-            }
-          },
-          {
-            "id": "9c6687d664785170",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CP_PROGRESS_PLAN.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CP_PROGRESS_PLAN"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -198,11 +179,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9c6687d664785170",
+  "active": "ee85a8469775d5b5",
   "lastOpenFiles": [
+    "CP_PROGRESS_PLAN.md",
     "QUICK_CP_START.md",
     "weekly_2025-12-01_Constructive.md",
-    "CP_PROGRESS_PLAN.md",
     "leetcode-mcp-server/build/leetcode/graphql/cn/solution-articles.js.map",
     "leetcode-mcp-server/build/leetcode/graphql/cn/solution-articles.js",
     "leetcode-mcp-server/build/leetcode/graphql/cn/solution-articles.d.ts",
