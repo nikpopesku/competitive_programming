@@ -20,7 +20,7 @@ public:
         priority_queue<pair<int, char> > pq;
 
         for (auto [fst, snd]: mp) {
-            if (snd >= s.size() / 2 + 1) {
+            if (snd >= (s.size() + (s.size() % 2 == 0 ? 2 : 3)) / 2) {
                 return "";
             }
 
