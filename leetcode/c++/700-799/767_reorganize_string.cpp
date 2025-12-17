@@ -1,37 +1,33 @@
 #include <iostream>
+#include <map>
+#include <queue>
 #include <string>
+#include <unordered_map>
 
 using namespace std;
 
 class Solution {
 public:
-    string removeOuterParentheses(const string &s) {
-        string result;
-        result.reserve(s.size());
-        int depth = 0;
+    string reorganizeString(string s) {
+        unordered_map<char, int> mp;
 
         for (auto &c: s) {
-            if (c == '(') {
-                if (++depth > 1) {
-                    result += c;
-                }
-            } else {
-                if (--depth > 0) {
-                    result += c;
-                }
-            }
+            ++mp[c];
         }
 
-        return result;
+        priority_queue<pair<int, char>> pq;
+
+        for (auto it: mp) {
+            pq.push(*it);
+        }
     }
 };
 
 int main() {
     Solution s;
 
-    cout << s.removeOuterParentheses("(()())(())") << endl;
-    cout << s.removeOuterParentheses("(()())(())(()(()))") << endl;
-    cout << s.removeOuterParentheses("()()") << endl;
+    cout << s.reorganizeString("aab") << endl;
+    cout << s.reorganizeString("aaab") << endl;
 
     return 0;
 }
