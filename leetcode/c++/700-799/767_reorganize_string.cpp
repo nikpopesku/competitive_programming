@@ -17,8 +17,12 @@ public:
 
         priority_queue<pair<int, char> > pq;
 
-        for (auto it: mp) {
-            pq.push(*it);
+        for (auto elem: mp) {
+            if (elem.second > s.size() / 2 + 1) {
+                return "";
+            }
+
+            pq.push(elem);
         }
     }
 };
