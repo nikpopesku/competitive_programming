@@ -19,12 +19,12 @@ public:
 
         priority_queue<pair<int, char> > pq;
 
-        for (auto elem: mp) {
-            if (elem.second > s.size() / 2 + 1) {
+        for (auto [fst, snd]: mp) {
+            if (snd >= s.size() / 2 + 1) {
                 return "";
             }
 
-            pq.emplace(elem.second, elem.first);
+            pq.emplace(snd, fst);
         }
 
 
