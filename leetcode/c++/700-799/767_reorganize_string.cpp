@@ -15,7 +15,7 @@ public:
             ++mp[c];
         }
 
-        priority_queue<pair<int, char>> pq;
+        priority_queue<pair<int, char> > pq;
 
         for (auto it: mp) {
             pq.push(*it);
