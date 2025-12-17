@@ -24,15 +24,15 @@ public:
                 return "";
             }
 
-            pq.emplace(elem);
+            pq.emplace(elem.second, elem.first);
         }
 
 
         while (!pq.empty()) {
-            pair<char, int> first = {}, second = {};
+            pair<int, char> first = {}, second = {};
 
             first = pq.top();
-            response += first.first;
+            response += first.second;
             pq.pop();
 
 
@@ -43,17 +43,19 @@ public:
 
             second = pq.top();
             pq.pop();
-            response += second.first;
+            response += second.second;
 
-            if (--first.second > 0) {
+            if (--first.first > 0) {
                 pq.emplace(first);
             }
 
 
-            if (--second.second > 0) {
+            if (--second.first > 0) {
                 pq.emplace(second);
             }
         }
+
+        return response;
     }
 };
 
