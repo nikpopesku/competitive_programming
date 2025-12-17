@@ -8,8 +8,10 @@ using namespace std;
 
 class Solution {
 public:
-    string reorganizeString(string s) {
+    string reorganizeString(const string &s) {
         unordered_map<char, int> mp;
+        string response;
+        response.reserve(s.size());
 
         for (auto &c: s) {
             ++mp[c];
@@ -22,7 +24,35 @@ public:
                 return "";
             }
 
-            pq.push(elem);
+            pq.emplace(elem);
+        }
+
+
+        while (!pq.empty()) {
+            pair<char, int> first = {}, second = {};
+
+            first = pq.top();
+            response += first.first;
+            pq.pop();
+
+
+            if (pq.empty()) {
+                break;
+            }
+
+
+            second = pq.top();
+            pq.pop();
+            response += second.first;
+
+            if (--first.second > 0) {
+                pq.emplace(first);
+            }
+
+
+            if (--second.second > 0) {
+                pq.emplace(second);
+            }
         }
     }
 };
