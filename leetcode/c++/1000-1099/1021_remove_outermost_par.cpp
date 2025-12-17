@@ -5,18 +5,18 @@ using namespace std;
 
 class Solution {
 public:
-    string removeOuterParentheses(const string& s) {
+    string removeOuterParentheses(const string &s) {
         string result;
-        result.reserve(s.size()); // Reserve memory to avoid reallocations
+        result.reserve(s.size());
         int depth = 0;
 
-        for (const char c : s) {
+        for (auto &c: s) {
             if (c == '(') {
-                if (depth++ > 0) { // Increment after check
+                if (++depth > 1) {
                     result += c;
                 }
-            } else { // c == ')'
-                if (--depth > 0) { // Decrement after check
+            } else {
+                if (--depth > 0) {
                     result += c;
                 }
             }
