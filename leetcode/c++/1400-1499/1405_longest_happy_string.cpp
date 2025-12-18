@@ -8,6 +8,7 @@ class Solution {
 public:
     string longestDiverseString(int a, int b, int c) {
         priority_queue<pair<int, char> > pq;
+        int total = a + b + c;
 
         if (a > 0) {
             pq.emplace(a, 'a');
@@ -30,7 +31,7 @@ public:
 
             if (pq.empty()) {
                 response += c1;
-                if (i1 > 1) {
+                if (i1 * 3 >= total * 2) {
                     response += c1;
                 }
                 break;
@@ -39,13 +40,13 @@ public:
             auto [i2, c2] = pq.top();
             pq.pop();
 
-            const int v1 = i1 - 2 >= i2 ? 2 : 1;
+            const int v1 = i1 * 3 >= total * 2 ? 2 : 1;
             response += c1;
             if (v1 == 2) {
                 response += c1;
             }
 
-            const int v2 = !pq.empty() && i2 - 2 >= pq.top().first ? 2 : 1;
+            const int v2 = i2 * 3 >= total * 2 ? 2 : 1;
             response += c2;
             if (v2 == 2) {
                 response += c2;
@@ -53,10 +54,12 @@ public:
 
             if (i1 - v1 > 0) {
                 pq.emplace(i1 - v1, c1);
+                total -= v1;
             }
 
             if (i2 - v2 > 0) {
                 pq.emplace(i2 - v2, c2);
+                total -= v2;
             }
         }
 
@@ -69,7 +72,7 @@ int main() {
 
     cout << s.longestDiverseString(1, 1, 7) << endl;
     cout << s.longestDiverseString(7, 1, 0) << endl;
-    cout << s.longestDiverseString(4, 42, 7) << endl; //bbcbbcbbcbbabbcbbabbcbbabbcbbabbcbb
+        cout << s.longestDiverseString(4, 42, 7) << endl; //bbcbbcbbcbbabbcbbabbcbbabbcbbabbcbb
 
     return 0;
 }
