@@ -7,62 +7,15 @@ using namespace std;
 
 class Solution {
 public:
-    string reorganizeString(const string &s) {
-        unordered_map<char, int> mp;
-        string response;
-        response.reserve(s.size());
+    string longestDiverseString(int a, int b, int c) {
 
-        for (auto &c: s) {
-            ++mp[c];
-        }
-
-        priority_queue<pair<int, char> > pq;
-
-        for (auto [fst, snd]: mp) {
-            if (snd >= (s.size() + (s.size() % 2 == 0 ? 2 : 3)) / 2) {
-                return "";
-            }
-
-            pq.emplace(snd, fst);
-        }
-
-
-        while (!pq.empty()) {
-            pair<int, char> first = {}, second = {};
-
-            first = pq.top();
-            response += first.second;
-            pq.pop();
-
-
-            if (pq.empty()) {
-                break;
-            }
-
-
-            second = pq.top();
-            pq.pop();
-            response += second.second;
-
-            if (--first.first > 0) {
-                pq.emplace(first);
-            }
-
-
-            if (--second.first > 0) {
-                pq.emplace(second);
-            }
-        }
-
-        return response;
     }
 };
-
 int main() {
     Solution s;
 
-    cout << s.reorganizeString("aab") << endl;
-    cout << s.reorganizeString("aaab") << endl;
+    cout << s.longestDiverseString(1, 1, 7) << endl;
+    cout << s.longestDiverseString(7, 1, 0) << endl;
 
     return 0;
 }
