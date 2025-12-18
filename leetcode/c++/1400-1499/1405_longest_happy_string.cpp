@@ -20,7 +20,10 @@ public:
             pq.pop();
 
             if (pq.empty()) {
-                response += i1 > 1 ? c1 + c1 : c1;
+                response += c1;
+                if (i1 > 1) {
+                    response += c1;
+                }
                 break;
             }
 
@@ -28,13 +31,24 @@ public:
             pq.pop();
 
             const int v1 = i1 - 2 >= i2 ? 2 : 1;
-            response += v1 == 2 ? c1 + c1 : c1;
+            response += c1;
+            if (v1 == 2) {
+                response += c1;
+            }
 
             const int v2 = i2 - 2 >= pq.top().first ? 2 : 1;
-            response += v2 == 2 ? c2 + c2 : c2;
+            response += c2;
+            if (v2 == 2) {
+                response += c2;
+            }
 
-            pq.emplace(i1 - v1, c1);
-            pq.emplace(i2 - v2, c2);
+            if (i1 - v1 > 0) {
+                pq.emplace(i1 - v1, c1);
+            }
+
+            if (i2 - v2 > 0) {
+                pq.emplace(i2 - v2, c2);
+            }
         }
 
         return response;
