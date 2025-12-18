@@ -31,7 +31,7 @@ public:
 
             if (pq.empty()) {
                 response += c1;
-                if (i1 * 3 >= total * 2) {
+                if (i1 > 1) {
                     response += c1;
                 }
                 break;
