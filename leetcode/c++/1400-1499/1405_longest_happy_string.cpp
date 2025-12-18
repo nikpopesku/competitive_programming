@@ -9,9 +9,18 @@ public:
     string longestDiverseString(int a, int b, int c) {
         priority_queue<pair<int, char> > pq;
 
-        pq.emplace(a, 'a');
-        pq.emplace(b, 'b');
-        pq.emplace(c, 'c');
+        if (a > 0) {
+            pq.emplace(a, 'a');
+        }
+
+        if (b > 0) {
+            pq.emplace(b, 'b');
+        }
+
+        if (c > 0) {
+            pq.emplace(c, 'c');
+        }
+
 
         string response;
 
@@ -36,7 +45,7 @@ public:
                 response += c1;
             }
 
-            const int v2 = i2 - 2 >= pq.top().first ? 2 : 1;
+            const int v2 = !pq.empty() && i2 - 2 >= pq.top().first ? 2 : 1;
             response += c2;
             if (v2 == 2) {
                 response += c2;
