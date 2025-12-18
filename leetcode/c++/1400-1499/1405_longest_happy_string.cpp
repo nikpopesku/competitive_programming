@@ -1,7 +1,6 @@
 #include <iostream>
 #include <queue>
 #include <string>
-#include <unordered_map>
 
 using namespace std;
 
@@ -17,25 +16,25 @@ public:
         string response;
 
         while (!pq.empty()) {
-            auto p1 = pq.top();
+            auto [i1, c1] = pq.top();
             pq.pop();
 
             if (pq.empty()) {
-                response += p1.first > 1 ? p1.second + p1.second : p1.second;
+                response += i1 > 1 ? c1 + c1 : c1;
                 break;
             }
 
-            auto p2 = pq.top();
+            auto [i2, c2] = pq.top();
             pq.pop();
 
-            const int v1 = p1.first - 2 >= p2.first ? 2 : 1;
-            response += v1 == 2 ? p1.second + p1.second : p1.second;
+            const int v1 = i1 - 2 >= i2 ? 2 : 1;
+            response += v1 == 2 ? c1 + c1 : c1;
 
-            const int v2 = p2.first - 2 >= pq.top().first ? 2 : 1;
-            response += v2 == 2 ? p2.second + p2.second : p2.second;
+            const int v2 = i2 - 2 >= pq.top().first ? 2 : 1;
+            response += v2 == 2 ? c2 + c2 : c2;
 
-            pq.emplace(p1.first - v1, p1.second);
-            pq.emplace(p2.first - v2, p2.second);
+            pq.emplace(i1 - v1, c1);
+            pq.emplace(i2 - v2, c2);
         }
 
         return response;
