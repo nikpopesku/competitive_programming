@@ -69,6 +69,7 @@ int main() {
 
     cout << s.longestDiverseString(1, 1, 7) << endl;
     cout << s.longestDiverseString(7, 1, 0) << endl;
+    cout << s.longestDiverseString(4, 42, 7) << endl; //bbcbbcbbcbbabbcbbabbcbbabbcbbabbcbb
 
     return 0;
 }
