@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -9,24 +10,31 @@ public:
     string shortestPalindrome(const string &s) {
         if (s.empty()) return s;
         
-        // Find the longest palindromic prefix
-        int n = s.size();
-        int longest = 0;
+        // Create reversed string
+        string rev = s;
+        reverse(rev.begin(), rev.end());
         
-        // Check each possible prefix length
-        for (int i = n; i >= 1; --i) {
-            bool isPalindrome = true;
-            for (int j = 0; j < i / 2; ++j) {
-                if (s[j] != s[i - 1 - j]) {
-                    isPalindrome = false;
-                    break;
-                }
+        // Create pattern: s + "#" + rev
+        // This helps us find the longest suffix of rev that matches prefix of s
+        string pattern = s + "#" + rev;
+        
+        // Build KMP failure function (LPS array)
+        int n = pattern.size();
+        vector<int> lps(n, 0);
+        
+        for (int i = 1; i < n; ++i) {
+            int j = lps[i - 1];
+            while (j > 0 && pattern[i] != pattern[j]) {
+                j = lps[j - 1];
             }
-            if (isPalindrome) {
-                longest = i;
-                break;
+            if (pattern[i] == pattern[j]) {
+                j++;
             }
+            lps[i] = j;
         }
+        
+        // The longest palindromic prefix length is lps[n-1]
+        int longest = lps[n - 1];
         
         // Reverse the remaining suffix and prepend it
         string suffix = s.substr(longest);
