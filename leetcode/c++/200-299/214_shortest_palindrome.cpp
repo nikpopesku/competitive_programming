@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    string shortestPalindrome(string s) {
+    string shortestPalindrome(const string &s) {
         unordered_map<char, int> mp;
         for (auto &c: s) {
             ++mp[c];
@@ -14,7 +14,7 @@ public:
 
         int odd = 0;
 
-        for (auto &val: mp | views::values) {
+        for (const auto &val: mp | views::values) {
             if (val % 2 == 1) {
                 ++odd;
             }
