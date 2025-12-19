@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 
 
 using namespace std;
@@ -8,6 +9,12 @@ public:
     bool canConstruct(string s, int k) {
         if (k > s.size()) {
             return false;
+        }
+
+        unordered_map<char, int> mp;
+
+        for (auto &c: s) {
+            ++mp[c];
         }
     }
 };
