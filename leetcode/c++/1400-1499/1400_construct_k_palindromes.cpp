@@ -12,10 +12,23 @@ public:
         }
 
         unordered_map<char, int> mp;
+        int odd = 0;
 
         for (auto &c: s) {
             ++mp[c];
+
+            if (mp[c] % 2 == 1) {
+                ++odd;
+            } else {
+                --odd;
+            }
         }
+
+        if (odd > k) {
+            return false;
+        }
+
+        return true;
     }
 };
 
