@@ -22,7 +22,7 @@ public:
 
         string response;
 
-        for (int i = static_cast<int>(s.size()) - 1; i >= s.size() - odd + 1; ++i) {
+        for (int i = static_cast<int>(s.size()) - 1; i >= s.size() - odd + 1; --i) {
             response += s[i];
         }
 
