@@ -20,6 +20,10 @@ public:
             }
         }
 
+        if (odd == 0) {
+            return s;
+        }
+
         string response;
 
         for (int i = static_cast<int>(s.size()) - 1; i >= s.size() - odd + 1; --i) {
@@ -33,8 +37,10 @@ public:
 int main() {
     Solution s;
 
-    cout << s.shortestPalindrome("aacecaaa") << endl; //aaacecaaa
-    cout << s.shortestPalindrome("abcd") << endl; //dcbabcd
+    // cout << s.shortestPalindrome("aacecaaa") << endl; //aaacecaaa
+    // cout << s.shortestPalindrome("abcd") << endl; //dcbabcd
+    // cout << s.shortestPalindrome("") << endl; //dcbabcd
+    cout << s.shortestPalindrome("abb") << endl; //bbabb
 
     return 0;
 }
