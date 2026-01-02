@@ -13,9 +13,17 @@ public:
         string pattern = s + '#' + rev;
 
         vector lps(s.size(), 0);
+        int len = 0;
 
         for (int i = 1; i < s.size(); ++i) {
-
+            if (s[len] == s[i]) {
+                ++len;
+                lps[i] = len;
+            } else {
+                if (len > 0) {
+                    len = lps[len - 1];
+                }
+            }
         }
 
 
