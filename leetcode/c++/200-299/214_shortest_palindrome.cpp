@@ -17,6 +17,12 @@ public:
         for (int i = 1; i < s.size(); ++i) {
 
         }
+
+
+        string suffix = s.substr(lps[s.size() - 1]);
+        reverse(suffix.begin(), suffix.end());
+
+        return suffix + s;
     }
 };
 
