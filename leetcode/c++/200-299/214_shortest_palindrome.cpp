@@ -7,40 +7,12 @@ using namespace std;
 
 class Solution {
 public:
-    string shortestPalindrome(const string &s) {
-        if (s.empty()) return s;
-        
-        // Create reversed string
-        string rev = s;
-        reverse(rev.begin(), rev.end());
-        
-        // Create pattern: s + "#" + rev
-        // This helps us find the longest suffix of rev that matches prefix of s
-        string pattern = s + "#" + rev;
-        
-        // Build KMP failure function (LPS array)
-        int n = pattern.size();
-        vector<int> lps(n, 0);
-        
-        for (int i = 1; i < n; ++i) {
-            int j = lps[i - 1];
-            while (j > 0 && pattern[i] != pattern[j]) {
-                j = lps[j - 1];
-            }
-            if (pattern[i] == pattern[j]) {
-                j++;
-            }
-            lps[i] = j;
-        }
-        
-        // The longest palindromic prefix length is lps[n-1]
-        int longest = lps[n - 1];
-        
-        // Reverse the remaining suffix and prepend it
-        string suffix = s.substr(longest);
-        reverse(suffix.begin(), suffix.end());
-        
-        return suffix + s;
+    string shortestPalindrome(const string& s) {
+		string rev = s;
+       	reverse(rev.begin(), rev.end());
+		string pattern = s + '#' + rev;
+
+
     }
 };
 
