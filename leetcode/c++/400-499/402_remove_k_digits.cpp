@@ -13,9 +13,9 @@ public:
 int main() {
     Solution s;
 
-    cout << s.removeKdigits("1432219", 3) << endl; //aaacecaaa
-    cout << s.removeKdigits("10200", 1) << endl; //dcbabcd
-    cout << s.removeKdigits("10", 2) << endl; //""
+    cout << s.removeKdigits("1432219", 3) << endl; //1219
+    cout << s.removeKdigits("10200", 1) << endl; //200
+    cout << s.removeKdigits("10", 2) << endl; //0
 
     return 0;
 }
