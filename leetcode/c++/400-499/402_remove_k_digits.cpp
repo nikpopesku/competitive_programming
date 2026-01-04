@@ -36,10 +36,11 @@ public:
 int main() {
     Solution s;
 
-    cout << s.removeKdigits("1432219", 3) << endl; //1219
-    cout << s.removeKdigits("10200", 1) << endl; //200
-    cout << s.removeKdigits("10", 2) << endl; //0
-    cout << s.removeKdigits("9", 1) << endl; //0
+    // cout << s.removeKdigits("1432219", 3) << endl; //1219
+    // cout << s.removeKdigits("10200", 1) << endl; //200
+    // cout << s.removeKdigits("10", 2) << endl; //0
+    // cout << s.removeKdigits("9", 1) << endl; //0
+    cout << s.removeKdigits("33526221184202197273", 19) << endl; //0
 
     return 0;
 }
