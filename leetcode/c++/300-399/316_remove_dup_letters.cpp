@@ -17,10 +17,6 @@ public:
         }
 
         for (int i = 0; i < n; ++i) {
-            if (v.empty()) {
-                v.push_back(s[i]);
-                continue;
-            }
             while (!v.empty() && s[i] < v.back() && mp[v.back()].back() > i) {
                 v.pop_back();
             }
