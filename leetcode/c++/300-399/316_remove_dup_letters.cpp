@@ -21,11 +21,11 @@ public:
                 v.push_back(s[i]);
                 continue;
             }
-            auto occ = mp[v[v.size() - 1]];
-            while (s[i] < v[v.size() - 1] && occ[occ.size() - 1] > i) {
+            while (!v.empty() && s[i] < v.back() && mp[v.back()].back() > i) {
                 v.pop_back();
-                occ = mp[v[v.size() - 1]];
             }
+
+            v.push_back(s[i]);
         }
 
         string ss(v.begin(), v.end());
