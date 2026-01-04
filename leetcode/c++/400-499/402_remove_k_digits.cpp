@@ -1,12 +1,27 @@
 #include <iostream>
+#include <stack>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Solution {
 public:
-    string removeKdigits(string num, int k) {
+    string removeKdigits(const string &num, int k) {
+        vector<char> st;
 
+        for (const auto &c: num) {
+            if (k > 0 && !st.empty() && st[st.size() - 1] > c) {
+                st.pop_back();
+                --k;
+            }
+
+            st.push_back(c);
+        }
+
+        string s(st.begin(), st.end());
+
+        return s;
     }
 };
 
