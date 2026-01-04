@@ -10,12 +10,12 @@ class Solution {
 public:
     string removeDuplicateLetters(string s) {
         vector<char> v;
-        unordered_map<char, vector<int> > mp;
+        unordered_map<char, int> lastOccurrence;
         set<char> st;
         const size_t n = s.size();
 
         for (int i = 0; i < n; ++i) {
-            mp[s[i]].push_back(i);
+            lastOccurrence[s[i]] = i;
         }
 
         for (int i = 0; i < n; ++i) {
@@ -23,7 +23,7 @@ public:
                 continue;
             }
 
-            while (!v.empty() && s[i] < v.back() && mp[v.back()].back() > i) {
+            while (!v.empty() && s[i] < v.back() && lastOccurrence[v.back()] > i) {
                 st.erase(v.back());
                 v.pop_back();
             }
