@@ -16,12 +16,16 @@ public:
                 --k;
             }
 
+            if (st.empty() && c == '0') {
+                continue;
+            }
+
             st.push_back(c);
         }
 
         string s(st.begin(), st.end());
 
-        return s;
+        return !s.empty() ? s : "0";
     }
 };
 
