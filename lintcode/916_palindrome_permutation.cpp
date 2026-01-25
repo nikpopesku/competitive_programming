@@ -1,5 +1,7 @@
 #include <iostream>
+#include <ranges>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -10,8 +12,25 @@ public:
      * @param s: the given string
      * @return: if a permutation of the string could form a palindrome
      */
-    bool canPermutePalindrome(string &s) {
-        // write your code here
+    bool canPermutePalindrome(const string &s) {
+        unordered_map<char, int> mp;
+
+        for (auto c: s) {
+            ++mp[c];
+        }
+
+        int counter = 0;
+
+        for (const auto val: mp | views::values) {
+            if (val % 2 == 1) {
+                ++counter;
+                if (counter > 1) {
+                    break;
+                }
+            }
+        }
+
+        return counter <= 1;
     }
 };
 int main() {
