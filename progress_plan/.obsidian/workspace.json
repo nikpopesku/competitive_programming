@@ -11,10 +11,14 @@
             "id": "ee85a8469775d5b5",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "CP_PROGRESS_PLAN.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "CP_PROGRESS_PLAN"
             }
           }
         ]
@@ -181,8 +185,9 @@
   },
   "active": "ee85a8469775d5b5",
   "lastOpenFiles": [
-    "CP_PROGRESS_PLAN.md",
     "QUICK_CP_START.md",
+    "CP_PROGRESS_PLAN.md",
+    "weekly_cp_template.md",
     "weekly_2025-12-01_Constructive.md",
     "leetcode-mcp-server/build/leetcode/graphql/cn/solution-articles.js.map",
     "leetcode-mcp-server/build/leetcode/graphql/cn/solution-articles.js",
@@ -216,7 +221,6 @@
     "leetcode-mcp-server/node_modules/@typescript-eslint/eslint-plugin/docs/rules/comma-dangle.md",
     "leetcode-mcp-server/node_modules/@typescript-eslint/eslint-plugin/docs/rules/camelcase.md",
     "leetcode-mcp-server/node_modules/@typescript-eslint/eslint-plugin/docs/rules/brace-style.md",
-    "leetcode-mcp-server/node_modules/@typescript-eslint/eslint-plugin/docs/rules/block-spacing.md",
     "leetcode-mcp-server/node_modules/pino/pretty-demo.png",
     "leetcode-mcp-server/node_modules/pino/pino-tree.png",
     "leetcode-mcp-server/node_modules/pino/pino-logo-hire.png",
