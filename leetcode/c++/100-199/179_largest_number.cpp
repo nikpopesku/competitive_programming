@@ -10,8 +10,8 @@ class Solution {
 public:
     string largestNumber(vector<int>& nums) {
         sort(nums.begin(), nums.end(), [](const int a, const int b) {
-            const int na = to_string(a).length();
-            const int nb = to_string(b).length();
+            const size_t na = to_string(a).length();
+            const size_t nb = to_string(b).length();
 
             return a * pow(10, nb) + b > b * pow(10, na) + a;
         });
@@ -34,6 +34,9 @@ int main() {
 
     vector<int> b = {3, 30, 34, 5, 9};
     cout << s.largestNumber(b) << endl; //9534330
+
+    vector c = {0, 0};
+    cout << s.largestNumber(c) << endl; //0
 
     return 0;
 }
