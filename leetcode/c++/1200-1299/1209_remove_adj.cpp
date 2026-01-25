@@ -9,23 +9,19 @@ using namespace std;
 
 class Solution {
 public:
-    string removeDuplicates(string s, int k) {
+    string removeDuplicates(string s, const int k) {
         vector<pair<char, int>> v;
 
         for (auto& c: s) {
-            if (v.empty()) {
-                v.push_back({c, 1});
-
-                continue;
-            }
-
-            if (v.back().first == c) {
+            if (!v.empty() && v.back().first == c) {
                 auto [fst, snd] = v.back();
                 v.pop_back();
 
                 if (snd + 1 < k) {
-                    v.push_back({fst, snd + 1});
+                    v.emplace_back(fst, snd + 1);
                 }
+            } else {
+                v.emplace_back(c, 1);
             }
         }
 
