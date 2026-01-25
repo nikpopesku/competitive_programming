@@ -22,7 +22,11 @@ public:
             response += to_string(elem);
         }
 
-        return response;
+        while (response[0] == '0') {
+            response.erase(0, 1);
+        }
+
+        return (!response.empty() ? response : "0");
     }
 };
 
