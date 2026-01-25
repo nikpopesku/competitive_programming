@@ -1,7 +1,5 @@
 #include <algorithm>
-#include <complex>
 #include <iostream>
-#include <stack>
 #include <string>
 #include <vector>
 
