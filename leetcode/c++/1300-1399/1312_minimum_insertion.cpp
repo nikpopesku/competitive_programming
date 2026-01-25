@@ -16,7 +16,7 @@ public:
             dp[i][i] = 1;
         }
 
-        for (int i = 1; i < n - 1; ++i) {
+        for (int i = 0; i < n - 1; ++i) {
             if (s[i] == s[i + 1]) {
                 dp[i][i + 1] = 2;
             }
