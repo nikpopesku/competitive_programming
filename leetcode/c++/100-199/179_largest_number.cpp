@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <complex>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -7,7 +9,20 @@ using namespace std;
 class Solution {
 public:
     string largestNumber(vector<int>& nums) {
+        sort(nums.begin(), nums.end(), [](const int a, const int b) {
+            const int na = to_string(a).length();
+            const int nb = to_string(b).length();
 
+            return a * pow(10, nb) + b > b * pow(10, na) + a;
+        });
+
+        string response;
+
+        for (auto elem: nums) {
+            response += to_string(elem);
+        }
+
+        return response;
     }
 };
 
