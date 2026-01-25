@@ -7,8 +7,8 @@ using namespace std;
 
 class Solution {
 public:
-    int minInsertions(string s) {
-        int n = s.size();
+    int minInsertions(const string &s) {
+        const int n = s.size();
 
         vector dp(n, vector(n, 0));
 
