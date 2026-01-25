@@ -21,8 +21,8 @@ public:
 
         int counter = 0;
 
-        for (const auto val: mp | views::values) {
-            if (val % 2 == 1) {
+        for (const auto val: mp) {
+            if (val.second % 2 == 1) {
                 ++counter;
                 if (counter > 1) {
                     break;
