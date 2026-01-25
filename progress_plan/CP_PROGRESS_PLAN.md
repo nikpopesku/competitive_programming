@@ -44,10 +44,11 @@
    - ✅ Two-pointer strategies (LeetCode 667)
    - Key insight: Often involves adjacent operations
 
-2. **🎯 String Construction** (Current Week 2)
-   - Palindrome building, pattern matching
-   - Lexicographical optimization
-   - Key insight: Work backwards from desired properties
+2. **✅ String Construction** (Week 2 - Completed)
+   - ✅ Palindrome building, pattern matching (LeetCode 1312, 214, 1400)
+   - ✅ String reorganization with constraints (LeetCode 767, 1405)
+   - ✅ Lexicographical optimization (LeetCode 316, 402, 1081)
+   - Key insight: Work backwards from desired properties, use DP for LPS, greedy + stack for lexicographical
 
 3. **Simple Graph Construction**
    - Tree building with degree constraints
@@ -102,6 +103,13 @@
   - Solved: CF 1462C (Unique Number), LeetCode 526 (Beautiful Arrangement), LeetCode 667 (Beautiful Array), CSES 1072 (Two Knights)
   - Key Skills: Greedy construction, backtracking, two-pointer patterns
   - Fun Level: 8/10
+- **Week 2 (2026-01-19)**: ✅ String Construction (Completed)
+  - Solved: 8 problems total
+    - Palindrome: LeetCode 1312, 214, 1400
+    - String Construction: LeetCode 767, 1405
+    - Lexicographical: LeetCode 316, 402, 1081
+  - Key Skills: DP for longest palindromic subsequence, bottom-up table filling, greedy + stack for lexicographical optimization, priority queue for constrained construction
+  - Status: All topics covered including lexicographical optimization!
 
 ### Weekly Checklist
 ```
