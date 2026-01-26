@@ -32,13 +32,13 @@ public:
             st.push(e);
         }
 
-        set visited = {0};
+        set<int> visited = {0};
 
         while (!st.empty()) {
             auto elem = st.top();
             st.pop();
 
-            if (!visited.contains(elem)) {
+            if (visited.count(elem) == 0) {
                 visited.insert(elem);
 
                 for (auto neighbour: adj[elem]) {
