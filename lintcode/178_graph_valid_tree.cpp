@@ -10,8 +10,10 @@ public:
      * @param edges: a list of undirected edges
      * @return: true if it's a valid tree, or false
      */
-    bool validTree(int n, vector<vector<int>> &edges) {
-        // write your code here
+    bool validTree(const int n, const vector<vector<int>> &edges) {
+        if (edges.size() != n - 1) {
+            return false;
+        }
     }
 };
 
