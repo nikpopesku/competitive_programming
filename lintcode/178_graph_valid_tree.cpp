@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -14,6 +15,15 @@ public:
         if (edges.size() != n - 1) {
             return false;
         }
+
+        unordered_map<int, vector<int>> adj;
+
+        for (auto e: edges) {
+            adj[e[0]].push_back(e[1]);
+            adj[e[1]].push_back(e[0]);
+        }
+
+
     }
 };
 
