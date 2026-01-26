@@ -36,6 +36,7 @@ public:
 
         while (!st.empty()) {
             auto elem = st.top();
+            st.pop();
 
             if (!visited.contains(elem)) {
                 visited.insert(elem);
@@ -46,7 +47,7 @@ public:
             }
         }
 
-        return visited.size() == n - 1;
+        return visited.size() == n;
     }
 };
 
@@ -57,7 +58,7 @@ int main() {
     cout << s.validTree(5, a) << endl; //1
 
     vector<vector<int> > b = {{0, 1}, {1, 2}, {2, 3}, {1, 3}, {1, 4}};
-    cout << s.validTree(b, 5) << endl; //0
+    cout << s.validTree(5, b) << endl; //0
 
     return 0;
 }
