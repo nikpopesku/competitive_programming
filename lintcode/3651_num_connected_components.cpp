@@ -13,7 +13,7 @@ public:
      * @return: the number of connected components
      */
     int countComponents(const int n, const vector<vector<int> > &edges) {
-        vector visited(n, false);
+        vector<bool> visited(n, false);
         stack<int> st;
         int counter = 0;
 
