@@ -1,7 +1,4 @@
 #include <iostream>
-#include <set>
-#include <stack>
-#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -22,9 +19,9 @@ public:
 int main() {
     auto s = Solution();
 
-    const vector<vector<int> > edges = [[0,1], [0,2]];
-    cout << s.countComponents(edges) << endl; //1
+    const vector<vector<int> > edges = {{0,1}, {0,2}};
+    cout << s.countComponents(3, edges) << endl; //1
 
-    const vector<vector<int> > edges2 = [[0,1], [1,2], [2, 3], [4, 5]];
-    cout << s.countComponents(edges2) << endl; //2
+    const vector<vector<int> > edges2 = {{0,1}, {1,2}, {2, 3}, {4, 5}};
+    cout << s.countComponents(6, edges2) << endl; //2
 }
