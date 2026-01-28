@@ -1,7 +1,7 @@
 #include <iostream>
-#include <map>
 #include <set>
 #include <stack>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -9,7 +9,7 @@ using namespace std;
 class Solution {
 public:
     bool validPath(int n, const vector<vector<int> > &edges, const int source, const int destination) {
-        map<int, vector<int> > adj;
+        unordered_map<int, vector<int> > adj;
 
         for (auto e: edges) {
             adj[e[0]].push_back(e[1]);
