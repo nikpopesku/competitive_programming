@@ -25,9 +25,8 @@ public:
         }
 
         for (int i = 0; i < n; ++i) {
-            ++counter;
-
             if (!visited[i]) {
+                ++counter;
                 st.push(i);
 
                 while (!st.empty()) {
