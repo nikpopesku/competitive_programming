@@ -8,7 +8,7 @@ using namespace std;
 class Solution {
 public:
     bool validPath(int n, const vector<vector<int> > &edges, const int source, const int destination) {
-        vector<vector<int>> adj;
+        vector<vector<int> > adj;
 
         for (auto e: edges) {
             adj[e[0]].push_back(e[1]);
@@ -49,8 +49,8 @@ int main() {
     auto s = Solution();
 
     vector<vector<int> > edges = {{0, 1}, {1, 2}, {2, 0}};
-    cout << s.validPath(3, edges, 0, 2) << endl;//1
+    cout << s.validPath(3, edges, 0, 2) << endl; //1
 
     vector<vector<int> > edges2 = {{0, 1}, {0, 2}, {3, 5}, {5, 4}, {4, 3}};
-    cout << s.validPath(6, edges2, 0, 5) << endl;//0
+    cout << s.validPath(6, edges2, 0, 5) << endl; //0
 }
