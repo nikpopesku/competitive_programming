@@ -1,4 +1,6 @@
 #include <iostream>
+#include <map>
+#include <stack>
 #include <vector>
 
 using namespace std;
@@ -10,8 +12,44 @@ public:
      * @param edges: the edges of undirected graph
      * @return: the number of connected components
      */
-    int countComponents(int n, vector<vector<int>> &edges) {
-        // write your code here
+    int countComponents(int n, vector<vector<int> > &edges) {
+        vector visited(n + 1, false);
+        stack<int> st;
+        int counter = 0;
+
+        map<int, vector<int> > adj;
+
+        for (auto e: edges) {
+            adj[e[0]].push_back(e[1]);
+            adj[e[1]].push_back(e[0]);
+        }
+
+        for (int i = 1; i <= n; ++i) {
+            ++counter;
+
+            if (!visited[i]) {
+                st.push(i);
+
+                while (!st.empty()) {
+                    const auto elem = st.top();
+                    st.pop();
+
+                    if (visited[elem]) {
+                        continue;
+                    }
+
+                    visited[elem] = true;
+
+                    for (auto neighbour: adj[elem]) {
+                        if (!visited[neighbour]) {
+                            st.push(neighbour);
+                        }
+                    } }
+            }
+        }
+
+
+        return counter;
     }
 };
 
@@ -19,9 +57,9 @@ public:
 int main() {
     auto s = Solution();
 
-    const vector<vector<int> > edges = {{0,1}, {0,2}};
+    const vector<vector<int> > edges = {{0, 1}, {0, 2}};
     cout << s.countComponents(3, edges) << endl; //1
 
-    const vector<vector<int> > edges2 = {{0,1}, {1,2}, {2, 3}, {4, 5}};
+    const vector<vector<int> > edges2 = {{0, 1}, {1, 2}, {2, 3}, {4, 5}};
     cout << s.countComponents(6, edges2) << endl; //2
 }
