@@ -19,7 +19,6 @@ public:
         stack<int> st;
         set<int> visited;
         st.push(source);
-        visited.insert(source);
 
         while (!st.empty()) {
             const auto elem = st.top();
@@ -29,6 +28,7 @@ public:
                 continue;
             }
 
+            visited.insert(elem);
 
             if (elem == destination) {
                 return true;
