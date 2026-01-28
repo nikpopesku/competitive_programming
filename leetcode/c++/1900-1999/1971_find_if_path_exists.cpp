@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include <set>
 #include <stack>
 #include <vector>
@@ -8,7 +9,7 @@ using namespace std;
 class Solution {
 public:
     bool validPath(int n, const vector<vector<int> > &edges, const int source, const int destination) {
-        vector<vector<int> > adj;
+        map<int, vector<int> > adj;
 
         for (auto e: edges) {
             adj[e[0]].push_back(e[1]);
@@ -22,12 +23,12 @@ public:
 
         while (!st.empty()) {
             const auto elem = st.top();
+            st.pop();
 
             if (visited.contains(elem)) {
                 continue;
             }
 
-            st.pop();
 
             if (elem == destination) {
                 return true;
