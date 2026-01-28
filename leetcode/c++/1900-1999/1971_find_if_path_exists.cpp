@@ -17,25 +17,25 @@ public:
         }
 
         stack<int> st;
-        set<int> visited;
+        vector visited(n, false);
         st.push(source);
 
         while (!st.empty()) {
             const auto elem = st.top();
             st.pop();
 
-            if (visited.contains(elem)) {
+            if (visited[elem]) {
                 continue;
             }
 
-            visited.insert(elem);
+            visited[elem] = true;
 
             if (elem == destination) {
                 return true;
             }
 
             for (auto neighbour: adj[elem]) {
-                if (!visited.contains(neighbour)) {
+                if (!visited[neighbour]) {
                     st.push(neighbour);
                 }
             }
