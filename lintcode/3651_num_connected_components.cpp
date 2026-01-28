@@ -12,19 +12,19 @@ public:
      * @param edges: the edges of undirected graph
      * @return: the number of connected components
      */
-    int countComponents(int n, vector<vector<int> > &edges) {
-        vector visited(n + 1, false);
+    int countComponents(const int n, const vector<vector<int> > &edges) {
+        vector visited(n, false);
         stack<int> st;
         int counter = 0;
 
         map<int, vector<int> > adj;
 
-        for (auto e: edges) {
+        for (auto &e: edges) {
             adj[e[0]].push_back(e[1]);
             adj[e[1]].push_back(e[0]);
         }
 
-        for (int i = 1; i <= n; ++i) {
+        for (int i = 0; i < n; ++i) {
             ++counter;
 
             if (!visited[i]) {
@@ -44,7 +44,8 @@ public:
                         if (!visited[neighbour]) {
                             st.push(neighbour);
                         }
-                    } }
+                    }
+                }
             }
         }
 
