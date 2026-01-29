@@ -14,14 +14,13 @@ public:
      */
     void inc(const string &key) {
         if (mp_string[key] != 0) {
-            auto range = mp_int.equal_range(mp_string[key]);
 
-            int targetValue = mp_string[key];
+            const int targetValue = mp_string[key];
             auto it = mp_int.find(targetValue);
 
             while (it != mp_int.end() || it->first == targetValue) {
                 if (it->second == key) {
-                    it = mp_int.erase(it);
+                    mp_int.erase(it);
                     break;
                 }
 
@@ -30,6 +29,7 @@ public:
         }
 
         ++mp_string[key];
+        mp_int.insert({mp_string[key], key});
     }
 
     /**
@@ -60,7 +60,7 @@ public:
 
 private:
     unordered_map<string, int> mp_string;
-    multimap<int, vector<string> > mp_int;
+    multimap<int, string> mp_int;
 };
 
 
