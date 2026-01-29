@@ -1,4 +1,6 @@
+#include <algorithm>
 #include <iostream>
+#include <map>
 #include <unordered_map>
 #include <vector>
 
@@ -11,7 +13,23 @@ public:
      * @return: nothing
      */
     void inc(const string &key) {
-        ++mp[key];
+        if (mp_string[key] != 0) {
+            auto range = mp_int.equal_range(mp_string[key]);
+
+            int targetValue = mp_string[key];
+            auto it = mp_int.find(targetValue);
+
+            while (it != mp_int.end() || it->first == targetValue) {
+                if (it->second == key) {
+                    it = mp_int.erase(it);
+                    break;
+                }
+
+                ++it;
+            }
+        }
+
+        ++mp_string[key];
     }
 
     /**
@@ -19,10 +37,10 @@ public:
      * @return: nothing
      */
     void dec(const string &key) {
-        if (mp[key] == 1) {
-            mp.erase(key);
+        if (mp_string[key] == 1) {
+            mp_string.erase(key);
         } else {
-            --mp[key];
+            --mp_string[key];
         }
     }
 
@@ -41,7 +59,8 @@ public:
     }
 
 private:
-    unordered_map<string, int> mp;
+    unordered_map<string, int> mp_string;
+    multimap<int, vector<string> > mp_int;
 };
 
 
