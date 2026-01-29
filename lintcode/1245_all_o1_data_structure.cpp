@@ -14,7 +14,6 @@ public:
      */
     void inc(const string &key) {
         if (mp_string[key] != 0) {
-
             const int targetValue = mp_string[key];
             auto it = mp_int.find(targetValue);
 
@@ -37,10 +36,26 @@ public:
      * @return: nothing
      */
     void dec(const string &key) {
+        const int targetValue = mp_string[key];
+        auto it = mp_int.find(targetValue);
+
+        while (it != mp_int.end() || it->first == targetValue) {
+            if (it->second == key) {
+                mp_int.erase(it);
+                break;
+            }
+
+            ++it;
+        }
+
         if (mp_string[key] == 1) {
             mp_string.erase(key);
         } else {
             --mp_string[key];
+        }
+
+        if (mp_string[key] != 0) {
+            mp_int.insert({mp_string[key], key});
         }
     }
 
