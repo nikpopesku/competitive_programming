@@ -1,103 +1,110 @@
-#include <algorithm>
-#include <iostream>
-#include <map>
+#include <iterator>
+#include <list>
+#include <set>
+#include <string>
 #include <unordered_map>
-#include <vector>
 
 using namespace std;
 
+/**
+ * O(1) AllOne: doubly-linked list of "buckets" (count -> set of keys).
+ * - List ordered by count ascending → first bucket = min, last = max.
+ * - GetMinKey/GetMaxKey return lexicographically smallest in that bucket (set::begin()).
+ * - key_to_bucket[key] = iterator to the bucket containing key.
+ */
 class AllOne {
 public:
-    /**
-     * @param key: the element given to be added
-     * @return: nothing
-     */
     void inc(const string &key) {
-        if (mp_string[key] != 0) {
-            const int targetValue = mp_string[key];
-            auto it = mp_int.find(targetValue);
-
-            while (it != mp_int.end() || it->first == targetValue) {
-                if (it->second == key) {
-                    mp_int.erase(it);
-                    break;
-                }
-
-                ++it;
+        if (key_to_bucket_.count(key) == 0) {
+            // New key: count becomes 1
+            if (buckets_.empty() || buckets_.front().count > 1) {
+                buckets_.push_front(Bucket{1, {key}});
+            } else {
+                buckets_.front().keys.insert(key);
             }
+            key_to_bucket_[key] = buckets_.begin();
+            return;
         }
 
-        ++mp_string[key];
-        mp_int.insert({mp_string[key], key});
-    }
+        auto it = key_to_bucket_[key];
+        int cur = it->count;
+        it->keys.erase(key);
+        auto nxt = std::next(it);
 
-    /**
-     * @param key: pop an element from the queue
-     * @return: nothing
-     */
-    void dec(const string &key) {
-        const int targetValue = mp_string[key];
-        auto it = mp_int.find(targetValue);
-
-        while (it != mp_int.end() || it->first == targetValue) {
-            if (it->second == key) {
-                mp_int.erase(it);
-                break;
-            }
-
-            ++it;
-        }
-
-        if (mp_string[key] == 1) {
-            mp_string.erase(key);
+        if (nxt == buckets_.end() || nxt->count > cur + 1) {
+            key_to_bucket_[key] = buckets_.insert(nxt, Bucket{cur + 1, {key}});
         } else {
-            --mp_string[key];
+            nxt->keys.insert(key);
+            key_to_bucket_[key] = nxt;
         }
 
-        if (mp_string[key] != 0) {
-            mp_int.insert({mp_string[key], key});
+        if (it->keys.empty()) {
+            buckets_.erase(it);
         }
     }
 
-    /**
-     * @return: nothing
-     */
+    void dec(const string &key) {
+        if (key_to_bucket_.count(key) == 0) return;
+
+        auto it = key_to_bucket_[key];
+        int cur = it->count;
+        it->keys.erase(key);
+
+        if (cur == 1) {
+            key_to_bucket_.erase(key);
+        } else {
+            auto prev = it;
+            --prev;
+            if (it == buckets_.begin() || prev->count < cur - 1) {
+                key_to_bucket_[key] = buckets_.insert(it, Bucket{cur - 1, {key}});
+            } else {
+                prev->keys.insert(key);
+                key_to_bucket_[key] = prev;
+            }
+        }
+
+        if (it->keys.empty()) {
+            buckets_.erase(it);
+        }
+    }
+
     string getMaxKey() {
-        const auto last = mp_int.rbegin();
-
-        return last->second;
+        if (buckets_.empty()) return "";
+        return *buckets_.back().keys.begin();
     }
 
-    /**
-     * @return: nothing
-     */
     string getMinKey() {
-        const auto first = mp_int.begin();
- return first->second;
+        if (buckets_.empty()) return "";
+        return *buckets_.front().keys.begin();
     }
 
 private:
-    unordered_map<string, int> mp_string;
-    multimap<int, string> mp_int;
+    struct Bucket {
+        int count;
+        set<string> keys;
+    };
+    list<Bucket> buckets_;
+    unordered_map<string, list<Bucket>::iterator> key_to_bucket_;
 };
 
+#include <iostream>
 
 int main() {
     // //["hello","hello"]
     // auto s = AllOne();
     // s.inc("hello");
-    // cout << s.getMaxKey() << endl;
-    // cout << s.getMinKey() << endl;
+    // std::cout << s.getMaxKey() << "\n";
+    // std::cout << s.getMinKey() << "\n";
     //
     // //["hello","hello","hello","lint"]
     // auto s2 = AllOne();
     // s2.inc("hello");
     // s2.inc("hello");
-    // cout << s2.getMaxKey() << endl;
-    // cout << s2.getMinKey() << endl;
+    // std::cout << s2.getMaxKey() << "\n";
+    // std::cout << s2.getMinKey() << "\n";
     // s2.inc("lint");
-    // cout << s2.getMaxKey() << endl;
-    // cout << s2.getMinKey() << endl;
+    // std::cout << s2.getMaxKey() << "\n";
+    // std::cout << s2.getMinKey() << "\n";
 
     //["hello","world","hello","lint","hello"]
     auto s3 = AllOne();
@@ -107,15 +114,14 @@ int main() {
     s3.inc("world");
     s3.inc("hello");
     s3.dec("world");
-    cout << s3.getMaxKey() << endl;
-    cout << s3.getMinKey() << endl;
+    std::cout << s3.getMaxKey() << "\n";  // hello
+    std::cout << s3.getMinKey() << "\n";  // world
     s3.inc("world");
     s3.inc("world");
     s3.inc("lint");
-    cout << s3.getMaxKey() << endl;
-    cout << s3.getMinKey() << endl;
+    std::cout << s3.getMaxKey() << "\n";  // hello (lexicographic among 3)
+    std::cout << s3.getMinKey() << "\n";  // lint
     s3.inc("lint");
     s3.inc("lint");
-    cout << s3.getMinKey() << endl;
-
+    std::cout << s3.getMinKey() << "\n";  // hello (all have 3, lexicographic)
 }
