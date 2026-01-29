@@ -20,7 +20,7 @@ public:
      */
     void dec(const string &key) {
         if (mp[key] == 1) {
-            delete mp[key];
+            mp.erase(key);
         } else {
             --mp[key];
         }
@@ -39,6 +39,7 @@ public:
     string getMinKey() {
         // write your code here
     }
+
 private:
     unordered_map<string, int> mp;
 };
