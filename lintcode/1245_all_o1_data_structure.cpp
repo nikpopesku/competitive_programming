@@ -83,19 +83,39 @@ private:
 
 
 int main() {
-    //["hello","hello"]
-    auto s = AllOne();
-    s.inc("hello");
-    cout << s.getMaxKey() << endl;
-    cout << s.getMinKey() << endl;
+    // //["hello","hello"]
+    // auto s = AllOne();
+    // s.inc("hello");
+    // cout << s.getMaxKey() << endl;
+    // cout << s.getMinKey() << endl;
+    //
+    // //["hello","hello","hello","lint"]
+    // auto s2 = AllOne();
+    // s2.inc("hello");
+    // s2.inc("hello");
+    // cout << s2.getMaxKey() << endl;
+    // cout << s2.getMinKey() << endl;
+    // s2.inc("lint");
+    // cout << s2.getMaxKey() << endl;
+    // cout << s2.getMinKey() << endl;
 
-    //["hello","hello","hello","lint"]
-    auto s2 = AllOne();
-    s2.inc("hello");
-    s2.inc("hello");
-    cout << s2.getMaxKey() << endl;
-    cout << s2.getMinKey() << endl;
-    s2.inc("lint");
-    cout << s2.getMaxKey() << endl;
-    cout << s2.getMinKey() << endl;
+    //["hello","world","hello","lint","hello"]
+    auto s3 = AllOne();
+    s3.inc("hello");
+    s3.inc("hello");
+    s3.inc("world");
+    s3.inc("world");
+    s3.inc("hello");
+    s3.dec("world");
+    cout << s3.getMaxKey() << endl;
+    cout << s3.getMinKey() << endl;
+    s3.inc("world");
+    s3.inc("world");
+    s3.inc("lint");
+    cout << s3.getMaxKey() << endl;
+    cout << s3.getMinKey() << endl;
+    s3.inc("lint");
+    s3.inc("lint");
+    cout << s3.getMinKey() << endl;
+
 }
