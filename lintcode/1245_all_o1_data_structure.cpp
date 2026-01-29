@@ -73,8 +73,7 @@ public:
      */
     string getMinKey() {
         const auto first = mp_int.begin();
-
-        return first->second;
+ return first->second;
     }
 
 private:
