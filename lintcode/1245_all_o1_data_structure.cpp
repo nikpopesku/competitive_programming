@@ -46,11 +46,19 @@ private:
 
 
 int main() {
-    auto s = Solution();
+    //["hello","hello"]
+    auto s = AllOne();
+    s.inc("hello");
+    cout << s.getMaxKey() << endl;
+    cout << s.getMinKey() << endl;
 
-    const vector<vector<int> > edges = {{0, 1}, {0, 2}};
-    cout << s.countComponents(3, edges) << endl; //1
-
-    const vector<vector<int> > edges2 = {{0, 1}, {1, 2}, {2, 3}, {4, 5}};
-    cout << s.countComponents(6, edges2) << endl; //2
+    //["hello","hello","hello","lint"]
+    auto s2 = AllOne();
+    s2.inc("hello");
+    s2.inc("hello");
+    cout << s2.getMaxKey() << endl;
+    cout << s2.getMinKey() << endl;
+    s2.inc("lint");
+    cout << s2.getMaxKey() << endl;
+    cout << s2.getMinKey() << endl;
 }
