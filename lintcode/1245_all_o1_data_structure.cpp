@@ -63,14 +63,18 @@ public:
      * @return: nothing
      */
     string getMaxKey() {
-        // write your code here
+        const auto last = mp_int.rbegin();
+
+        return last->second;
     }
 
     /**
      * @return: nothing
      */
     string getMinKey() {
-        // write your code here
+        const auto first = mp_int.begin();
+
+        return first->second;
     }
 
 private:
