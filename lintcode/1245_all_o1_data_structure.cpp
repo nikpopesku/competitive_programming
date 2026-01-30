@@ -52,28 +52,26 @@ public:
             return;
         }
 
-        if (mp[key]->count == 1) {
-            buckets.erase(mp[key]);
+        auto it = mp[key];
+        const int current = it->count;
+        it->keys.erase(key);
+
+        if (current == 1) {
+            mp.erase(key);
         } else {
-            const auto it = mp[key];
-            const int current = it->count;
             auto prev = it;
             --prev;
 
-            it->keys.erase(key);
-
             if (it == buckets.begin() || prev->count < current - 1) {
-                buckets.push_front({current - 1, {key}});
-
-                mp[key] = buckets.begin();
+                mp[key] = buckets.insert(it, {current - 1, {key}});
             } else {
                 prev->keys.insert(key);
                 mp[key] = prev;
             }
+        }
 
-            if (it->keys.empty()) {
-                buckets.erase(it);
-            }
+        if (it->keys.empty()) {
+            buckets.erase(it);
         }
     }
 
@@ -114,18 +112,18 @@ int main() {
     //["hello","hello"]
     auto s = AllOne();
     s.inc("hello");
-    std::cout << s.getMaxKey() << "\n";
-    std::cout << s.getMinKey() << "\n";
+    cout << s.getMaxKey() << "\n";
+    cout << s.getMinKey() << "\n";
 
     //["hello","hello","hello","lint"]
     auto s2 = AllOne();
     s2.inc("hello");
     s2.inc("hello");
-    std::cout << s2.getMaxKey() << "\n";
-    std::cout << s2.getMinKey() << "\n";
+    cout << s2.getMaxKey() << "\n";
+    cout << s2.getMinKey() << "\n";
     s2.inc("lint");
-    std::cout << s2.getMaxKey() << "\n";
-    std::cout << s2.getMinKey() << "\n";
+    cout << s2.getMaxKey() << "\n";
+    cout << s2.getMinKey() << "\n";
 
     // //["hello","world","hello","lint","hello"]
     auto s3 = AllOne();
@@ -135,14 +133,26 @@ int main() {
     s3.inc("world");
     s3.inc("hello");
     s3.dec("world");
-    std::cout << s3.getMaxKey() << "\n"; // hello
-    std::cout << s3.getMinKey() << "\n"; // world
+    cout << s3.getMaxKey() << "\n"; // hello
+    cout << s3.getMinKey() << "\n"; // world
     s3.inc("world");
     s3.inc("world");
     s3.inc("lint");
-    std::cout << s3.getMaxKey() << "\n"; // hello (lexicographic among 3)
-    std::cout << s3.getMinKey() << "\n"; // lint
+    cout << s3.getMaxKey() << "\n"; // hello (lexicographic among 3)
+    cout << s3.getMinKey() << "\n"; // lint
     s3.inc("lint");
     s3.inc("lint");
-    std::cout << s3.getMinKey() << "\n"; // hello (all have 3, lexicographic)
+    cout << s3.getMinKey() << "\n"; // hello (all have 3, lexicographic)
+    
+    // //["hello","world","hello","lint","hello"]
+    auto s4 = AllOne();
+    s4.inc("a");
+    s4.inc("b");
+    s4.inc("b");
+    s4.inc("b");
+    s4.inc("b");
+    s4.dec("b");
+    s4.dec("b");
+    cout << s4.getMaxKey() << "\n";
+    cout << s4.getMinKey() << "\n";
 }
