@@ -111,38 +111,38 @@ private:
 
 
 int main() {
-    // //["hello","hello"]
-    // auto s = AllOne();
-    // s.inc("hello");
-    // std::cout << s.getMaxKey() << "\n";
-    // std::cout << s.getMinKey() << "\n";
-    //
-    // //["hello","hello","hello","lint"]
-    // auto s2 = AllOne();
-    // s2.inc("hello");
-    // s2.inc("hello");
-    // std::cout << s2.getMaxKey() << "\n";
-    // std::cout << s2.getMinKey() << "\n";
-    // s2.inc("lint");
-    // std::cout << s2.getMaxKey() << "\n";
-    // std::cout << s2.getMinKey() << "\n";
+    //["hello","hello"]
+    auto s = AllOne();
+    s.inc("hello");
+    std::cout << s.getMaxKey() << "\n";
+    std::cout << s.getMinKey() << "\n";
 
-    //["hello","world","hello","lint","hello"]
-    auto s3 = AllOne();
-    s3.inc("hello");
-    s3.inc("hello");
-    s3.inc("world");
-    s3.inc("world");
-    s3.inc("hello");
-    s3.dec("world");
-    std::cout << s3.getMaxKey() << "\n"; // hello
-    std::cout << s3.getMinKey() << "\n"; // world
-    s3.inc("world");
-    s3.inc("world");
-    s3.inc("lint");
-    std::cout << s3.getMaxKey() << "\n"; // hello (lexicographic among 3)
-    std::cout << s3.getMinKey() << "\n"; // lint
-    s3.inc("lint");
-    s3.inc("lint");
-    std::cout << s3.getMinKey() << "\n"; // hello (all have 3, lexicographic)
+    //["hello","hello","hello","lint"]
+    auto s2 = AllOne();
+    s2.inc("hello");
+    s2.inc("hello");
+    std::cout << s2.getMaxKey() << "\n";
+    std::cout << s2.getMinKey() << "\n";
+    s2.inc("lint");
+    std::cout << s2.getMaxKey() << "\n";
+    std::cout << s2.getMinKey() << "\n";
+
+    // //["hello","world","hello","lint","hello"]
+    // auto s3 = AllOne();
+    // s3.inc("hello");
+    // s3.inc("hello");
+    // s3.inc("world");
+    // s3.inc("world");
+    // s3.inc("hello");
+    // s3.dec("world");
+    // std::cout << s3.getMaxKey() << "\n"; // hello
+    // std::cout << s3.getMinKey() << "\n"; // world
+    // s3.inc("world");
+    // s3.inc("world");
+    // s3.inc("lint");
+    // std::cout << s3.getMaxKey() << "\n"; // hello (lexicographic among 3)
+    // std::cout << s3.getMinKey() << "\n"; // lint
+    // s3.inc("lint");
+    // s3.inc("lint");
+    // std::cout << s3.getMinKey() << "\n"; // hello (all have 3, lexicographic)
 }
