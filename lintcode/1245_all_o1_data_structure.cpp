@@ -12,7 +12,7 @@ public:
      * @param key: the element given to be added
      * @return: nothing
      */
-    void inc(string &key) {
+    void inc(const string &key) {
         if (mp.count(key) == 0) {
             if (buckets.begin()->count > 1) {
                 buckets.push_front({1, {key}});
@@ -47,7 +47,7 @@ public:
      * @param key: pop an element from the queue
      * @return: nothing
      */
-    void dec(string &key) {
+    void dec(const string &key) {
         if (mp.count(key) == 0) {
             return;
         }
