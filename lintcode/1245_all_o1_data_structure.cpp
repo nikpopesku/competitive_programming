@@ -41,8 +41,6 @@ public:
                 buckets.erase(it);
             }
         }
-
-
     }
 
     /**
@@ -50,7 +48,33 @@ public:
      * @return: nothing
      */
     void dec(string &key) {
-        // write your code here
+        if (mp.count(key) == 0) {
+            return;
+        }
+
+        if (mp[key]->count == 1) {
+            buckets.erase(mp[key]);
+        } else {
+            const auto it = mp[key];
+            const int current = it->count;
+            auto prev = it;
+            --prev;
+
+            it->keys.erase(key);
+
+            if (it == buckets.begin() || prev->count < current - 1) {
+                buckets.push_front({current - 1, {key}});
+
+                mp[key] = buckets.begin();
+            } else {
+                prev->keys.insert(key);
+                mp[key] = prev;
+            }
+
+            if (it->keys.empty()) {
+                buckets.erase(it);
+            }
+        }
     }
 
     /**
