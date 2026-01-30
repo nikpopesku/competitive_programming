@@ -14,7 +14,7 @@ public:
      */
     void inc(const string &key) {
         if (mp.count(key) == 0) {
-            if (buckets.begin()->count > 1) {
+            if (buckets.empty() || buckets.begin()->count > 1) {
                 buckets.push_front({1, {key}});
             } else {
                 buckets.begin()->keys.insert(key);
@@ -85,7 +85,7 @@ public:
             return "";
         }
 
-        return *buckets.end()->keys.begin();
+        return *buckets.back().keys.begin();
     }
 
     /**
@@ -128,21 +128,21 @@ int main() {
     std::cout << s2.getMinKey() << "\n";
 
     // //["hello","world","hello","lint","hello"]
-    // auto s3 = AllOne();
-    // s3.inc("hello");
-    // s3.inc("hello");
-    // s3.inc("world");
-    // s3.inc("world");
-    // s3.inc("hello");
-    // s3.dec("world");
-    // std::cout << s3.getMaxKey() << "\n"; // hello
-    // std::cout << s3.getMinKey() << "\n"; // world
-    // s3.inc("world");
-    // s3.inc("world");
-    // s3.inc("lint");
-    // std::cout << s3.getMaxKey() << "\n"; // hello (lexicographic among 3)
-    // std::cout << s3.getMinKey() << "\n"; // lint
-    // s3.inc("lint");
-    // s3.inc("lint");
-    // std::cout << s3.getMinKey() << "\n"; // hello (all have 3, lexicographic)
+    auto s3 = AllOne();
+    s3.inc("hello");
+    s3.inc("hello");
+    s3.inc("world");
+    s3.inc("world");
+    s3.inc("hello");
+    s3.dec("world");
+    std::cout << s3.getMaxKey() << "\n"; // hello
+    std::cout << s3.getMinKey() << "\n"; // world
+    s3.inc("world");
+    s3.inc("world");
+    s3.inc("lint");
+    std::cout << s3.getMaxKey() << "\n"; // hello (lexicographic among 3)
+    std::cout << s3.getMinKey() << "\n"; // lint
+    s3.inc("lint");
+    s3.inc("lint");
+    std::cout << s3.getMinKey() << "\n"; // hello (all have 3, lexicographic)
 }
