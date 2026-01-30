@@ -10,72 +10,72 @@ using namespace std;
  * O(1) AllOne: doubly-linked list of "buckets" (count -> set of keys).
  * - List ordered by count ascending → first bucket = min, last = max.
  * - GetMinKey/GetMaxKey return lexicographically smallest in that bucket (set::begin()).
- * - key_to_bucket[key] = iterator to the bucket containing key.
+ * - mp[key] = iterator to the bucket containing key.
  */
 class AllOne {
 public:
     void inc(const string &key) {
-        if (key_to_bucket_.count(key) == 0) {
+        if (mp.count(key) == 0) {
             // New key: count becomes 1
-            if (buckets_.empty() || buckets_.front().count > 1) {
-                buckets_.push_front(Bucket{1, {key}});
+            if (buckets.empty() || buckets.front().count > 1) {
+                buckets.push_front(Bucket{1, {key}});
             } else {
-                buckets_.front().keys.insert(key);
+                buckets.front().keys.insert(key);
             }
-            key_to_bucket_[key] = buckets_.begin();
+            mp[key] = buckets.begin();
             return;
         }
 
-        auto it = key_to_bucket_[key];
+        auto it = mp[key];
         int cur = it->count;
         it->keys.erase(key);
         auto nxt = std::next(it);
 
-        if (nxt == buckets_.end() || nxt->count > cur + 1) {
-            key_to_bucket_[key] = buckets_.insert(nxt, Bucket{cur + 1, {key}});
+        if (nxt == buckets.end() || nxt->count > cur + 1) {
+            mp[key] = buckets.insert(nxt, Bucket{cur + 1, {key}});
         } else {
             nxt->keys.insert(key);
-            key_to_bucket_[key] = nxt;
+            mp[key] = nxt;
         }
 
         if (it->keys.empty()) {
-            buckets_.erase(it);
+            buckets.erase(it);
         }
     }
 
     void dec(const string &key) {
-        if (key_to_bucket_.count(key) == 0) return;
+        if (mp.count(key) == 0) return;
 
-        auto it = key_to_bucket_[key];
+        auto it = mp[key];
         int cur = it->count;
         it->keys.erase(key);
 
         if (cur == 1) {
-            key_to_bucket_.erase(key);
+            mp.erase(key);
         } else {
             auto prev = it;
             --prev;
-            if (it == buckets_.begin() || prev->count < cur - 1) {
-                key_to_bucket_[key] = buckets_.insert(it, Bucket{cur - 1, {key}});
+            if (it == buckets.begin() || prev->count < cur - 1) {
+                mp[key] = buckets.insert(it, Bucket{cur - 1, {key}});
             } else {
                 prev->keys.insert(key);
-                key_to_bucket_[key] = prev;
+                mp[key] = prev;
             }
         }
 
         if (it->keys.empty()) {
-            buckets_.erase(it);
+            buckets.erase(it);
         }
     }
 
     string getMaxKey() {
-        if (buckets_.empty()) return "";
-        return *buckets_.back().keys.begin();
+        if (buckets.empty()) return "";
+        return *buckets.back().keys.begin();
     }
 
     string getMinKey() {
-        if (buckets_.empty()) return "";
-        return *buckets_.front().keys.begin();
+        if (buckets.empty()) return "";
+        return *buckets.front().keys.begin();
     }
 
 private:
@@ -83,8 +83,8 @@ private:
         int count;
         set<string> keys;
     };
-    list<Bucket> buckets_;
-    unordered_map<string, list<Bucket>::iterator> key_to_bucket_;
+    list<Bucket> buckets;
+    unordered_map<string, list<Bucket>::iterator> mp;
 };
 
 #include <iostream>
