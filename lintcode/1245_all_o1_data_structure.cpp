@@ -13,7 +13,36 @@ public:
      * @return: nothing
      */
     void inc(string &key) {
-        // write your code here
+        if (mp.count(key) == 0) {
+            if (buckets.begin()->count > 1) {
+                buckets.push_front({1, {key}});
+            } else {
+                buckets.begin()->keys.insert(key);
+            }
+
+            mp[key] = buckets.begin();
+        } else {
+            auto it = mp[key];
+            it->keys.erase(key);
+            int current = it->count;
+
+
+            auto nxt = next(it);
+
+            if (nxt == buckets.end() || nxt->count > current + 1) {
+                buckets.insert(nxt, {current + 1, {key}});
+            } else {
+                nxt->keys.insert(key);
+            }
+
+            mp[key] = next(it);
+
+            if (it->keys.empty()) {
+                buckets.erase(it);
+            }
+        }
+
+
     }
 
     /**
@@ -45,6 +74,7 @@ public:
 
         return *buckets.begin()->keys.begin();
     }
+
 private:
     struct Bucket {
         int count;
@@ -54,7 +84,6 @@ private:
     list<Bucket> buckets;
     unordered_map<string, list<Bucket>::iterator> mp;
 };
-
 
 
 int main() {
@@ -82,14 +111,14 @@ int main() {
     s3.inc("world");
     s3.inc("hello");
     s3.dec("world");
-    std::cout << s3.getMaxKey() << "\n";  // hello
-    std::cout << s3.getMinKey() << "\n";  // world
+    std::cout << s3.getMaxKey() << "\n"; // hello
+    std::cout << s3.getMinKey() << "\n"; // world
     s3.inc("world");
     s3.inc("world");
     s3.inc("lint");
-    std::cout << s3.getMaxKey() << "\n";  // hello (lexicographic among 3)
-    std::cout << s3.getMinKey() << "\n";  // lint
+    std::cout << s3.getMaxKey() << "\n"; // hello (lexicographic among 3)
+    std::cout << s3.getMinKey() << "\n"; // lint
     s3.inc("lint");
     s3.inc("lint");
-    std::cout << s3.getMinKey() << "\n";  // hello (all have 3, lexicographic)
+    std::cout << s3.getMinKey() << "\n"; // hello (all have 3, lexicographic)
 }
