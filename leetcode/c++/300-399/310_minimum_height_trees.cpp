@@ -1,8 +1,6 @@
 #include <iostream>
-#include <ranges>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -13,33 +11,47 @@ public:
             return {0};
         }
 
-        unordered_map<int, unordered_set<int> > mp;
+        vector<vector<int> > adj(n);
+        vector<int> degree(n, 0);
 
-        for (auto e: edges) {
-            mp[e[0]].insert(e[1]);
-            mp[e[1]].insert(e[0]);
+        for (const auto &e : edges) {
+            int u = e[0], v = e[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+            degree[u]++;
+            degree[v]++;
         }
 
-        while (mp.size() > 2) {
-            vector<pair<int, int>> del = {};
-            for (const auto &e: mp) {
-                if (e.second.size() <= 1) {
-                    del.emplace_back(e.first, *e.second.begin());
-                }
+        queue<int> q;
+        for (int i = 0; i < n; i++) {
+            if (degree[i] == 1) {
+                q.push(i);
             }
-            for (auto d: del) {
-                mp.erase(d.first);
-                mp[d.second].erase(d.first);
+        }
+
+        int remaining = n;
+        while (remaining > 2) {
+            int layer = q.size();
+            remaining -= layer;
+            for (int i = 0; i < layer; i++) {
+                int node = q.front();
+                q.pop();
+                for (int nei : adj[node]) {
+                    degree[nei]--;
+                    if (degree[nei] == 1) {
+                        q.push(nei);
+                    }
+                }
             }
         }
 
         vector<int> response;
-
-        for (const auto key: mp | views::keys) {
-            response.push_back(key);
+        while (!q.empty()) {
+            response.push_back(q.front());
+            q.pop();
         }
 
-        return response;
+        return response.empty() ? vector<int>{0} : response;
     }
 };
 
