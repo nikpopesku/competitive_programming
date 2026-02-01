@@ -16,6 +16,9 @@ public:
 
         for (auto e: edges) {
             adj[e[0]].push_back(e[1]);
+            adj[e[1]].push_back(e[0]);
+            ++degree[e[0]];
+            ++degree[e[1]];
         }
     }
 };
