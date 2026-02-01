@@ -17,9 +17,9 @@ public:
 
         while (mp.size() > 2) {
             vector<int> del = {};
-            for (auto [fst, snd]: mp) {
-                if (snd.size() == 1) {
-                    del.push_back(fst);
+            for (const auto& e: mp) {
+                if (e.second.size() == 1) {
+                    del.push_back(e.first);
                 }
                 for (auto d: del) {
                     mp.erase(d);
