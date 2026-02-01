@@ -12,10 +12,16 @@ public:
 };
 
 int main() {
-    Solution s;
+    Solution s;//[1]
     vector<vector<int> > a = {{1, 0}, {1, 2}, {1, 3}};
 
-    for (auto elem: s.findMinHeightTrees(3, a)) {
+    for (auto elem: s.findMinHeightTrees(4, a)) {
+        cout << elem << ' ';
+    }
+
+
+    vector<vector<int> > b = {{3,0},{3,1},{3,2},{3,4},{5,4}};//[3,4]
+    for (auto elem: s.findMinHeightTrees(6, b)) {
         cout << elem << ' ';
     }
 }
