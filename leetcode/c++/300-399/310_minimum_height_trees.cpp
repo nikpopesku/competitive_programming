@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ranges>
 #include <unordered_map>
 #include <vector>
 
@@ -6,13 +7,29 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findMinHeightTrees(int n, vector<vector<int> > &edges) {
+    vector<int> findMinHeightTrees(int n, const vector<vector<int> > &edges) {
         unordered_map<int, vector<int>> mp;
 
         for (auto e : edges) {
             mp[e[0]].push_back(e[1]);
             mp[e[1]].push_back(e[0]);
         }
+
+        while (mp.size() > 2) {
+            for (auto [fst, snd]: mp) {
+                if (snd.size() == 1) {
+                    mp.erase(fst);
+                }
+            }
+        }
+
+        vector<int> response;
+
+        for (const auto key: mp | views::keys) {
+            response.push_back(key);
+        }
+
+        return response;
     }
 };
 
@@ -20,13 +37,13 @@ int main() {
     Solution s; //[1]
     vector<vector<int> > a = {{1, 0}, {1, 2}, {1, 3}};
 
-    for (auto elem: s.findMinHeightTrees(4, a)) {
+    for (const auto elem: s.findMinHeightTrees(4, a)) {
         cout << elem << ' ';
     }
 
 
     vector<vector<int> > b = {{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}; //[3,4]
-    for (auto elem: s.findMinHeightTrees(6, b)) {
+    for (const auto elem: s.findMinHeightTrees(6, b)) {
         cout << elem << ' ';
     }
 }
