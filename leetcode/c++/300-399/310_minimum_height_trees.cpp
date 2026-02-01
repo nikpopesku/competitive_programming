@@ -8,17 +8,21 @@ using namespace std;
 class Solution {
 public:
     vector<int> findMinHeightTrees(int n, const vector<vector<int> > &edges) {
-        unordered_map<int, vector<int>> mp;
+        unordered_map<int, vector<int> > mp;
 
-        for (auto e : edges) {
+        for (auto e: edges) {
             mp[e[0]].push_back(e[1]);
             mp[e[1]].push_back(e[0]);
         }
 
         while (mp.size() > 2) {
+            vector<int> del = {};
             for (auto [fst, snd]: mp) {
                 if (snd.size() == 1) {
-                    mp.erase(fst);
+                    del.push_back(fst);
+                }
+                for (auto d: del) {
+                    mp.erase(d);
                 }
             }
         }
