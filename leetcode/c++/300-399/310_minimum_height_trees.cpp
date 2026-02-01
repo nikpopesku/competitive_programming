@@ -11,7 +11,7 @@ public:
             return {0};
         }
 
-        vector<vector<int> > adj;
+        vector adj(n, vector<int>());
         vector degree(n, 0);
 
         for (auto e: edges) {
