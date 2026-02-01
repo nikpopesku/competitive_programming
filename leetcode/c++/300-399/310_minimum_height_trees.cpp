@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ranges>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
@@ -12,22 +13,27 @@ public:
             return {0};
         }
 
-        unordered_map<int, vector<int> > mp;
+        unordered_map<int, unordered_set<int> > mp;
 
         for (auto e: edges) {
-            mp[e[0]].push_back(e[1]);
-            mp[e[1]].push_back(e[0]);
+            mp[e[0]].insert(e[1]);
+            mp[e[1]].insert(e[0]);
         }
 
         while (mp.size() > 2) {
-            vector<int> del = {};
+            vector<pair<int, int>> del = {};
             for (const auto &e: mp) {
                 if (e.second.size() == 1) {
-                    del.push_back(e.first);
+                    del.emplace_back(e.first, *e.second.begin());
                 }
             }
             for (auto d: del) {
-                mp.erase(d);
+                mp.erase(d.first);
+                mp[d.second].erase(d.first);
+
+                if (mp[d.second].empty()) {
+                    mp.erase(d.second);
+                }
             }
         }
 
@@ -43,19 +49,19 @@ public:
 
 int main() {
     Solution s; //{1}
-    vector<vector<int> > a = {{1, 0}, {1, 2}, {1, 3}};
-
-    for (const auto elem: s.findMinHeightTrees(4, a)) {
-        cout << elem << ' ';
-    }
-    cout << '\n';
-
-
-    vector<vector<int> > b = {{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}; //{3,4}
-    for (const auto elem: s.findMinHeightTrees(6, b)) {
-        cout << elem << ' ';
-    }
-    cout << '\n';
+    // vector<vector<int> > a = {{1, 0}, {1, 2}, {1, 3}};
+    //
+    // for (const auto elem: s.findMinHeightTrees(4, a)) {
+    //     cout << elem << ' ';
+    // }
+    // cout << '\n';
+    //
+    //
+    // vector<vector<int> > b = {{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}; //{3,4}
+    // for (const auto elem: s.findMinHeightTrees(6, b)) {
+    //     cout << elem << ' ';
+    // }
+    // cout << '\n';
 
 
     vector<vector<int> > c = {{0,1},{0,2},{0,3},{3,4},{4,5}};
