@@ -11,10 +11,10 @@ public:
             return {0};
         }
 
-        vector<int, vector<int>> adj;
-        vector<int> degree(n, 0);
+        vector<vector<int>> adj;
+        vector degree(n, 0);
 
-        for (auto &e: edges) {
+        for (auto e: edges) {
             adj[e[0]].push_back(e[1]);
         }
     }
