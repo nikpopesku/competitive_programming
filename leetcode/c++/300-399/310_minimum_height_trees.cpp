@@ -31,10 +31,10 @@ public:
 
         int remaining = n;
         while (remaining > 2) {
-            int layer = q.size();
+            const int layer = static_cast<int>(q.size());
             remaining -= layer;
             for (int i = 0; i < layer; i++) {
-                int node = q.front();
+                const int node = q.front();
                 q.pop();
                 for (int nei: adj[node]) {
                     degree[nei]--;
