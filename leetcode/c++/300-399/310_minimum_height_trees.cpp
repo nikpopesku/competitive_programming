@@ -20,6 +20,32 @@ public:
             ++degree[e[0]];
             ++degree[e[1]];
         }
+
+        int remaining = n;
+        queue<int> q;
+        for (int i = 0; i < n; ++i) {
+            if (degree[i] == 1) {
+                q.push(i);
+            }
+        }
+
+        while (remaining > 2) {
+            const int layer = static_cast<int>(q.size());
+            remaining -= layer;
+
+            for (int i = 0; i < layer; ++i) {
+                const auto e = q.front();
+                q.pop();
+
+                for (auto nei: adj[e]) {
+                    --degree[nei];
+
+                    if (degree[nei] == 1) {
+                        q.push(nei);
+                    }
+                }
+            }
+        }
     }
 };
 
