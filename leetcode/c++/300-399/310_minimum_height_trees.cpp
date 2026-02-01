@@ -11,7 +11,7 @@ public:
             return {0};
         }
 
-        vector<vector<int>> adj;
+        vector<vector<int> > adj;
         vector degree(n, 0);
 
         for (auto e: edges) {
@@ -46,6 +46,15 @@ public:
                 }
             }
         }
+
+        vector<int> response;
+
+        while (!q.empty()) {
+            response.push_back(q.front());
+            q.pop();
+        }
+
+        return response;
     }
 };
 
