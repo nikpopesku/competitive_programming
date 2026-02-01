@@ -33,7 +33,7 @@ public:
             response.push_back(key);
         }
 
-        return response;
+        return (!response.empty() ? response : {0});
     }
 };
 
