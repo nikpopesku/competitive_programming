@@ -17,13 +17,13 @@ public:
 
         while (mp.size() > 2) {
             vector<int> del = {};
-            for (const auto& e: mp) {
+            for (const auto &e: mp) {
                 if (e.second.size() == 1) {
                     del.push_back(e.first);
                 }
-                for (auto d: del) {
-                    mp.erase(d);
-                }
+            }
+            for (auto d: del) {
+                mp.erase(d);
             }
         }
 
@@ -44,6 +44,7 @@ int main() {
     for (const auto elem: s.findMinHeightTrees(4, a)) {
         cout << elem << ' ';
     }
+    cout << '\n';
 
 
     vector<vector<int> > b = {{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}; //[3,4]
