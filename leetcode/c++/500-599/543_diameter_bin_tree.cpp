@@ -68,7 +68,7 @@ private:
 
         maxvalue = max(maxvalue, left + right);
 
-        return maxvalue;
+        return max(left, right);  // height of this subtree (edges to farthest leaf)
     }
 };
 
