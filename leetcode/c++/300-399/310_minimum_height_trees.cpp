@@ -1,5 +1,5 @@
 #include <iostream>
-#include <stack>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -7,7 +7,12 @@ using namespace std;
 class Solution {
 public:
     vector<int> findMinHeightTrees(int n, vector<vector<int> > &edges) {
-        return {};
+        unordered_map<int, vector<int>> mp;
+
+        for (auto e : edges) {
+            mp[e[0]].push_back(e[1]);
+            mp[e[1]].push_back(e[0]);
+        }
     }
 };
 
