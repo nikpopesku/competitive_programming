@@ -12,9 +12,9 @@ public:
         }
 
         vector<vector<int> > adj(n);
-        vector<int> degree(n, 0);
+        vector degree(n, 0);
 
-        for (const auto &e : edges) {
+        for (const auto &e: edges) {
             int u = e[0], v = e[1];
             adj[u].push_back(v);
             adj[v].push_back(u);
@@ -36,7 +36,7 @@ public:
             for (int i = 0; i < layer; i++) {
                 int node = q.front();
                 q.pop();
-                for (int nei : adj[node]) {
+                for (int nei: adj[node]) {
                     degree[nei]--;
                     if (degree[nei] == 1) {
                         q.push(nei);
@@ -72,7 +72,7 @@ int main() {
     cout << '\n';
 
 
-    vector<vector<int> > c = {{0,1},{0,2},{0,3},{3,4},{4,5}};
+    vector<vector<int> > c = {{0, 1}, {0, 2}, {0, 3}, {3, 4}, {4, 5}};
     for (const auto elem: s.findMinHeightTrees(6, c)) {
         cout << elem << ' ';
     }
