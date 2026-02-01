@@ -11,47 +11,12 @@ public:
             return {0};
         }
 
-        vector<vector<int> > adj(n);
-        vector degree(n, 0);
+        vector<int, vector<int>> adj;
+        vector<int> degree(n, 0);
 
-        for (const auto &e: edges) {
-            int u = e[0], v = e[1];
-            adj[u].push_back(v);
-            adj[v].push_back(u);
-            degree[u]++;
-            degree[v]++;
+        for (auto &e: edges) {
+            adj[e[0]].push_back(e[1]);
         }
-
-        queue<int> q;
-        for (int i = 0; i < n; i++) {
-            if (degree[i] == 1) {
-                q.push(i);
-            }
-        }
-
-        int remaining = n;
-        while (remaining > 2) {
-            const int layer = static_cast<int>(q.size());
-            remaining -= layer;
-            for (int i = 0; i < layer; i++) {
-                const int node = q.front();
-                q.pop();
-                for (int nei: adj[node]) {
-                    degree[nei]--;
-                    if (degree[nei] == 1) {
-                        q.push(nei);
-                    }
-                }
-            }
-        }
-
-        vector<int> response;
-        while (!q.empty()) {
-            response.push_back(q.front());
-            q.pop();
-        }
-
-        return response.empty() ? vector<int>{0} : response;
     }
 };
 
