@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int calc(int node, int parent, vector<int> &distance, vector<vector<int> > &adj) {
+int calc(int node, int parent, vector<int> &distance, map<int, vector<int> > &adj) {
     int best1 = 0;
     int best2 = 0;
 
@@ -21,7 +21,8 @@ int calc(int node, int parent, vector<int> &distance, vector<vector<int> > &adj)
             best2 = dist;
         }
     }
- return best1 + best2;
+
+    return best1 + best2;
 }
 
 
@@ -33,8 +34,8 @@ int main() {
     int n, a, b;
     cin >> n;
 
-    vector<vector<int> > adj;
-    vector<int> distance(n, 0);
+    map<int, vector<int> > adj;
+    vector distance(n, 0);
 
     for (int i = 1; i < n; ++i) {
         cin >> a >> b;
