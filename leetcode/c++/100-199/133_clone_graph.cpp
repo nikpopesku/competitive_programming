@@ -9,17 +9,19 @@ using namespace std;
 class Node {
 public:
     int val;
-    vector<Node*> neighbors;
+    vector<Node *> neighbors;
+
     Node() {
         val = 0;
-        neighbors = vector<Node*>();
+        neighbors = vector<Node *>();
     }
 
     explicit Node(const int _val) {
         val = _val;
-        neighbors = vector<Node*>();
+        neighbors = vector<Node *>();
     }
-    Node(const int _val, const vector<Node*> &_neighbors) {
+
+    Node(const int _val, const vector<Node *> &_neighbors) {
         val = _val;
         neighbors = _neighbors;
     }
@@ -27,11 +29,11 @@ public:
 
 class Solution {
 public:
-    Node* cloneGraph(Node* node) {
-        Node* newNode(node->val);
+    Node *cloneGraph(Node *node) {
+        Node *newNode(node->val);
 
-        for (const auto nei : node->neighbors) {
-            Node* newNeighbour = cloneGraph(nei);
+        for (const auto nei: node->neighbors) {
+            Node *newNeighbour = cloneGraph(nei);
             newNode->neighbors.push_back(newNeighbour);
         }
 
