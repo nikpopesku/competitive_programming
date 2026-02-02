@@ -34,23 +34,28 @@ public:
         if (node == nullptr) {
             return nullptr;
         }
+
         unordered_map<Node *, Node *> cloned;
+
         return cloneDfs(node, cloned);
     }
 
 private:
-    static Node *cloneDfs(Node *node, unordered_map<Node *, Node *> &cloned) {
+    Node *cloneDfs(Node *node, unordered_map<Node *, Node *> cloned) {
         if (auto it = cloned.find(node); it != cloned.end()) {
             return it->second;
         }
 
-        auto *newNode = new Node(node->val);
-        cloned[node] = newNode;
+        auto newNode = new Node(node->val);
         newNode->neighbors.reserve(node->neighbors.size());
-        for (auto *nei: node->neighbors) {
-            newNode->neighbors.push_back(cloneDfs(nei, cloned));
+        cloned[node] = newNode;
+
+        for (const auto nei: node->neighbors) {
+            auto newNeighbour = cloneDfs(nei, cloned);
+            newNode->neighbors.push_back(newNeighbour);
         }
-        return newNode;
+
+        return cloned[node];
     }
 };
 
