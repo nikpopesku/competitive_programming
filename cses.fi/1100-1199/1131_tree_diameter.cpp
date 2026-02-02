@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int calc(int node, unordered_map<int, vector<int> >& adj, int &maxdiameter) {
+int calc(int node, unordered_map<int, vector<int> > &adj, int &maxdiameter) {
     int first = 0;
     if (!adj[node].empty()) {
         first = calc(adj[node][0], adj, maxdiameter) + 1;
