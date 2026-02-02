@@ -2,20 +2,25 @@
 
 using namespace std;
 
-int calc(int node, unordered_map<int, vector<int> > &adj, int &maxdiameter) {
-    int first = 0;
-    if (!adj[node].empty()) {
-        first = calc(adj[node][0], adj, maxdiameter) + 1;
+int calc(int node, int parent, const vector<vector<int>> &adj, int &maxdiameter) {
+    int best1 = 0;
+    int best2 = 0;
+
+    for (int nei : adj[node]) {
+        if (nei == parent) {
+            continue;
+        }
+        int depth = calc(nei, node, adj, maxdiameter) + 1;
+        if (depth > best1) {
+            best2 = best1;
+            best1 = depth;
+        } else if (depth > best2) {
+            best2 = depth;
+        }
     }
 
-    int second = 0;
-    if (adj[node].size() > 1) {
-        second = calc(adj[node][1], adj, maxdiameter) + 1;
-    }
-
-    maxdiameter = max(maxdiameter, first + second);
-
-    return first + second;
+    maxdiameter = max(maxdiameter, best1 + best2);
+    return best1;
 }
 
 int main() {
@@ -25,15 +30,15 @@ int main() {
 
     int n, u, v;
     cin >> n;
-    unordered_map<int, vector<int> > adj;
+    vector<vector<int>> adj(n + 1);
 
     for (int i = 1; i <= n - 1; ++i) {
         cin >> u >> v;
         adj[u].push_back(v);
-        // adj[v].push_back(u);
+        adj[v].push_back(u);
     }
 
     int maxdiameter = 0;
-    calc(1, adj, maxdiameter);
-    cout << maxdiameter - 1 << "\n";
+    calc(1, 0, adj, maxdiameter);
+    cout << maxdiameter << "\n";
 }
