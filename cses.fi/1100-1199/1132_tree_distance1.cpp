@@ -2,7 +2,7 @@
 
 using namespace std;
 
-static int bfs_farthest(int start, const vector<vector<int>> &adj, vector<int> *dist_out) {
+static int bfs_farthest(int start, const vector<vector<int> > &adj, vector<int> *dist_out) {
     int n = static_cast<int>(adj.size()) - 1;
     vector<int> dist(n + 1, -1);
     queue<int> q;
@@ -11,7 +11,7 @@ static int bfs_farthest(int start, const vector<vector<int>> &adj, vector<int> *
     while (!q.empty()) {
         int node = q.front();
         q.pop();
-        for (int nei : adj[node]) {
+        for (int nei: adj[node]) {
             if (dist[nei] != -1) {
                 continue;
             }
@@ -40,7 +40,7 @@ int main() {
     int n, a, b;
     cin >> n;
 
-    vector<vector<int>> adj(n + 1);
+    vector<vector<int> > adj(n + 1);
     for (int i = 1; i < n; ++i) {
         cin >> a >> b;
         adj[a].push_back(b);
