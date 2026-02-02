@@ -28,7 +28,15 @@ public:
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
+        Node* newNode(node->val);
 
+        for (const auto nei : node->neighbors) {
+            Node* newNeighbour = cloneGraph(nei);
+            newNode->neighbors.push_back(newNeighbour);
+        }
+
+
+        return newNode;
     }
 };
 
