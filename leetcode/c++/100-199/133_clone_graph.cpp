@@ -48,7 +48,7 @@ private:
         auto *newNode = new Node(node->val);
         cloned[node] = newNode;
         newNode->neighbors.reserve(node->neighbors.size());
-        for (auto *nei : node->neighbors) {
+        for (auto *nei: node->neighbors) {
             newNode->neighbors.push_back(cloneDfs(nei, cloned));
         }
         return newNode;
