@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <unordered_map>
 
 using namespace std;
 
@@ -29,24 +30,30 @@ public:
 
 class Solution {
 public:
-    Node *cloneGraph(const Node *node) {
-        Node newNode(node->val);
+    Node *cloneGraph(Node *node) {
+        if (node == nullptr) {
+            return nullptr;
+        }
+        unordered_map<Node *, Node *> cloned;
+        return cloneDfs(node, cloned);
+    }
 
-        for (const auto nei: node->neighbors) {
-            Node *newNeighbour = cloneGraph(nei);
-            newNode.neighbors.push_back(newNeighbour);
+private:
+    static Node *cloneDfs(Node *node, unordered_map<Node *, Node *> &cloned) {
+        auto it = cloned.find(node);
+        if (it != cloned.end()) {
+            return it->second;
         }
 
-
-        return &newNode;
+        auto *newNode = new Node(node->val);
+        cloned[node] = newNode;
+        newNode->neighbors.reserve(node->neighbors.size());
+        for (auto *nei : node->neighbors) {
+            newNode->neighbors.push_back(cloneDfs(nei, cloned));
+        }
+        return newNode;
     }
 };
 
 int main() {
-    Solution s; //{1}
-    vector<vector<int> > a = {{1, 0}, {1, 2}, {1, 3}};
-    vector<vector<int> > c = {{0, 1}, {0, 2}, {0, 3}, {3, 4}, {4, 5}};
-    for (const auto elem: s.findMinHeightTrees(6, c)) {
-        cout << elem << ' ';
-    }
 }
