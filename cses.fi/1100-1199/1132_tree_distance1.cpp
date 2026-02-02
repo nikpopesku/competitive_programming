@@ -12,7 +12,8 @@ int main() {
     cin >> n;
 
     vector<vector<int> > adj;
- for (int i = 1; i < n; ++i) {
+
+    for (int i = 1; i < n; ++i) {
         cin >> a >> b;
         adj[a].push_back(b);
         adj[b].push_back(a);
