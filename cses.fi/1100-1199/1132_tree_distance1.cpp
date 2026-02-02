@@ -2,7 +2,12 @@
 
 using namespace std;
 
-void calc() {
+void calc(int node, int parent, vector<int> &distance, vector<vector<int> > &adj) {
+    for (auto nei: adj[node]) {
+        if (nei == parent) {
+            continue;
+        }
+    }
 }
 
 
@@ -22,6 +27,9 @@ int main() {
         adj[a].push_back(b);
         adj[b].push_back(a);
     }
+
+    calc(1, 0, distance, adj);
+
  for (int i = 0; i < n; ++i) {
         cout << distance[i] << ' ';
     }
