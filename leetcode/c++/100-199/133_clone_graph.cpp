@@ -41,7 +41,7 @@ public:
     }
 
 private:
-    Node *cloneDfs(Node *node, unordered_map<Node *, Node *> cloned) {
+    Node *cloneDfs(Node *node, unordered_map<Node *, Node *> &cloned) {
         if (auto it = cloned.find(node); it != cloned.end()) {
             return it->second;
         }
