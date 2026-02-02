@@ -40,8 +40,7 @@ public:
 
 private:
     static Node *cloneDfs(Node *node, unordered_map<Node *, Node *> &cloned) {
-        auto it = cloned.find(node);
-        if (it != cloned.end()) {
+        if (auto it = cloned.find(node); it != cloned.end()) {
             return it->second;
         }
 
