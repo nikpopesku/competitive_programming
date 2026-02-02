@@ -11,7 +11,7 @@ int calc(int node, int parent, unordered_map<int, vector<int> > &adj, int &maxdi
             continue;
         }
 
-        int diameter = calc(nei, node, adj, maxdiameter);
+        int diameter = calc(nei, node, adj, maxdiameter) + 1;
         if (diameter > best1) {
             best2 = best1;
             best1 = diameter;
