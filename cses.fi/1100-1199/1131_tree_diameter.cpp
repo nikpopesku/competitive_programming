@@ -2,27 +2,38 @@
 
 using namespace std;
 
+int calc(int node, unordered_map<int, vector<int> > adj, int &maxdiameter) {
+    int first = 0;
+    if (adj[node].size() > 0) {
+        first = calc(adj[node][0], adj, maxdiameter) + 1;
+    }
+
+    int second = 0;
+    if (adj[node].size() > 1) {
+        second = calc(adj[node][1], adj, maxdiameter) + 1;
+    }
+
+    maxdiameter = max(maxdiameter, first + second);
+
+    return first + second;
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int a, b;
-    cin >> a >> b;
-    vector dp(a + 1, vector<int>(b + 1, 0));
+    int n, u, v;
+    cin >> n;
+    unordered_map<int, vector<int> > adj;
 
-    for (int i = 1; i <= a; ++i) {
-        for (int j = 1; j <= b; ++j) {
-            if (i == j) {
-                dp[i][j] = 0;
-                continue;
-            }
-
-            dp[i][j] = 1e9;
-            for (int k = 1; k < i; ++k) dp[i][j] = min(dp[i][j], dp[k][j] + dp[i - k][j] + 1);
-            for (int k = 1; k < j; ++k) dp[i][j] = min(dp[i][j], dp[i][k] + dp[i][j - k] + 1);
-        }
+    for (int i = 1; i <= n - 1; ++i) {
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
 
-    cout << dp[a][b] << "\n";
+    int maxdiameter = 0;
+    calc(1, adj, maxdiameter);
+    cout << maxdiameter << "\n";
 }
