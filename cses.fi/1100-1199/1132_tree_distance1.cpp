@@ -2,12 +2,26 @@
 
 using namespace std;
 
-void calc(int node, int parent, vector<int> &distance, vector<vector<int> > &adj) {
+int calc(int node, int parent, vector<int> &distance, vector<vector<int> > &adj) {
+    int best1 = 0;
+    int best2 = 0;
+
     for (auto nei: adj[node]) {
         if (nei == parent) {
             continue;
         }
+
+        int dist = calc(nei, node, distance, adj) + 1;
+        distance[node] = max(distance[node], dist);
+
+        if (dist > best1) {
+            best2 = best1;
+            best1 = dist;
+        } else if (dist > best2) {
+            best2 = dist;
+        }
     }
+ return best1 + best2;
 }
 
 
@@ -30,7 +44,7 @@ int main() {
 
     calc(1, 0, distance, adj);
 
- for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
         cout << distance[i] << ' ';
     }
 
