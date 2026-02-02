@@ -2,11 +2,11 @@
 
 using namespace std;
 
-int calc(int node, int parent, vector<int> &distance, map<int, vector<int> > &adj) {
+int calc(const int node, int parent, vector<int> &distance, map<int, vector<int> > &adj) {
     int best1 = 0;
     int best2 = 0;
 
-    for (auto nei: adj[node]) {
+    for (const auto nei: adj[node]) {
         if (nei == parent) {
             continue;
         }
@@ -48,6 +48,4 @@ int main() {
     for (int i = 0; i < n; ++i) {
         cout << distance[i] << ' ';
     }
-
-    cout << "1\n";
 }
