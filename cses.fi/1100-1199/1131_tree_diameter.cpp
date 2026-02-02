@@ -2,24 +2,26 @@
 
 using namespace std;
 
-int calc(int node, int parent, const vector<vector<int>> &adj, int &maxdiameter) {
+int calc(int node, int parent, unordered_map<int, vector<int> > &adj, int &maxdiameter) {
     int best1 = 0;
     int best2 = 0;
 
-    for (int nei : adj[node]) {
+    for (const auto nei: adj[node]) {
         if (nei == parent) {
             continue;
         }
-        int depth = calc(nei, node, adj, maxdiameter) + 1;
-        if (depth > best1) {
+
+        int diameter = calc(nei, node, adj, maxdiameter);
+        if (diameter > best1) {
             best2 = best1;
-            best1 = depth;
-        } else if (depth > best2) {
-            best2 = depth;
+            best1 = diameter;
+        } else if (diameter > best2) {
+            best2 = diameter;
         }
+
+        maxdiameter = max(maxdiameter, best1 + best2);
     }
 
-    maxdiameter = max(maxdiameter, best1 + best2);
     return best1;
 }
 
@@ -30,7 +32,7 @@ int main() {
 
     int n, u, v;
     cin >> n;
-    vector<vector<int>> adj(n + 1);
+    unordered_map<int, vector<int> > adj;
 
     for (int i = 1; i <= n - 1; ++i) {
         cin >> u >> v;
