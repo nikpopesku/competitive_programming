@@ -12,7 +12,6 @@ int calc(const int node, int parent, vector<int> &distance, map<int, vector<int>
         }
 
         int dist = calc(nei, node, distance, adj) + 1;
-        distance[node] = max(distance[node], dist);
 
         if (dist > best1) {
             best2 = best1;
@@ -21,6 +20,8 @@ int calc(const int node, int parent, vector<int> &distance, map<int, vector<int>
             best2 = dist;
         }
     }
+
+    distance[node] = max(distance[node], best1 + best2);
 
     return best1 + best2;
 }
@@ -35,7 +36,7 @@ int main() {
     cin >> n;
 
     map<int, vector<int> > adj;
-    vector distance(n, 0);
+    vector distance(n + 1, 0);
 
     for (int i = 1; i < n; ++i) {
         cin >> a >> b;
@@ -45,7 +46,7 @@ int main() {
 
     calc(1, 0, distance, adj);
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 1; i <= n; ++i) {
         cout << distance[i] << ' ';
     }
 }
