@@ -50,12 +50,11 @@ private:
         newNode->neighbors.reserve(node->neighbors.size());
         cloned[node] = newNode;
 
-        for (const auto nei: node->neighbors) {
-            auto newNeighbour = cloneDfs(nei, cloned);
-            newNode->neighbors.push_back(newNeighbour);
+        for (auto *nei: node->neighbors) {
+            newNode->neighbors.push_back(cloneDfs(nei, cloned));
         }
 
-        return cloned[node];
+        return newNode;
     }
 };
 
