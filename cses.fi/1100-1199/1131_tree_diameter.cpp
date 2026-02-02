@@ -30,10 +30,10 @@ int main() {
     for (int i = 1; i <= n - 1; ++i) {
         cin >> u >> v;
         adj[u].push_back(v);
-        adj[v].push_back(u);
+        // adj[v].push_back(u);
     }
 
     int maxdiameter = 0;
     calc(1, adj, maxdiameter);
-    cout << maxdiameter << "\n";
+    cout << maxdiameter - 1 << "\n";
 }
