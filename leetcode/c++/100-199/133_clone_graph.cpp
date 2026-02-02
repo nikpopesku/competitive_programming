@@ -4,7 +4,7 @@
 
 using namespace std;
 
-/*
+
 // Definition for a Node.
 class Node {
 public:
@@ -14,16 +14,16 @@ public:
         val = 0;
         neighbors = vector<Node*>();
     }
-    Node(int _val) {
+
+    explicit Node(const int _val) {
         val = _val;
         neighbors = vector<Node*>();
     }
-    Node(int _val, vector<Node*> _neighbors) {
+    Node(const int _val, const vector<Node*> &_neighbors) {
         val = _val;
         neighbors = _neighbors;
     }
 };
-*/
 
 class Solution {
 public:
