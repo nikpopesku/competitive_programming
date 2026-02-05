@@ -22,12 +22,10 @@ int furthest_node(int start, const vector<vector<int> > &adj, vector<int> *dist_
     }
 
     int best_node = start;
-    int best_value = 0;
 
     for (int i = 1; i <= n; ++i) {
-        if (dist[i] > best_value) {
+        if (dist[i] > dist[best_node]) {
             best_node = i;
-            best_value = dist[i];
         }
     }
 
