@@ -27,7 +27,7 @@ int furthest_node(int start, const vector<vector<int> > &adj, vector<int> *dist_
     }
 
     if (dist_out != nullptr) {
-        dist_out = move(dist);
+        *dist_out = std::move(dist);
     }
 
     return best;
@@ -48,7 +48,7 @@ int main() {
         adj[b].push_back(a);
     }
 
-    vector<int> a_dist, b_dist;
+    vector<int> a_dist(n+1, -1), b_dist(n+1, -1);
     const int a_end = furthest_node(1, adj, nullptr, n);
     const int b_end = furthest_node(a_end, adj, &a_dist, n);
     furthest_node(b_end, adj, &b_dist, n);
