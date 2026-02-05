@@ -2,8 +2,8 @@
 
 using namespace std;
 
-int furthest_node(int start, vector<vector<int> > &adj, vector<int> *dist_out, int n) {
-    vector<int> dist(n, -1);
+int furthest_node(int start, const vector<vector<int> > &adj, vector<int> *dist_out, const int n) {
+    vector<int> dist(n + 1, -1);
     queue<int> q;
     q.push(start);
     dist[start] = 0;
@@ -49,8 +49,8 @@ int main() {
     }
 
     vector<int> a_dist, b_dist;
-    int a_end = furthest_node(1, adj, nullptr, n);
-    int b_end = furthest_node(a_end, adj, &a_dist, n);
+    const int a_end = furthest_node(1, adj, nullptr, n);
+    const int b_end = furthest_node(a_end, adj, &a_dist, n);
     furthest_node(b_end, adj, &b_dist, n);
 
     for (int i = 1; i <= n; ++i) {
