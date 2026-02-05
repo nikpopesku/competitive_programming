@@ -37,7 +37,7 @@ int main() {
     int n, a, b;
     cin >> n;
 
-    vector adj(n+1, vector<int>());
+    vector adj(n + 1, vector<int>());
     for (int i = 1; i <= n - 1; ++i) {
         cin >> a >> b;
         adj[a].push_back(b);
