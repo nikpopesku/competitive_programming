@@ -7,6 +7,7 @@ int furthest_node(int start, vector<vector<int> > &adj, vector<int> *dist_out, i
     queue<int> q;
     q.push(start);
     dist[start] = 0;
+    int best = 0;
 
     while (q.empty()) {
         const auto node = q.front();
@@ -19,12 +20,11 @@ int furthest_node(int start, vector<vector<int> > &adj, vector<int> *dist_out, i
         for (auto nei: adj[node]) {
             if (dist[nei] == -1) {
                 dist[nei] = dist[node] + 1;
+                best = max(best, dist[nei]);
                 q.push(nei);
             }
         }
     }
-
-    int best;
 
     if (dist_out != nullptr) {
         dist_out = move(dist);
