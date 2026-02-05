@@ -2,7 +2,35 @@
 
 using namespace std;
 
-int furthest_node(int start, vector<vector<int> > &adj, vector<int> *dist) {
+int furthest_node(int start, vector<vector<int> > &adj, vector<int> *dist_out, int n) {
+    vector<int> dist(n, -1);
+    queue<int> q;
+    q.push(start);
+    dist[start] = 0;
+
+    while (q.empty()) {
+        const auto node = q.front();
+        q.pop();
+
+        if (dist[node] != -1) {
+            continue;
+        }
+
+        for (auto nei: adj[node]) {
+            if (dist[nei] == -1) {
+                dist[nei] = dist[node] + 1;
+                q.push(nei);
+            }
+        }
+    }
+
+    int best;
+
+    if (dist_out != nullptr) {
+        dist_out = move(dist);
+    }
+
+    return best;
 }
 
 int main() {
@@ -20,11 +48,10 @@ int main() {
         adj[b].push_back(a);
     }
 
-    int a_end, b_end;
     vector<int> a_dist, b_dist;
-    a_end = furthest_node(1, adj, nullptr);
-    b_end = furthest_node(a_end, adj, &a_dist);
-    furthest_node(b_end, adj, &b_dist);
+    int a_end = furthest_node(1, adj, nullptr, n);
+    int b_end = furthest_node(a_end, adj, &a_dist, n);
+    furthest_node(b_end, adj, &b_dist, n);
 
     for (int i = 1; i <= n; ++i) {
         cout << max(a_dist[i], b_dist[i]) << " ";
