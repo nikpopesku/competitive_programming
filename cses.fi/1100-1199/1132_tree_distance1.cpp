@@ -9,13 +9,9 @@ int furthest_node(int start, const vector<vector<int> > &adj, vector<int> *dist_
     dist[start] = 0;
     int best = 0;
 
-    while (q.empty()) {
+    while (!q.empty()) {
         const auto node = q.front();
         q.pop();
-
-        if (dist[node] != -1) {
-            continue;
-        }
 
         for (auto nei: adj[node]) {
             if (dist[nei] == -1) {
