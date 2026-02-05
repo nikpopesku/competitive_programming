@@ -9,4 +9,11 @@ int main() {
 
     int n, a, b;
     cin >> n;
+
+    vector adj(n, vector<int>());
+    for (int i = 1; i < n - 1; ++i) {
+        cin >> a >> b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
 }
