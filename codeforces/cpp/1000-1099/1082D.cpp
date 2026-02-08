@@ -59,9 +59,9 @@ void solve() {
     cout << "YES\n";
     cout << m << "\n";
 
-    for (const auto& elem: adj) {
-        for (auto nei: elem) {
-            cout << elem << ' ' << nei << "\n";
+    for (int i = 0; i < n; ++i) {
+        for (const auto nei: adj[i]) {
+            cout << i << ' ' << nei << "\n";
         }
     }
 }
