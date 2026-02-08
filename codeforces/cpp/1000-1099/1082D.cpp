@@ -31,6 +31,7 @@ void solve() {
             q.pop_back();
             adj[i].push_back(elem.first);
             ++m;
+            ++d;
             --a[i];
             --a[elem.first];
 
