@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 #include <stack>
 #include <vector>
 
@@ -11,7 +12,7 @@ void solve() {
     vector a(n, 0);
     vector leaves(n, false);
     vector adj(n, vector<int>());
-    stack<pair<int, int> > st;
+    queue<pair<int, int> > q;
     int m = 0;
     int value;
 
@@ -28,13 +29,13 @@ void solve() {
             --a[i + 1];
 
             if (a[i] > 0) {
-                st.emplace(i, a[i]);
+                q.emplace(i, a[i]);
             }
         }
     }
 
     if (a[n - 1] > 0 && leaves[n - 1] == false) {
-        st.emplace(n - 1, a[n - 1]);
+        q.emplace(n - 1, a[n - 1]);
     }
 
     for (int leaf = 0; leaf < n; ++leaf) {
@@ -43,19 +44,30 @@ void solve() {
         }
 
         if (a[leaf] > 0) {
-            if (st.empty()) {
+            if (q.empty()) {
                 cout << "NO\n";
 
                 return;
             }
 
-            auto elem = st.top();
-            st.pop();
+            if (q.size() == 1 && q.front().first == leaf) {
+                cout << "NO\n";
+
+                return;
+            }
+
+            auto elem = q.front();
+            q.pop();
+
+            if (elem.first == leaf) {
+                q.emplace(elem.first, elem.second);
+            }
+
             adj[leaf].push_back(elem.first);
             ++m;
 
             if (elem.second > 1) {
-                st.emplace(elem.first, elem.second - 1);
+                q.emplace(elem.first, elem.second - 1);
             }
         }
     }
