@@ -8,12 +8,12 @@ void solve() {
     int n;
     cin >> n;
     vector<int> a(n);
-    vector<int> leafes;
+    vector<int> leaves;
 
     for (int i = 0; i < n; i++) {
         cin >> a[i];
         if (a[i] <= 1) {
-            leafes.push_back(a[i]);
+            leaves.push_back(a[i]);
         }
     }
 }
