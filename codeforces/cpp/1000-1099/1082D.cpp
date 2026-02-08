@@ -8,7 +8,7 @@ using namespace std;
 void solve() {
     int n;
     cin >> n;
-    vector<int> a(n);
+    vector a(n, 0);
     vector<int> leaves;
     vector adj(n, vector<int>());
     stack<pair<int, int> > st;
