@@ -14,10 +14,10 @@ void solve() {
 
     for (int i = 0; i < n; i++) {
         cin >> a[i];
-        if (i < n - 1) {
+        if (i < n - 1 && a[i] >= 2) {
             adj[i].push_back(i + 1);
             --a[i];
-            --a[i+1];
+            --a[i + 1];
         }
     }
 }
