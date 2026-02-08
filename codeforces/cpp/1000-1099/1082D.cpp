@@ -11,9 +11,16 @@ void solve() {
     vector<int> leaves;
     vector adj(n, vector<int>());
     vector degree(n, 0);
+    int value;
 
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
+        cin >> value;
+        a[i] += value;
+
+        if (value <= 1) {
+            leaves.push_back(i);
+        }
+
         if (i < n - 1 && a[i] >= 2) {
             adj[i].push_back(i + 1);
             --a[i];
