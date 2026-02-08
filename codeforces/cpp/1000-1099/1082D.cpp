@@ -4,8 +4,7 @@
 
 using namespace std;
 
-void solve()
-{
+void solve() {
     int n;
     cin >> n;
     vector<int> a(n);
@@ -19,8 +18,7 @@ void solve()
     }
 }
 
-int main()
-{
+int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     solve();
