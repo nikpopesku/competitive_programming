@@ -9,7 +9,7 @@ void solve() {
     int n;
     cin >> n;
     vector a(n, 0);
-    vector<int> leaves;
+    vector leaves(n, false);
     vector adj(n, vector<int>());
     stack<pair<int, int> > st;
     int m = 0;
@@ -20,7 +20,7 @@ void solve() {
         a[i] += value;
 
         if (value <= 1) {
-            leaves.push_back(i);
+            leaves[i] = true;
         } else if (i < n - 1) {
             adj[i].push_back(i + 1);
             ++m;
@@ -33,11 +33,15 @@ void solve() {
         }
     }
 
-    if (a[n - 1] > 0) {
+    if (a[n - 1] > 0 && leaves[n - 1] == false) {
         st.emplace(n - 1, a[n - 1]);
     }
 
-    for (const int leaf: leaves) {
+    for (int leaf = 0; leaf < n; ++leaf) {
+        if (leaves[leaf] == false) {
+            continue;
+        }
+
         if (a[leaf] > 0) {
             if (st.empty()) {
                 cout << "NO\n";
