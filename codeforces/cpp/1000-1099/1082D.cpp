@@ -1,6 +1,5 @@
 #include <iostream>
 #include <queue>
-#include <stack>
 #include <vector>
 
 
@@ -23,7 +22,7 @@ void solve() {
         if (value <= 1) {
             leaves[i] = true;
         } else if (i < n - 1) {
-            adj[i].push_back(i + 1);
+            adj[i+1].push_back(i);
             ++m;
             --a[i];
             --a[i + 1];
