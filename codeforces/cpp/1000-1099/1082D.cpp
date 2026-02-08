@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 #include <vector>
 
 
@@ -10,7 +11,7 @@ void solve() {
     vector<int> a(n);
     vector<int> leaves;
     vector adj(n, vector<int>());
-    vector degree(n, 0);
+    stack<pair<int, int> > st;
     int value;
 
     for (int i = 0; i < n; i++) {
@@ -19,12 +20,30 @@ void solve() {
 
         if (value <= 1) {
             leaves.push_back(i);
-        }
-
-        if (i < n - 1 && a[i] >= 2) {
+        } else if (i < n - 1) {
             adj[i].push_back(i + 1);
             --a[i];
             --a[i + 1];
+
+            if (a[i] > 0) {
+                st.emplace(i, a[i]);
+            }
+        }
+    }
+
+    if (a[n - 1] > 0) {
+        st.emplace(n - 1, a[n - 1]);
+    }
+
+    for (const int leaf: leaves) {
+        if (a[leaf] > 0) {
+            auto elem = st.top();
+            st.pop();
+            adj[leaf].push_back(elem.first);
+
+            if (elem.second > 1) {
+                st.emplace(elem.first, elem.second - 1);
+            }
         }
     }
 }
