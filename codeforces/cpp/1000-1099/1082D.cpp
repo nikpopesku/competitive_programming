@@ -1,5 +1,5 @@
 #include <iostream>
-#include <queue>
+#include <list>
 #include <vector>
 
 
@@ -11,8 +11,9 @@ void solve() {
     vector a(n, 0);
     vector leaves(n, false);
     vector adj(n, vector<int>());
-    queue<pair<int, int> > q;
+    list<pair<int, int> > q;
     int m = 0;
+    int d = 0;
     int value;
 
     for (int i = 0; i < n; i++) {
@@ -21,14 +22,20 @@ void solve() {
 
         if (value <= 1) {
             leaves[i] = true;
-        } else if (i < n - 1) {
-            adj[i+1].push_back(i);
+        } else if (!q.empty()) {
+            auto elem = q.back();
+            q.pop_back();
+            adj[i].push_back(elem.first);
             ++m;
             --a[i];
-            --a[i + 1];
+            --a[elem.first];
+
+            if (a[elem.first] > 0) {
+                q.emplace_back(elem.first, a[elem.first]);
+            }
 
             if (a[i] > 0) {
-                q.emplace(i, a[i]);
+                q.emplace_back(i, a[i]);
             }
         }
     }
@@ -71,7 +78,7 @@ void solve() {
         }
     }
 
-    cout << "YES\n";
+    cout << "YES" << " " << d + 2 << "\n";
     cout << m << "\n";
 
     for (int i = 0; i < n; ++i) {
