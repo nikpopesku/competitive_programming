@@ -12,6 +12,7 @@ void solve() {
     vector<int> leaves;
     vector adj(n, vector<int>());
     stack<pair<int, int> > st;
+    int m = 0;
     int value;
 
     for (int i = 0; i < n; i++) {
@@ -22,6 +23,7 @@ void solve() {
             leaves.push_back(i);
         } else if (i < n - 1) {
             adj[i].push_back(i + 1);
+            ++m;
             --a[i];
             --a[i + 1];
 
@@ -37,13 +39,29 @@ void solve() {
 
     for (const int leaf: leaves) {
         if (a[leaf] > 0) {
+            if (st.empty()) {
+                cout << "NO\n";
+
+                return;
+            }
+
             auto elem = st.top();
             st.pop();
             adj[leaf].push_back(elem.first);
+            ++m;
 
             if (elem.second > 1) {
                 st.emplace(elem.first, elem.second - 1);
             }
+        }
+    }
+
+    cout << "YES\n";
+    cout << m << "\n";
+
+    for (const auto& elem: adj) {
+        for (auto nei: elem) {
+            cout << elem << ' ' << nei << "\n";
         }
     }
 }
