@@ -22,7 +22,9 @@ void solve() {
 
         if (value <= 1) {
             leaves[i] = true;
-        } else if (!q.empty()) {
+        } else if (q.empty()) {
+            q.emplace_back(i, a[i]);
+        } else {
             auto elem = q.back();
             q.pop_back();
             adj[i].push_back(elem.first);
