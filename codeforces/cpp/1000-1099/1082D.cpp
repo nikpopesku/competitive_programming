@@ -13,6 +13,7 @@ void solve() {
     vector adj(n, vector<int>());
     list<pair<int, int> > q;
     int m = 0;
+    int leaf_count = 0;
     int d = 0;
     int value;
 
@@ -22,6 +23,7 @@ void solve() {
 
         if (value <= 1) {
             leaves[i] = true;
+            ++leaf_count;
         } else if (q.empty()) {
             q.emplace_back(i, a[i]);
         } else {
@@ -40,10 +42,6 @@ void solve() {
                 q.emplace_back(i, a[i]);
             }
         }
-    }
-
-    if (a[n - 1] > 0 && leaves[n - 1] == false) {
-        q.emplace(n - 1, a[n - 1]);
     }
 
     for (int leaf = 0; leaf < n; ++leaf) {
@@ -65,22 +63,22 @@ void solve() {
             }
 
             auto elem = q.front();
-            q.pop();
+            q.pop_front();
 
             if (elem.first == leaf) {
-                q.emplace(elem.first, elem.second);
+                q.emplace_back(elem.first, elem.second);
             }
 
             adj[leaf].push_back(elem.first);
             ++m;
 
             if (elem.second > 1) {
-                q.emplace(elem.first, elem.second - 1);
+                q.emplace_back(elem.first, elem.second - 1);
             }
         }
     }
 
-    cout << "YES" << " " << d + 2 << "\n";
+    cout << "YES" << " " << d + min(2, leaf_count) << "\n";
     cout << m << "\n";
 
     for (int i = 0; i < n; ++i) {
