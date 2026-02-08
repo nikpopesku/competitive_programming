@@ -61,7 +61,7 @@ void solve() {
 
     for (int i = 0; i < n; ++i) {
         for (const auto nei: adj[i]) {
-            cout << i << ' ' << nei << "\n";
+            cout << i + 1 << ' ' << nei + 1 << "\n";
         }
     }
 }
