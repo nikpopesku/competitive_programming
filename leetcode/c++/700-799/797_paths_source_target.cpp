@@ -8,13 +8,15 @@ class Solution {
 public:
     vector<vector<int> > allPathsSourceTarget(const vector<vector<int> > &graph) {
         const int n = static_cast<int>(graph.size());
-        vector<vector<int>> response;
+        vector<vector<int> > response;
         dfs(0, graph, n, {}, response);
 
         return response;
     }
+
 private:
-    void dfs(const int start, const vector<vector<int> > &graph, const int end, vector<int> path, vector<vector<int>>& response) {
+    void dfs(const int start, const vector<vector<int> > &graph, const int end, vector<int> path,
+             vector<vector<int> > &response) {
         if (start == end - 1) {
             response.push_back(path);
         }
