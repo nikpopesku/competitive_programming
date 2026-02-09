@@ -7,28 +7,23 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int> > allPathsSourceTarget(const vector<vector<int> > &graph) {
-        queue<vector<int> > q;
         const int n = static_cast<int>(graph.size());
-
-        q.push({0});
-        vector<vector<int> > response;
-
-        while (!q.empty()) {
-            auto v = q.front();
-            q.pop();
-
-            if (v.back() == n - 1) {
-                response.push_back(v);
-            } else {
-                for (auto nei: graph[v.back()]) {
-                    auto new_v = v;
-                    new_v.push_back(nei);
-                    q.push(new_v);
-                }
-            }
-        }
+        vector<vector<int>> response;
+        dfs(0, graph, n, {}, response);
 
         return response;
+    }
+private:
+    void dfs(const int start, const vector<vector<int> > &graph, const int end, vector<int> path, vector<vector<int>>& response) {
+        if (start == end - 1) {
+            response.push_back(path);
+        }
+
+        for (auto nei: graph[start]) {
+            path.push_back(nei);
+            dfs(nei, graph, end, path, response);
+            path.pop_back();
+        }
     }
 };
 
