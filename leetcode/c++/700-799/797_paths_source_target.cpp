@@ -1,27 +1,27 @@
 #include <iostream>
-#include <queue>
 #include <vector>
 
 using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > allPathsSourceTarget(const vector<vector<int> > &graph) {
+    vector<vector<int>> allPathsSourceTarget(const vector<vector<int>> &graph) {
         const int n = static_cast<int>(graph.size());
-        vector<vector<int> > response;
-        dfs(0, graph, n, {0}, response);
-
+        vector<vector<int>> response;
+        vector<int> path;
+        path.push_back(0);
+        dfs(0, graph, n, path, response);
         return response;
     }
 
 private:
-    void dfs(const int start, const vector<vector<int> > &graph, const int end, vector<int> path,
-             vector<vector<int> > &response) {
+    void dfs(const int start, const vector<vector<int>> &graph, const int end,
+             vector<int> &path, vector<vector<int>> &response) {
         if (start == end - 1) {
             response.push_back(path);
+            return;
         }
-
-        for (auto nei: graph[start]) {
+        for (int nei : graph[start]) {
             path.push_back(nei);
             dfs(nei, graph, end, path, response);
             path.pop_back();
