@@ -37,7 +37,7 @@ int main() {
     auto s = Solution();
 
     const vector<vector<int> > graph = {{1, 2}, {3}, {3}, {}};
-    for (const auto& elem: s.allPathsSourceTarget(graph)) {
+    for (const auto &elem: s.allPathsSourceTarget(graph)) {
         for (const auto e: elem) {
             cout << e << ' ';
         }
@@ -45,8 +45,8 @@ int main() {
         cout << '\n';
     }
 
-    const vector<vector<int> > graph2 = {{4,3,1},{3,2,4},{3},{4},{}};
-    for (const auto& elem: s.allPathsSourceTarget(graph2)) {
+    const vector<vector<int> > graph2 = {{4, 3, 1}, {3, 2, 4}, {3}, {4}, {}};
+    for (const auto &elem: s.allPathsSourceTarget(graph2)) {
         for (const auto e: elem) {
             cout << e << ' ';
         }
