@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > allPathsSourceTarget(vector<vector<int> > &graph) {
+    vector<vector<int> > allPathsSourceTarget(const vector<vector<int> > &graph) {
         queue<vector<int> > q;
         const int n = static_cast<int>(graph.size());
 
@@ -37,7 +37,7 @@ int main() {
     auto s = Solution();
 
     vector<vector<int> > graph = {{1, 2}, {3}, {3}, {}};
-    for (auto elem: s.allPathsSourceTarget(graph)) {
+    for (const auto& elem: s.allPathsSourceTarget(graph)) {
         for (const auto e: elem) {
             cout << e << ' ';
         }
