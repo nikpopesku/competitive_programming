@@ -9,7 +9,7 @@ public:
     vector<vector<int> > allPathsSourceTarget(const vector<vector<int> > &graph) {
         const int n = static_cast<int>(graph.size());
         vector<vector<int> > response;
-        dfs(0, graph, n, {}, response);
+        dfs(0, graph, n, {0}, response);
 
         return response;
     }
