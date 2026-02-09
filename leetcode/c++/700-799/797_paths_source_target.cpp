@@ -1,31 +1,24 @@
 #include <iostream>
-#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
 class Solution {
 public:
-    int numJewelsInStones(const string& jewels, const string& stones) {
-        unordered_set<int> s;
-
-        for (const auto &j: jewels) {
-            s.insert(j);
-        }
-
-        int counter = 0;
-
-        for (const auto &st: stones) {
-            if (s.contains(st)) {
-                ++counter;
-            }
-        }
-
-        return counter;
+    vector<vector<int> > allPathsSourceTarget(vector<vector<int> > &graph) {
     }
 };
 
+
 int main() {
     auto s = Solution();
-    cout << s.numJewelsInStones("aA", "aAAbbbb") << endl;
-    cout << s.numJewelsInStones("z", "ZZ") << endl;
+
+    vector<vector<int> > graph = {{1, 2}, {3}, {3}, {}};
+    for (auto elem: s.allPathsSourceTarget(graph)) {
+        for (const auto e: elem) {
+            cout << e << ' ';
+        }
+
+        cout << '\n';
+    }
 }
