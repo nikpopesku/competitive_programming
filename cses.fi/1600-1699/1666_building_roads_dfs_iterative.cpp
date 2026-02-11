@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int dfs(const int elem, vector<vector<int>>& adj, set<int>& notvisited) {
+int dfs(const int elem, vector<vector<int> > &adj, set<int> &notvisited) {
     notvisited.erase(elem);
 
     for (auto nei: adj[elem]) {
@@ -23,7 +23,7 @@ int main() {
 
     cin >> n >> m;
 
-    vector adj(n+1, vector<int>());
+    vector adj(n + 1, vector<int>());
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
@@ -33,7 +33,7 @@ int main() {
     }
 
     set<int> notvisited;
-    vector<pair<int, int>> response;
+    vector<pair<int, int> > response;
     int previous = 0;
 
     while (!notvisited.empty()) {
