@@ -1,5 +1,6 @@
 #include<iostream>
 #include <numeric>
+#include <set>
 #include <vector>
 
 using namespace std;
@@ -53,4 +54,15 @@ int main() {
         adj[v].push_back(u);
         dsu.unite(u, v);
     }
+
+    set<int> visited;
+
+    for (int i = 1; i <= n; ++i) {
+        if (int parent = dsu.find(i); !visited.contains(parent)) {
+            visited.insert(parent);
+        }
+    }
+
+    cout << visited.size() - 1 << '\n';
+
 }
