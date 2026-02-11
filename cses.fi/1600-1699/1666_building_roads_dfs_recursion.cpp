@@ -2,12 +2,12 @@
 
 using namespace std;
 
-int dfs(const int elem, vector<vector<int> > &adj, set<int> &notvisited) {
-    notvisited.erase(elem);
+int dfs(const int elem, vector<vector<int> > &adj, set<int> &unvisited) {
+    unvisited.erase(elem);
 
     for (auto nei: adj[elem]) {
-        if (notvisited.contains(nei)) {
-            dfs(nei, adj, notvisited);
+        if (unvisited.contains(nei)) {
+            dfs(nei, adj, unvisited);
         }
     }
 
@@ -32,18 +32,18 @@ int main() {
         adj[b].push_back(a);
     }
 
-    set<int> notvisited;
+    set<int> unvisited;
     vector<pair<int, int> > response;
     int previous = 0;
 
-    while (!notvisited.empty()) {
-        int elem = *notvisited.begin();
+    while (!unvisited.empty()) {
+        int elem = *unvisited.begin();
 
         if (previous) {
-            response.push_back({elem, previous});
+            response.emplace_back(elem, previous);
         }
 
-        previous = dfs(elem, adj, notvisited);
+        previous = dfs(elem, adj, unvisited);
     }
 
     cout << response.size() << '\n';
