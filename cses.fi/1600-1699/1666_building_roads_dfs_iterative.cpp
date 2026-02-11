@@ -2,11 +2,14 @@
 
 using namespace std;
 
-int n, m, a, b;
+int dfs(const int elem, vector<vector<int>>& adj, set<int>& notvisited) {
+    notvisited.erase(elem);
 
-int dfs(int elem, set<int> &unvisited, vector<vector<int>> &roads) {
-    unvisited.erase(elem);
-    for (auto &road: roads[elem]) if (unvisited.count(road)) dfs(road, unvisited, roads);
+    for (auto nei: adj[elem]) {
+        if (notvisited.contains(nei)) {
+            dfs(nei, adj, notvisited);
+        }
+    }
 
     return elem;
 }
@@ -16,30 +19,36 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
+    int n, m, a, b;
+
     cin >> n >> m;
 
-    vector<vector<int>> roads(n + 1);
-    vector<pair<int, int>> response;
-    vector<int> u(n);
+    vector adj(n+1, vector<int>());
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
-        roads[a].push_back(b);
-        roads[b].push_back(a);
+
+        adj[a].push_back(b);
+        adj[b].push_back(a);
     }
 
-    iota(u.begin(), u.end(), 1);
-    set<int> unvisited(u.begin(), u.end());
+    set<int> notvisited;
+    vector<pair<int, int>> response;
     int previous = 0;
 
-    while (!unvisited.empty()) {
-        int elem = *unvisited.begin();
-        if (previous > 0) response.push_back({previous, elem});
+    while (!notvisited.empty()) {
+        int elem = *notvisited.begin();
 
-        previous = dfs(elem, unvisited, roads);
+        if (previous) {
+            response.push_back({elem, previous});
+        }
+
+        previous = dfs(elem, adj, notvisited);
     }
 
+    cout << response.size() << '\n';
 
-    cout << response.size() << "\n";
-    for (auto &elem: response) cout << elem.first << " " << elem.second << "\n";
+    for (auto elem: response) {
+        cout << elem.first << ' ' << elem.second << '\n';
+    }
 }
