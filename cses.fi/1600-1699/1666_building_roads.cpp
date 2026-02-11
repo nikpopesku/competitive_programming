@@ -64,5 +64,7 @@ int main() {
     }
 
     cout << visited.size() - 1 << '\n';
-
+    for (auto it1 = visited.begin(), it2 = ++visited.begin(); it2 != visited.end(); ++it1, ++it2) {
+        cout << *it1 << ' ' << *it2 << '\n';
+    }
 }
