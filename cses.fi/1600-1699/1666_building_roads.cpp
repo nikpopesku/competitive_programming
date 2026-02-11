@@ -11,7 +11,7 @@ public:
         iota(parent.begin(), parent.end(), 0);
     }
 
-    int find(int index) const {
+    [[nodiscard]] int find(int index) const {
         while (index != parent[index]) {
             index = parent[index];
         }
@@ -45,13 +45,10 @@ int main() {
 
     int n, m, u, v;
     cin >> n >> m;
-    vector adj(n, vector<int>());
     DisjointSetUnion dsu(n);
 
     for (int i = 0; i < m; ++i) {
         cin >> u >> v;
-        adj[u].push_back(v);
-        adj[v].push_back(u);
         dsu.unite(u, v);
     }
 
