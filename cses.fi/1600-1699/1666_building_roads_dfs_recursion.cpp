@@ -24,6 +24,8 @@ int main() {
     cin >> n >> m;
 
     vector adj(n + 1, vector<int>());
+    vector<int> node(n);
+    iota(node.begin(), node.end(), 1);
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
@@ -32,7 +34,7 @@ int main() {
         adj[b].push_back(a);
     }
 
-    set<int> unvisited;
+    set<int> unvisited{node.begin(), node.end()};
     vector<pair<int, int> > response;
     int previous = 0;
 
