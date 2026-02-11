@@ -7,16 +7,16 @@ using namespace std;
 
 class DisjointSetUnion {
 public:
-    explicit DisjointSetUnion(const int size) : size(size + 1), parent(size + 1) {
+    explicit DisjointSetUnion(const int size) : size(size + 1, 1), parent(size + 1) {
         iota(parent.begin(), parent.end(), 0);
     }
 
-    [[nodiscard]] int find(int index) const {
-        while (index != parent[index]) {
-            index = parent[index];
+    [[nodiscard]] int find(int index) {
+        if (index == parent[index]) {
+            return index;
         }
 
-        return index;
+        return parent[index] = find(parent[index]);
     }
 
     bool unite(const int node_a, const int node_b) {
