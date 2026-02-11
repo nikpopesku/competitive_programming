@@ -6,7 +6,7 @@ using namespace std;
 
 class DisjointSetUnion {
 public:
-    explicit DisjointSetUnion(const int size): size(size + 1), parent(size + 1) {
+    explicit DisjointSetUnion(const int size) : size(size + 1), parent(size + 1) {
         iota(parent.begin(), parent.end(), 0);
     }
 
@@ -31,13 +31,13 @@ public:
 
         return true;
     }
+
 private:
     vector<int> size;
     vector<int> parent;
 };
 
-int main()
-{
+int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
