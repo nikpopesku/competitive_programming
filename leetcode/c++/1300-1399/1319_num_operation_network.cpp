@@ -75,5 +75,11 @@ int main() {
     vector<vector<int> > connections = {{0, 1}, {0, 2}, {1, 2}};
     cout << s.makeConnected(4, connections) << endl; //1
 
+    vector<vector<int> > connections2 = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}};
+    cout << s.makeConnected(6, connections2) << endl; //2
+
+    vector<vector<int> > connections3 = {{0, 1}, {0, 2}, {0, 3}, {1, 2}};
+    cout << s.makeConnected(6, connections3) << endl; //-1
+
     return 0;
 }
