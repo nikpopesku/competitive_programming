@@ -61,7 +61,9 @@ public:
             dsu.unionit(con[0], con[1]);
         }
 
-        const set uniq(dsu.get_parent().begin(), dsu.get_parent().end());
+        auto parent = dsu.get_parent();
+
+        const set uniq{parent.begin(), parent.end()};
 
         return uniq.size() - 1;
     }
