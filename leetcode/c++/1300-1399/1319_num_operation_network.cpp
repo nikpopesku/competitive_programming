@@ -6,7 +6,7 @@ using namespace std;
 
 class DisjointUnionSet {
 public:
-    explicit DisjointUnionSet(int size) : size(size), parent(size) {
+    explicit DisjointUnionSet(const int size) : size(size), parent(size) {
         iota(parent.begin(), parent.end(), 0);
     }
 
@@ -18,7 +18,7 @@ public:
         return node;
     }
 
-    bool unionit(int a, int b) {
+    bool unionit(const int a, const int b) {
         int parent_a = find(a);
         int parent_b = find(b);
 
