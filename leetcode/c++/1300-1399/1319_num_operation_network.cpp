@@ -39,10 +39,6 @@ public:
         return true;
     }
 
-    vector<int> get_parent() {
-        return parent;
-    }
-
 private:
     vector<int> size;
     vector<int> parent;
@@ -55,17 +51,18 @@ public:
             return -1;
         }
 
+        int counter = 0;
+
         DisjointUnionSet dsu(n);
 
         for (auto con: connections) {
-            dsu.unionit(con[0], con[1]);
+            if (dsu.unionit(con[0], con[1])) {
+                ++counter;
+            }
         }
 
-        auto parent = dsu.get_parent();
 
-        const set uniq{parent.begin(), parent.end()};
-
-        return uniq.size() - 1;
+        return n - 1 - counter;
     }
 };
 
