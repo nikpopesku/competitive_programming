@@ -10,12 +10,14 @@ public:
         iota(parent.begin(), parent.end(), 0);
     }
 
-    int find(int node) const {
-        if (node != parent[node]) {
-            node = parent[node];
+    int find(const int node) {
+        if (node == parent[node]) {
+            return node;
         }
 
-        return node;
+        parent[node] = find(parent[node]);
+
+        return parent[node];
     }
 
     bool unionit(const int a, const int b) {
