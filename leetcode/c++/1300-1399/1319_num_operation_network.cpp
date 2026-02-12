@@ -43,9 +43,18 @@ private:
 
 class Solution {
 public:
-    int makeConnected(int n, vector<vector<int> > &connections) {
+    int makeConnected(const int n, vector<vector<int> > &connections) {
         if (connections.size() < n - 1) {
             return -1;
+        }
+
+        int counter = 0;
+        DisjointUnionSet dsu(n);
+
+        for (auto con: connections) {
+            if (!dsu.unionit(con[0], con[1])) {
+                ++counter;
+            }
         }
     }
 };
