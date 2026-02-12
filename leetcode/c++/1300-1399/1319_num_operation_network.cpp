@@ -18,6 +18,24 @@ public:
         return node;
     }
 
+    bool unionit(int a, int b) {
+        int parent_a = find(a);
+        int parent_b = find(b);
+
+        if (parent_a == parent_b) {
+            return false;
+        }
+
+        if (size[parent_a] < size[parent_b]) {
+            swap(parent_a, parent_b);
+        }
+
+        parent[parent_b] = parent_a;
+        size[parent_a] += size[parent_b];
+
+        return true;
+    }
+
 private:
     vector<int> size;
     vector<int> parent;
