@@ -1,5 +1,6 @@
 #include <iostream>
 #include <numeric>
+#include <set>
 #include <vector>
 
 using namespace std;
@@ -38,6 +39,10 @@ public:
         return true;
     }
 
+    vector<int> get_parent() {
+        return parent;
+    }
+
 private:
     vector<int> size;
     vector<int> parent;
@@ -45,19 +50,20 @@ private:
 
 class Solution {
 public:
-    int makeConnected(const int n, vector<vector<int> > &connections) {
+    int makeConnected(const int n, const vector<vector<int> > &connections) {
         if (connections.size() < n - 1) {
             return -1;
         }
 
-        int counter = 0;
         DisjointUnionSet dsu(n);
 
         for (auto con: connections) {
-            if (!dsu.unionit(con[0], con[1])) {
-                ++counter;
-            }
+            dsu.unionit(con[0], con[1]);
         }
+
+        const set uniq(dsu.get_parent().begin(), dsu.get_parent().end());
+
+        return uniq.size() - 1;
     }
 };
 
