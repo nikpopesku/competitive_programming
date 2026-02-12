@@ -6,17 +6,18 @@ using namespace std;
 
 class DisjointUnionSet {
 public:
-    DisjointUnionSet(int size): size(size), parent(size) {
+    explicit DisjointUnionSet(int size) : size(size), parent(size) {
         iota(parent.begin(), parent.end(), 0);
     }
 
-    int find(int node) {
+    int find(int node) const {
         if (node != parent[node]) {
             node = parent[node];
         }
 
         return node;
     }
+
 private:
     vector<int> size;
     vector<int> parent;
