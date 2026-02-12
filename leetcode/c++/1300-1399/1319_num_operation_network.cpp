@@ -1,13 +1,33 @@
-#include <algorithm>
 #include <iostream>
-#include <string>
+#include <numeric>
 #include <vector>
 
 using namespace std;
 
+class DisjointUnionSet {
+public:
+    DisjointUnionSet(int size): size(size), parent(size) {
+        iota(parent.begin(), parent.end(), 0);
+    }
+
+    int find(int node) {
+        if (node != parent[node]) {
+            node = parent[node];
+        }
+
+        return node;
+    }
+private:
+    vector<int> size;
+    vector<int> parent;
+};
+
 class Solution {
 public:
     int makeConnected(int n, vector<vector<int> > &connections) {
+        if (connections.size() < n - 1) {
+            return -1;
+        }
     }
 };
 
