@@ -10,12 +10,14 @@ int main() {
 
     vector adj(n + 1, vector<int>());
     vector color(n + 1, -1);
+    vector<pair<int, int>> p;
 
     for (int i = 0; i < m; ++i) {
         cin >> u >> v;
 
         adj[u].push_back(v);
         adj[v].push_back(u);
+        p.emplace_back(u, v);
     }
 
     color[1] = 0;
@@ -40,6 +42,11 @@ int main() {
             st.push(nei);
             color[nei] = nei_color;
         }
+    }
+
+    cout << "YES\n";
+    for (auto elem: p) {
+        cout << color[elem.first] == 1 ? '1' : '0';
     }
 
 
