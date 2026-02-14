@@ -14,4 +14,5 @@ int main() {
     }
 
     vector dp(X+1, vector(N, -1));
+    dp[0] = vector(N, 0);
 }
