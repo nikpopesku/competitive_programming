@@ -13,6 +13,6 @@ int main() {
         cin >> A[i] >> B[i];
     }
 
-    vector dp(X+1, vector(N, -1));
-    dp[0] = vector(N, 0);
+    vector dp(X+1, -1);
+    dp[0] = 0;
 }
