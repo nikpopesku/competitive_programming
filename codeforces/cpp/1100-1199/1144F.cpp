@@ -46,7 +46,7 @@ int main() {
 
     cout << "YES\n";
     for (auto elem: p) {
-        cout << color[elem.first] == 1 ? '1' : '0';
+        cout << (color[elem.first] == 1 ? '0' : '1');
     }
 
 
