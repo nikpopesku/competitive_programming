@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ranges>
 #include <stack>
 #include <vector>
 
@@ -10,7 +11,7 @@ int main() {
 
     vector adj(n + 1, vector<int>());
     vector color(n + 1, -1);
-    vector<pair<int, int>> p;
+    vector<pair<int, int> > p;
 
     for (int i = 0; i < m; ++i) {
         cin >> u >> v;
@@ -45,8 +46,8 @@ int main() {
     }
 
     cout << "YES\n";
-    for (auto elem: p) {
-        cout << (color[elem.first] == 1 ? '0' : '1');
+    for (const auto key: p | views::keys) {
+        cout << (color[key] == 1 ? '0' : '1');
     }
 
 
