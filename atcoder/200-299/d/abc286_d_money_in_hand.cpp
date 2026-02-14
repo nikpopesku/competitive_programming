@@ -17,25 +17,16 @@ int main() {
     dp[0] = true;
 
     for (int i = 0; i < N; ++i) {
-        vector<int> values_true;
-        for (int j = 0; j <= X; ++j) {
+        for (int j = X; j >= 0; --j) {
             if (dp[j]) {
                 for (int k = 1; k <= B[i]; ++k) {
-                    if (j + A[i] * k <= X && !dp[j + A[i] * k]) {
-                        values_true.push_back(j + A[i] * k);
-                        if (j + A[i] * k == X) {
-                            cout << "Yes\n";
-
-                            return 0;
-                        }
+                    if (j + A[i] * k <= X) {
+                        dp[j + A[i] * k] = true;
                     }
                 }
             }
         }
-        for (const auto elem: values_true) {
-            dp[elem] = true;
-        }
     }
 
-    cout << "No\n";
+    cout << (dp[X] ? "Yes" : "No") << "\n";
 }
