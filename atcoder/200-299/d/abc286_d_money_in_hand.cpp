@@ -20,7 +20,7 @@ int main() {
         for (int j = 0; j <= X; ++j) {
             if (dp[j]) {
                 for (int k = 1; k <= B[i]; ++k) {
-                    if (j + A[i] * k <= X && !dp[j + A[i] * k] ) {
+                    if (j + A[i] * k <= X && !dp[j + A[i] * k]) {
                         dp[j + A[i] * k] = true;
                         if (j + A[i] * k == X) {
                             cout << "YES\n";
