@@ -28,7 +28,6 @@ int main() {
         st.pop();
 
         for (auto nei: adj[elem]) {
-
             if (color[nei] != -1 && color[nei] != nei_color) {
                 cout << "NO\n";
                 return 0;
