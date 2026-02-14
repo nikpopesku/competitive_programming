@@ -1,4 +1,5 @@
 #include<iostream>
+#include <vector>
 
 using namespace std;
 
@@ -11,4 +12,6 @@ int main() {
     for (int i = 0; i < N; ++i) {
         cin >> A[i] >> B[i];
     }
+
+    vector dp(X+1, vector(N, -1));
 }
