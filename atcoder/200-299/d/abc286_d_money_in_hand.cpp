@@ -23,10 +23,15 @@ int main() {
                     if (j + A[i] * k <= X) {
                         dp[j + A[i] * k] = true;
                     }
+                    if (j + A[i] * k == X) {
+                        cout << "Yes\n";
+
+                        return 0;
+                    }
                 }
             }
         }
     }
 
-    cout << (dp[X] ? "Yes" : "No") << "\n";
+    cout << "No\n";
 }
