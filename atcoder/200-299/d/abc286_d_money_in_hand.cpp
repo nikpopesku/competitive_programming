@@ -19,14 +19,18 @@ int main() {
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j <= X; ++j) {
             if (dp[j]) {
+                vector<int> values_true;
                 for (int k = 1; k <= B[i]; ++k) {
                     if (j + A[i] * k <= X && !dp[j + A[i] * k]) {
-                        dp[j + A[i] * k] = true;
+                        values_true.push_back(j + A[i] * k);
                         if (j + A[i] * k == X) {
                             cout << "YES\n";
 
                             return 0;
                         }
+                    }
+                    for (const auto elem: values_true) {
+                        dp[elem] = true;
                     }
                 }
             }
