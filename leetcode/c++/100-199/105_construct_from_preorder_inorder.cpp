@@ -22,12 +22,12 @@ struct TreeNode {
 
 class Solution {
 public:
-    TreeNode *buildTree(const vector<int> &preorder, vector<int> &inorder) {
+    TreeNode *buildTree(const vector<int> &preorder, const vector<int> &inorder) {
         if (preorder.empty()) {
             return nullptr;
         }
 
-        TreeNode root(preorder[0]);
+        auto* root = new TreeNode(preorder[0]);
         int counter = 0;
 
         while (counter < static_cast<int>(inorder.size())) {
@@ -41,13 +41,13 @@ public:
         const vector left_inorder(inorder.begin(), inorder.begin() + counter);
         const vector right_inorder(inorder.begin() + counter + 1, inorder.end());
 
-        const vector left_preorder(preorder.begin() + 1, preorder.begin() + counter);
+        const vector left_preorder(preorder.begin() + 1, preorder.begin() + 1 + counter);
         const vector right_preorder(preorder.begin() + counter + 1, preorder.end());
 
-        root.left = buildTree(left_preorder, left_inorder);
-        root.right = buildTree(right_preorder, right_inorder);
+        root->left = buildTree(left_preorder, left_inorder);
+        root->right = buildTree(right_preorder, right_inorder);
 
-        return &root;
+        return root;
     }
 };
 
