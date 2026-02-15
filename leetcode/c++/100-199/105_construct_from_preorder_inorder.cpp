@@ -28,7 +28,21 @@ public:
         }
 
         TreeNode root(preorder[0]);
-        root.left = buildTree();
+        auto it = inorder.begin();
+
+        while (it != inorder.end()) {
+            if (*it == preorder[0]) {
+                break;
+            }
+
+            ++it;
+        }
+
+        const vector<int> new_preorder(preorder.begin(), it);
+
+        root.left = buildTree(new_preorder, inorder);
+
+        return &root;
     }
 };
 
