@@ -66,7 +66,7 @@ int main() {
     }
 
     long long response = (n * (n - 1)) % MOD;
-    vector visited(n+1, false);
+    vector visited(n + 1, false);
 
     for (int i = 1; i <= n; ++i) {
         if (!visited[dsu.get_parent()[i]]) {
