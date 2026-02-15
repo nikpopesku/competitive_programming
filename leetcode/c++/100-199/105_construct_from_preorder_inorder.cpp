@@ -27,7 +27,7 @@ public:
             return nullptr;
         }
 
-        auto* root = new TreeNode(preorder[0]);
+        auto *root = new TreeNode(preorder[0]);
         int counter = 0;
 
         while (counter < static_cast<int>(inorder.size())) {
