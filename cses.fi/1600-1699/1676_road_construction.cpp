@@ -49,4 +49,16 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
+    int n, m, a, b;
+    cin >> n >> m;
+    vector adj(n+1, vector<int>());
+    DisjointSetUnion dsu(n);
+
+    for (int i = 0; i < m; ++i) {
+        cin >> a >> b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+        dsu.unionit(a, b);
+    }
+
 }
