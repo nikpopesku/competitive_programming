@@ -69,7 +69,7 @@ int main() {
     vector visited(n + 1, false);
 
     for (int i = 1; i <= n; ++i) {
-        if (int parent = dsu.find(i); !visited[parent]) {
+        if (const int parent = dsu.find(i); !visited[parent]) {
             long long value = dsu.get_size()[i];
             for (int j = 1; j < k; ++j) {
                 value = value * dsu.get_size()[i] % MOD;
@@ -78,8 +78,6 @@ int main() {
             visited[parent] = true;
             response = (response - value) % MOD;
         }
-
-
     }
 
     cout << response << '\n';
