@@ -7,7 +7,7 @@ using namespace std;
 
 class DisjointSetUnion {
 public:
-    explicit DisjointSetUnion(int size): size(size+1), parent(size+1) {
+    explicit DisjointSetUnion(int size) : size(size + 1), parent(size + 1) {
         iota(parent.begin(), parent.end(), 0);
         maxsize = 1;
         number_components = size;
@@ -67,9 +67,9 @@ int main() {
 
     int n, m, a, b;
     cin >> n >> m;
-    vector adj(n+1, vector<int>());
+    vector adj(n + 1, vector<int>());
     DisjointSetUnion dsu(n);
-    vector<pair<int, int>> response(m);
+    vector<pair<int, int> > response(m);
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
@@ -83,5 +83,4 @@ int main() {
     for (auto [fst, snd]: response) {
         cout << fst << ' ' << snd << '\n';
     }
-
 }
