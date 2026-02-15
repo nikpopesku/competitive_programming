@@ -40,7 +40,7 @@ public:
         return true;
     }
 
-    const vector<int>& get_size() const {
+    [[nodiscard]] const vector<int> &get_size() const {
         return size;
     }
 
