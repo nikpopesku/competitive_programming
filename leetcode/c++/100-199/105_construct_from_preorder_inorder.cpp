@@ -13,23 +13,29 @@ struct TreeNode {
     TreeNode() : val(0), left(nullptr), right(nullptr) {
     }
 
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
+    explicit TreeNode(const int x) : val(x), left(nullptr), right(nullptr) {
     }
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
+    TreeNode(const int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {
     }
 };
 
 class Solution {
 public:
-    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+    TreeNode *buildTree(const vector<int> &preorder, vector<int> &inorder) {
+        if (preorder.empty()) {
+            return nullptr;
+        }
+
+        TreeNode root(preorder[0]);
+        root.left = buildTree();
     }
 };
 
 
 int main() {
     auto s = Solution();
-    vector<int> preorder = {3, 9, 20, 15, 7};
-    vector<int> inorder = {9, 3, 15, 20, 7};
+    vector preorder = {3, 9, 20, 15, 7};
+    vector inorder = {9, 3, 15, 20, 7};
     cout << s.buildTree(preorder, inorder) << endl;
 }
