@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     int N, M, u, v;
     cin >> N >> M;
-    vector adj(N + 1, vector<int>());
+    vector<vector<int>> adj(N + 1, vector<int>());
 
     for (int i = 0; i < M; ++i) {
         cin >> u >> v;
@@ -24,7 +24,7 @@ int main() {
 
     stack<int> st;
     st.push(1);
-    vector visited(N + 1, false);
+    vector<bool> visited(N + 1, false);
     visited[1] = true;
 
     while (!st.empty()) {
