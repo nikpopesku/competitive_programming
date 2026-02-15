@@ -7,7 +7,7 @@ using namespace std;
 
 class DisjointSetUnion {
 public:
-    explicit DisjointSetUnion(int size) : size(size + 1), parent(size + 1) {
+    explicit DisjointSetUnion(const int size) : size(size + 1), parent(size + 1) {
         iota(parent.begin(), parent.end(), 0);
         maxsize = 1;
         number_components = size;
@@ -44,11 +44,11 @@ public:
         return true;
     }
 
-    int get_maxsize() const {
+    [[nodiscard]] int get_maxsize() const {
         return maxsize;
     }
 
-    int get_number_components() const {
+    [[nodiscard]] int get_number_components() const {
         return number_components;
     }
 
