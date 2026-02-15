@@ -1,6 +1,7 @@
 #include <iostream>
 #include <numeric>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -65,7 +66,11 @@ int main() {
         }
     }
 
-    long long response = (n * (n - 1)) % MOD;
+    int response = n;
+    for (int i = 1; i < k; ++i) {
+        response  = response * n % MOD;
+    }
+
     vector visited(n + 1, false);
 
     for (int i = 1; i <= n; ++i) {
@@ -76,5 +81,5 @@ int main() {
         }
     }
 
-    return (n * (n - 1)) % MOD;
+    cout << response << '\n';
 }
