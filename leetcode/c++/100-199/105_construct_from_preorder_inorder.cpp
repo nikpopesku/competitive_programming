@@ -41,8 +41,11 @@ public:
         const vector left_inorder(inorder.begin(), inorder.begin() + counter);
         const vector right_inorder(inorder.begin() + counter + 1, inorder.end());
 
-        root.left = buildTree(preorder, left_inorder);
-        root.right = buildTree(preorder, right_inorder);
+        const vector left_preorder(preorder.begin() + 1, preorder.begin() + counter);
+        const vector right_preorder(preorder.begin() + counter + 1, preorder.end());
+
+        root.left = buildTree(left_preorder, left_inorder);
+        root.right = buildTree(right_preorder, right_inorder);
 
         return &root;
     }
