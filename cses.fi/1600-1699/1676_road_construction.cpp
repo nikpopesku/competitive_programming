@@ -7,7 +7,7 @@ using namespace std;
 
 class DisjointSetUnion {
 public:
-    DisjointSetUnion(int size): size(size+1), parent(size+1) {
+    explicit DisjointSetUnion(int size): size(size+1), parent(size+1) {
         iota(parent.begin(), parent.end(), 0);
     }
 
@@ -19,6 +19,24 @@ public:
         parent[node] = find(parent[node]);
 
         return parent[node];
+    }
+
+    bool unionit(const int a, const int b) {
+        int parent_a = find(a);
+        int parent_b = find(b);
+
+        if (parent_a == parent_b) {
+            return false;
+        }
+
+        if (size[parent_a] < size[parent_b]) {
+            swap(parent_a, parent_b);
+        }
+
+        parent[parent_b] = parent_a;
+        size[parent_a] += size[parent_b];
+
+        return true;
     }
 private:
     vector<int> size;
