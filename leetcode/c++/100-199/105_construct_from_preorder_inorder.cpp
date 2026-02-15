@@ -28,17 +28,17 @@ public:
         }
 
         TreeNode root(preorder[0]);
-        auto it = inorder.begin();
+        int counter = 0;
 
-        while (it != inorder.end()) {
-            if (*it == preorder[0]) {
+        while (counter < static_cast<int>(inorder.size())) {
+            if (inorder[counter] == preorder[0]) {
                 break;
             }
 
-            ++it;
+            ++counter;
         }
 
-        const vector<int> new_preorder(preorder.begin(), it);
+        const vector new_preorder(preorder.begin(), preorder.begin() + counter);
 
         root.left = buildTree(new_preorder, inorder);
 
