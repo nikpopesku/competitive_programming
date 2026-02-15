@@ -42,7 +42,7 @@ public:
 
         root.left = buildTree(preorder, new_inorder);
 
-        return root;
+        return &root;
     }
 };
 
