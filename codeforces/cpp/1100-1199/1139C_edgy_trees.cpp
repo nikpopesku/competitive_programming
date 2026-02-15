@@ -40,10 +40,6 @@ public:
         return true;
     }
 
-    vector<int> get_parent() {
-        return parent;
-    }
-
     vector<int> get_size() {
         return size;
     }
@@ -73,14 +69,13 @@ int main() {
     vector visited(n + 1, false);
 
     for (int i = 1; i <= n; ++i) {
-
-        if (!visited[dsu.get_parent()[i]]) {
+        if (int parent = dsu.find(i); !visited[parent]) {
             long long value = dsu.get_size()[i];
             for (int j = 1; j < k; ++j) {
                 value = value * dsu.get_size()[i] % MOD;
             }
 
-            visited[dsu.get_parent()[i]] = true;
+            visited[parent] = true;
             response = (response - value) % MOD;
         }
 
