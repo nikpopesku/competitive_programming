@@ -6,7 +6,7 @@ using namespace std;
 
 class DisjointSetUnion {
 public:
-    explicit DisjointSetUnion(const int size): size(size + 1, 1), parent(size + 1) {
+    explicit DisjointSetUnion(const int size) : size(size + 1, 1), parent(size + 1) {
         iota(parent.begin(), parent.end(), 0);
     }
 
@@ -20,7 +20,7 @@ public:
         return parent[node];
     }
 
-    bool unionit(int a, int b) {
+    bool unionit(const int a, const int b) {
         int parent_a = find(a);
         int parent_b = find(b);
 
@@ -37,6 +37,7 @@ public:
 
         return true;
     }
+
 private:
     vector<int> size;
     vector<int> parent;
@@ -45,7 +46,7 @@ private:
 int main() {
     int n, k, u, v, x;
     cin >> n >> k;
-    vector adj(n+1, vector<int>());
+    vector adj(n + 1, vector<int>());
 
     for (int i = 1; i <= n - 1; ++i) {
         cin >> u >> v >> x;
