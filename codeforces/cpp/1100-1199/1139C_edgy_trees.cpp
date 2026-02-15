@@ -76,7 +76,7 @@ int main() {
             }
 
             visited[parent] = true;
-            response = (response - value) % MOD;
+            response = (response - value % MOD + MOD) % MOD;
         }
     }
 
