@@ -68,7 +68,7 @@ int main() {
 
     int response = n;
     for (int i = 1; i < k; ++i) {
-        response  = response * n % MOD;
+        response = response * n % MOD;
     }
 
     vector visited(n + 1, false);
