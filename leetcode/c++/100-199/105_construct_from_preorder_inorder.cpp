@@ -38,9 +38,11 @@ public:
             ++counter;
         }
 
-        const vector new_inorder(inorder.begin(), inorder.begin() + counter);
+        const vector left_inorder(inorder.begin(), inorder.begin() + counter);
+        const vector right_inorder(inorder.begin() + counter + 1, inorder.end());
 
-        root.left = buildTree(preorder, new_inorder);
+        root.left = buildTree(preorder, left_inorder);
+        root.right = buildTree(preorder, right_inorder);
 
         return &root;
     }
