@@ -4,6 +4,8 @@
 
 using namespace std;
 
+constexpr int MOD = 1e9 + 7;
+
 class DisjointSetUnion {
 public:
     explicit DisjointSetUnion(const int size) : size(size + 1, 1), parent(size + 1) {
@@ -55,4 +57,7 @@ int main() {
             adj[v].push_back(u);
         }
     }
+
+
+    return (n * (n - 1))
 }
