@@ -70,9 +70,9 @@ int main() {
 
     for (int i = 1; i <= n; ++i) {
         if (const int parent = dsu.find(i); !visited[parent]) {
-            long long value = dsu.get_size()[i];
+            long long value = dsu.get_size()[parent];
             for (int j = 1; j < k; ++j) {
-                value = value * dsu.get_size()[i] % MOD;
+                value = value * dsu.get_size()[parent] % MOD;
             }
 
             visited[parent] = true;
