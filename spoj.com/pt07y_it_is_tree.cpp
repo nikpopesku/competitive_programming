@@ -39,8 +39,8 @@ int main() {
         }
     }
 
-    for (const auto elem: visited) {
-        if (!elem) {
+    for (int i = 1; i <= N; ++i) {
+        if (!visited[i]) {
             cout << "NO\n";
 
             return 0;
