@@ -40,7 +40,7 @@ public:
         return true;
     }
 
-    vector<int> get_size() {
+    const vector<int>& get_size() const {
         return size;
     }
 
