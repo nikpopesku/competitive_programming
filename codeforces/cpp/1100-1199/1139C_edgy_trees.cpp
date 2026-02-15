@@ -40,6 +40,14 @@ public:
         return true;
     }
 
+    vector<int> get_parent() {
+        return parent;
+    }
+
+    vector<int> get_size() {
+        return size;
+    }
+
 private:
     vector<int> size;
     vector<int> parent;
@@ -57,6 +65,16 @@ int main() {
         }
     }
 
+    long long response = (n * (n - 1)) % MOD;
+    vector visited(n+1, false);
+
+    for (int i = 1; i <= n; ++i) {
+        if (!visited[dsu.get_parent()[i]]) {
+            response -= dsu.get_size()[i] * (dsu.get_size()[i] - 1);
+
+            visited[dsu.get_parent()[i]] = true;
+        }
+    }
 
     return (n * (n - 1)) % MOD;
 }
