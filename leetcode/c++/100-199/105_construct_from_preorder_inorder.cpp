@@ -22,10 +22,14 @@ struct TreeNode {
 
 class Solution {
 public:
-    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {;
+    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+    }
+};
 
 
 int main() {
     auto s = Solution();
-    cout << s.numDistinct("rabbbit", "rabbit") << endl;
+    vector<int> preorder = {3, 9, 20, 15, 7};
+    vector<int> inorder = {9, 3, 15, 20, 7};
+    cout << s.buildTree(preorder, inorder) << endl;
 }
