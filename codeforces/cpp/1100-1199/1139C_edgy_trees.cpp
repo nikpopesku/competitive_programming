@@ -1,7 +1,28 @@
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 using namespace std;
+
+class DisjointSetUnion {
+public:
+    DisjointSetUnion(const int size): size(size + 1), parent(size + 1) {
+        iota(parent.begin(), parent.end(), 0);
+    }
+
+    int find(const int node) {
+        if (node == parent[node]) {
+            return node;
+        }
+
+        parent[node] = find(parent[node]);
+
+        return parent[node];
+    }
+private:
+    vector<int> size;
+    vector<int> parent;
+};
 
 int main() {
     int n, k, u, v, x;
