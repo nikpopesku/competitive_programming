@@ -1,5 +1,6 @@
 #include <iostream>
 #include <numeric>
+#include <queue>
 #include <vector>
 
 using namespace std;
@@ -19,7 +20,7 @@ public:
             }
         }
 
-        int count_zero = 0;
+        int root = -1;
 
         for (int i = 0; i < n; ++i) {
             if (indegree[i] > 1) {
@@ -27,11 +28,38 @@ public:
             }
 
             if (indegree[i] == 0) {
-                ++count_zero;
+                if (root != -1) {
+                    return false;
+                }
+
+                root = i;
             }
         }
 
-        return count_zero == 1;
+        if (root == -1) {
+            return false;
+        }
+
+        queue<int> q;
+        q.push(root);
+        int visited = 1;
+
+
+        while (!q.empty()) {
+            auto elem = q.front();
+            q.pop();
+            if (leftChild[elem] != -1) {
+                q.push(leftChild[elem]);
+                ++visited;
+            }
+
+            if (rightChild[elem] != -1) {
+                q.push(rightChild[elem]);
+                ++visited;
+            }
+        }
+
+        return visited == n;
     }
 };
 
@@ -40,7 +68,7 @@ int main() {
 
     vector<int> a = {1,0,3,-1};
     vector<int> b = {-1,-1,-1,-1};
-    s.validateBinaryTreeNodes(4, a, b);
+    cout << boolalpha << s.validateBinaryTreeNodes(4, a, b);
 
     return 0;
 }
