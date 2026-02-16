@@ -38,5 +38,9 @@ public:
 int main() {
     Solution s;
 
+    vector<int> a = {1,0,3,-1};
+    vector<int> b = {-1,-1,-1,-1};
+    s.validateBinaryTreeNodes(4, a, b);
+
     return 0;
 }
