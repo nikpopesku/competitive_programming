@@ -8,7 +8,7 @@ using namespace std;
 class Solution {
 public:
     vector<int> restoreArray(const vector<vector<int> > &adjacentPairs) {
-        unordered_map<int, vector<int>> degree;
+        unordered_map<int, vector<int> > degree;
 
         for (const auto &p: adjacentPairs) {
             degree[p[0]].push_back(p[1]);
