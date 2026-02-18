@@ -1,7 +1,4 @@
 #include <iostream>
-#include <ranges>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 using namespace std;
@@ -9,16 +6,15 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
-
+    vector<int> restoreArray(vector<vector<int> > &adjacentPairs) {
     }
 };
 
 int main() {
     Solution s;
 
-    vector<vector<int> > descriptions = {{20, 15, 1}, {20, 17, 0}, {50, 20, 1}, {50, 80, 0}, {80, 19, 1}};
-    s.createBinaryTree(descriptions);
+    vector<vector<int> > descriptions = {{2, 1}, {3, 4}, {3, 2}};
+    s.restoreArray(descriptions);
 
     return 0;
 }
