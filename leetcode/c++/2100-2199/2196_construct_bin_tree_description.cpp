@@ -41,7 +41,24 @@ public:
 
             mp[d[0]] = parent;
             mp[d[1]] = child;
+            ++indegree[d[1]];
+
+            if (d[2] == 1) {
+                parent->left = child;
+            } else {
+                parent->right = child;
+            }
         }
+
+        TreeNode* root = nullptr;
+
+        for (auto elem: indegree) {
+            if (elem.second == 0) {
+                root = mp[elem.first];
+            }
+        }
+
+        return root;
     }
 private:
     unordered_map<int, TreeNode*> mp;
