@@ -31,7 +31,9 @@ public:
         while (++counter < n) {
             response[counter] = current;
 
-            current = adj[current][0] != response[counter - 1] ? adj[current][0] : adj[current][1];
+            if (counter < n - 1) {
+                current = adj[current][0] != response[counter - 1] ? adj[current][0] : adj[current][1];
+            }
         }
 
 
