@@ -25,6 +25,7 @@ public:
     TreeNode *createBinaryTree(const vector<vector<int> > &descriptions) {
         for (auto d: descriptions) {
             TreeNode* parent;
+            TreeNode* child;
 
             if (mp.contains(d[0])) {
                 parent = mp[d[0]];
@@ -32,15 +33,14 @@ public:
                 parent = new TreeNode(d[0]);
             }
 
-            mp[d[0]] = &parent;
-
-            TreeNode child(d[1]);
-
             if (mp.contains(d[1])) {
                 child = mp[d[1]];
+            } else {
+                child = new TreeNode(d[1]);
             }
 
-            mp[d[1]] = &child;
+            mp[d[0]] = parent;
+            mp[d[1]] = child;
         }
     }
 private:
