@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -6,7 +7,17 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> restoreArray(vector<vector<int> > &adjacentPairs) {
+    vector<int> restoreArray(const vector<vector<int> > &adjacentPairs) {
+        unordered_map<int, vector<int>> degree;
+
+        for (const auto &p: adjacentPairs) {
+            degree[p[0]].push_back(p[1]);
+            degree[p[1]].push_back(p[0]);
+        }
+
+        int n = static_cast<int>(adjacentPairs.size()) + 1;
+
+        vector<int> response(n);
     }
 };
 
