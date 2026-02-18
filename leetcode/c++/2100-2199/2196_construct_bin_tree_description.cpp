@@ -56,9 +56,9 @@ public:
 
         TreeNode *root = nullptr;
 
-        for (auto elem: indegree) {
-            if (elem.second == 0) {
-                root = mp[elem.first];
+        for (auto [fst, snd]: indegree) {
+            if (snd == 0) {
+                root = mp[fst];
             }
         }
 
