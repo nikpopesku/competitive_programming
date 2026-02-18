@@ -24,8 +24,8 @@ class Solution {
 public:
     TreeNode *createBinaryTree(const vector<vector<int> > &descriptions) {
         for (auto d: descriptions) {
-            TreeNode* parent;
-            TreeNode* child;
+            TreeNode *parent;
+            TreeNode *child;
 
             if (mp.contains(d[0])) {
                 parent = mp[d[0]];
@@ -50,7 +50,7 @@ public:
             }
         }
 
-        TreeNode* root = nullptr;
+        TreeNode *root = nullptr;
 
         for (auto elem: indegree) {
             if (elem.second == 0) {
@@ -60,15 +60,16 @@ public:
 
         return root;
     }
+
 private:
-    unordered_map<int, TreeNode*> mp;
+    unordered_map<int, TreeNode *> mp;
     unordered_map<int, int> indegree;
 };
 
 int main() {
     Solution s;
 
-    vector<vector<int>> descriptions = {{20,15,1},{20,17,0},{50,20,1},{50,80,0},{80,19,1}};
+    vector<vector<int> > descriptions = {{20, 15, 1}, {20, 17, 0}, {50, 20, 1}, {50, 80, 0}, {80, 19, 1}};
     s.createBinaryTree(descriptions);
 
     return 0;
