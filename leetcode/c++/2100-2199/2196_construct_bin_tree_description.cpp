@@ -1,6 +1,4 @@
 #include <iostream>
-#include <numeric>
-#include <queue>
 #include <vector>
 
 using namespace std;
@@ -30,9 +28,8 @@ public:
 int main() {
     Solution s;
 
-    vector<int> a = {1, 0, 3, -1};
-    vector<int> b = {-1, -1, -1, -1};
-    cout << boolalpha << s.validateBinaryTreeNodes(4, a, b);
+    vector<vector<int>> descriptions = {{20,15,1},{20,17,0},{50,20,1},{50,80,0},{80,19,1}}
+    cout << boolalpha << s.createBinaryTree(descriptions);
 
     return 0;
 }
