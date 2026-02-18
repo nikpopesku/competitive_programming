@@ -1,5 +1,7 @@
 #include <iostream>
+#include <ranges>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
@@ -23,7 +25,10 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode *createBinaryTree(const vector<vector<int> > &descriptions) {
-        for (auto d: descriptions) {
+        unordered_map<int, TreeNode *> mp;
+        unordered_set<int> children;
+
+        for (auto& d: descriptions) {
             TreeNode *parent;
             TreeNode *child;
 
@@ -41,33 +46,26 @@ public:
 
             mp[d[0]] = parent;
             mp[d[1]] = child;
-            ++indegree[d[1]];
+            children.insert(d[1]);
 
             if (d[2] == 1) {
                 parent->left = child;
             } else {
                 parent->right = child;
             }
-
-            if (!indegree.contains(parent->val)) {
-                indegree[parent->val] = 0;
-            }
         }
 
         TreeNode *root = nullptr;
 
-        for (auto [fst, snd]: indegree) {
-            if (snd == 0) {
+        for (const auto fst: mp | views::keys) {
+            if (!children.contains(fst)) {
                 root = mp[fst];
+                break;
             }
         }
 
         return root;
     }
-
-private:
-    unordered_map<int, TreeNode *> mp;
-    unordered_map<int, int> indegree;
 };
 
 int main() {
