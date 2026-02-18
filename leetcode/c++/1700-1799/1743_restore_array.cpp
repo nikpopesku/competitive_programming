@@ -43,7 +43,7 @@ int main() {
     Solution s;
 
     vector<vector<int> > descriptions = {{2, 1}, {3, 4}, {3, 2}};
-    for (auto & elem: s.restoreArray(descriptions)) {
+    for (auto &elem: s.restoreArray(descriptions)) {
         cout << elem << ' ';
     }
 
