@@ -15,9 +15,15 @@ public:
             degree[p[1]].push_back(p[0]);
         }
 
-        int n = static_cast<int>(adjacentPairs.size()) + 1;
+        const int n = static_cast<int>(adjacentPairs.size()) + 1;
 
         vector<int> response(n);
+        for (auto &[fst, snd]: degree) {
+            if (snd.size() == 1) {
+                response[0] = fst;
+                break;
+            }
+        }
     }
 };
 
