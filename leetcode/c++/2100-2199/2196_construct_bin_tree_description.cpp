@@ -49,8 +49,8 @@ public:
                 parent->right = child;
             }
 
-            if (!mp.contains(parent->val)) {
-                mp[parent->val] = 0;
+            if (!indegree.contains(parent->val)) {
+                indegree[parent->val] = 0;
             }
         }
 
