@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -21,8 +22,30 @@ struct TreeNode {
 
 class Solution {
 public:
-    TreeNode *createBinaryTree(vector<vector<int> > &descriptions) {
+    TreeNode *createBinaryTree(const vector<vector<int> > &descriptions) {
+        for (auto d: descriptions) {
+            TreeNode* parent;
+
+            if (mp.contains(d[0])) {
+                parent = mp[d[0]];
+            } else {
+                parent = new TreeNode(d[0]);
+            }
+
+            mp[d[0]] = &parent;
+
+            TreeNode child(d[1]);
+
+            if (mp.contains(d[1])) {
+                child = mp[d[1]];
+            }
+
+            mp[d[1]] = &child;
+        }
     }
+private:
+    unordered_map<int, TreeNode*> mp;
+    unordered_map<int, int> indegree;
 };
 
 int main() {
