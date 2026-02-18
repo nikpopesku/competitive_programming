@@ -28,30 +28,18 @@ public:
         unordered_map<int, TreeNode *> mp;
         unordered_set<int> children;
 
-        for (auto& d: descriptions) {
-            TreeNode *parent;
-            TreeNode *child;
+        for (const auto &d: descriptions) {
+            auto [pit, _1] = mp.try_emplace(d[0], nullptr);
+            if (_1) pit->second = new TreeNode(d[0]);
 
-            if (mp.contains(d[0])) {
-                parent = mp[d[0]];
-            } else {
-                parent = new TreeNode(d[0]);
-            }
-
-            if (mp.contains(d[1])) {
-                child = mp[d[1]];
-            } else {
-                child = new TreeNode(d[1]);
-            }
-
-            mp[d[0]] = parent;
-            mp[d[1]] = child;
+            auto [cit, _2] = mp.try_emplace(d[1], nullptr);
+            if (_2) cit->second = new TreeNode(d[1]);
             children.insert(d[1]);
 
             if (d[2] == 1) {
-                parent->left = child;
+                pit->second->left = cit->second;
             } else {
-                parent->right = child;
+                pit->second->right = cit->second;
             }
         }
 
