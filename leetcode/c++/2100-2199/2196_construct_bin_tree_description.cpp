@@ -48,6 +48,10 @@ public:
             } else {
                 parent->right = child;
             }
+
+            if (!mp.contains(parent->val)) {
+                mp[parent->val] = 0;
+            }
         }
 
         TreeNode *root = nullptr;
