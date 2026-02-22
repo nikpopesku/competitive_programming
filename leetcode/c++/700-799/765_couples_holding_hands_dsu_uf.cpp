@@ -59,7 +59,7 @@ public:
             }
         }
 
-        return n/2 - counter;
+        return counter;
     }
 };
 
