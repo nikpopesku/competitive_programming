@@ -46,8 +46,20 @@ private:
 class Solution {
 public:
     int minSwapsCouples(vector<int> &row) {
-        int n = static_cast<int>(row.size());
+        const int n = static_cast<int>(row.size());
         DisjointUnionSet dsu(n);
+        int counter = 0;
+
+        for (int i = 0; i < n; i += 2) {
+            int p1 = row[i] / 2;
+            int p2 = row[i+1] / 2;
+
+            if (dsu.unionit(p1, p2)) {
+                ++counter;
+            }
+        }
+
+        return n/2 - counter;
     }
 };
 
