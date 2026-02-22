@@ -6,7 +6,7 @@ using namespace std;
 
 class DisjointUnionSet {
 public:
-    explicit DisjointUnionSet(const int size) : size(size + 1), parent(size + 1) {
+    explicit DisjointUnionSet(const int size) : size(size, 1), parent(size) {
         iota(parent.begin(), parent.end(), 0);
     }
 
@@ -46,6 +46,8 @@ private:
 class Solution {
 public:
     int minSwapsCouples(vector<int> &row) {
+        int n = static_cast<int>(row.size());
+        DisjointUnionSet dsu(n);
     }
 };
 
