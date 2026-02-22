@@ -21,9 +21,9 @@ public:
             int couple_nei = row[i] % 2 == 0 ? row[i] + 1 : row[i] - 1;
             if (abs(mp[row[i]] - mp[couple_nei]) > 1) {
                 ++counter;
-                int temp = row[i+1];
-                int new_position = mp[couple_nei];
-                swap(row[mp[couple_nei]], row[i+1]);
+                int temp = row[i + 1];
+                const int new_position = mp[couple_nei];
+                swap(row[mp[couple_nei]], row[i + 1]);
                 mp[temp] = new_position;
             }
         }
