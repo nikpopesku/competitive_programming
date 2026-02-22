@@ -1,6 +1,17 @@
 #include <iostream>
 #include <vector>
+
 using namespace std;
+
+class DisjointUnionSet() {
+public:
+    DisjointUnionSet(int size): size(size+1), parent(size+1) {
+
+    }
+private:
+    vector<int> size;
+    vector<int> parent;
+};
 
 class Solution {
 public:
