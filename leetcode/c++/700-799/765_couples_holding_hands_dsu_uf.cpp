@@ -1,13 +1,15 @@
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 using namespace std;
 
-class DisjointUnionSet() {
+class DisjointUnionSet {
 public:
-    DisjointUnionSet(int size): size(size+1), parent(size+1) {
-
+    DisjointUnionSet(const int size) : size(size + 1), parent(size + 1) {
+        iota(parent.begin(), parent.end(), 0);
     }
+
 private:
     vector<int> size;
     vector<int> parent;
@@ -15,8 +17,7 @@ private:
 
 class Solution {
 public:
-    int minSwapsCouples(vector<int>& row) {
-
+    int minSwapsCouples(vector<int> &row) {
     }
 };
 
