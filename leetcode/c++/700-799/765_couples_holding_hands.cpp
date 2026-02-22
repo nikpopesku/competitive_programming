@@ -9,7 +9,7 @@ class Solution {
 public:
     int minSwapsCouples(vector<int> &row) {
         unordered_map<int, int> mp;
-        int n = static_cast<int>(row.size());
+        const int n = static_cast<int>(row.size());
 
         for (int i = 0; i < n; ++i) {
             mp[row[i]] = i;
