@@ -18,8 +18,13 @@ public:
         int counter = 0;
 
         for (int i = 0; i < n; i += 2) {
-            if (abs(mp[i] - mp[i + 1]) > 1) {
+            int couple_nei = row[i] % 2 == 0 ? row[i] + 1 : row[i] - 1;
+            if (abs(mp[row[i]] - mp[couple_nei]) > 1) {
                 ++counter;
+                int temp = row[i+1];
+                int new_position = mp[couple_nei];
+                swap(row[mp[couple_nei]], row[i+1]);
+                mp[temp] = new_position;
             }
         }
 
