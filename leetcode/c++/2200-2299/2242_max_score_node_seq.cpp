@@ -1,5 +1,5 @@
 #include <iostream>
-#include <numeric>
+#include <list>
 #include <vector>
 
 using namespace std;
@@ -8,10 +8,14 @@ class Solution {
 public:
     int maximumScore(vector<int> &scores, vector<vector<int> > &edges) {
         const int n = static_cast<int>(scores.size());
-        vector adj(n, vector<int>());
+        vector adj(n, list<int>());
 
-        for (auto& e: edges) {
-
+        for (auto &e: edges) {
+            for (auto it = adj[e[0]].begin(); it != adj[e[0]].end(); ++it) {
+                if (scores[*it] <= scores[e[1]]) {
+                    adj[e[0]].insert(it, e[1]);
+                }
+            }
         }
     }
 };
