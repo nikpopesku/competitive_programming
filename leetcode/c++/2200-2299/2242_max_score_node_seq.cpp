@@ -14,7 +14,7 @@ public:
             for (auto [u, v]: {pair{e[0], e[1]}, pair{e[1], e[0]}}) {
                 top[u].push_back(v);
                 sort(top[u].begin(), top[u].end(),
-                     [&](int a, int b){ return scores[a] > scores[b]; });
+                     [&](const int a, const int b){ return scores[a] > scores[b]; });
                 if (top[u].size() > 3) top[u].pop_back();
             }
         }
