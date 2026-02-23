@@ -11,6 +11,10 @@ public:
         vector adj(n, list<int>());
 
         for (auto &e: edges) {
+            if (adj[e[0]].empty()) {
+                adj[e[0]].push_back(e[1]);
+                continue;
+            }
             for (auto it = adj[e[0]].begin(); it != adj[e[0]].end(); ++it) {
                 if (scores[*it] <= scores[e[1]]) {
                     adj[e[0]].insert(it, e[1]);
