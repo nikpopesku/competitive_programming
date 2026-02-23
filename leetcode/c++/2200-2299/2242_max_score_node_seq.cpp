@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maximumScore(vector<int> &scores, vector<vector<int> > &edges) {
+    int maximumScore(const vector<int> &scores, const vector<vector<int> > &edges) {
         const int n = static_cast<int>(scores.size());
         vector adj(n, list<int>());
 
@@ -17,6 +17,24 @@ public:
                 }
             }
         }
+
+        int best_response = 0;
+
+        for (auto &e: edges) {
+            int cur = scores[e[0]] + scores[e[1]];
+
+            for (auto &a: adj[e[0]]) {
+                if (a != e[1]) {
+                    for (auto &d: adj[e[1]]) {
+                        if (d != e[0] && d != a) {
+                            best_response = max(best_response, cur + scores[a] + scores[d]);
+                        }
+                    }
+                }
+            }
+        }
+
+        return best_response;
     }
 };
 
@@ -25,5 +43,5 @@ int main() {
 
     vector<int> scores = {5, 2, 9, 8, 4};
     vector<vector<int> > edges = {{0, 1}, {1, 2}, {2, 3}, {0, 2}, {1, 3}, {2, 4}};
-    cout << s.maximumScore(scores, edges) << endl; //0
+    cout << s.maximumScore(scores, edges) << endl; //24
 }
