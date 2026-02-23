@@ -16,6 +16,7 @@ public:
                 sort(adj[u].begin(), adj[u].end(), [&](const int a, const int b) {
                     return scores[a] > scores[b];
                 });
+                if (adj.size() > 3) adj.pop_back();
             }
         }
 
