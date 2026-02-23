@@ -22,7 +22,7 @@ public:
             }
         }
 
-        int best_response = 0;
+        int best_response = -1;
 
         for (auto &e: edges) {
             const int cur = scores[e[0]] + scores[e[1]];
@@ -48,4 +48,8 @@ int main() {
     const vector scores = {5, 2, 9, 8, 4};
     const vector<vector<int> > edges = {{0, 1}, {1, 2}, {2, 3}, {0, 2}, {1, 3}, {2, 4}};
     cout << s.maximumScore(scores, edges) << endl; //24
+
+    const vector scores2 = {9,20,6,4,11,12};
+    const vector<vector<int> > edges2 = {{0,3},{5,3},{2,4},{1,3}};
+    cout << s.maximumScore(scores2, edges2) << endl; //-1
 }
