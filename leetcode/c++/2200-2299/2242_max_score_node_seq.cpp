@@ -7,6 +7,12 @@ using namespace std;
 class Solution {
 public:
     int maximumScore(vector<int> &scores, vector<vector<int> > &edges) {
+        const int n = static_cast<int>(scores.size());
+        vector adj(n, vector<int>());
+
+        for (auto& e: edges) {
+
+        }
     }
 };
 
