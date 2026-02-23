@@ -21,11 +21,11 @@ public:
         int best_response = 0;
 
         for (auto &e: edges) {
-            int cur = scores[e[0]] + scores[e[1]];
+            const int cur = scores[e[0]] + scores[e[1]];
 
-            for (auto &a: adj[e[0]]) {
+            for (const auto &a: adj[e[0]]) {
                 if (a != e[1]) {
-                    for (auto &d: adj[e[1]]) {
+                    for (const auto &d: adj[e[1]]) {
                         if (d != e[0] && d != a) {
                             best_response = max(best_response, cur + scores[a] + scores[d]);
                         }
@@ -41,7 +41,7 @@ public:
 int main() {
     auto s = Solution();
 
-    vector<int> scores = {5, 2, 9, 8, 4};
-    vector<vector<int> > edges = {{0, 1}, {1, 2}, {2, 3}, {0, 2}, {1, 3}, {2, 4}};
+    const vector scores = {5, 2, 9, 8, 4};
+    const vector<vector<int> > edges = {{0, 1}, {1, 2}, {2, 3}, {0, 2}, {1, 3}, {2, 4}};
     cout << s.maximumScore(scores, edges) << endl; //24
 }
