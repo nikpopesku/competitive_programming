@@ -1,5 +1,4 @@
 #include <iostream>
-#include <map>
 #include <numeric>
 #include <vector>
 
@@ -7,8 +6,16 @@ using namespace std;
 
 class DisjointUnionSet {
 public:
-    explicit DisjointUnionSet(const int size): parent(size + 1), size(size + 1, 1) {
+    explicit DisjointUnionSet(const int size, const int threshold): parent(size + 1), size(size + 1, 1), threshold(threshold), n (size) {
         iota(parent.begin(), parent.end(), 0);
+
+        for (int i = threshold + 1; i <= n /2; ++i) {
+            int k = 1;
+            while (k * i <= n) {
+                unionit(i, k * i);
+                ++k;
+            }
+        }
     }
 
     int find(const int node) {
@@ -41,21 +48,15 @@ public:
 private:
     vector<int> parent;
     vector<int> size;
+    int threshold;
+    int n;
 };
 
 class Solution {
 public:
-    vector<bool> areConnected(int n, const int threshold, const vector<vector<int> > &queries) {
+    vector<bool> areConnected(const int n, const int threshold, const vector<vector<int> > &queries) {
         vector<bool> response;
-        DisjointUnionSet dsu(n);
-
-        for (int i = 1; i < n; ++i) {
-            for (int j = i + 1; j <= n; ++j) {
-                if (gcd(j, i) > threshold) {
-                    dsu.unionit(i, j);
-                }
-            }
-        }
+        DisjointUnionSet dsu(n, threshold);
 
         for (auto &q: queries) {
             const bool val = dsu.find(q[0]) == dsu.find(q[1]);
