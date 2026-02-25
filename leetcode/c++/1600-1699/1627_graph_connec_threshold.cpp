@@ -56,6 +56,12 @@ int main() {
 
     vector<vector<int> > queries3 = {{4, 5}, {4, 5}, {3, 2}, {2, 3}, {3, 4}};
     for (auto e: s.areConnected(5, 1, queries3)) {
-        cout << boolalpha << e << ' '; //[false,false,false,false,false]
+        cout << boolalpha << e << ' '; //[false,false,false,false,false}
+    }
+    cout << '\n';
+
+    vector<vector<int> > queries4 = {{6, 8}, {6, 9}, {8, 9}};
+    for (auto e: s.areConnected(9, 1, queries4)) {
+        cout << boolalpha << e << ' '; //[true,true,true}
     }
 }
