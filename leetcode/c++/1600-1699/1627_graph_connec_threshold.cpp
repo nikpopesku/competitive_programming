@@ -67,18 +67,10 @@ public:
     }
 
 private:
-    map<pair<int, int>, int> mp;
-
     int gcd(int a, int b) {
         if (a < b) swap(a, b);
 
-        if (mp.contains(pair{a, b})) {
-            return mp[pair{a, b}];
-        }
-
         if (a % b == 0) {
-            mp[pair{a, b}] = b;
-
             return b;
         }
 
