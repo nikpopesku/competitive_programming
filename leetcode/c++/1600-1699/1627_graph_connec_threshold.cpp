@@ -18,7 +18,7 @@ public:
     }
 
 private:
-    map<pair<int, int> , int> mp;
+    map<pair<int, int>, int> mp;
 
     int gcd(int a, int b) {
         if (a < b) swap(a, b);
