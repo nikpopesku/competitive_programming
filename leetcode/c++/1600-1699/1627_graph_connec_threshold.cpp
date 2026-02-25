@@ -47,9 +47,19 @@ class Solution {
 public:
     vector<bool> areConnected(int n, const int threshold, const vector<vector<int> > &queries) {
         vector<bool> response;
+        DisjointUnionSet dsu(n);
+
+        for (int i = 1; i < n; ++i) {
+            for (int j = i + 1; j <= n; ++j) {
+                if (gcd(j, i) > threshold) {
+                    dsu.unionit(i, j);
+                }
+            }
+        }
 
         for (auto &q: queries) {
-            const bool val = gcd(q[0], q[1]) > threshold;
+            const bool val = dsu.find(q[0]) == dsu.find(q[1]);
+
             response.push_back(val);
         }
 
