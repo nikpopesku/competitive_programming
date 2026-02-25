@@ -12,7 +12,7 @@ public:
 int main() {
     auto s = Solution();
 
-    vector<vector<int>> &queries = {{1, 4}, {2, 5}, {3, 6}};
+    vector<vector<int>> queries = {{1, 4}, {2, 5}, {3, 6}};
     for (auto e: s.areConnected(6, 2, queries)) {
         cout << boolalpha << e << ' ';
     }
