@@ -6,10 +6,11 @@ using namespace std;
 
 class DisjointUnionSet {
 public:
-    explicit DisjointUnionSet(const int size, const int threshold): parent(size + 1), size(size + 1, 1), threshold(threshold), n (size) {
+    explicit DisjointUnionSet(const int size, const int threshold) : parent(size + 1), size(size + 1, 1),
+                                                                     threshold(threshold), n(size) {
         iota(parent.begin(), parent.end(), 0);
 
-        for (int i = threshold + 1; i <= n /2; ++i) {
+        for (int i = threshold + 1; i <= n / 2; ++i) {
             int k = 1;
             while (k * i <= n) {
                 unionit(i, k * i);
@@ -45,6 +46,7 @@ public:
 
         return true;
     }
+
 private:
     vector<int> parent;
     vector<int> size;
