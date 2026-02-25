@@ -28,6 +28,6 @@ int main() {
 
     vector<vector<int> > queries3 = {{4, 5}, {4, 5}, {3, 2}, {2, 3}, {3, 4}};
     for (auto e: s.areConnected(5, 1, queries3)) {
-        cout << boolalpha << e << ' '; //{true,true,true,true,true}
+        cout << boolalpha << e << ' '; //[false,false,false,false,false]
     }
 }
