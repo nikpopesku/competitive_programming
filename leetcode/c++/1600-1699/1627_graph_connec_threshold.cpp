@@ -11,7 +11,7 @@ public:
         iota(parent.begin(), parent.end(), 0);
 
         for (int i = threshold + 1; i <= n / 2; ++i) {
-            int k = 1;
+            int k = 2;
             while (k * i <= n) {
                 unionit(i, k * i);
                 ++k;
@@ -67,17 +67,6 @@ public:
         }
 
         return response;
-    }
-
-private:
-    int gcd(int a, int b) {
-        if (a < b) swap(a, b);
-
-        if (a % b == 0) {
-            return b;
-        }
-
-        return gcd(b, a % b);
     }
 };
 
