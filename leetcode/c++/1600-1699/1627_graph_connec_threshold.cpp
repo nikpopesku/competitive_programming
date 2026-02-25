@@ -5,7 +5,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<bool> areConnected(int n, int threshold, vector<vector<int> > &queries) {
+    vector<bool> areConnected(int n, const int threshold, const vector<vector<int> > &queries) {
         vector<bool> response;
 
         for (auto &q: queries) {
