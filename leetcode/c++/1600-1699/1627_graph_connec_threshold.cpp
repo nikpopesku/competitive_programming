@@ -9,21 +9,20 @@ public:
         vector<bool> response;
 
         for (auto &q: queries) {
-            const bool val =  gcd(q[0], q[1]) > threshold;
+            const bool val = gcd(q[0], q[1]) > threshold;
             response.push_back(val);
         }
 
         return response;
     }
+
 private:
-    int gcd(int a, int b) {
+    static int gcd(int a, int b) {
         if (a < b) swap(a, b);
 
-        if (a % b  == 0) return b;
+        if (a % b == 0) return b;
 
-        a = a % b;
-
-        return gcd(b, a);
+        return gcd(b, a % b);
     }
 };
 
