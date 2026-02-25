@@ -6,6 +6,24 @@ using namespace std;
 class Solution {
 public:
     vector<bool> areConnected(int n, int threshold, vector<vector<int> > &queries) {
+        vector<bool> response;
+
+        for (auto &q: queries) {
+            const bool val =  gcd(q[0], q[1]) > threshold;
+            response.push_back(val);
+        }
+
+        return response;
+    }
+private:
+    int gcd(int a, int b) {
+        if (a < b) swap(a, b);
+
+        if (a % b  == 0) return b;
+
+        a = a % b;
+
+        return gcd(b, a);
     }
 };
 
