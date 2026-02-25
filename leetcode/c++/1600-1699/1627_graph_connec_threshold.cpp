@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include <vector>
 
 using namespace std;
@@ -17,10 +18,20 @@ public:
     }
 
 private:
-    static int gcd(int a, int b) {
+    map<pair<int, int> , int> mp;
+
+    int gcd(int a, int b) {
         if (a < b) swap(a, b);
 
-        if (a % b == 0) return b;
+        if (mp.contains(pair{a, b})) {
+            return mp[pair{a, b}];
+        }
+
+        if (a % b == 0) {
+            mp[pair{a, b}] = b;
+
+            return b;
+        }
 
         return gcd(b, a % b);
     }
