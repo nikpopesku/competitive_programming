@@ -22,7 +22,7 @@ void solve() {
         }
     }
 
-    cout << static_cast<double>(s) / static_cast<double>(counter) << '\n';
+    cout << 2 * static_cast<double>(s) / counter << '\n';
 }
 
 int main() {
