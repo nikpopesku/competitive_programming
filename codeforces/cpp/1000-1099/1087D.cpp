@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ void solve() {
         }
     }
 
-    cout << 2 * static_cast<double>(s) / counter << '\n';
+    cout << fixed << setprecision(18) << 2 * static_cast<double>(s) / counter << '\n';
 }
 
 int main() {
