@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> findItinerary(vector<vector<string> > &tickets) {
+    vector<string> findItinerary(const vector<vector<string> > &tickets) {
         unordered_map<string, vector<string> > adj;
 
         for (auto &e: tickets) {
