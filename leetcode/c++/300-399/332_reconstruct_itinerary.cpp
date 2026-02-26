@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -6,10 +7,11 @@ using namespace std;
 class Solution {
 public:
     vector<string> findItinerary(vector<vector<string> > &tickets) {
-        vector<vector<string>> adj(300, vector<string>());
+        unordered_map<string, vector<string> > adj;
 
         for (auto &e: tickets) {
             adj[e[0]].push_back(e[1]);
+            adj[e[1]].push_back(e[0]);
         }
     }
 };
