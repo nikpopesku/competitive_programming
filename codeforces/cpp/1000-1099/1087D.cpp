@@ -13,6 +13,16 @@ void solve() {
         adj[a].push_back(b);
         adj[b].push_back(a);
     }
+
+    int counter = 0;
+
+    for (int i = 1; i <= n; ++i) {
+        if (adj[i].size() == 1) {
+            ++counter;
+        }
+    }
+
+    cout << static_cast<double>(s) / static_cast<double>(counter) << '\n';
 }
 
 int main() {
