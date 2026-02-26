@@ -13,6 +13,19 @@ public:
             adj[e[0]].push_back(e[1]);
             adj[e[1]].push_back(e[0]);
         }
+
+        vector<string> stack;
+
+        stack.push_back("JFK");
+        vector<string> response;
+
+        while (!stack.empty()) {
+            string elem = stack[0];
+            response.push_back(elem);
+            stack.clear();
+        }
+
+        return response;
     }
 };
 
