@@ -6,6 +6,11 @@ using namespace std;
 class Solution {
 public:
     vector<string> findItinerary(vector<vector<string> > &tickets) {
+        vector<vector<string>> adj(300, vector<string>());
+
+        for (auto &e: tickets) {
+            adj[e[0]].push_back(e[1]);
+        }
     }
 };
 
