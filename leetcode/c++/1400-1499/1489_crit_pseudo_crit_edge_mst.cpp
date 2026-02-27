@@ -61,7 +61,7 @@ public:
                 mst.push_back(e);
             }
 
-            if (mst.size() == n -1) {
+            if (mst.size() == n - 1) {
                 break;
             }
         }
@@ -71,7 +71,7 @@ public:
 int main() {
     auto s = Solution();
 
-    vector<vector<string> > edges = {{0,1,1},{1,2,1},{2,3,2},{0, 3, 2}, {0, 4, 3}, {3, 4, 3}, {1, 4, 6}};
+    vector<vector<string> > edges = {{0, 1, 1}, {1, 2, 1}, {2, 3, 2}, {0, 3, 2}, {0, 4, 3}, {3, 4, 3}, {1, 4, 6}};
 
     for (auto &e: s.findCriticalAndPseudoCriticalEdges(5, edges)) {
         cout << e << ' '; //[[0,1],[2,3,4,5]]
