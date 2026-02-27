@@ -9,32 +9,17 @@ using namespace std;
 class Solution {
 public:
     vector<string> findItinerary(const vector<vector<string> > &tickets) {
-        unordered_map<string, vector<string> > adj;
+        unordered_map<string, vector<string>> adj;
 
-        for (auto &e: tickets) {
+        for (auto&e: tickets) {
             adj[e[0]].push_back(e[1]);
         }
 
-        // Sort in reverse for efficient pop_back
-        for (auto &dests: adj | views::values) {
-            sort(dests.rbegin(), dests.rend());
+        for (auto &dest: adj | views::values) {
+            sort(dest.rbegin(), dest.rend());
         }
-
-        vector<string> result;
-
-        dfs(adj, "JFK", result);
-        ranges::reverse(result);
-        return result;
     }
-private:
-    void dfs(unordered_map<string, vector<string>>& adj, const string &u, vector<string>& result) {
-        while (!adj[u].empty()) {
-            string v = adj[u].back();
-            adj[u].pop_back();  // remove edge
-            dfs(adj, v, result);
-        }
-        result.push_back(u);  // post-order
-    }
+
 };
 
 int main() {
