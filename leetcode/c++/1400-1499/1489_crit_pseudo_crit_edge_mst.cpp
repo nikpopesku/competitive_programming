@@ -17,7 +17,7 @@ public:
             return node;
         }
 
-        parent[node] = find(node);
+        parent[node] = find(parent[node]);
 
         return parent[node];
     }
