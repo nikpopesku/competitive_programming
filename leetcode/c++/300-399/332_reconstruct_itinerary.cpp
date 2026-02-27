@@ -17,7 +17,7 @@ public:
 
         // Sort in reverse for efficient pop_back
         for (auto &dests: adj | views::values) {
-            sort(dests.begin(), dests.end());
+            sort(dests.rbegin(), dests.rend());
         }
 
         vector<string> result;
