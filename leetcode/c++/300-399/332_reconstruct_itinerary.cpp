@@ -10,7 +10,7 @@ class Solution {
 public:
     vector<string> findItinerary(const vector<vector<string> > &tickets) {
         unordered_map<string, vector<string> > adj;
-        set<pair<string, string>> visited;
+        set<pair<string, string> > visited;
 
         for (auto &e: tickets) {
             adj[e[0]].push_back(e[1]);
@@ -25,7 +25,7 @@ public:
             string elem = stack[0];
             response.push_back(elem);
 
-            vector<string> neighbours {};
+            vector<string> neighbours{};
             for (auto &nei: adj[elem]) {
                 if (!visited.contains(pair{elem, nei})) {
                     neighbours.push_back(nei);
@@ -55,7 +55,7 @@ int main() {
 
     cout << '\n';
 
-    vector<vector<string> > tickets2 = {{"JFK","SFO"},{"JFK","ATL"},{"SFO","ATL"},{"ATL","JFK"},{"ATL","SFO"}};
+    vector<vector<string> > tickets2 = {{"JFK", "SFO"}, {"JFK", "ATL"}, {"SFO", "ATL"}, {"ATL", "JFK"}, {"ATL", "SFO"}};
 
     for (auto &e: s.findItinerary(tickets2)) {
         cout << e << ' '; //["JFK","ATL","JFK","SFO","ATL","SFO"]
