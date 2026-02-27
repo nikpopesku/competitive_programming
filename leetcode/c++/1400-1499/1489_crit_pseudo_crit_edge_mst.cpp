@@ -96,10 +96,10 @@ int main() {
     vector<vector<string> > edges = {{0, 1, 1}, {1, 2, 1}, {2, 3, 2}, {0, 3, 2}, {0, 4, 3}, {3, 4, 3}, {1, 4, 6}};
 
     for (auto &e: s.findCriticalAndPseudoCriticalEdges(5, edges)) {
-        for (int i = 0; i < static_cast<int>(e[0].size()); ++i) {
-            cout << e[0][i] << ' '; //[[0,1],[2,3,4,5]]
+        for (auto &j: e) {
+            cout << j << ' '; //[[0,1],[2,3,4,5]]
         }
-
+        cout << '\n';
     }
 
     // cout << '\n';
