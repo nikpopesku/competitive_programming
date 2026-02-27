@@ -56,23 +56,40 @@ public:
             return a[2] < b[2];
         });
 
-        int min_weight = kruskal(n, edges, -1);
+        int min_weight = kruskal(n, edges, -1, -1);
         vector<int> critical;
+        vector<int> pseudo_critical;
 
         for (auto &e: edges) {
-            int weight = kruskal(n, edges, e[3]);
+            int weight = kruskal(n, edges, e[3], -1);
 
             if (weight > min_weight) {
                 critical.push_back(e[3]);
+            }
+
+            if (weight == min_weight) {
+                int forced_weight = kruskal(n, edges, -1, e[3]);
+
+                if (forced_weight > min_weight) {
+                    pseudo_critical.push_back(e[3]);
+                }
             }
         }
     }
 
 private:
-    int kruskal(const int n, const vector<vector<int> > &edges, const int exclude_idx) {
+    int kruskal(const int n, const vector<vector<int> > &edges, const int exclude_idx, const int force_idx) {
         vector<vector<int> > mst;
         DisjointUnionSet dsu(n);
         int min_weight = 0;
+
+        for (auto &e: edges) {
+            if (e[3] == force_idx) {
+                mst.push_back(e);
+                min_weight += e[2];
+                dsu.unionit(e[0], e[1]);
+            }
+        }
 
         for (auto &e: edges) {
             if (e[3] == exclude_idx) continue;
