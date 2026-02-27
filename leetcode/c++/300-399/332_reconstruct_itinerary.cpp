@@ -9,19 +9,15 @@ class Solution {
 public:
     vector<string> findItinerary(const vector<vector<string> > &tickets) {
         unordered_map<string, vector<string> > adj;
-        unordered_map<string, bool> visited;
+        unordered_map<pair<string, string>, bool> visited;
 
         for (auto &e: tickets) {
             adj[e[0]].push_back(e[1]);
-            adj[e[1]].push_back(e[0]);
-            visited[e[0]] = false;
-            visited[e[1]] = false;
         }
 
         vector<string> stack;
 
         stack.emplace_back("JFK");
-        visited["JFK"] = true;
         vector<string> response;
 
         while (!stack.empty()) {
@@ -30,7 +26,7 @@ public:
 
             vector<string> neighbours {};
             for (auto &nei: adj[elem]) {
-                if (!visited[nei]) {
+                if (!visited.contains(pair{elem, nei})) {
                     neighbours.push_back(nei);
                 }
 
@@ -39,7 +35,7 @@ public:
             stack.clear();
             if (!neighbours.empty()) {
                 stack.push_back(neighbours[0]);
-                visited[neighbours[0]] = true;
+                visited[pair{elem, neighbours[0]}] = true;
             }
         }
 
