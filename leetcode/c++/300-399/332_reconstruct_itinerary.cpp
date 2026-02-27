@@ -21,14 +21,14 @@ public:
         vector<string> stack;
 
         stack.emplace_back("JFK");
-        visited["JFJ"] = true;
+        visited["JFK"] = true;
         vector<string> response;
 
         while (!stack.empty()) {
             string elem = stack[0];
             response.push_back(elem);
 
-            vector<string> neighbours;
+            vector<string> neighbours {};
             for (auto &nei: adj[elem]) {
                 if (!visited[nei]) {
                     neighbours.push_back(nei);
