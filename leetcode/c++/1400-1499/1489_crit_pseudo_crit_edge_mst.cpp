@@ -61,7 +61,7 @@ public:
         vector<int> pseudo_critical;
 
         for (auto &e: edges) {
-            int weight = kruskal(n, edges, e[3], -1);
+            const int weight = kruskal(n, edges, e[3], -1);
 
             if (weight > min_weight) {
                 critical.push_back(e[3]);
