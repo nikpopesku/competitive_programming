@@ -22,19 +22,18 @@ public:
 
         vector<string> result;
 
-        // Hierholzer's algorithm (post-order DFS)
-        auto dfs = [&](auto &&self, const string &u) -> void {
-            while (!adj[u].empty()) {
-                string v = adj[u].back();
-                adj[u].pop_back();  // remove edge
-                self(self, v);
-            }
-            result.push_back(u);  // post-order
-        };
-
-        dfs(dfs, "JFK");
+        dfs(adj, "JFK", result);
         ranges::reverse(result);
         return result;
+    }
+private:
+    void dfs(unordered_map<string, vector<string>>& adj, const string &u, vector<string>& result) {
+        while (!adj[u].empty()) {
+            string v = adj[u].back();
+            adj[u].pop_back();  // remove edge
+            dfs(adj, v, result);
+        }
+        result.push_back(u);  // post-order
     }
 };
 
