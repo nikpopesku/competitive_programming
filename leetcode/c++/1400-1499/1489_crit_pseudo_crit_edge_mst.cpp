@@ -8,7 +8,7 @@ using namespace std;
 
 class DisjointUnionSet {
 public:
-    DisjointUnionSet(int size): size(size, 1), parent(size) {
+    DisjointUnionSet(int size) : size(size, 1), parent(size) {
         iota(parent.begin(), parent.end(), 0);
     }
 
@@ -39,6 +39,7 @@ public:
 
         return true;
     }
+
 private:
     vector<int> parent;
     vector<int> size;
@@ -46,7 +47,7 @@ private:
 
 class Solution {
 public:
-    vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {
+    vector<vector<int> > findCriticalAndPseudoCriticalEdges(int n, vector<vector<int> > &edges) {
         for (int i = 0; i < static_cast<int>(edges.size()); ++i) {
             edges[i].push_back(i);
         }
@@ -66,9 +67,10 @@ public:
             }
         }
     }
+
 private:
-    int kruskal(const int n, const vector<vector<int>>& edges, const int exclude_idx) {
-        vector<vector<int>> mst;
+    int kruskal(const int n, const vector<vector<int> > &edges, const int exclude_idx) {
+        vector<vector<int> > mst;
         DisjointUnionSet dsu(n);
         int min_weight = 0;
 
