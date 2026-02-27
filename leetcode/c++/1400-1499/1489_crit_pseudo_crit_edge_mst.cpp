@@ -1,13 +1,18 @@
 #include <iostream>
 #include <vector>
 #include <ranges>
+#include <algorithm>
 
 using namespace std;
 
 class Solution {
 public:
     vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {
+        vector<vector<int>> mst;
 
+        sort(edges.begin(), edges.end(), [&](const vector<int> &a, const vector<int> &b) {
+            return a[2] < b[2];
+        });
     }
 };
 
