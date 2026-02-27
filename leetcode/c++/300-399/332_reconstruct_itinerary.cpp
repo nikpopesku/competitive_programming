@@ -20,7 +20,7 @@ public:
 
         vector<string> stack;
 
-        stack.push_back("JFK");
+        stack.emplace_back("JFK");
         visited["JFJ"] = true;
         vector<string> response;
 
@@ -29,7 +29,7 @@ public:
             response.push_back(elem);
 
             vector<string> neighbours;
-            for (auto & nei: adj[elem]) {
+            for (auto &nei: adj[elem]) {
                 if (!visited[nei]) {
                     neighbours.push_back(nei);
                 }
