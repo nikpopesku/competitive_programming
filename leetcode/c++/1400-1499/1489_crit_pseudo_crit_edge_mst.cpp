@@ -57,8 +57,7 @@ public:
         int min_weight = 0;
 
         for (auto &e: edges) {
-            if (dsu.find(e[0]) != dsu.find(e[1])) {
-                dsu.unionit(e[0], e[1]);
+            if (dsu.unionit(e[0], e[1])) {
                 mst.push_back(e);
                 min_weight += e[2];
             }
