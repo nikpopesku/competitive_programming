@@ -29,7 +29,7 @@ public:
 
 private:
     void dfs(unordered_map<string, vector<string> > &adj, vector<string> &result, const string &u) {
-        while (adj[u].empty()) {
+        while (!adj[u].empty()) {
             auto e = adj[u].back();
             adj[u].pop_back();
             dfs(adj, result, e);
