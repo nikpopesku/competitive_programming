@@ -2,8 +2,47 @@
 #include <vector>
 #include <ranges>
 #include <algorithm>
+#include <numeric>
 
 using namespace std;
+
+class DisjointUnionSet {
+public:
+    DisjointUnionSet(int size): size(size, 1), parent(size) {
+        iota(parent.begin(), parent.end(), 0);
+    }
+
+    int find(const int node) {
+        if (node == parent[node]) {
+            return node;
+        }
+
+        parent[node] = find(node);
+
+        return parent[node];
+    }
+
+    bool unionit(int a, int b) {
+        int parent_a = find(a);
+        int parent_b = find(b);
+
+        if (parent_a == parent_b) {
+            return false;
+        }
+
+        if (size[parent_a] < size[parent_b]) {
+            swap(parent_a, parent_b);
+        }
+
+        parent[parent_b] = parent_a;
+        size[parent_a] += size[parent_b];
+
+        return true;
+    }
+private:
+    vector<int> parent;
+    vector<int> size;
+};
 
 class Solution {
 public:
