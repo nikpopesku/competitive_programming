@@ -79,13 +79,13 @@ public:
 
 private:
     int kruskal(const int n, const vector<vector<int> > &edges, const int exclude_idx, const int force_idx) {
-        vector<vector<int> > mst;
         DisjointUnionSet dsu(n);
         int min_weight = 0;
+        int counter = 0;
 
         for (auto &e: edges) {
             if (e[3] == force_idx) {
-                mst.push_back(e);
+                ++counter;
                 min_weight += e[2];
                 dsu.unionit(e[0], e[1]);
             }
@@ -94,11 +94,10 @@ private:
         for (auto &e: edges) {
             if (e[3] == exclude_idx) continue;
             if (dsu.unionit(e[0], e[1])) {
-                mst.push_back(e);
                 min_weight += e[2];
             }
 
-            if (mst.size() == n - 1) {
+            if (counter == n - 1) {
                 break;
             }
         }
