@@ -49,6 +49,10 @@ public:
     vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {
         vector<vector<int>> mst;
 
+        for (int i = 0; i < static_cast<int>(edges.size()); ++i) {
+            edges[i].push_back(i);
+        }
+
         sort(edges.begin(), edges.end(), [&](const vector<int> &a, const vector<int> &b) {
             return a[2] < b[2];
         });
