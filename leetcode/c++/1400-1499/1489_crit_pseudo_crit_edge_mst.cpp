@@ -65,12 +65,10 @@ public:
 
             if (weight > min_weight) {
                 critical.push_back(e[3]);
-            }
-
-            if (weight == min_weight) {
+            } else {
                 int forced_weight = kruskal(n, edges, -1, e[3]);
 
-                if (forced_weight > min_weight) {
+                if (forced_weight == min_weight) {
                     pseudo_critical.push_back(e[3]);
                 }
             }
