@@ -47,8 +47,6 @@ private:
 class Solution {
 public:
     vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {
-        vector<vector<int>> mst;
-
         for (int i = 0; i < static_cast<int>(edges.size()); ++i) {
             edges[i].push_back(i);
         }
@@ -57,10 +55,25 @@ public:
             return a[2] < b[2];
         });
 
+        int min_weight = kruskal(n, edges, -1);
+        vector<int> critical;
+
+        for (auto &e: edges) {
+            int weight = kruskal(n, edges, e[3]);
+
+            if (weight > min_weight) {
+                critical.push_back(e[3]);
+            }
+        }
+    }
+private:
+    int kruskal(const int n, const vector<vector<int>>& edges, const int exclude_idx) {
+        vector<vector<int>> mst;
         DisjointUnionSet dsu(n);
         int min_weight = 0;
 
         for (auto &e: edges) {
+            if (e[3] == exclude_idx) continue;
             if (dsu.unionit(e[0], e[1])) {
                 mst.push_back(e);
                 min_weight += e[2];
@@ -70,6 +83,8 @@ public:
                 break;
             }
         }
+
+        return min_weight;
     }
 };
 
