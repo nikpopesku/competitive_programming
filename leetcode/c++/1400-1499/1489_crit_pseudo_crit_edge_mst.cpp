@@ -3,6 +3,7 @@
 #include <ranges>
 #include <algorithm>
 #include <numeric>
+#include <climits>
 
 using namespace std;
 
@@ -95,11 +96,16 @@ private:
             if (e[3] == exclude_idx) continue;
             if (dsu.unionit(e[0], e[1])) {
                 min_weight += e[2];
+                ++counter;
             }
 
             if (counter == n - 1) {
                 break;
             }
+        }
+
+        if (counter < n - 1) {
+            return INT_MAX;
         }
 
         return min_weight;
