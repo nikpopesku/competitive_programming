@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
-#include <set>
+#include <ranges>
 
 using namespace std;
 
@@ -10,37 +10,31 @@ class Solution {
 public:
     vector<string> findItinerary(const vector<vector<string> > &tickets) {
         unordered_map<string, vector<string> > adj;
-        set<pair<string, string> > visited;
 
         for (auto &e: tickets) {
             adj[e[0]].push_back(e[1]);
         }
 
-        vector<string> stack;
-
-        stack.emplace_back("JFK");
-        vector<string> response;
-
-        while (!stack.empty()) {
-            string elem = stack[0];
-            response.push_back(elem);
-
-            vector<string> neighbours{};
-            for (auto &nei: adj[elem]) {
-                if (!visited.contains(pair{elem, nei})) {
-                    neighbours.push_back(nei);
-                }
-
-                ranges::sort(neighbours);
-            }
-            stack.clear();
-            if (!neighbours.empty()) {
-                stack.push_back(neighbours[0]);
-                visited.insert(pair{elem, neighbours[0]});
-            }
+        // Sort in reverse for efficient pop_back
+        for (auto &dests: adj | views::values) {
+            sort(dests.begin(), dests.end());
         }
 
-        return response;
+        vector<string> result;
+
+        // Hierholzer's algorithm (post-order DFS)
+        auto dfs = [&](auto &&self, const string &u) -> void {
+            while (!adj[u].empty()) {
+                string v = adj[u].back();
+                adj[u].pop_back();  // remove edge
+                self(self, v);
+            }
+            result.push_back(u);  // post-order
+        };
+
+        dfs(dfs, "JFK");
+        ranges::reverse(result);
+        return result;
     }
 };
 
