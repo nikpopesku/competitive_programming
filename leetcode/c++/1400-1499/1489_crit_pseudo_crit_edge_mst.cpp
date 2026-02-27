@@ -75,6 +75,8 @@ public:
                 }
             }
         }
+
+        return {critical, pseudo_critical};
     }
 
 private:
@@ -110,7 +112,7 @@ private:
 int main() {
     auto s = Solution();
 
-    vector<vector<string> > edges = {{0, 1, 1}, {1, 2, 1}, {2, 3, 2}, {0, 3, 2}, {0, 4, 3}, {3, 4, 3}, {1, 4, 6}};
+    vector<vector<int> > edges = {{0, 1, 1}, {1, 2, 1}, {2, 3, 2}, {0, 3, 2}, {0, 4, 3}, {3, 4, 3}, {1, 4, 6}};
 
     for (auto &e: s.findCriticalAndPseudoCriticalEdges(5, edges)) {
         for (auto &j: e) {
