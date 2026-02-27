@@ -50,17 +50,17 @@ public:
 int main() {
     auto s = Solution();
 
-    vector<vector<string> > tickets = {{"MUC", "LHR"}, {"JFK", "MUC"}, {"SFO", "SJC"}, {"LHR", "SFO"}};
-
-    for (auto &e: s.findItinerary(tickets)) {
-        cout << e << ' ';
-    }
-
-    cout << '\n';
+    // vector<vector<string> > tickets = {{"MUC", "LHR"}, {"JFK", "MUC"}, {"SFO", "SJC"}, {"LHR", "SFO"}};
+    //
+    // for (auto &e: s.findItinerary(tickets)) {
+    //     cout << e << ' ';
+    // }
+    //
+    // cout << '\n';
 
     vector<vector<string> > tickets2 = {{"JFK","SFO"},{"JFK","ATL"},{"SFO","ATL"},{"ATL","JFK"},{"ATL","SFO"}};
 
     for (auto &e: s.findItinerary(tickets2)) {
-        cout << e << ' ';
+        cout << e << ' '; //["JFK","ATL","JFK","SFO","ATL","SFO"]
     }
 }
