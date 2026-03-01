@@ -7,9 +7,9 @@ using namespace std;
 class Solution {
 public:
     int checkWays(vector<vector<int> > &pairs) {
-        int n = 500;
+        const int n = 500;
         int distinct_nodes = 0;
-        vector<bool> node;
+        vector node(n, false);
 
         for (auto &p: pairs) {
             if (node[p[0]] == false) {
