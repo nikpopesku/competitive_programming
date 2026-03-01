@@ -9,7 +9,7 @@ public:
     int checkWays(vector<vector<int> > &pairs) {
         const int n = 500;
         int distinct_nodes = 0;
-        vector node(n, false);
+        vector node(n + 1, false);
 
         for (auto &p: pairs) {
             if (node[p[0]] == false) {
