@@ -13,7 +13,7 @@ public:
             n = max(n, max(p[0], p[1]));
         }
 
-        vector<vector<int>> adj(n+1, vector<int>());
+        vector<vector<int> > adj(n + 1, vector<int>());
     }
 };
 
