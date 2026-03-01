@@ -5,14 +5,13 @@ using namespace std;
 
 class Solution {
 public:
-    int checkWays(vector<vector<int>>& pairs) {
-
+    int checkWays(vector<vector<int> > &pairs) {
     }
 };
 
 int main() {
     auto s = Solution();
 
-    vector<vector<int> > tickets = {{"MUC", "LHR"}, {"JFK", "MUC"}, {"SFO", "SJC"}, {"LHR", "SFO"}};
-    cout << s.checkWays(tickets) << '\n';
+    vector<vector<int> > pairs = {{1, 2}, {2, 3}};
+    cout << s.checkWays(pairs) << '\n';
 }
