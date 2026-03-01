@@ -7,13 +7,13 @@ using namespace std;
 class Solution {
 public:
     int checkWays(vector<vector<int> > &pairs) {
-        int maxnode = 1;
+        int n = 1;
 
         for (auto &p: pairs) {
-            maxnode = max(maxnode, max(p[0], p[1]));
+            n = max(n, max(p[0], p[1]));
         }
 
-        vector<vector<int>> adj(maxnode+1, vector<int>());
+        vector<vector<int>> adj(n+1, vector<int>());
     }
 };
 
