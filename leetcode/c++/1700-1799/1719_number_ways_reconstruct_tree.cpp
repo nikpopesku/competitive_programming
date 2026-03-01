@@ -44,12 +44,13 @@ public:
 
         for (int i = 1; i <= n; ++i) {
             if (adj[i].empty()) continue;
-            int min_degree = static_cast<int>(adj[adj[i][0]].size());
+            int min_degree = n;
             int parent_index = adj[i][0];
 
             for (int j = 0; j < adj[i].size(); ++j) {
+                if (adj[adj[i][j]].size() < adj[i].size()) continue;
                 if (static_cast<int>(adj[adj[i][j]].size()) < min_degree) {
-                    parent_index = j;
+                    parent_index = adj[i][j];
                     min_degree = static_cast<int>(adj[adj[i][j]].size());
                 }
             }
