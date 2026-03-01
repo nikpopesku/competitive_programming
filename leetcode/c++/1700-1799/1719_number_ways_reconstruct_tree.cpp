@@ -44,6 +44,7 @@ public:
 
         for (int i = 1; i <= n; ++i) {
             if (adj[i].empty()) continue;
+            if (adj[i].size() == distinct_nodes - 1) continue;
             int min_degree = n;
             int parent_index = adj[i][0];
 
