@@ -17,7 +17,7 @@ public:
                 node[p[0]] = true;
             }
 
-            if (node[p[1] == false]) {
+            if (node[p[1]] == false) {
                 ++distinct_nodes;
                 node[p[1]] = true;
             }
