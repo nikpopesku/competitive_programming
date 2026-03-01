@@ -14,4 +14,10 @@ int main() {
 
     vector<vector<int> > pairs = {{1, 2}, {2, 3}};
     cout << s.checkWays(pairs) << '\n';
+
+    vector<vector<int> > pairs2 = {{1, 2}, {2, 3}, {1, 3}};
+    cout << s.checkWays(pairs2) << '\n';
+
+    vector<vector<int> > pairs3 = {{1, 2}, {2, 3}, {2, 4}, {1, 5}};
+    cout << s.checkWays(pairs3) << '\n';
 }
