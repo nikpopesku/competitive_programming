@@ -9,6 +9,7 @@ public:
         const int n = 500;
         int distinct_nodes = 0;
         vector node(n + 1, false);
+        vector<int> parent(n+1);
 
         for (auto &p: pairs) {
             if (node[p[0]] == false) {
@@ -39,6 +40,17 @@ public:
 
         if (no_root) {
             return 0;
+        }
+
+        for (int i = 1; i <= n; ++i) {
+            if (adj[i].empty()) continue;
+            int min_degree = static_cast<int>(adj[adj[i][0]].size());
+
+            for (auto &a: adj[i]) {
+                min_degree = min(min_degree, static_cast<int>(adj[a].size()));
+            }
+
+            parent[i] = min_degree;
         }
     }
 };
