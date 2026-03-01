@@ -29,10 +29,16 @@ public:
             adj[p[1]].push_back(p[0]);
         }
 
+        bool no_root = true;
         for (auto &a: adj) {
             if (a.size() == distinct_nodes - 1) {
-                return 0;
+                no_root = false;
+                break;
             }
+        }
+
+        if (no_root) {
+            return 0;
         }
     }
 };
