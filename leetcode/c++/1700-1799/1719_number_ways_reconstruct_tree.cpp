@@ -31,10 +31,11 @@ public:
         }
 
         bool no_root = true;
+        int ans = 1;
         for (auto &a: adj) {
             if (a.size() == distinct_nodes - 1) {
+                if (!no_root) ans = 2;
                 no_root = false;
-                break;
             }
         }
 
@@ -58,6 +59,32 @@ public:
 
             parent[i] = parent_index;
         }
+
+        int ans = 1;
+
+        for (int i = 1; i <= n; ++i) {
+            if (adj[i].empty()) continue;
+            if (adj[i].size() == distinct_nodes - 1) continue;
+
+            int p = parent[i];
+
+            // count common neighbors of i and p
+            vector<bool> in_adj_p(n + 1, false);
+            for (auto &a: adj[p]) {
+                in_adj_p[a] = true;
+            }
+
+            int common = 0;
+            for (auto &a: adj[i]) {
+                if (a != p && in_adj_p[a]) ++common;
+            }
+
+            if (common != static_cast<int>(adj[i].size()) - 1) return 0;
+
+            if (adj[i].size() == adj[p].size()) ans = 2;
+        }
+
+        return ans;
     }
 };
 
