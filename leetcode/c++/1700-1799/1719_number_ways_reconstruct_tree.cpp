@@ -1,4 +1,5 @@
 #include <iostream>
+#include <set>
 #include <vector>
 
 using namespace std;
@@ -6,6 +7,13 @@ using namespace std;
 class Solution {
 public:
     int checkWays(vector<vector<int> > &pairs) {
+        int maxnode = 1;
+
+        for (auto &p: pairs) {
+            maxnode = max(maxnode, max(p[0], p[1]));
+        }
+
+        vector<vector<int>> adj(maxnode+1, vector<int>());
     }
 };
 
