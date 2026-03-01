@@ -9,7 +9,7 @@ public:
         const int n = 500;
         int distinct_nodes = 0;
         vector node(n + 1, false);
-        vector<int> parent(n+1);
+        vector<int> parent(n + 1);
 
         for (auto &p: pairs) {
             if (node[p[0]] == false) {
@@ -45,12 +45,16 @@ public:
         for (int i = 1; i <= n; ++i) {
             if (adj[i].empty()) continue;
             int min_degree = static_cast<int>(adj[adj[i][0]].size());
+            int parent_index = adj[i][0];
 
-            for (auto &a: adj[i]) {
-                min_degree = min(min_degree, static_cast<int>(adj[a].size()));
+            for (int j = 0; j < adj[i].size(); ++j) {
+                if (static_cast<int>(adj[adj[i][j]].size()) < min_degree) {
+                    parent_index = j;
+                    min_degree = static_cast<int>(adj[adj[i][j]].size());
+                }
             }
 
-            parent[i] = min_degree;
+            parent[i] = parent_index;
         }
     }
 };
@@ -62,7 +66,7 @@ int main() {
     cout << s.checkWays(pairs) << '\n';
 
     vector<vector<int> > pairs2 = {{1, 2}, {2, 3}, {1, 3}};
-    cout << s.checkWays(pairs2) << '\n';
+        cout << s.checkWays(pairs2) << '\n';
 
     vector<vector<int> > pairs3 = {{1, 2}, {2, 3}, {2, 4}, {1, 5}};
     cout << s.checkWays(pairs3) << '\n';
