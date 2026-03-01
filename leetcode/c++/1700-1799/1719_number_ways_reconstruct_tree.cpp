@@ -7,10 +7,20 @@ using namespace std;
 class Solution {
 public:
     int checkWays(vector<vector<int> > &pairs) {
-        int n = 1;
+        int n = 500;
+        int distinct_nodes = 0;
+        vector<bool> node;
 
         for (auto &p: pairs) {
-            n = max(n, max(p[0], p[1]));
+            if (node[p[0]] == false) {
+                ++distinct_nodes;
+                node[p[0]] = true;
+            }
+
+            if (node[p[1] == false]) {
+                ++distinct_nodes;
+                node[p[1]] = true;
+            }
         }
 
         vector adj(n + 1, vector<int>());
