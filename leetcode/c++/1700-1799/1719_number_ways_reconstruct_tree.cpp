@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    int checkWays(vector<vector<int> > &pairs) {
+    int checkWays(const vector<vector<int> > &pairs) {
         const int n = 500;
         int distinct_nodes = 0;
         vector node(n + 1, false);
@@ -28,6 +28,12 @@ public:
         for (auto &p: pairs) {
             adj[p[0]].push_back(p[1]);
             adj[p[1]].push_back(p[0]);
+        }
+
+        for (auto &a: adj) {
+            if (a.size() == distinct_nodes - 1) {
+                return 0;
+            }
         }
     }
 };
