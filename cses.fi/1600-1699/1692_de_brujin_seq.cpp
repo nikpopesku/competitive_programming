@@ -31,4 +31,9 @@ int main() {
     vector<int> result;
     dfs(result, 0, adj);
 
+    for (int i = 1; i < n-1; ++i) cout << '0';
+    for (auto &e: result) {
+        cout << (e & 1);
+    }
+
 }
