@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-#include<cmath>
 
 using namespace std;
 
@@ -26,7 +25,9 @@ int main() {
     int n;
     cin >> n;
 
-    const int mx = static_cast<int>(pow(2, n - 1));
+    if (n == 1) { cout << "01\n"; return 0; }
+
+    const int mx = 1 << (n - 1);
     vector adj(mx, vector<int>());
 
     for (int i = 0; i < mx; ++i) {
@@ -36,9 +37,9 @@ int main() {
 
     vector<int> result;
     dfs(result, 0, adj);
+    ranges::reverse(result);
 
-    for (int i = 1; i < n - 1; ++i) cout << '0';
-    for (const auto &e: result) {
-        cout << (e & 1);
-    }
+    for (int i = 0; i < n - 1; ++i) cout << '0';
+    for (int i = 1; i < (int)result.size(); ++i) cout << (result[i] & 1);
+    cout << '\n';
 }
