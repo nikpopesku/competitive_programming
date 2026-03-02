@@ -23,12 +23,11 @@ int main() {
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
-        adj[a].push_back(b);
+        adj[b].push_back(a);
     }
 
     vector<int> result;
     dfs(result, n, adj);
-    ranges::reverse(result);
 
     for (const auto &i: result) {
         cout << i << ' ';
