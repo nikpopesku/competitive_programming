@@ -10,4 +10,13 @@ int main() {
 
     int n;
     cin >> n;
+
+    const int mx = pow(2, n-1);
+    vector adj(mx, vector<int>());
+
+    for (int i = 0; i < mx; ++i) {
+        adj[i].push_back((i * 2 + 0) % mx);
+        adj[i].push_back((i * 2 + 1) % mx);
+    }
+
 }
