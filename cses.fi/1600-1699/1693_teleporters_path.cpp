@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void dfs(vector<int>& response, int node, vector<vector<int>>& adj) {
+void dfs(vector<int> &response, int node, vector<vector<int> > &adj) {
     while (!adj[node].empty()) {
         auto e = adj[node].back();
         adj[node].pop_back();
@@ -54,6 +54,11 @@ int main() {
         }
     }
 
+
+    dfs(response, 1, adj);
+    ranges::reverse(response);
+
+
     if (response[0] != 1 || response.back() != n) {
         cout << "IMPOSSIBLE\n";
 
@@ -66,9 +71,6 @@ int main() {
         return 0;
     }
 
-
-    dfs(response, 1, adj);
-    ranges::reverse(response);
 
     for (const auto &i: response) {
         cout << i << ' ';
