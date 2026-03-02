@@ -27,7 +27,7 @@ int main() {
         cin >> a >> b;
         adj[a].push_back(b);
         ++outdegree[a];
-        ++indegree[a];
+        ++indegree[b];
     }
 
     vector<int> response;
