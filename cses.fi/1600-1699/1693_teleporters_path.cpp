@@ -35,7 +35,7 @@ int main() {
         return 0;
     }
 
-    if (result.back() != n) {
+    if (result.back() != n || result[0] != 1) {
         cout << "IMPOSSIBLE\n";
 
         return 0;
