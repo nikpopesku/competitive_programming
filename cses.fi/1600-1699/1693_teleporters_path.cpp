@@ -29,6 +29,18 @@ int main() {
     vector<int> result;
     dfs(result, n, adj);
 
+    if (static_cast<int>(result.size()) != m + 1) {
+        cout << "IMPOSSIBLE\n";
+
+        return 0;
+    }
+
+    if (result.back() != n) {
+        cout << "IMPOSSIBLE\n";
+
+        return 0;
+    }
+
     for (const auto &i: result) {
         cout << i << ' ';
     }
