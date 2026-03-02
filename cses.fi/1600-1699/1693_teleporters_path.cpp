@@ -15,4 +15,11 @@ int main() {
         cin >> a >> b;
         adj[a].push_back(b);
     }
+
+    vector<int> result;
+    ranges::reverse(result);
+
+    for (const auto &i: result) {
+        cout << i << ' ';
+    }
 }
