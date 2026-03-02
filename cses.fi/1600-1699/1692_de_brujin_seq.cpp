@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include<cmath>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ int main() {
     int n;
     cin >> n;
 
-    const int mx = pow(2, n - 1);
+    const int mx = static_cast<int>(pow(2, n - 1));
     vector adj(mx, vector<int>());
 
     for (int i = 0; i < mx; ++i) {
