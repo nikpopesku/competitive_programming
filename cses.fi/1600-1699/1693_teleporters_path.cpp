@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void dfs(vector<int> &result, int node, vector<vector<int> > &adj) {
+void dfs(vector<int> &result, const int node, vector<vector<int> > &adj) {
     while (!adj[node].empty()) {
         const int nei = adj[node].back();
         adj[node].pop_back();
