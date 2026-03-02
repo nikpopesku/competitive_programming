@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void dfs(vector<int>& result, int node, vector<vector<int>>& adj) {
+void dfs(vector<int> &result, int node, vector<vector<int> > &adj) {
     while (!adj[node].empty()) {
         const int nei = adj[node].back();
         adj[node].pop_back();
@@ -20,7 +20,7 @@ int main() {
     int n;
     cin >> n;
 
-    const int mx = pow(2, n-1);
+    const int mx = pow(2, n - 1);
     vector adj(mx, vector<int>());
 
     for (int i = 0; i < mx; ++i) {
@@ -31,9 +31,8 @@ int main() {
     vector<int> result;
     dfs(result, 0, adj);
 
-    for (int i = 1; i < n-1; ++i) cout << '0';
+    for (int i = 1; i < n - 1; ++i) cout << '0';
     for (auto &e: result) {
         cout << (e & 1);
     }
-
 }
