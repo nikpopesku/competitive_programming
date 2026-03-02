@@ -2,6 +2,15 @@
 
 using namespace std;
 
+void dfs(vector<int>& result, int node, vector<vector<int>>& adj) {
+    while (!adj[node].empty()) {
+        const int nei = adj[node].back();
+        adj[node].pop_back();
+        dfs(result, nei, adj);
+    }
+
+    result.push_back(node);
+}
 
 int main() {
     ios_base::sync_with_stdio(false);
