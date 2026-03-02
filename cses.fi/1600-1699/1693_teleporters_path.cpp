@@ -27,7 +27,7 @@ int main() {
     }
 
     vector<int> result;
-    dfs(result, n)
+    dfs(result, n, adj);
     ranges::reverse(result);
 
     for (const auto &i: result) {
