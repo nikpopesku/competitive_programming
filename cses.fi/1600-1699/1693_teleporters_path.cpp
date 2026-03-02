@@ -24,7 +24,7 @@ int main() {
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
-        adj[b].push_back(a);
+        adj[a].push_back(b);
         outdeg[a]++;
         indeg[b]++;
     }
@@ -46,7 +46,8 @@ int main() {
     }
 
     vector<int> result;
-    dfs(result, n, adj);
+    dfs(result, 1, adj);
+    reverse(result.begin(), result.end());
 
     if (static_cast<int>(result.size()) != m + 1) {
         cout << "IMPOSSIBLE\n";
@@ -54,7 +55,7 @@ int main() {
         return 0;
     }
 
-    if (result.back() != n || result[0] != 1) {
+    if (result[0] != 1 || result.back() != n) {
         cout << "IMPOSSIBLE\n";
 
         return 0;
