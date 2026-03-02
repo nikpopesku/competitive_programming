@@ -38,7 +38,7 @@ int main() {
     dfs(result, 0, adj);
 
     for (int i = 1; i < n - 1; ++i) cout << '0';
-    for (auto &e: result) {
+    for (const auto &e: result) {
         cout << (e & 1);
     }
 }
