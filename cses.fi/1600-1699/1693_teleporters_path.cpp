@@ -20,10 +20,20 @@ int main() {
     int n, m, a, b;
     cin >> n >> m;
     vector adj(n + 1, vector<int>());
+    vector<int> indeg(n + 1, 0), outdeg(n + 1, 0);
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
         adj[b].push_back(a);
+        outdeg[a]++;
+        indeg[b]++;
+    }
+
+    for (int i = 1; i <= n; ++i) {
+        int diff = outdeg[i] - indeg[i];
+        if (i == 1 && diff != 1) { cout << "IMPOSSIBLE\n"; return 0; }
+        else if (i == n && diff != -1) { cout << "IMPOSSIBLE\n"; return 0; }
+        else if (i != 1 && i != n && diff != 0) { cout << "IMPOSSIBLE\n"; return 0; }
     }
 
     vector<int> result;
