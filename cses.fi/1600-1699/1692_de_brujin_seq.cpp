@@ -3,14 +3,19 @@
 
 using namespace std;
 
-void dfs(vector<int> &result, int node, vector<vector<int> > &adj) {
-    while (!adj[node].empty()) {
-        const int nei = adj[node].back();
-        adj[node].pop_back();
-        dfs(result, nei, adj);
+void dfs(vector<int> &result, const int start, vector<vector<int> > &adj) {
+    stack<int> st;
+    st.push(start);
+    while (!st.empty()) {
+        int node = st.top();
+        if (!adj[node].empty()) {
+            st.push(adj[node].back());
+            adj[node].pop_back();
+        } else {
+            result.push_back(node);
+            st.pop();
+        }
     }
-
-    result.push_back(node);
 }
 
 int main() {
