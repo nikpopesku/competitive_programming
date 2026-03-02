@@ -25,7 +25,10 @@ int main() {
     int n;
     cin >> n;
 
-    if (n == 1) { cout << "01\n"; return 0; }
+    if (n == 1) {
+        cout << "01\n";
+        return 0;
+    }
 
     const int mx = 1 << (n - 1);
     vector adj(mx, vector<int>());
@@ -40,6 +43,6 @@ int main() {
     ranges::reverse(result);
 
     for (int i = 0; i < n - 1; ++i) cout << '0';
-    for (int i = 1; i < (int)result.size(); ++i) cout << (result[i] & 1);
+    for (int i = 1; i < static_cast<int>(result.size()); ++i) cout << (result[i] & 1);
     cout << '\n';
 }
