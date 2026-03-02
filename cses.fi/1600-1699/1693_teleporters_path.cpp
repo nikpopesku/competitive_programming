@@ -30,10 +30,19 @@ int main() {
     }
 
     for (int i = 1; i <= n; ++i) {
-        int diff = outdeg[i] - indeg[i];
-        if (i == 1 && diff != 1) { cout << "IMPOSSIBLE\n"; return 0; }
-        else if (i == n && diff != -1) { cout << "IMPOSSIBLE\n"; return 0; }
-        else if (i != 1 && i != n && diff != 0) { cout << "IMPOSSIBLE\n"; return 0; }
+        const int diff = outdeg[i] - indeg[i];
+        if (i == 1 && diff != 1) {
+            cout << "IMPOSSIBLE\n";
+            return 0;
+        }
+        if (i == n && diff != -1) {
+            cout << "IMPOSSIBLE\n";
+            return 0;
+        }
+        if (i != 1 && i != n && diff != 0) {
+            cout << "IMPOSSIBLE\n";
+            return 0;
+        }
     }
 
     vector<int> result;
