@@ -9,7 +9,7 @@ int main() {
 
     int n, m, a, b;
     cin >> n >> m;
-    vector adj(n+1, vector<int>());
+    vector adj(n + 1, vector<int>());
 
     for (int i = 0; i < m; ++i) {
         cin >> a >> b;
