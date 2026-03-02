@@ -28,4 +28,7 @@ int main() {
         adj[i].push_back((i * 2 + 1) % mx);
     }
 
+    vector<int> result;
+    dfs(result, 0, adj);
+
 }
