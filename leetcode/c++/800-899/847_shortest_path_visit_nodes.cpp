@@ -32,8 +32,8 @@ public:
                 }
 
                 for (auto nei: graph[elem]) {
-                    if (!visited[nei][1<<nei]) {
-                        visited[nei][1<<nei] = true;
+                    if (!visited[nei][1 << nei]) {
+                        visited[nei][1 << nei] = true;
                         q.push({nei, 1 << nei});
                     }
                 }
