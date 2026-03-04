@@ -7,17 +7,17 @@ using namespace std;
 
 class Solution {
 public:
-    int shortestPathLength(vector<vector<int> > &graph) {
+    int shortestPathLength(const vector<vector<int> > &graph) {
         queue<pair<int, int> > q;
         const int n = static_cast<int>(graph.size());
-        vector visited(n, vector<bool>(1 << n, false));
+        vector visited(n, vector(1 << n, false));
 
         for (int i = 0; i < n; ++i) {
             q.emplace(i, 1 << i);
             visited[i][1 << i] = true;
         }
 
-        int all_visited = (1 << n) - 1;
+        const int all_visited = (1 << n) - 1;
         int steps = 0;
 
         while (!q.empty()) {
