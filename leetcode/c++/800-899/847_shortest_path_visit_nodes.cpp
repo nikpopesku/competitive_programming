@@ -9,7 +9,7 @@ class Solution {
 public:
     int shortestPathLength(vector<vector<int> > &graph) {
         queue<pair<int, int> > q;
-        int n = static_cast<int>(graph.size());
+        const int n = static_cast<int>(graph.size());
 
         for (int i = 0; i < n; ++i) {
             q.push({i, 1 << i});
