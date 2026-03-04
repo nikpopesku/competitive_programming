@@ -10,7 +10,7 @@ public:
     int shortestPathLength(vector<vector<int> > &graph) {
         queue<pair<int, int> > q;
         const int n = static_cast<int>(graph.size());
-        vector<vector<bool> > visited(n, vector<bool>(1 << n, false));
+        vector visited(n, vector<bool>(1 << n, false));
 
         for (int i = 0; i < n; ++i) {
             q.push({i, 1 << i});
@@ -28,7 +28,7 @@ public:
 
                 if (mask == all_visited) return steps;
 
-                for (int neighbor : graph[node]) {
+                for (int neighbor: graph[node]) {
                     int new_mask = mask | (1 << neighbor);
                     if (!visited[neighbor][new_mask]) {
                         visited[neighbor][new_mask] = true;
