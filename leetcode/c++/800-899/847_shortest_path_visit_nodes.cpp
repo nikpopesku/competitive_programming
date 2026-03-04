@@ -13,7 +13,7 @@ public:
         vector visited(n, vector<bool>(1 << n, false));
 
         for (int i = 0; i < n; ++i) {
-            q.push({i, 1 << i});
+            q.emplace(i, 1 << i);
             visited[i][1 << i] = true;
         }
 
@@ -34,7 +34,7 @@ public:
                 for (auto nei: graph[elem]) {
                     if (!visited[nei][1 << nei]) {
                         visited[nei][1 << nei] = true;
-                        q.push({nei, 1 << nei});
+                        q.emplace(nei, 1 << nei);
                     }
                 }
             }
