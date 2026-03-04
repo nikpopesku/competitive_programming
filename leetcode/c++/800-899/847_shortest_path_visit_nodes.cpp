@@ -33,9 +33,9 @@ public:
 
                 for (auto nei: graph[elem]) {
                     int new_mask = mask | (1 << nei);
-                    if (!visited[nei][1 << new_mask]) {
-                        visited[nei][1 << new_mask] = true;
-                        q.emplace(nei, 1 << new_mask);
+                    if (!visited[nei][new_mask]) {
+                        visited[nei][new_mask] = true;
+                        q.emplace(nei, new_mask);
                     }
                 }
             }
