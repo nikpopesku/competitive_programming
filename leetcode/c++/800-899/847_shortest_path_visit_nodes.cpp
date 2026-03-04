@@ -24,23 +24,26 @@ public:
             int sz = static_cast<int>(q.size());
 
             while (--sz >= 0) {
-                auto [elem, bitmsk] = q.front();
+                auto [elem, mask] = q.front();
                 q.pop();
 
-                if (bitmsk == all_visited) {
+                if (mask == all_visited) {
                     return steps;
                 }
 
                 for (auto nei: graph[elem]) {
-                    if (!visited[nei][1 << nei]) {
-                        visited[nei][1 << nei] = true;
-                        q.emplace(nei, 1 << nei);
+                    int new_mask = mask | (1 << nei);
+                    if (!visited[nei][1 << new_mask]) {
+                        visited[nei][1 << new_mask] = true;
+                        q.emplace(nei, 1 << new_mask);
                     }
                 }
             }
 
             ++steps;
         }
+
+        return steps;
     }
 };
 
