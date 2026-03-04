@@ -14,5 +14,5 @@ int main() {
     auto s = Solution();
 
     vector<vector<int> > graph = {{1, 2, 3}, {0}, {0}, {0}};
-    cout << s.shortestPathLength(graph) << endl; //0
+    cout << s.shortestPathLength(graph) << endl; //4
 }
