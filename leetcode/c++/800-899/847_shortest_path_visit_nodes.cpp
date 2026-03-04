@@ -16,6 +16,31 @@ public:
             q.push({i, 1 << i});
             visited[i][1 << i] = true;
         }
+
+        int all_visited = (1 << n) - 1;
+        int steps = 0;
+
+        while (!q.empty()) {
+            int sz = static_cast<int>(q.size());
+
+            while (--sz >= 0) {
+                auto [elem, bitmsk] = q.front();
+                q.pop();
+
+                if (bitmsk == all_visited) {
+                    return steps;
+                }
+
+                for (auto nei: graph[elem]) {
+                    if (!visited[nei][1<<nei]) {
+                        visited[nei][1<<nei] = true;
+                        q.push({nei, 1 << nei});
+                    }
+                }
+            }
+
+            ++steps;
+        }
     }
 };
 
