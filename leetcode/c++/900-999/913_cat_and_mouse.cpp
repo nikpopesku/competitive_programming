@@ -11,7 +11,7 @@ using namespace std;
 class Solution {
 public:
     int catMouseGame(const vector<vector<int>> &graph) {
-        int n = graph.size();
+        const int n = static_cast<int>(graph.size());
         // result[m][c][t]: 0=draw, 1=mouse wins, 2=cat wins
         vector<vector<array<int, 2>>> result(n, vector<array<int, 2>>(n, {0, 0}));
         // degree[m][c][t]: remaining undetermined moves from this state
