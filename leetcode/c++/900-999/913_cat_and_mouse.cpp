@@ -12,7 +12,7 @@ constexpr int CAT_MOVE = 2;
 class Solution {
 public:
     int catMouseGame(const vector<vector<int> > &graph) {
-        queue<tuple<int, int, int>> q;
+        queue<tuple<int, int, int> > q;
 
         q.push({1, 2, MOUSE_MOVE});
         int count_moves = 0;
@@ -25,7 +25,9 @@ public:
 
             for (const auto new_move: graph[next_move]) {
                 if (next_move == CAT_MOVE and new_move == 0) continue;
-                auto state = next_move == MOUSE_MOVE ? tuple{new_move, cat_position, next_move} : tuple{mouse_position, new_move, next_move};
+                auto state = next_move == MOUSE_MOVE
+                     ? tuple{new_move, cat_position, next_move}
+                     : tuple{mouse_position, new_move, next_move};
             }
 
             ++count_moves;
