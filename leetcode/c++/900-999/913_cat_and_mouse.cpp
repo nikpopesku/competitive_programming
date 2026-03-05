@@ -28,6 +28,10 @@ public:
                 auto state = next_move == MOUSE_MOVE
                      ? tuple{new_move, cat_position, next_move}
                      : tuple{mouse_position, new_move, next_move};
+                if (!visited.contains(state)) {
+                    q.push(state);
+                    visited[state] = true;
+                }
             }
 
             ++count_moves;
