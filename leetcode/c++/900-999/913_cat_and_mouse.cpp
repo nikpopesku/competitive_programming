@@ -19,8 +19,8 @@ public:
 
         for (int m = 0; m < n; m++) {
             for (int c = 1; c < n; c++) {
-                degree[m][c][0] = graph[m].size();
-                for (int next : graph[c])
+                degree[m][c][0] = static_cast<int>(graph[m].size());
+                for (const int next : graph[c])
                     if (next != 0) degree[m][c][1]++;
             }
         }
@@ -45,7 +45,7 @@ public:
         while (!q.empty()) {
             auto [m, c, t] = q.front();
             q.pop();
-            int res = result[m][c][t];
+            const int res = result[m][c][t];
 
             // Find predecessors: states that transitioned into (m, c, t)
             if (t == 0) {
