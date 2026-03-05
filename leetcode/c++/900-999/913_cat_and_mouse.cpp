@@ -1,6 +1,7 @@
 #include <iostream>
 #include <numeric>
 #include <queue>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -8,6 +9,17 @@ using namespace std;
 
 constexpr int MOUSE_MOVE = 1;
 constexpr int CAT_MOVE = 2;
+
+struct TupleHash {
+    size_t operator()(const tuple<int, int, int>& t) const {
+        auto [a, b, c] = t;
+        return hash<long long>()(
+            (static_cast<long long>(a) << 40) ^
+            (static_cast<long long>(b) << 20) ^
+            static_cast<long long>(c)
+        );
+    }
+};
 
 class Solution {
 public:
@@ -17,7 +29,7 @@ public:
 
         q.push({1, 2, MOUSE_MOVE});
         int count_moves = 0;
-        unordered_map<tuple<int, int, int>, int> visited;
+        unordered_map<tuple<int, int, int>, int, TupleHash> visited;
 
         while (!q.empty()) {
             auto [mouse_position, cat_position, last_move] = q.front();
@@ -38,9 +50,9 @@ public:
                 auto state = next_move == MOUSE_MOVE
                      ? tuple{new_move, cat_position, next_move}
                      : tuple{mouse_position, new_move, next_move};
-                if (!visited.contains(state)) {
+                if (visited.find(state) == visited.end()) {
                     q.push(state);
-                    visited[state] = true;
+                    visited[state] = 0;
                 }
             }
 
