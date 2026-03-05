@@ -13,6 +13,7 @@ class Solution {
 public:
     int catMouseGame(const vector<vector<int> > &graph) {
         queue<tuple<int, int, int> > q;
+        const int n = static_cast<int>(q.size());
 
         q.push({1, 2, MOUSE_MOVE});
         int count_moves = 0;
@@ -22,6 +23,15 @@ public:
             auto [mouse_position, cat_position, last_move] = q.front();
             q.pop();
             int next_move = last_move == MOUSE_MOVE ? CAT_MOVE : MOUSE_MOVE;
+            if (mouse_position == 0) {
+                return 1;
+            }
+            if (mouse_position == cat_position) {
+                return 2;
+            }
+            if (count_moves > 2 * n) {
+                return 0;
+            }
 
             for (const auto new_move: graph[next_move]) {
                 if (next_move == CAT_MOVE and new_move == 0) continue;
