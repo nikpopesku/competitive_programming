@@ -41,11 +41,15 @@ public:
                 if (!visited.contains(state)) {
                     q.push(state);
                     visited[state] = true;
+                } else {
+                    return 0;
                 }
             }
 
             ++count_moves;
         }
+
+        return 0;
     }
 };
 
