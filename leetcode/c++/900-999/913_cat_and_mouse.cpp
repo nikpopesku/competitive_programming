@@ -12,12 +12,12 @@ constexpr int CAT_MOVE = 2;
 class Solution {
 public:
     int catMouseGame(const vector<vector<int> > &graph) {
+        const int n = static_cast<int>(graph.size());
         queue<tuple<int, int, int> > q;
-        const int n = static_cast<int>(q.size());
 
         q.push({1, 2, MOUSE_MOVE});
         int count_moves = 0;
-        unordered_map<tuple<int, int, int>, bool> visited;
+        unordered_map<tuple<int, int, int>, int> visited;
 
         while (!q.empty()) {
             auto [mouse_position, cat_position, last_move] = q.front();
@@ -41,8 +41,6 @@ public:
                 if (!visited.contains(state)) {
                     q.push(state);
                     visited[state] = true;
-                } else {
-                    return 0;
                 }
             }
 
