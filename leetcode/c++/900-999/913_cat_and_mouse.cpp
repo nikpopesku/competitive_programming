@@ -27,16 +27,16 @@ class Solution {
         if (mousePos == catPos) return 2;
         if (moves >= 2 * graph.size()) return 0;
 
-        auto state = make_tuple(mousePos, catPos, turn);
-        if (memo.find(state) != memo.end()) {
+        const auto state = make_tuple(mousePos, catPos, turn);
+        if (memo.contains(state)) {
             return memo[state];
         }
 
         int result;
         if (turn == MOUSE_MOVE) {
             result = 2;
-            for (int nextPos: graph[mousePos]) {
-                int subResult = solve(graph, nextPos, catPos, CAT_MOVE, moves + 1);
+            for (const int nextPos: graph[mousePos]) {
+                const int subResult = solve(graph, nextPos, catPos, CAT_MOVE, moves + 1);
                 if (subResult == 1) {
                     result = 1;
                     break;
@@ -45,9 +45,9 @@ class Solution {
             }
         } else {
             result = 1;
-            for (int nextPos: graph[catPos]) {
+            for (const int nextPos: graph[catPos]) {
                 if (nextPos == 0) continue;
-                int subResult = solve(graph, mousePos, nextPos, MOUSE_MOVE, moves + 1);
+                const int subResult = solve(graph, mousePos, nextPos, MOUSE_MOVE, moves + 1);
                 if (subResult == 2) {
                     result = 2;
                     break;
