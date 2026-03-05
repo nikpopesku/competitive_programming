@@ -74,5 +74,8 @@ int main() {
     cout << s.catMouseGame(graph) << endl; // 0
 
     vector<vector<int> > graph2 = {{1, 3}, {0}, {3}, {0, 2}};
-    cout << s.catMouseGame(graph2) << endl; // 1
+    cout << s.catMouseGame(graph2) << endl; // Expected: 1
+
+    vector<vector<int> > graph3 = {{5, 6}, {3, 4}, {6}, {1, 4, 5}, {1, 3, 5}, {0, 3, 4, 6}, {0, 2, 5}};
+    cout << s.catMouseGame(graph3) << endl; // Expected: 2
 }
