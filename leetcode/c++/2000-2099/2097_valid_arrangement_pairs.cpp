@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void dfs(const int node, const int parent, vector<vector<int> > &adj, vector<vector<int>> &result) {
+void dfs(const int node, const int parent, vector<vector<int> > &adj, vector<vector<int> > &result) {
     while (!adj[node].empty()) {
         const auto e = adj[node].back();
         adj[node].pop_back();
@@ -45,7 +45,7 @@ public:
             }
         }
 
-        vector<vector<int>> result;
+        vector<vector<int> > result;
 
         dfs(start, -1, adj, result);
         ranges::reverse(result);
@@ -59,6 +59,12 @@ int main() {
 
     vector<vector<int> > pairs = {{5, 1}, {4, 5}, {11, 9}, {9, 4}};
     for (auto &e: s.validArrangement(pairs)) {
+        cout << e[0] << ' ' << e[1] << '\n';
+    }
+    cout << '\n';
+
+    vector<vector<int> > pairs2 = {{1,3},{3,2},{2,1}};
+    for (auto &e: s.validArrangement(pairs2)) {
         cout << e[0] << ' ' << e[1] << '\n';
     }
 }
