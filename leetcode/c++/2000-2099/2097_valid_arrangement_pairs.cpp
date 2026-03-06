@@ -5,6 +5,17 @@
 
 using namespace std;
 
+void dfs(int node, vector<vector<int>>& adj, vector<int>& result) {
+    while (!adj[node].empty()) {
+        auto e = adj[node].back();
+        adj[node].pop_back();
+
+        dfs(e, adj, result);
+    }
+
+    result.push_back(node);
+}
+
 class Solution {
 public:
     vector<vector<int> > validArrangement(vector<vector<int> > &pairs) {
@@ -30,6 +41,10 @@ public:
                 break;
             }
         }
+
+        vector<int> result;
+
+        dfs(start, adj, result);
     }
 };
 
