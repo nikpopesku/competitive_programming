@@ -1,19 +1,17 @@
 #include <algorithm>
 #include <iostream>
-#include <queue>
+#include <unordered_map>
 #include <vector>
-#include <array>
 
 using namespace std;
 
-void dfs(const int node, const int parent, vector<vector<int> > &adj, vector<vector<int> > &result) {
-    while (!adj[node].empty()) {
-        const auto e = adj[node].back();
-        adj[node].pop_back();
-
+void dfs(int node, int parent, unordered_map<int, vector<int>> &adj, vector<vector<int>> &result) {
+    auto &neighbors = adj[node];
+    while (!neighbors.empty()) {
+        const int e = neighbors.back();
+        neighbors.pop_back();
         dfs(e, node, adj, result);
     }
-
     if (parent != -1) {
         result.push_back({parent, node});
     }
@@ -21,15 +19,9 @@ void dfs(const int node, const int parent, vector<vector<int> > &adj, vector<vec
 
 class Solution {
 public:
-    vector<vector<int> > validArrangement(const vector<vector<int> > &pairs) {
-        int n = pairs[0][0];
-        for (auto &p: pairs) {
-            n = max(n, p[0]);
-            n = max(n, p[1]);
-        }
-        vector outdegree(n + 1, 0);
-        vector indegree(n + 1, 0);
-        vector adj(n + 1, vector<int>());
+    vector<vector<int>> validArrangement(const vector<vector<int>> &pairs) {
+        unordered_map<int, int> outdegree, indegree;
+        unordered_map<int, vector<int>> adj;
 
         for (auto &p: pairs) {
             ++outdegree[p[0]];
@@ -38,15 +30,14 @@ public:
         }
 
         int start = pairs[0][0];
-        for (int i = 1; i <= n; ++i) {
-            if (outdegree[i] - indegree[i] == 1) {
-                start = i;
+        for (auto &[node, out]: outdegree) {
+            if (out - indegree[node] == 1) {
+                start = node;
                 break;
             }
         }
 
-        vector<vector<int> > result;
-
+        vector<vector<int>> result;
         dfs(start, -1, adj, result);
         ranges::reverse(result);
 
