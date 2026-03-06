@@ -22,6 +22,14 @@ public:
             ++indegree[p[1]];
             adj[p[0]].push_back(p[1]);
         }
+
+        int start = -1;
+        for (int i = 1; i <= n; ++i) {
+            if (outdegree[i] - indegree[i] == 1) {
+                start = i;
+                break;
+            }
+        }
     }
 };
 
