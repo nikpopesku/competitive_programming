@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void dfs(int node, vector<vector<int> > &adj, vector<int> &result) {
+void dfs(const int node, vector<vector<int> > &adj, vector<int> &result) {
     while (!adj[node].empty()) {
         auto e = adj[node].back();
         adj[node].pop_back();
@@ -25,9 +25,9 @@ public:
             n = max(n, p[0]);
             n = max(n, p[1]);
         }
-        vector<int> outdegree(n + 1, 0);
-        vector<int> indegree(n + 1, 0);
-        vector<vector<int> > adj(n + 1, vector<int>());
+        vector outdegree(n + 1, 0);
+        vector indegree(n + 1, 0);
+        vector adj(n + 1, vector<int>());
 
         for (auto &p: pairs) {
             ++outdegree[p[0]];
