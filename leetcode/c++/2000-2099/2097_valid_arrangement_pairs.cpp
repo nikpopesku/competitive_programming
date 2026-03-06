@@ -6,15 +6,17 @@
 
 using namespace std;
 
-void dfs(const int node, vector<vector<int> > &adj, vector<int> &result) {
+void dfs(const int node, const int parent, vector<vector<int> > &adj, vector<vector<int>> &result) {
     while (!adj[node].empty()) {
         const auto e = adj[node].back();
         adj[node].pop_back();
 
-        dfs(e, adj, result);
+        dfs(e, node, adj, result);
     }
 
-    result.push_back(node);
+    if (parent != -1) {
+        result.push_back({parent, node});
+    }
 }
 
 class Solution {
@@ -43,9 +45,9 @@ public:
             }
         }
 
-        vector<int> result;
+        vector<vector<int>> result;
 
-        dfs(start, adj, result);
+        dfs(start, -1, adj, result);
         ranges::reverse(result);
 
         return result;
