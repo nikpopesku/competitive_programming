@@ -63,7 +63,7 @@ int main() {
     }
     cout << '\n';
 
-    vector<vector<int> > pairs2 = {{1,3},{3,2},{2,1}};
+    vector<vector<int> > pairs2 = {{1, 3}, {3, 2}, {2, 1}};
     for (auto &e: s.validArrangement(pairs2)) {
         cout << e[0] << ' ' << e[1] << '\n';
     }
