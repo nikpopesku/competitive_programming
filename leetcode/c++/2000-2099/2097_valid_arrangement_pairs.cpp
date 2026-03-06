@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -5,7 +6,7 @@
 
 using namespace std;
 
-void dfs(int node, vector<vector<int>>& adj, vector<int>& result) {
+void dfs(int node, vector<vector<int> > &adj, vector<int> &result) {
     while (!adj[node].empty()) {
         auto e = adj[node].back();
         adj[node].pop_back();
@@ -45,6 +46,9 @@ public:
         vector<int> result;
 
         dfs(start, adj, result);
+        ranges::reverse(result);
+
+        return result;
     }
 };
 
