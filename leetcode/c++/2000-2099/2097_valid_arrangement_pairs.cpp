@@ -37,7 +37,7 @@ public:
             adj[p[0]].push_back(p[1]);
         }
 
-        int start = -1;
+        int start = pairs[0][0];
         for (int i = 1; i <= n; ++i) {
             if (outdegree[i] - indegree[i] == 1) {
                 start = i;
@@ -61,10 +61,18 @@ int main() {
     for (auto &e: s.validArrangement(pairs)) {
         cout << e[0] << ' ' << e[1] << '\n';
     }
+
     cout << '\n';
 
     vector<vector<int> > pairs2 = {{1, 3}, {3, 2}, {2, 1}};
     for (auto &e: s.validArrangement(pairs2)) {
+        cout << e[0] << ' ' << e[1] << '\n';
+    }
+
+    cout << '\n';
+
+    vector<vector<int> > pairs3 = {{1,2},{1,3},{2,1}};
+    for (auto &e: s.validArrangement(pairs3)) {
         cout << e[0] << ' ' << e[1] << '\n';
     }
 }
