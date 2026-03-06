@@ -8,7 +8,7 @@ using namespace std;
 
 void dfs(const int node, vector<vector<int> > &adj, vector<int> &result) {
     while (!adj[node].empty()) {
-        auto e = adj[node].back();
+        const auto e = adj[node].back();
         adj[node].pop_back();
 
         dfs(e, adj, result);
@@ -19,7 +19,7 @@ void dfs(const int node, vector<vector<int> > &adj, vector<int> &result) {
 
 class Solution {
 public:
-    vector<vector<int> > validArrangement(vector<vector<int> > &pairs) {
+    vector<vector<int> > validArrangement(const vector<vector<int> > &pairs) {
         int n = pairs[0][0];
         for (auto &p: pairs) {
             n = max(n, p[0]);
