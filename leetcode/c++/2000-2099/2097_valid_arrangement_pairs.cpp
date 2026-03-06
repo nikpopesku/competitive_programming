@@ -13,9 +13,9 @@ public:
             n = max(n, p[0]);
             n = max(n, p[1]);
         }
-        vector<int> outdegree(n+1, 0);
-        vector<int> indegree(n+1, 0);
-        vector<vector<int>> adj(n+1, vector<int>());
+        vector<int> outdegree(n + 1, 0);
+        vector<int> indegree(n + 1, 0);
+        vector<vector<int> > adj(n + 1, vector<int>());
 
         for (auto &p: pairs) {
             ++outdegree[p[0]];
