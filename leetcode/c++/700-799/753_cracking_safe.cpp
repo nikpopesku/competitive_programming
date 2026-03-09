@@ -20,7 +20,7 @@ public:
 
             if (!node.empty()) {
                 auto d = next_digit(node);
-                next = node[1:] + d;      // slide window
+                next = node.substr(1) + d;      // slide window
                 st.push(next);
             } else {
                 st.pop();
