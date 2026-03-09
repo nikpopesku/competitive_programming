@@ -15,7 +15,7 @@ public:
             return res;
         }
 
-        string s(n - 1, '0');
+        const string s(n - 1, '0');
         stack<string> st;
         st.push(s);
         string path;
@@ -23,13 +23,13 @@ public:
 
         while (!st.empty()) {
             string node = st.top();
-            if (!nxt.count(node)) nxt[node] = k - 1;   // first visit: try k-1 down to 0
+            if (!nxt.count(node)) nxt[node] = k - 1; // first visit: try k-1 down to 0
             if (nxt[node] >= 0) {
                 const char d = '0' + nxt[node]--;
                 st.push(node.substr(1) + d);
             } else {
                 st.pop();
-                path += node.back();    // collect the digit this node added
+                path += node.back(); // collect the digit this node added
             }
         }
 
