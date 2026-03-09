@@ -9,26 +9,34 @@ using namespace std;
 class Solution {
 public:
     string crackSafe(int n, int k) {
+        if (n == 1) {
+            string res;
+            for (int i = 0; i < k; ++i) res += ('0' + i);
+            return res;
+        }
+
+        string s(n - 1, '0');
         stack<string> st;
-        string s;
-        for (int i = 0; i < n - 1; ++i) s += '0';
         st.push(s);
         string path;
         unordered_map<string, int> nxt;
 
         while (!st.empty()) {
-            if (string node = st.top(); nxt[node] >= 0) {          // still has digits left
+            string node = st.top();
+            if (!nxt.count(node)) nxt[node] = k - 1;   // first visit: try k-1 down to 0
+            if (nxt[node] >= 0) {
                 const char d = '0' + nxt[node]--;
                 st.push(node.substr(1) + d);
             } else {
                 st.pop();
-                path += node.back();       // collect last char (the "new" digit)
+                path += node.back();    // collect the digit this node added
             }
         }
 
         reverse(path.begin(), path.end());
-        return s + path;   // s is your initial "00...0"
-
+        // reversed path already begins with the initial "00..0" window's last char;
+        // prepend the first n-2 chars of the prefix to complete it
+        return s.substr(0, n - 2) + path;
     }
 };
 
