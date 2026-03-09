@@ -4,13 +4,9 @@
 
 using namespace std;
 
-dfs(int node) {
-
-}
-
 class Solution {
 public:
-    bool validTree(int n, vector<vector<int> > &edges) {
+    bool validTree(int n, const vector<vector<int> > &edges) {
         if (edges.size() != n - 1) {
             return false;
         }
