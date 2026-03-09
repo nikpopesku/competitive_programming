@@ -14,21 +14,21 @@ public:
         for (int i = 0; i < n - 1; ++i) s += '0';
         st.push(s);
         string path;
+        unordered_map<string, int> nxt;
 
         while (!st.empty()) {
-            string node = st.top();
-
-            if (!node.empty()) {
-                auto d = next_digit(node);
-                next = node.substr(1) + d;      // slide window
-                st.push(next);
+            if (string node = st.top(); nxt[node] >= 0) {          // still has digits left
+                const char d = '0' + nxt[node]--;
+                st.push(node.substr(1) + d);
             } else {
                 st.pop();
-                path += node;             // dead end → collect it
+                path += node.back();       // collect last char (the "new" digit)
             }
         }
 
-        return path;
+        reverse(path.begin(), path.end());
+        return s + path;   // s is your initial "00...0"
+
     }
 };
 
