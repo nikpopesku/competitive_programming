@@ -23,7 +23,7 @@ public:
 
         while (!st.empty()) {
             string node = st.top();
-            if (!nxt.count(node)) nxt[node] = k - 1; // first visit: try k-1 down to 0
+            if (!nxt.contains(node)) nxt[node] = k - 1; // first visit: try k-1 down to 0
             if (nxt[node] >= 0) {
                 const char d = '0' + nxt[node]--;
                 st.push(node.substr(1) + d);
