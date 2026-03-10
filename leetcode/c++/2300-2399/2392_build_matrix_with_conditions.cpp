@@ -7,7 +7,14 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions, vector<vector<int>>& colConditions) {
+        vector<int> cols = topsort(k, colConditions);
+        vector<int> rows = topsort(k, rowConditions);
 
+        if (cols.empty() || rows.empty()) return {{}};
+
+        vector<vector<int>> response;
+
+        return response;
     }
 private:
     vector<int> topsort(const int k, const vector<vector<int>>&conditions) {
