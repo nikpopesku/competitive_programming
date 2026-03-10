@@ -33,8 +33,8 @@ class Solution {
 
 public:
     vector<vector<int> > buildMatrix(int k, vector<vector<int> > &rowConditions, vector<vector<int> > &colConditions) {
-        auto rowOrder = toposort(k, rowConditions);
-        auto colOrder = toposort(k, colConditions);
+        const auto rowOrder = toposort(k, rowConditions);
+        const auto colOrder = toposort(k, colConditions);
 
         if (rowOrder.empty() || colOrder.empty()) return {};
 
