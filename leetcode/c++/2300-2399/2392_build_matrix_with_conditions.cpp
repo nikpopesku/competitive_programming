@@ -11,8 +11,11 @@ public:
         vector<int> row_pos = topsort(k, rowConditions);
 
         if (col_pos.empty() || row_pos.empty()) return {{}};
-
         vector response(k, vector<int>(k, 0));
+
+        for (int i = 1; i <= k; ++i) {
+            response[row_pos[i]][col_pos[i]] = i;
+        }
 
         return response;
     }
