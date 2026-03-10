@@ -10,7 +10,7 @@ public:
         const vector<int> col_order = topsort(k, colConditions);
         vector<int> row_order = topsort(k, rowConditions);
 
-        if (col_order.empty() || row_order.empty()) return {{}};
+        if (col_order.empty() || row_order.empty()) return {};
 
         vector<int> row_pos(k+1);
         vector<int> col_pos(k+1);
