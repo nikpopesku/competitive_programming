@@ -5,7 +5,7 @@
 using namespace std;
 
 class Solution {
-    vector<int> toposort(int k, vector<vector<int> > &conditions) {
+    vector<int> toposort(const int k, const vector<vector<int> > &conditions) {
         vector<vector<int> > adj(k + 1);
         vector<int> indegree(k + 1, 0);
 
@@ -27,7 +27,7 @@ class Solution {
                 if (--indegree[nei] == 0) q.push(nei);
         }
 
-        if ((int) order.size() != k) return {};
+        if (static_cast<int>(order.size()) != k) return {};
         return order;
     }
 
