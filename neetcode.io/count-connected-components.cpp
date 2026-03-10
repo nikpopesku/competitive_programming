@@ -37,7 +37,8 @@ public:
                 }
             }
         }
- return counter;
+
+        return counter;
     }
 };
 
