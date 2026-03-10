@@ -6,13 +6,13 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions, vector<vector<int>>& colConditions) {
-        vector<int> cols = topsort(k, colConditions);
-        vector<int> rows = topsort(k, rowConditions);
+    vector<vector<int>> buildMatrix(const int k, const vector<vector<int>>& rowConditions, const vector<vector<int>>& colConditions) {
+        const vector<int> col_pos = topsort(k, colConditions);
+        vector<int> row_pos = topsort(k, rowConditions);
 
-        if (cols.empty() || rows.empty()) return {{}};
+        if (col_pos.empty() || row_pos.empty()) return {{}};
 
-        vector<vector<int>> response;
+        vector response(k, vector<int>(k, 0));
 
         return response;
     }
