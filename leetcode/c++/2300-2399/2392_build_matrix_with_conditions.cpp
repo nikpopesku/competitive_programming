@@ -5,8 +5,13 @@
 using namespace std;
 
 class Solution {
-    vector<int> toposort(const int k, const vector<vector<int> > &conditions) {
-        vector<vector<int> > adj(k + 1);
+public:
+    vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions, vector<vector<int>>& colConditions) {
+
+    }
+private:
+    vector<int> topsort(const int k, const vector<vector<int>>&conditions) {
+        vector adj(k + 1, vector<int>());
         vector<int> indegree(k + 1, 0);
 
         for (auto &c: conditions) {
@@ -14,39 +19,31 @@ class Solution {
             ++indegree[c[1]];
         }
 
+        vector<int> response;
         queue<int> q;
-        for (int i = 1; i <= k; ++i)
-            if (indegree[i] == 0) q.push(i);
 
-        vector<int> order;
-        while (!q.empty()) {
-            int node = q.front();
-            q.pop();
-            order.push_back(node);
-            for (int nei: adj[node])
-                if (--indegree[nei] == 0) q.push(nei);
+        for (int i = 1; i <= k; ++i) {
+            if (indegree[i] == 0) {
+                q.push(i);
+            }
         }
 
-        if (static_cast<int>(order.size()) != k) return {};
-        return order;
-    }
+        while (!q.empty()) {
+            auto e = q.front();
+            q.pop();
 
-public:
-    vector<vector<int> > buildMatrix(int k, vector<vector<int> > &rowConditions, vector<vector<int> > &colConditions) {
-        const auto rowOrder = toposort(k, rowConditions);
-        const auto colOrder = toposort(k, colConditions);
+            response.push_back(e);
 
-        if (rowOrder.empty() || colOrder.empty()) return {};
+            for (auto &nei: adj[e]) {
+                if (--indegree[nei] == 0) {
+                    q.push(nei);
+                }
+            }
+        }
 
-        vector<int> row_pos(k + 1), col_pos(k + 1);
-        for (int i = 0; i < k; ++i) row_pos[rowOrder[i]] = i;
-        for (int i = 0; i < k; ++i) col_pos[colOrder[i]] = i;
+        if (response.size() != k) return   {};
 
-        vector<vector<int> > matrix(k, vector<int>(k, 0));
-        for (int v = 1; v <= k; ++v)
-            matrix[row_pos[v]][col_pos[v]] = v;
-
-        return matrix;
+        return response;
     }
 };
 
