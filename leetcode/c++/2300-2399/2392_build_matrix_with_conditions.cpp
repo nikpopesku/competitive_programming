@@ -7,10 +7,19 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> buildMatrix(const int k, const vector<vector<int>>& rowConditions, const vector<vector<int>>& colConditions) {
-        const vector<int> col_pos = topsort(k, colConditions);
-        vector<int> row_pos = topsort(k, rowConditions);
+        const vector<int> col_order = topsort(k, colConditions);
+        vector<int> row_order = topsort(k, rowConditions);
 
-        if (col_pos.empty() || row_pos.empty()) return {{}};
+        if (col_order.empty() || row_order.empty()) return {{}};
+
+        vector<int> row_pos(k+1);
+        vector<int> col_pos(k+1);
+        for (int i = 0; i < k; ++i) {
+            row_pos[row_order[i]] = i;
+        }
+        for (int i = 0; i < k; ++i) {
+            col_pos[col_order[i]] = i;
+        }
         vector response(k, vector<int>(k, 0));
 
         for (int i = 1; i <= k; ++i) {
