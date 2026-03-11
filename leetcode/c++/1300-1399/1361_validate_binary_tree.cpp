@@ -30,8 +30,8 @@ public:
 
         queue<int> q;
 
-        for (const auto &i: indegree) {
-            if (i == 0) {
+        for (int i = 0; i < n; ++i) {
+            if (indegree[i] == 0) {
                 q.push(i);
                 visited[i] = true;
                 break;
@@ -50,9 +50,10 @@ public:
             }
         }
 
-        for (const bool i: visited) if (!i) {
-            return false;
-        }
+        for (const bool i: visited)
+            if (!i) {
+                return false;
+            }
 
         return true;
     }
@@ -72,6 +73,10 @@ int main() {
     vector<int> a2 = {1, 0};
     vector<int> b2 = {-1, -1};
     cout << boolalpha << s.validateBinaryTreeNodes(2, a2, b2) << '\n'; //false
+
+    vector<int> a3 = {3, -1, 1, -1};
+    vector<int> b3 = {-1, -1, 0, -1};
+    cout << boolalpha << s.validateBinaryTreeNodes(4, a3, b3) << '\n'; //false
 
     return 0;
 }
