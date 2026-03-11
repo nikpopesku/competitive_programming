@@ -7,67 +7,55 @@ using namespace std;
 
 class Solution {
 public:
-    bool validateBinaryTreeNodes(int n, vector<int>& leftChild, vector<int>& rightChild) {
+    bool validateBinaryTreeNodes(int n, vector<int> &leftChild, vector<int> &rightChild) {
+        int counter = 0;
         vector<int> indegree(n, 0);
 
-        for (int i = 0; i < n; ++i) {
-            if (leftChild[i] != -1) {
-                ++indegree[leftChild[i]];
+        for (auto &i: leftChild) {
+            if (i != -1) {
+                ++counter;
+                ++indegree[i];
             }
-
-            if (rightChild[i] != -1) {
-                ++indegree[rightChild[i]];
+        }
+        for (auto &i: rightChild) {
+            if (i != -1) {
+                ++counter;
+                ++indegree[i];
             }
         }
 
-        int root = -1;
+        if (counter != n - 1) return false;
 
-        for (int i = 0; i < n; ++i) {
-            if (indegree[i] > 1) {
-                return false;
-            }
-
-            if (indegree[i] == 0) {
-                if (root != -1) {
-                    return false;
-                }
-
-                root = i;
-            }
-        }
-
-        if (root == -1) {
-            return false;
-        }
+        vector<bool> visited(n, false);
 
         queue<int> q;
-        q.push(root);
-        int visited = 1;
 
-
-        while (!q.empty()) {
-            auto elem = q.front();
-            q.pop();
-            if (leftChild[elem] != -1) {
-                q.push(leftChild[elem]);
-                ++visited;
-            }
-
-            if (rightChild[elem] != -1) {
-                q.push(rightChild[elem]);
-                ++visited;
+        for (auto &i: indegree) {
+            if (i == 0) {
+                q.push(i);
+                break;
             }
         }
 
-        return visited == n;
+        while (!q.empty()) {
+            auto e = q.front();
+            q.pop();
+
+            for (auto & nei: {leftChild[e], rightChild[e]}) {
+                if (nei != -1 && !visited[nei]) {
+                    visited[nei] = true;
+                    q.push(nei);
+                }
+            }
+        }
     }
 };
 
 int main() {
     Solution s;
 
-    vector<int> a = {1,0,3,-1};
-    vector<int> b = {-1,-1,-1,-1};
+    vector<int> a = {1, 0, 3, -1};
+    vector<int> b = {-1, -1, -1, -1};
     cout << boolalpha << s.validateBinaryTreeNodes(4, a, b);
 
     return 0;
