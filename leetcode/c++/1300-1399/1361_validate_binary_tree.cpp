@@ -7,9 +7,9 @@ using namespace std;
 
 class Solution {
 public:
-    bool validateBinaryTreeNodes(int n, vector<int> &leftChild, vector<int> &rightChild) {
+    bool validateBinaryTreeNodes(const int n, vector<int> &leftChild, vector<int> &rightChild) {
         int counter = 0;
-        vector<int> indegree(n, 0);
+        vector indegree(n, 0);
 
         for (auto &i: leftChild) {
             if (i != -1) {
@@ -26,11 +26,11 @@ public:
 
         if (counter != n - 1) return false;
 
-        vector<bool> visited(n, false);
+        vector visited(n, false);
 
         queue<int> q;
 
-        for (auto &i: indegree) {
+        for (const auto &i: indegree) {
             if (i == 0) {
                 q.push(i);
                 break;
@@ -38,16 +38,20 @@ public:
         }
 
         while (!q.empty()) {
-            auto e = q.front();
+            const auto e = q.front();
             q.pop();
 
-            for (auto & nei: {leftChild[e], rightChild[e]}) {
+            for (auto &nei: {leftChild[e], rightChild[e]}) {
                 if (nei != -1 && !visited[nei]) {
                     visited[nei] = true;
                     q.push(nei);
                 }
             }
         }
+
+        for (const bool i: visited) if (!i) return false;
+
+        return true;
     }
 };
 
