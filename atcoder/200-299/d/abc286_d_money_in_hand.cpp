@@ -11,4 +11,7 @@ int main() {
     for (int i = 0 ; i < N; ++i) {
         cin >> A[i] >> B[i];
     }
+
+    vector<bool> dp(X+1, false);
+    dp[0] = true;
 }
