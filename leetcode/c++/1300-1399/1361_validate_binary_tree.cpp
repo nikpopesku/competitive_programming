@@ -58,9 +58,17 @@ public:
 int main() {
     Solution s;
 
-    vector<int> a = {1, 0, 3, -1};
-    vector<int> b = {-1, -1, -1, -1};
-    cout << boolalpha << s.validateBinaryTreeNodes(4, a, b);
+    vector<int> a = {1, -1, 3, -1};
+    vector<int> b = {2, -1, -1, -1};
+    cout << boolalpha << s.validateBinaryTreeNodes(4, a, b) << '\n'; //true
+
+    vector<int> a1 = {1, -1, 3, -1};
+    vector<int> b1 = {2, 3, -1, -1};
+    cout << boolalpha << s.validateBinaryTreeNodes(4, a1, b1) << '\n'; //false
+
+    vector<int> a2 = {1, 0};
+    vector<int> b2 = {-1, -1};
+    cout << boolalpha << s.validateBinaryTreeNodes(2, a2, b2) << '\n'; //false
 
     return 0;
 }
