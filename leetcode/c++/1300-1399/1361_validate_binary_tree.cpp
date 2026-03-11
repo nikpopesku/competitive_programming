@@ -33,6 +33,7 @@ public:
         for (const auto &i: indegree) {
             if (i == 0) {
                 q.push(i);
+                visited[i] = true;
                 break;
             }
         }
@@ -49,7 +50,9 @@ public:
             }
         }
 
-        for (const bool i: visited) if (!i) return false;
+        for (const bool i: visited) if (!i) {
+            return false;
+        }
 
         return true;
     }
