@@ -12,9 +12,10 @@ public:
     }
 
     void update(int index, const int val) {
+        const int delta = val - sumRange(index, index);
         ++index;
         while (index <= n) {
-            tree[index] += val;
+            tree[index] += delta;
             index += index & -index;
         }
     }
