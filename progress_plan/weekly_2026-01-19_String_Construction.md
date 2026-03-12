@@ -33,6 +33,15 @@
 - **Problem 3**: [x] Solved - LeetCode 1081 (Smallest Subsequence of Distinct Characters)
 - **Status**: ✅ Completed! Used greedy + stack approach for lexicographically smallest strings
 
+## Not Done / Left To Do
+- [ ] Friday contest - not attended (no contest logged)
+- [ ] Weekend free choice problems - not filled in
+- [ ] Thursday optimization notes incomplete (no alternative solutions recorded)
+- [ ] Fun level score not filled in
+- [ ] "Still confused about" section left blank
+- [ ] Z-function / KMP string matching (related string technique, not covered)
+- [ ] Suffix arrays (advanced string structure, future topic)
+
 ## Weekly Reflection
 - **What became intuitive**: Bottom-up DP table filling by length, understanding why dp[i][j] = 2 + dp[i+1][j-1] works, greedy string construction with priority queues
 - **Still confused about**: _____________________

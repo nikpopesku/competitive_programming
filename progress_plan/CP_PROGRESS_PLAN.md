@@ -50,10 +50,12 @@
    - ✅ Lexicographical optimization (LeetCode 316, 402, 1081)
    - Key insight: Work backwards from desired properties, use DP for LPS, greedy + stack for lexicographical
 
-3. **Simple Graph Construction**
-   - Tree building with degree constraints
-   - Path lengths and connectivity requirements
-   - Key insight: Start with path, add edges strategically
+3. **✅ Simple Graph Construction** (Week 3 - Completed: 2026-03-12)
+   - ✅ Tree validity & connectivity (Neetcode: Valid Tree, Count Connected Components)
+   - ✅ Binary tree validation with parent/cycle constraints (LeetCode 1361)
+   - ✅ Topological sort for dependency-based matrix construction (LeetCode 2392)
+   - ✅ Fenwick Tree (BIT) for order-statistics / restore permutation (CF)
+   - Key insight: Union-Find for connectivity; Kahn's BFS topological sort for ordering; BIT walk for O(log n) order-statistics
 
 ### 🎯 Phase 2: Advanced (Weeks 4-7)
 4. **Number Theory Construction**
@@ -110,6 +112,12 @@
     - Lexicographical: LeetCode 316, 402, 1081
   - Key Skills: DP for longest palindromic subsequence, bottom-up table filling, greedy + stack for lexicographical optimization, priority queue for constrained construction
   - Status: All topics covered including lexicographical optimization!
+- **Week 3 (2026-03-12)**: ✅ Simple Graph Construction & Trees (Completed)
+  - Solved: 5 problems total
+    - Graph/Tree: Neetcode Valid Tree, Neetcode Count Connected Components, LeetCode 1361, LeetCode 2392
+    - Data Structure: CF Restore Permutation (Fenwick Tree / BIT)
+  - Key Skills: Union-Find, Kahn's BFS topological sort, binary tree validation, BIT walk trick for O(log n) order-statistics
+  - Status: All core topics covered including BIT!
 
 ### Weekly Checklist
 ```
@@ -152,7 +160,7 @@ Week ___: [Technique Name]
 - **Week 1 Complete**: 2025-12-01 (Array/Permutation Construction - CF 1462C, LeetCode 526, LeetCode 667, CSES 1072)
 - **Review Scheduled**: 2025-12-23 (Monthly check-in)
 
-**Next Update**: After completing String Construction (Week 2)
+**Next Update**: After completing Number Theory Construction (Week 4)
 
 ---
 

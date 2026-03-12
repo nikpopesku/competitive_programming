@@ -25,6 +25,13 @@
 - **Solved**: CSES 1072 (Two Knights) - combinatorial construction
 - **Most Interesting**: CSES 1072 - elegant formula for non-attacking positions
 
+## Not Done / Left To Do
+- [ ] 4th+ practice problems (only 3 solved vs suggested 2-3 range, could explore more)
+- [ ] More complex permutation constructions (e.g., specific distance constraints)
+- [ ] Wednesday solve day formal logging (merged with practice)
+- [ ] Monthly review questions (due 2025-12-23) - not recorded
+- [ ] Derangement formula / inclusion-exclusion deeper dive
+
 ## Weekly Reflection
 - **What became intuitive**: Working backwards from constraints, two-pointer construction approach
 - **Still confused about**: More complex graph construction techniques
