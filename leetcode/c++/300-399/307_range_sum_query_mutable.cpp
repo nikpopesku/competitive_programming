@@ -3,38 +3,27 @@
 
 using namespace std;
 
-
-class FenwickTree {
+class NumArray {
 public:
-    explicit FenwickTree(const vector<int> &nums) : tree(nums.size() + 1, 0), n(nums.size()) {
+    NumArray(vector<int> &nums) : tree(nums.size() + 1, 0), n(nums.size()) {
         for (int i = 0; i < n; ++i) {
             update(i, nums[i]);
         }
     }
 
-    void update(int i, const int delta) {
-        ++i;
-        while (i <= n) {
-            tree[i] += delta;
-            i += i & -i;
-        }
-    }
-
-private:
-    vector<int> tree;
-    int n;
-};
-
-class NumArray {
-public:
-    NumArray(vector<int> &nums) {
-    }
-
     void update(int index, int val) {
+        ++index;
+        while (index <= n) {
+            tree[index] += val;
+            index += index & -index;
+        }
     }
 
     int sumRange(int left, int right) {
     }
+private:
+    vector<int> tree;
+    int n;
 };
 
 
