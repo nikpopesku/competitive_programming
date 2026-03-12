@@ -6,19 +6,20 @@ using namespace std;
 
 class FenwickTree {
 public:
-    FenwickTree(vector<int>&nums): n(nums.size()), tree(nums.size() + 1, 0) {
+    explicit FenwickTree(const vector<int> &nums) : tree(nums.size() + 1, 0), n(nums.size()) {
         for (int i = 0; i < n; ++i) {
             update(i, nums[i]);
         }
     }
 
-    void update(int i, int delta) {
+    void update(int i, const int delta) {
         ++i;
         while (i <= n) {
             tree[i] += delta;
             i += i & -i;
         }
     }
+
 private:
     vector<int> tree;
     int n;
@@ -26,16 +27,13 @@ private:
 
 class NumArray {
 public:
-    NumArray(vector<int>& nums) {
-
+    NumArray(vector<int> &nums) {
     }
 
     void update(int index, int val) {
-
     }
 
     int sumRange(int left, int right) {
-
     }
 };
 
