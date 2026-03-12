@@ -19,7 +19,19 @@ public:
         }
     }
 
-    int sumRange(int left, int right) {
+    int query(int index) const {
+        ++index;
+        int sum = 0;
+        while (index > 0) {
+            sum += tree[index];
+            index -= index & -index;
+        }
+
+        return sum;
+    }
+
+    int sumRange(const int left, const int right) const {
+        return query(right) - (left > 0 ? query(left - 1) : 0);
     }
 private:
     vector<int> tree;
