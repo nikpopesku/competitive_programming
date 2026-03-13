@@ -29,10 +29,6 @@ public:
         return query(right) - (left > 0 ? query(left - 1) : left);
     }
 
-private:
-    int n;
-    vector<int> tree;
-
     void update(int index, const int val) {
         const int delta = val - sum_range(index, index);
         ++index;
@@ -41,6 +37,10 @@ private:
             index += index & -index;
         }
     }
+
+private:
+    int n;
+    vector<int> tree;
 };
 
 
@@ -49,7 +49,7 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int n, q;
+    int n, q, type, a, b;
     cin >> n >> q;
     vector<int> num(n, 0);
 
@@ -57,8 +57,15 @@ int main() {
         cin >> num[i];
     }
 
-    Bit b(static_cast<int>(num.size()), num);
+    Bit bt(static_cast<int>(num.size()), num);
 
     for (int i = 0; i < q; ++i) {
+        cin >> type >> a >> b;
+
+        if (type == 1) {
+            bt.update(a, b);
+        } else {
+            cout << bt.sum_range(a, b) << '\n';
+        }
     }
 }
