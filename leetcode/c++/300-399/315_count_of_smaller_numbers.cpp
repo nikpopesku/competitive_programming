@@ -5,7 +5,7 @@ using namespace std;
 
 class Bit {
 public:
-    explicit Bit(const int sz) : n(sz), tree(sz + 1) {
+    explicit Bit(const int sz) : n(sz), tree(sz + 1, 0) {
     }
 
     [[nodiscard]] int query(int index) const {
@@ -19,13 +19,9 @@ public:
         return response;
     }
 
-    void update(int index, const int val) {
-        const int delta = val - range_query(index, index);
-        ++index;
-
-
+    void update(int index) {
         while (index <= n) {
-            tree[index] += delta;
+            tree[index]++;
             index += index & -index;
         }
     }
@@ -33,33 +29,22 @@ public:
 private:
     int n;
     vector<int> tree;
-
-    [[nodiscard]] int range_query(const int left, const int right) const {
-        return query(right) - (left > 0 ? query(left - 1) : 0);
-    }
 };
 
 class Solution {
 public:
     vector<int> countSmaller(const vector<int> &nums) {
         int n = static_cast<int>(nums.size());
-        int maxval = nums[0];
-        for (auto &e: nums) maxval = max(maxval, e);
-        Bit bt(maxval);
+        vector<int> counts(n);
+        Bit bt(20001);
 
         for (int i = n - 1; i >= 0; --i) {
-            const int val = bt.query(nums[i] - 1);
-            bt.update(nums[i], val);
-            bt.update(val, 1);
+            int val = nums[i] + 10000;
+            counts[i] = bt.query(val - 1);
+            bt.update(val);
         }
 
-        vector<int> response;
-
-        for (int i = 0; i < n; ++i) {
-            response.push_back(bt.query(i));
-        }
-
-        return response;
+        return counts;
     }
 };
 
