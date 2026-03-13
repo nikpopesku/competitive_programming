@@ -62,7 +62,7 @@ int main() {
         cin >> type >> a >> b;
 
         if (type == 1) {
-            bt.update(a, b);
+            bt.update(a - 1, b);
         } else {
             cout << bt.sum_range(a, b) << '\n';
         }
