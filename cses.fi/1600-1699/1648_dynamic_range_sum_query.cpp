@@ -14,7 +14,6 @@ public:
     }
 
     [[nodiscard]] int query(int index) const {
-        ++index;
         int sum = 0;
 
         while (index > 0) {
@@ -30,8 +29,8 @@ public:
     }
 
     void update(int index, const int val) {
-        const int delta = val - sum_range(index, index);
         ++index;
+        const int delta = val - sum_range(index, index);
         while (index <= n) {
             tree[index] += delta;
             index += index & -index;
