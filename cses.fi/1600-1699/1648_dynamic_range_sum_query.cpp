@@ -6,13 +6,14 @@ using namespace std;
 #define ll long long
 
 class Bit {
+public:
     Bit(const int sz, const vector<int> &v) : n(sz), tree(sz + 1, 0) {
         for (int i = 0; i < sz; ++i) {
             update(i, v[i]);
         }
     }
 
-    int query(int index) {
+    int query(int index) const {
         ++index;
         int sum = 0;
 
@@ -24,7 +25,7 @@ class Bit {
         return sum;
     }
 
-    int sum_range(const int right, const int left) {
+    int sum_range(const int right, const int left) const {
         return query(right) - (left > 0 ? query(left - 1) : left);
     }
 private:
