@@ -43,7 +43,7 @@ public:
 
         for (int i = n - 1; i >= 0; --i) {
             const int val = bt.query(nums[i] - 1);
-            bt.update(i, val + 1);
+            bt.update(nums[i], val + 1);
         }
 
         vector<int> response;
