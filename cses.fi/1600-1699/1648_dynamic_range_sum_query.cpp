@@ -28,6 +28,7 @@ public:
     int sum_range(const int right, const int left) const {
         return query(right) - (left > 0 ? query(left - 1) : left);
     }
+
 private:
     int n;
     vector<int> tree;
@@ -59,6 +60,5 @@ int main() {
     Bit b(static_cast<int>(num.size()), num);
 
     for (int i = 0; i < q; ++i) {
-
     }
 }
