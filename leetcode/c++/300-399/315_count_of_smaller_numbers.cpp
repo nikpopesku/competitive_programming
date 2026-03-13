@@ -28,14 +28,23 @@ private:
 class Solution {
 public:
     vector<int> countSmaller(vector<int> &nums) {
+        int n = static_cast<int>(nums.size());
         int maxval = nums[0];
         for (auto &e: nums) maxval = max(maxval, e);
         Bit bt(maxval);
 
         for (int i = maxval; i >= 0; --i) {
-            int val = bt.query(nums[i] - 1);
-            bt.update(i);
+            const int val = bt.query(nums[i] - 1);
+            bt.update(i, val + 1);
         }
+
+        vector<int> response;
+
+        for (int i = 0; i < n; ++i) {
+            response.push_back(bt.query(i));
+        }
+
+        return response;
     }
 };
 
