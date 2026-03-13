@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+#define ll long long
+
+class Bit {
+    Bit(const int sz, vector<int> &v) : n(sz), tree(sz + 1, 0) {
+        for (int i = 0; i < sz; ++i) {
+            update(i, v[i]);
+        }
+    }
+
+    int query(int index) {
+        ++index;
+        int sum = 0;
+
+        while (index > 0) {
+            sum += tree[index];
+            index -= index & -index;
+        }
+
+        return sum;
+    }
+
+    int sum_range(const int right, const int left) {
+        return query(right) - (left > 0 ? query(left - 1) : left);
+    }
+private:
+    int n;
+    vector<int> tree;
+
+    void update(int index, const int val) {
+        const int delta = val - sum_range(index, index);
+        ++index;
+        while (index <= n) {
+            tree[index] += delta;
+            index += index & -index;
+        }
+    }
+};
+
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    int n, q;
+    cin >> n >> q;
+
+    for (int i = 0; i < n; ++i) {
+    }
+}
