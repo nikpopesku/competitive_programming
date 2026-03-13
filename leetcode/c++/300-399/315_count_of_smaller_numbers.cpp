@@ -8,7 +8,7 @@ public:
     explicit Bit(const int sz) : n(sz), tree(sz + 1) {
     }
 
-    int query(int index) const {
+    [[nodiscard]] int query(int index) const {
         int response = 0;
 
         while (index > 0) {
