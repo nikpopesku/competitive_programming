@@ -13,7 +13,7 @@ public:
         }
     }
 
-    int query(int index) const {
+    [[nodiscard]] int query(int index) const {
         ++index;
         int sum = 0;
 
@@ -25,7 +25,7 @@ public:
         return sum;
     }
 
-    int sum_range(const int right, const int left) const {
+    [[nodiscard]] int sum_range(const int right, const int left) const {
         return query(right) - (left > 0 ? query(left - 1) : left);
     }
 
