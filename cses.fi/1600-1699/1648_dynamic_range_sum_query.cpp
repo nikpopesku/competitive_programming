@@ -7,14 +7,14 @@ using namespace std;
 
 class Bit {
 public:
-    Bit(const int sz, const vector<int> &v) : n(sz), tree(sz + 1, 0) {
-        for (int i = 0; i < sz; ++i) {
+    Bit(const ll sz, const vector<ll> &v) : n(sz), tree(sz + 1, 0) {
+        for (ll i = 0; i < sz; ++i) {
             update(i, v[i]);
         }
     }
 
-    [[nodiscard]] int query(int index) const {
-        int sum = 0;
+    [[nodiscard]] ll query(ll index) const {
+        ll sum = 0;
 
         while (index > 0) {
             sum += tree[index];
@@ -24,13 +24,13 @@ public:
         return sum;
     }
 
-    [[nodiscard]] int sum_range(const int left, const int right) const {
+    [[nodiscard]] ll sum_range(const ll left, const ll right) const {
         return query(right) - (left > 0 ? query(left - 1) : left);
     }
 
-    void update(int index, const int val) {
+    void update(ll index, const ll val) {
         ++index;
-        const int delta = val - sum_range(index, index);
+        const ll delta = val - sum_range(index, index);
         while (index <= n) {
             tree[index] += delta;
             index += index & -index;
@@ -38,8 +38,8 @@ public:
     }
 
 private:
-    int n;
-    vector<int> tree;
+    ll n;
+    vector<ll> tree;
 };
 
 
@@ -48,17 +48,17 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int n, q, type, a, b;
+    ll n, q, type, a, b;
     cin >> n >> q;
-    vector<int> num(n, 0);
+    vector<ll> num(n, 0);
 
-    for (int i = 0; i < n; ++i) {
+    for (ll i = 0; i < n; ++i) {
         cin >> num[i];
     }
 
-    Bit bt(static_cast<int>(num.size()), num);
+    Bit bt(static_cast<ll>(num.size()), num);
 
-    for (int i = 0; i < q; ++i) {
+    for (ll i = 0; i < q; ++i) {
         cin >> type >> a >> b;
 
         if (type == 1) {
