@@ -5,7 +5,7 @@ using namespace std;
 
 class NumArray {
 public:
-    explicit NumArray(const vector<int>& nums): n(static_cast<int>(nums.size())), tree(n+1, 0) {
+    explicit NumArray(const vector<int> &nums) : n(static_cast<int>(nums.size())), tree(n + 1, 0) {
         for (int i = 0; i < n; ++i) {
             update(i, nums[i]);
         }
@@ -25,6 +25,7 @@ public:
     [[nodiscard]] int sumRange(const int left, const int right) const {
         return query(right) - (left > 0 ? query(left - 1) : 0);
     }
+
 private:
     int n;
     vector<int> tree;
@@ -41,7 +42,6 @@ private:
         return sum;
     }
 };
-
 
 
 int main() {
