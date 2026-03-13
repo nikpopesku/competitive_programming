@@ -25,7 +25,7 @@ public:
         return sum;
     }
 
-    [[nodiscard]] int sum_range(const int right, const int left) const {
+    [[nodiscard]] int sum_range(const int left, const int right) const {
         return query(right) - (left > 0 ? query(left - 1) : left);
     }
 
