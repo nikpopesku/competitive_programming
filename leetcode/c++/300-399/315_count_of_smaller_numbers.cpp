@@ -41,7 +41,7 @@ public:
         for (auto &e: nums) maxval = max(maxval, e);
         Bit bt(maxval);
 
-        for (int i = maxval; i >= 0; --i) {
+        for (int i = n - 1; i >= 0; --i) {
             const int val = bt.query(nums[i] - 1);
             bt.update(i, val + 1);
         }
@@ -59,7 +59,7 @@ public:
 
 int main() {
     vector nums = {5, 2, 6, 1};
-    for (auto na = Solution(); auto &i: na.countSmaller(nums)) {
+    for (auto na = Solution(); const auto &i: na.countSmaller(nums)) {
         cout << i << "\n";
     }
 }
