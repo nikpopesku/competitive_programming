@@ -5,12 +5,10 @@ using namespace std;
 
 class Bit {
 public:
-    Bit(int sz): n(sz), tree(sz + 1) {
-
+    Bit(int sz) : n(sz), tree(sz + 1) {
     }
 
     int query(int index) {
-
     }
 
     void update(int index, const int delta) {
@@ -21,6 +19,7 @@ public:
             index += index & -index;
         }
     }
+
 private:
     int n;
     vector<int> tree;
@@ -28,7 +27,7 @@ private:
 
 class Solution {
 public:
-    vector<int> countSmaller(vector<int>& nums) {
+    vector<int> countSmaller(vector<int> &nums) {
         int maxval = nums[0];
         for (auto &e: nums) maxval = max(maxval, e);
         Bit bt(maxval);
@@ -41,12 +40,9 @@ public:
 };
 
 
-
-
 int main() {
-    vector nums = {5,2,6,1};
+    vector nums = {5, 2, 6, 1};
     for (auto na = Solution(); auto &i: na.countSmaller(nums)) {
         cout << i << "\n";
     }
-
 }
