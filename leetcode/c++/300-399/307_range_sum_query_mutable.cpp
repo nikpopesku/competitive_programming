@@ -5,24 +5,34 @@ using namespace std;
 
 class NumArray {
 public:
-    explicit NumArray(const vector<int> &nums) : tree(nums.size() + 1, 0), n(static_cast<int>(nums.size())) {
+    explicit NumArray(const vector<int>& nums): n(static_cast<int>(nums.size())), tree(n+1, 0) {
         for (int i = 0; i < n; ++i) {
             update(i, nums[i]);
         }
     }
 
     void update(int index, const int val) {
-        const int delta = val - sumRange(index, index);
         ++index;
+        const int delta = val - tree[index];
+
         while (index <= n) {
             tree[index] += delta;
             index += index & -index;
         }
     }
 
+
+    [[nodiscard]] int sumRange(const int left, const int right) const {
+        return query(right) - (left > 0 ? query(left - 1) : 0);
+    }
+private:
+    int n;
+    vector<int> tree;
+
     [[nodiscard]] int query(int index) const {
         ++index;
         int sum = 0;
+
         while (index > 0) {
             sum += tree[index];
             index -= index & -index;
@@ -30,15 +40,8 @@ public:
 
         return sum;
     }
-
-    [[nodiscard]] int sumRange(const int left, const int right) const {
-        return query(right) - (left > 0 ? query(left - 1) : 0);
-    }
-
-private:
-    vector<int> tree;
-    int n;
 };
+
 
 
 int main() {
