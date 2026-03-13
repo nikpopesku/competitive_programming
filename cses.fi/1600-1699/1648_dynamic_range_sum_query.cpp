@@ -6,7 +6,7 @@ using namespace std;
 #define ll long long
 
 class Bit {
-    Bit(const int sz, vector<int> &v) : n(sz), tree(sz + 1, 0) {
+    Bit(const int sz, const vector<int> &v) : n(sz), tree(sz + 1, 0) {
         for (int i = 0; i < sz; ++i) {
             update(i, v[i]);
         }
@@ -49,7 +49,15 @@ int main() {
 
     int n, q;
     cin >> n >> q;
+    vector<int> num(n, 0);
 
     for (int i = 0; i < n; ++i) {
+        cin >> num[i];
+    }
+
+    Bit b(static_cast<int>(num.size()), num);
+
+    for (int i = 0; i < q; ++i) {
+
     }
 }
