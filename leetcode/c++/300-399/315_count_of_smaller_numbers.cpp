@@ -5,10 +5,18 @@ using namespace std;
 
 class Bit {
 public:
-    Bit(int sz) : n(sz), tree(sz + 1) {
+    explicit Bit(const int sz) : n(sz), tree(sz + 1) {
     }
 
-    int query(int index) {
+    int query(int index) const {
+        int response = 0;
+
+        while (index > 0) {
+            response += tree[index];
+            index -= index & -index;
+        }
+
+        return response;
     }
 
     void update(int index, const int delta) {
@@ -27,7 +35,7 @@ private:
 
 class Solution {
 public:
-    vector<int> countSmaller(vector<int> &nums) {
+    vector<int> countSmaller(const vector<int> &nums) {
         int n = static_cast<int>(nums.size());
         int maxval = nums[0];
         for (auto &e: nums) maxval = max(maxval, e);
