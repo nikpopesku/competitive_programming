@@ -19,8 +19,10 @@ public:
         return response;
     }
 
-    void update(int index, const int delta) {
+    void update(int index, const int val) {
+        const int delta = val - range_query(index, index);
         ++index;
+
 
         while (index <= n) {
             tree[index] += delta;
@@ -31,6 +33,10 @@ public:
 private:
     int n;
     vector<int> tree;
+
+    [[nodiscard]] int range_query(const int left, const int right) const {
+        return query(right) - (left > 0 ? query(left - 1) : 0);
+    }
 };
 
 class Solution {
@@ -43,7 +49,8 @@ public:
 
         for (int i = n - 1; i >= 0; --i) {
             const int val = bt.query(nums[i] - 1);
-            bt.update(nums[i], val + 1);
+            bt.update(nums[i], val);
+            bt.update(val, 1);
         }
 
         vector<int> response;
