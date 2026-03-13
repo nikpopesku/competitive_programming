@@ -39,7 +39,7 @@ public:
         Bit bt(20001);
 
         for (int i = n - 1; i >= 0; --i) {
-            int val = nums[i] + 10000;
+            const int val = nums[i] + 10000;
             counts[i] = bt.query(val - 1);
             bt.update(val);
         }
