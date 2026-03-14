@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -31,6 +32,15 @@ class Solution {
 public:
     int reversePairs(const vector<int> &nums) {
         const int n = static_cast<int>(nums.size());
+        vector<int> sorted = nums;
+        sort(sorted.begin(), sorted.end());
+        sorted.erase(unique(sorted.begin(), sorted.end()), sorted.end());
+
+        for (int i = 0; i < n; ++i) {
+
+        }
+
+
         Bit bt(n);
         int response = 0;
 
