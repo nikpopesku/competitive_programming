@@ -5,13 +5,13 @@ using namespace std;
 
 class Bit {
 public:
-    Bit(int sz) : n(sz), tree(sz + 1, 0) {
+    explicit Bit(const int sz) : n(sz), tree(sz + 1, 0) {
     }
 
     void update(int index) {
     }
 
-    int query(int index) {
+    int query(int index) const {
         int response = 0;
 
         while (index > 0) {
@@ -29,8 +29,8 @@ private:
 
 class Solution {
 public:
-    int reversePairs(vector<int> &nums) {
-        int n = static_cast<int>(nums.size());
+    int reversePairs(const vector<int> &nums) {
+        const int n = static_cast<int>(nums.size());
         Bit bt(n);
         int response = 0;
 
@@ -38,7 +38,8 @@ public:
             response += bt.query(nums[i]);
             bt.update(nums[i]);
         }
- return response;
+
+        return response;
     }
 };
 
