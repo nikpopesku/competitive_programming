@@ -10,6 +10,10 @@ public:
     }
 
     void update(int index) {
+        while (index <= n) {
+            ++tree[index];
+            index += index & -index;
+        }
     }
 
     int query(int index) const {
