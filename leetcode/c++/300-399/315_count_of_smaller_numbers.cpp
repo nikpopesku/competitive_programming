@@ -35,12 +35,12 @@ private:
 class Solution {
 public:
     vector<int> countSmaller(const vector<int> &nums) {
-        Bit bt(20001);
+        Bit bt(20002);
         const int n = static_cast<int>(nums.size());
         vector<int> response(n, 0);
 
         for (int i = n - 1; i >= 0; --i) {
-            const int val = nums[i] + 10000;
+            const int val = nums[i] + 10001;
             response[i] = bt.query(val - 1);
             bt.update(val);
         }
