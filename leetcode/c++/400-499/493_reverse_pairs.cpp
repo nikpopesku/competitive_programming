@@ -16,7 +16,7 @@ public:
         }
     }
 
-    int query(int index) const {
+    [[nodiscard]] int query(int index) const {
         int response = 0;
 
         while (index > 0) {
@@ -45,8 +45,8 @@ public:
         int response = 0;
 
         for (int i = m - 1; i >= 0; --i) {
-            response += bt.query(upper_bound(sorted, (long long)(nums[i]-1)/2) - sorted.begin() );
-            bt.update(lower_bound(sorted, nums[i]) - sorted.begin() + 1);
+            response += bt.query(upper_bound(sorted.begin(), sorted.end(), (long long)(nums[i]-1)/2) - sorted.begin());
+            bt.update(lower_bound(sorted.begin(), sorted.end(), nums[i]) - sorted.begin() + 1);
         }
 
         return response;
