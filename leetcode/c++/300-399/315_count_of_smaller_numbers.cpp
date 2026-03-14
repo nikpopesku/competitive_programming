@@ -19,6 +19,7 @@ public:
         return response;
     }
 
+
     void update(int index) {
         while (index <= n) {
             tree[index]++;
@@ -34,17 +35,16 @@ private:
 class Solution {
 public:
     vector<int> countSmaller(const vector<int> &nums) {
-        int n = static_cast<int>(nums.size());
-        vector<int> counts(n);
         Bit bt(20001);
+        int n = static_cast<int>(nums.size());
+        vector<int> response;
 
         for (int i = n - 1; i >= 0; --i) {
-            const int val = nums[i] + 10000;
-            counts[i] = bt.query(val - 1);
-            bt.update(val);
+            response[i] = bt.query(i);
+            bt.update(val - 1);
         }
 
-        return counts;
+        return response;
     }
 };
 
