@@ -41,11 +41,12 @@ public:
         const int n = static_cast<int>(sorted.size());
 
         Bit bt(n);
+        const int m = static_cast<int>(nums.size());
         int response = 0;
 
-        for (int i = n - 1; i >= 0; --i) {
-            response += bt.query(nums[i]);
-            bt.update(nums[i]);
+        for (int i = m - 1; i >= 0; --i) {
+            response += bt.query(upper_bound(sorted, (long long)(nums[i]-1)/2) - sorted.begin() );
+            bt.update(lower_bound(sorted, nums[i]) - sorted.begin() + 1);
         }
 
         return response;
