@@ -36,8 +36,8 @@ class Solution {
 public:
     vector<int> countSmaller(const vector<int> &nums) {
         Bit bt(20001);
-        int n = static_cast<int>(nums.size());
-        vector<int> response;
+        const int n = static_cast<int>(nums.size());
+        vector<int> response(n, 0);
 
         for (int i = n - 1; i >= 0; --i) {
             const int val = nums[i] + 10000;
