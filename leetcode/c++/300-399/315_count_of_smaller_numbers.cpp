@@ -40,6 +40,7 @@ public:
         vector<int> response;
 
         for (int i = n - 1; i >= 0; --i) {
+            const int val = nums[i] + 10000;
             response[i] = bt.query(i);
             bt.update(val - 1);
         }
@@ -50,7 +51,7 @@ public:
 
 
 int main() {
-    vector nums = {5, 2, 6, 1};
+    const vector nums = {5, 2, 6, 1};
     for (auto na = Solution(); const auto &i: na.countSmaller(nums)) {
         cout << i << "\n";
     }
