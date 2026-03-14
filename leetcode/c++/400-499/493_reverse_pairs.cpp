@@ -45,7 +45,9 @@ public:
         int response = 0;
 
         for (int i = m - 1; i >= 0; --i) {
-            response += bt.query(upper_bound(sorted.begin(), sorted.end(), (long long)(nums[i]-1)/2) - sorted.begin());
+            response += bt.query(lower_bound(sorted.begin(), sorted.end(), nums[i], [](const int x, const int target) {
+                return 2LL * x < target;
+            }) - sorted.begin());
             bt.update(lower_bound(sorted.begin(), sorted.end(), nums[i]) - sorted.begin() + 1);
         }
 
