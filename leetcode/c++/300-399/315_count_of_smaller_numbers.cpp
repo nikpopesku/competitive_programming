@@ -41,8 +41,8 @@ public:
 
         for (int i = n - 1; i >= 0; --i) {
             const int val = nums[i] + 10000;
-            response[i] = bt.query(i);
-            bt.update(val - 1);
+            response[i] = bt.query(val - 1);
+            bt.update(val);
         }
 
         return response;
