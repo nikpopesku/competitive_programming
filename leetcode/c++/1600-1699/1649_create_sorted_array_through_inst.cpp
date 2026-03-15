@@ -19,8 +19,15 @@ public:
         }
     }
 
-    int query(int index) {
-        return index + 1;
+    int query(int index) const {
+        int sum = 0;
+
+        while (index > 0) {
+            sum += tree[index];
+            index -= index & -index;
+        }
+
+        return sum;
     }
 private:
     int n;
@@ -41,7 +48,8 @@ public:
 
         for (int i = 0; i < n; ++i) {
             bt.update(instructions[i]);
-            int less = bt.query();
+            int less = bt.query(1);
+            int greater = bt.query(2);
             response += min(less, greater);
         }
 
