@@ -13,7 +13,10 @@ public:
     }
 
     void update(int index) {
-
+        while (index <= n) {
+            ++tree[index];
+            index += index & -index;
+        }
     }
 
     int query(int index) {
@@ -37,7 +40,8 @@ public:
         Bit bt(max_value + 1);
 
         for (int i = 0; i < n; ++i) {
-            int less = bt.query()
+            bt.update(instructions[i]);
+            int less = bt.query();
             response += min(less, greater);
         }
 
