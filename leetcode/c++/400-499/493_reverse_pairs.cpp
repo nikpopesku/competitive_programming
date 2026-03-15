@@ -6,7 +6,8 @@ using namespace std;
 
 class Bit {
 public:
-    explicit Bit(const int sz): n(sz), tree(n+1, 0) {}
+    explicit Bit(const int sz) : n(sz), tree(n + 1, 0) {
+    }
 
     void update(int index, const int delta) {
         while (index <= n) {
@@ -25,6 +26,7 @@ public:
 
         return response;
     }
+
 private:
     int n;
     vector<int> tree;
@@ -32,10 +34,23 @@ private:
 
 class Solution {
 public:
-    int reversePairs(vector<int>& nums) {
+    int reversePairs(vector<int> &nums) {
         vector<int> sorted{nums.begin(), nums.end()};
         ranges::sort(sorted);
         sorted.erase(ranges::unique(sorted).begin(), sorted.end());
+        const int n = static_cast<int>(nums.size());
+        const int m = static_cast<int>(sorted.size());
+
+        int response = 0;
+        Bit bt(m);
+
+        for (int i = n - 1; i >= 0; --i) {
+            response += bt.query(lower_bound(sorted.begin(), sorted.end(), nums[i], [&](const int x, const int target) {
+                return 2LL * x < target;
+            }) - sorted.begin());
+        }
+
+        return response;
     }
 };
 
