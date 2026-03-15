@@ -4,9 +4,14 @@
 
 using namespace std;
 
+constexpr int MOD = 10e9 + 7;
+
 class Solution {
 public:
     int createSortedArray(vector<int> &instructions) {
+        int response = 0;
+
+        return response % MOD;
     }
 };
 
