@@ -19,5 +19,5 @@ int main() {
     cout << na.createSortedArray(nums2) << "\n"; //3
 
     vector nums3 = {1, 3, 3, 3, 2, 4, 2, 1, 2};
-    cout << na.createSortedArray(nums4) << "\n"; //4
+    cout << na.createSortedArray(nums3) << "\n"; //4
 }
