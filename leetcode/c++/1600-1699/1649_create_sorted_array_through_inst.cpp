@@ -39,9 +39,6 @@ public:
     int createSortedArray(const vector<int> &instructions) {
         const int n = static_cast<int>(instructions.size());
         int response = 0;
-
-        vector<int> sorted{instructions.begin(), instructions.end()};
-        ranges::sort(sorted);
         Bit bt(100001);
 
         for (int i = 0; i < n; ++i) {
