@@ -4,7 +4,7 @@
 
 using namespace std;
 
-constexpr int MOD = 10e9 + 7;
+constexpr int MOD = 1e9 + 7;
 
 class Bit {
 public:
