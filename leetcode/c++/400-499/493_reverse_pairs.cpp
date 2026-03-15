@@ -4,12 +4,38 @@
 
 using namespace std;
 
+class Bit {
+public:
+    explicit Bit(const int sz): n(sz), tree(n+1, 0) {}
 
+    void update(int index, const int delta) {
+        while (index <= n) {
+            tree[index] += delta;
+            index += index & -index;
+        }
+    }
+
+    [[nodiscard]] int query(int index) const {
+        int response = 0;
+
+        while (index > 0) {
+            response += tree[index];
+            index -= index & -index;
+        }
+
+        return response;
+    }
+private:
+    int n;
+    vector<int> tree;
+};
 
 class Solution {
 public:
     int reversePairs(vector<int>& nums) {
-
+        vector<int> sorted{nums.begin(), nums.end()};
+        ranges::sort(sorted);
+        sorted.erase(ranges::unique(sorted).begin(), sorted.end());
     }
 };
 
