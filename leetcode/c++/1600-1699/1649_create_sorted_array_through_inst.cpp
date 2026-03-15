@@ -46,8 +46,8 @@ public:
 
         for (int i = 0; i < n; ++i) {
             bt.update(instructions[i]);
-            int less = bt.query(1);
-            int greater = n - bt.query(2);
+            int less = bt.query(instructions[i] - 1);
+            int greater = i - bt.query(instructions[i]);
             response += min(less, greater);
         }
 
