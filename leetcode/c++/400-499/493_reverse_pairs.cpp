@@ -9,9 +9,9 @@ public:
     explicit Bit(const int sz) : n(sz), tree(n + 1, 0) {
     }
 
-    void update(int index, const int delta) {
+    void update(int index) {
         while (index <= n) {
-            tree[index] += delta;
+            ++tree[index];
             index += index & -index;
         }
     }
@@ -48,6 +48,7 @@ public:
             response += bt.query(lower_bound(sorted.begin(), sorted.end(), nums[i], [&](const int x, const int target) {
                 return 2LL * x < target;
             }) - sorted.begin());
+            bt.update(lower_bound(sorted.begin(), sorted.end(), nums[i]) - sorted.begin() + 1);
         }
 
         return response;
