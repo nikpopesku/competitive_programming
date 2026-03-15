@@ -18,7 +18,7 @@ public:
         }
     }
 
-    int query(int index) const {
+    [[nodiscard]] int query(int index) const {
         int sum = 0;
 
         while (index > 0) {
