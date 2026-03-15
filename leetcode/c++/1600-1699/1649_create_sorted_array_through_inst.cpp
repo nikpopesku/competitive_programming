@@ -38,7 +38,7 @@ class Solution {
 public:
     int createSortedArray(const vector<int> &instructions) {
         const int n = static_cast<int>(instructions.size());
-        int response = 0;
+        long long response = 0;
         Bit bt(100001);
 
         for (int i = 0; i < n; ++i) {
@@ -48,7 +48,7 @@ public:
             response += min(less, greater);
         }
 
-        return response % MOD;
+        return static_cast<int>(response % MOD);
     }
 };
 
