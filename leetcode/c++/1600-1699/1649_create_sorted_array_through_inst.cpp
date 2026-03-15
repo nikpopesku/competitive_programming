@@ -27,11 +27,18 @@ private:
 class Solution {
 public:
     int createSortedArray(const vector<int> &instructions) {
-        int response = 0;
+        int max_value = instructions[0];
         const int n = static_cast<int>(instructions.size());
+        for (int i = 0; i < n; ++i) max_value = max(max_value, instructions[i]);
+        int response = 0;
+
+        vector<int> sorted{instructions.begin(), instructions.end()};
+        ranges::sort(sorted);
+        Bit bt(max_value + 1);
 
         for (int i = 0; i < n; ++i) {
-            response +=
+            int less = bt.query()
+            response += min(less, greater);
         }
 
         return response % MOD;
