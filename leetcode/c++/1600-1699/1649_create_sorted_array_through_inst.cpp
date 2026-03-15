@@ -6,10 +6,33 @@ using namespace std;
 
 constexpr int MOD = 10e9 + 7;
 
+class Bit {
+public:
+    explicit Bit(const int sz): n(sz), tree(n+1, 0) {
+
+    }
+
+    void update(int index) {
+
+    }
+
+    int query(int index) {
+        return index + 1;
+    }
+private:
+    int n;
+    vector<int> tree;
+};
+
 class Solution {
 public:
-    int createSortedArray(vector<int> &instructions) {
+    int createSortedArray(const vector<int> &instructions) {
         int response = 0;
+        const int n = static_cast<int>(instructions.size());
+
+        for (int i = 0; i < n; ++i) {
+            response +=
+        }
 
         return response % MOD;
     }
