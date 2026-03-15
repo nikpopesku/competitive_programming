@@ -8,8 +8,7 @@ constexpr int MOD = 1e9 + 7;
 
 class Bit {
 public:
-    explicit Bit(const int sz): n(sz), tree(n+1, 0) {
-
+    explicit Bit(const int sz) : n(sz), tree(n + 1, 0) {
     }
 
     void update(int index) {
@@ -29,6 +28,7 @@ public:
 
         return sum;
     }
+
 private:
     int n;
     vector<int> tree;
@@ -37,19 +37,17 @@ private:
 class Solution {
 public:
     int createSortedArray(const vector<int> &instructions) {
-        int max_value = instructions[0];
         const int n = static_cast<int>(instructions.size());
-        for (int i = 0; i < n; ++i) max_value = max(max_value, instructions[i]);
         int response = 0;
 
         vector<int> sorted{instructions.begin(), instructions.end()};
         ranges::sort(sorted);
-        Bit bt(max_value + 1);
+        Bit bt(100001);
 
         for (int i = 0; i < n; ++i) {
             bt.update(instructions[i]);
             int less = bt.query(1);
-            int greater = bt.query(2);
+            int greater = n - bt.query(2);
             response += min(less, greater);
         }
 
