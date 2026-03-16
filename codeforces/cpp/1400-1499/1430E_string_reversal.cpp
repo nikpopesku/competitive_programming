@@ -42,6 +42,8 @@ int main() {
     ranges::reverse(t);
 
     vector<int> p(n);
+    Bit bt(n);
+
     for (char c = 'a'; c <= 'z'; ++c) {
         vector<int> let_s, let_t;
         for (int i = 0; i < n; ++i) {
@@ -53,4 +55,14 @@ int main() {
             p[let_s[i]] = let_t[i];
         }
     }
+
+    int answer = 0;
+
+    for (int i = 0; i < n; ++i) {
+        answer += i - bt.query(p[i]);
+        bt.update(p[i]);
+    }
+
+
+    return answer;
 }
