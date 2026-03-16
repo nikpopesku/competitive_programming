@@ -17,8 +17,8 @@ public:
         }
     }
 
-    [[nodiscard]] int query(int index) const {
-        int sum = 0;
+    [[nodiscard]] long long query(int index) const {
+        long long sum = 0;
 
         while (index > 0) {
             sum += tree[index];
@@ -57,7 +57,7 @@ int main() {
         }
     }
 
-    int answer = 0;
+    long long answer = 0;
 
     for (int i = 0; i < n; ++i) {
         answer += i - bt.query(p[i]);
