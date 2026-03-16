@@ -65,5 +65,5 @@ int main() {
     }
 
 
-    cout <<  answer << '\n';
+    cout << answer << '\n';
 }
