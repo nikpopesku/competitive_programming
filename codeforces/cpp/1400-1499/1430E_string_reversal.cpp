@@ -18,6 +18,7 @@ public:
     }
 
     [[nodiscard]] long long query(int index) const {
+        ++index;
         long long sum = 0;
 
         while (index > 0) {
