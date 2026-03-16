@@ -10,6 +10,7 @@ public:
     }
 
     void update(int index) {
+        ++index;
         while (index <= n) {
             ++tree[index];
             index += index & -index;
