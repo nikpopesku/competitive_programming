@@ -7,22 +7,13 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int a, b;
-    cin >> a >> b;
-    vector dp(a + 1, vector<int>(b + 1, 0));
+    int n, q;
+    cin >> n >> q;
+    vector forest(n, vector<int>(n));
 
-    for (int i = 1; i <= a; ++i) {
-        for (int j = 1; j <= b; ++j) {
-            if (i == j) {
-                dp[i][j] = 0;
-                continue;
-            }
-
-            dp[i][j] = 1e9;
-            for (int k = 1; k < i; ++k) dp[i][j] = min(dp[i][j], dp[k][j] + dp[i - k][j] + 1);
-            for (int k = 1; k < j; ++k) dp[i][j] = min(dp[i][j], dp[i][k] + dp[i][j - k] + 1);
+    for (int i = 0 ; i < n; ++i) {
+        for (int j = 0; j < n; ++i) {
+            cin >> forest[i][j];
         }
     }
-
-    cout << dp[a][b] << "\n";
 }
