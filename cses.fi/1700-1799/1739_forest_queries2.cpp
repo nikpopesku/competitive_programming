@@ -14,26 +14,24 @@ public:
         }
     }
 
-    void update(int x, int y) {
-        while (x <= n) {
-            while (y <= n) {
-                tree[x][y] ^= 1;
-                y += y & -y;
-            }
+    void update(const int x, const int y) {
+        const int y0 = y;
 
-            x += x & -x;
+        for (int i = x; i <= n; i += i & -i) {
+            for (int j = y0; j <= n; j += j & -j) {
+                tree[i][j] ^= 1;
+            }
         }
     }
 
-    [[nodiscard]] int query(int x, int y) const {
+    [[nodiscard]] int query(const int x, const int y) const {
         int sum = 0;
+        const int y0 = y;
 
-        while (x > 0) {
-            while (y > 0) {
-                sum += tree[x][y];
-                y -= y & -y;
+        for (int i = x; i > 0; i -= x & -x) {
+            for (int j = y0; j > 0; j -= j & -j) {
+                sum += tree[i][j];
             }
-            x -= x & -x;
         }
 
         return sum;
