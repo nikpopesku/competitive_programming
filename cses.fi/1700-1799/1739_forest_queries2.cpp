@@ -4,24 +4,20 @@ using namespace std;
 
 class Bit {
 public:
-    Bit(const int sz, vector<vector<int> > t) : n(sz), tree(n + 1, vector<int>(n + 1)) {
+    Bit(const int sz, vector<vector<int> > t) : n(sz), tree(n + 1, vector<int>(n + 1)), grid(t) {
         for (int x = 0; x < n; ++x) {
             for (int y = 0; y < n; ++y) {
                 if (t[x][y]) {
-                    update(x + 1, y + 1);
+                    add(x + 1, y + 1, 1);
                 }
             }
         }
     }
 
     void update(const int x, const int y) {
-        const int y0 = y;
-
-        for (int i = x; i <= n; i += i & -i) {
-            for (int j = y0; j <= n; j += j & -j) {
-                tree[i][j] ^= 1;
-            }
-        }
+        const int delta = grid[x-1][y-1] ? -1 : 1;
+        grid[x-1][y-1] ^= 1;
+        add(x, y, delta);
     }
 
     [[nodiscard]] int query(const int x, const int y) const {
@@ -42,8 +38,16 @@ public:
     }
 
 private:
+    void add(const int x, const int y, const int delta) {
+        const int y0 = y;
+        for (int i = x; i <= n; i += i & -i)
+            for (int j = y0; j <= n; j += j & -j)
+                tree[i][j] += delta;
+    }
+
     int n;
     vector<vector<int> > tree;
+    vector<vector<int> > grid;
 };
 
 int main() {
