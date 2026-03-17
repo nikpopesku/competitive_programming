@@ -73,10 +73,10 @@ int main() {
         cin >> type;
 
         if (type == 1) {
-            cin >> y1 >> x1;
+            cin >> x1 >> y1;
             bt.update(x1, y1);
         } else {
-            cin >> y1 >> x1 >> y2 >> x2;
+            cin >> x1 >> y1 >> x2 >> y2;
             cout << bt.range(x1, y1, x2, y2) << '\n';
         }
     }
