@@ -5,6 +5,11 @@ using namespace std;
 class Bit {
 public:
     Bit(const int sz, vector<vector<int> > t) : n(sz), tree(n, vector<int>(n)) {
+        for (int x = 0; x < n; ++x) {
+            for (int y = 0; y < n; ++y) {
+                update(x, y);
+            }
+        }
     }
 
     void update(int x, int y) {
@@ -18,7 +23,7 @@ public:
         }
     }
 
-    int query(int x, int y) const {
+    [[nodiscard]] int query(int x, int y) const {
         int sum = 0;
 
         while (x > 0) {
@@ -32,7 +37,7 @@ public:
         return sum;
     }
 
-    int range(const int x1, const int y1, const int x2, const int y2) const {
+    [[nodiscard]] int range(const int x1, const int y1, const int x2, const int y2) const {
         return query(x2, y2) + query(x1 - 1, y1 - 1) - query(x2, y1 - 1) - query(x1 - 1, y2);
     }
 
