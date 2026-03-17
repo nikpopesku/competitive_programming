@@ -68,7 +68,7 @@ int main() {
             bt.update(x1, y1);
         } else {
             cin >> y1 >> x1 >> y2 >> x2;
-            cout << bt.query(x1, y1, x2, y2) << '\n';
+            cout << bt.range(x1, y1, x2, y2) << '\n';
         }
     }
 }
