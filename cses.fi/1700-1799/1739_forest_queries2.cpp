@@ -4,7 +4,7 @@ using namespace std;
 
 class Bit {
 public:
-    Bit(const int sz, vector<vector<int> > t) : n(sz), tree(n, vector<int>(n)) {
+    Bit(const int sz, vector<vector<int> > t) : n(sz), tree(n + 1, vector<int>(n + 1)) {
         for (int x = 0; x < n; ++x) {
             for (int y = 0; y < n; ++y) {
                 if (t[x][y]) {
