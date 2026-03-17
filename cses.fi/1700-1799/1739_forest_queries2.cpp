@@ -7,7 +7,9 @@ public:
     Bit(const int sz, vector<vector<int> > t) : n(sz), tree(n, vector<int>(n)) {
         for (int x = 0; x < n; ++x) {
             for (int y = 0; y < n; ++y) {
-                update(x, y);
+                if (t[x][y]) {
+                    update(x + 1, y + 1);
+                }
             }
         }
     }
