@@ -18,6 +18,24 @@ public:
         }
     }
 
+    int query(int x, int y) const {
+        int sum = 0;
+
+        while (x > 0) {
+            while (y > 0) {
+                sum += tree[x][y];
+                y -= y & -y;
+            }
+            x -= x & -x;
+        }
+
+        return sum;
+    }
+
+    int range(const int x1, const int y1, const int x2, const int y2) const {
+        return query(x2, y2) + query(x1 - 1, y1 - 1) - query(x2, y1 - 1) - query(x1 - 1, y2);
+    }
+
 private:
     int n;
     vector<vector<int> > tree;
@@ -51,7 +69,6 @@ int main() {
         } else {
             cin >> y1 >> x1 >> y2 >> x2;
             cout << bt.query(x1, y1, x2, y2) << '\n';
-
         }
     }
 }
