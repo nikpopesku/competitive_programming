@@ -28,7 +28,7 @@ public:
         int sum = 0;
         const int y0 = y;
 
-        for (int i = x; i > 0; i -= x & -x) {
+        for (int i = x; i > 0; i -= i & -i) {
             for (int j = y0; j > 0; j -= j & -j) {
                 sum += tree[i][j];
             }
