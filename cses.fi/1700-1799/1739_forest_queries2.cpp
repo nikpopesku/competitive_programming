@@ -15,8 +15,8 @@ public:
     }
 
     void update(const int x, const int y) {
-        const int delta = grid[x-1][y-1] ? -1 : 1;
-        grid[x-1][y-1] ^= 1;
+        const int delta = grid[x - 1][y - 1] ? -1 : 1;
+        grid[x - 1][y - 1] ^= 1;
         add(x, y, delta);
     }
 
