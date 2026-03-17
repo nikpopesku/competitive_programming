@@ -52,7 +52,7 @@ int main() {
     char val;
 
     for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++i) {
+        for (int j = 0; j < n; ++j) {
             cin >> val;
             forest[i][j] = val == '*' ? 1 : 0;
         }
