@@ -23,9 +23,8 @@ public:
         int answer = 0;
 
         for (int i = 0; i < n; ++i) {
-            // int row_val = 0;
             int running_sum = 0;
-            stack<pair<int, int>> st;
+            stack<pair<int, int> > st;
 
             for (int j = 0; j < m; ++j) {
                 int span = 1;
