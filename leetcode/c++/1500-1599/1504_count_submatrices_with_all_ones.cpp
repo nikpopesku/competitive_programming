@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 #include <vector>
 
 
@@ -22,17 +23,22 @@ public:
         int answer = 0;
 
         for (int i = 0; i < n; ++i) {
-            int row_val = 0;
+            // int row_val = 0;
+            int running_sum = 0;
+            stack<pair<int, int>> st;
+
             for (int j = 0; j < m; ++j) {
-                for (int k0 = 0; k0 <= j; ++k0) {
-                    int min_value = h[i][j];
-                    for (int k = k0; k <= j; ++k) {
-                        min_value = min(min_value, h[i][k]);
-                    }
-                    row_val += min_value;
+                int span = 1;
+                while (!st.empty() && st.top().first >= h[i][j]) {
+                    auto [h_old, cnt] = st.top();
+                    st.pop();
+                    running_sum -= (h_old - h[i][j]) * cnt;
+                    span += cnt;
                 }
+                running_sum += h[i][j];
+                st.emplace(h[i][j], span);
+                answer += running_sum;
             }
-            answer += row_val;
         }
 
         return answer;
