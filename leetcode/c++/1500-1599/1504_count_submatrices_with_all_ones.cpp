@@ -22,13 +22,18 @@ public:
         int answer = 0;
 
         for (int i = 0; i < n; ++i) {
+            int row_val = 0;
             for (int j = 0; j < m; ++j) {
-                int min_value = h[i][j];
-                for (int k = 0; k <= j; ++k) {
-                    min_value = min(min_value, h[i][k]);
+                for (int k0 = 0; k0 <= j; ++k0) {
+                    int min_value = h[i][j];
+                    for (int k = k0; k <= j; ++k) {
+                        min_value = min(min_value, h[i][k]);
+                    }
+                    row_val += min_value;
                 }
-                answer += min_value;
             }
+            answer += row_val;
+
         }
 
         return answer;
