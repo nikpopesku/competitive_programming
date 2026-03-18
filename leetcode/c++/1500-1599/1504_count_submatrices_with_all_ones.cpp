@@ -6,7 +6,20 @@ using namespace std;
 
 class Solution {
 public:
-    int numSubmat(vector<vector<int> > &mat) {
+    int numSubmat(const vector<vector<int> > &mat) {
+        vector<vector<int>> h = mat;
+        const int n = static_cast<int>(h.size());
+        const int m = static_cast<int>(h[0].size());
+
+        for (int i = 1; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                if (h[i][j] == 1) {
+                    h[i][j] += h[i-1][j];
+                }
+            }
+        }
+
+        int xxxx = 5;
     }
 };
 
