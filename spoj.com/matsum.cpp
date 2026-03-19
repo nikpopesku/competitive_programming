@@ -20,8 +20,14 @@ private:
     int n;
     vector<vector<int> > tree;
 
-    int query(int x1, int y) {
+    int query(const int x, const int y) const {
         int sum = 0;
+
+        for (int i = x; i > 0; --i) {
+            for (int j = y; j > 0; --j) {
+                sum += tree[i][j];
+            }
+        }
 
         return sum;
     }
