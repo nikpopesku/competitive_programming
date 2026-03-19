@@ -12,7 +12,7 @@ public:
     void update(int x, int y, int val) {
     }
 
-    int range(const int x1, const int y1, const int x2, const int y2) {
+    int range(const int x1, const int y1, const int x2, const int y2) const {
         return query(x2, y2) + query(x1 - 1, y1 - 1) - query(x2, y1 - 1) - query(x1 - 1, y2);
     }
 
@@ -39,6 +39,7 @@ void solve() {
     vector v(N, vector<int>(N));
 
     string type;
+    Bit bt(N);
 
     while (type != "END") {
         cin >> type;
