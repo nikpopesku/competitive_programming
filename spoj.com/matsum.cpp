@@ -8,10 +8,9 @@ public:
     explicit Bit(const int sz) : n(sz), tree(n + 1, vector<int>(n + 1)) {
     }
 
-    void update(int x, int y, const int val) {
+    void update(int x, int y, const int delta) {
         ++x;
         ++y;
-        const int delta = val - tree[x][y];
 
         for (int i = x; i <= n; i += i & -i) {
             for (int j = y; j <= n; j += j & -j) {
@@ -58,7 +57,9 @@ void solve() {
 
         if (type == "SET") {
             cin >> x1 >> y1 >> val;
-            bt.update(x1, y1, val);
+            const int delta = val - v[x1][y1];
+            v[x1][y1] = val;
+            bt.update(x1, y1, delta);
         }
 
         if (type == "SUM") {
