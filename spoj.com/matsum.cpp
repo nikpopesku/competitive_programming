@@ -23,8 +23,8 @@ private:
     int query(const int x, const int y) const {
         int sum = 0;
 
-        for (int i = x; i > 0; --i) {
-            for (int j = y; j > 0; --j) {
+        for (int i = x; i > 0; i -= i & -i) {
+            for (int j = y; j > 0; j -= j & -j) {
                 sum += tree[i][j];
             }
         }
