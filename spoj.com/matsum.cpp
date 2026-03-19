@@ -21,7 +21,11 @@ public:
         }
     }
 
-    int range(const int x1, const int y1, const int x2, const int y2) const {
+    [[nodiscard]] int range(int x1, int y1, int x2, int y2) const {
+        ++x1;
+        ++y1;
+        ++x2;
+        ++y2;
         return query(x2, y2) + query(x1 - 1, y1 - 1) - query(x2, y1 - 1) - query(x1 - 1, y2);
     }
 
@@ -29,7 +33,7 @@ private:
     int n;
     vector<vector<int> > tree;
 
-    int query(const int x, const int y) const {
+    [[nodiscard]] int query(const int x, const int y) const {
         int sum = 0;
 
         for (int i = x; i > 0; i -= i & -i) {
