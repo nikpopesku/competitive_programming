@@ -49,7 +49,7 @@ private:
 void solve() {
     int N, x1, y1, x2, y2, val;
     cin >> N;
-    vector v(N, vector<int>(N));
+    vector<vector<int>> v(N, vector<int>(N, 0));
 
     string type;
     Bit bt(N);
