@@ -55,8 +55,12 @@ void solve() {
 
         if (type == "SET") {
             cin >> x1 >> y1 >> val;
-        } else {
+            bt.update(x1, y1, val);
+        }
+
+        if (type == "SUM") {
             cin >> x1 >> y1 >> x2 >> y2;
+            cout << bt.range(x1, y1, x2, y2) << '\n';
         }
     }
 }
