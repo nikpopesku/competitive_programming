@@ -9,7 +9,16 @@ public:
     explicit Bit(const int sz) : n(sz), tree(n + 1, vector<int>(n + 1)) {
     }
 
-    void update(int x, int y, int val) {
+    void update(int x, int y, const int val) {
+        ++x;
+        ++y;
+        const int delta = val - tree[x][y];
+
+        for (int i = x; i <= n; i += i & -i) {
+            for (int j = y; j <= n; j += j & -j) {
+                tree[i][j] += delta;
+            }
+        }
     }
 
     int range(const int x1, const int y1, const int x2, const int y2) const {
