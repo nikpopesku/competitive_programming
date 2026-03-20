@@ -36,7 +36,7 @@ public:
         Bit bt(static_cast<int>(v.size()));
 
         for (int i = 0; i < static_cast<int>(v.size()); ++i) {
-            bt.up
+            bt.update(i);
         }
     }
 };
