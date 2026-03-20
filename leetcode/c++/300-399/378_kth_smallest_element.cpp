@@ -15,14 +15,9 @@ public:
         }
     }
 
-    int find_kth(int k) const {
+    int find_kth(int k) {
         int pos = 0;
-        for (int bit = 1 << 20; bit > 0; bit >>= 1) {
-            if (pos + bit <= n && tree[pos + bit] < k) {
-                k -= tree[pos + bit];
-                pos += bit;
-            }
-        }
+
         return pos;
     }
 
@@ -48,12 +43,12 @@ public:
 
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < n; ++j) {
-                const int idx = static_cast<int>(lower_bound(v.begin(), v.end(), matrix[i][j]) - v.begin());
+                const int idx = lower_bound(v.begin(), v.end(), matrix[i][j]) - v.begin();
                 bt.update(idx);
             }
         }
 
-        return v[bt.find_kth(k)];
+        return v[bt.find_kth];
     }
 };
 
