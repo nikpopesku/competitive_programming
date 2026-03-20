@@ -18,9 +18,9 @@ public:
     int find_kth(int k) const {
         int pos = 0;
 
-        for (int bit = 1 << 20; bit <= n; bit >>= 1) {
+        for (int bit = 1 << 20; bit > 0; bit >>= 1) {
             if (pos + bit <= n && tree[pos + bit] < k) {
-                k -= bit;
+                k -= tree[pos + bit];
                 pos += bit;
             }
         }
