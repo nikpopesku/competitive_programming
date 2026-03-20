@@ -4,6 +4,16 @@
 
 using namespace std;
 
+class Bit {
+public:
+    explicit Bit(const int sz): n(sz), tree(n+1, 0) {
+
+    }
+private:
+    int n;
+    vector<int> tree;
+};
+
 class Solution {
 public:
     int kthSmallest(vector<vector<int> > &matrix, int k) {
