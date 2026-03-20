@@ -6,9 +6,15 @@ using namespace std;
 
 class Bit {
 public:
-    explicit Bit(const int sz): n(sz), tree(n+1, 0) {
-
+    explicit Bit(const int sz) : n(sz), tree(n + 1, 0) {
     }
+
+    void update(int index) {
+        for (++index; index <= n; index += index & -index) {
+            ++tree[index];
+        }
+    }
+
 private:
     int n;
     vector<int> tree;
@@ -27,6 +33,11 @@ public:
 
         sort(v.begin(), v.end());
         v.erase(unique(v.begin(), v.end()), v.end());
+        Bit bt(static_cast<int>(v.size()));
+
+        for (int i = 0; i < static_cast<int>(v.size()); ++i) {
+            bt.up
+        }
     }
 };
 
