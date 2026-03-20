@@ -36,7 +36,7 @@ public:
         Bit bt(static_cast<int>(v.size()));
 
         for (int i = 0; i < static_cast<int>(v.size()); ++i) {
-            bt.update(i);
+            bt.update(v[i]);
         }
     }
 };
@@ -47,5 +47,5 @@ int main() {
     cout << s.kthSmallest(matrix, 8) << endl; //13
 
     vector<vector<int> > matrix2 = {{-5}};
-    cout << s.kthSmallest(matrix, 1) << endl; //-5
+    cout << s.kthSmallest(matrix2, 1) << endl; //-5
 }
