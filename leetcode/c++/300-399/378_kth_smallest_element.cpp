@@ -15,8 +15,15 @@ public:
         }
     }
 
-    int find_kth(int k) {
+    int find_kth(int k) const {
         int pos = 0;
+
+        for (int bit = 1 << 20; bit <= n; bit >>= 1) {
+            if (pos + bit <= n && tree[pos + bit] < k) {
+                k -= bit;
+                pos += bit;
+            }
+        }
 
         return pos;
     }
@@ -48,7 +55,7 @@ public:
             }
         }
 
-        return v[bt.find_kth];
+        return v[bt.find_kth(k)];
     }
 };
 
