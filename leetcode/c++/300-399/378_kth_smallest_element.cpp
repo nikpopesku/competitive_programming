@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -6,6 +7,16 @@ using namespace std;
 class Solution {
 public:
     int kthSmallest(vector<vector<int> > &matrix, int k) {
+        vector<int> v;
+        const int n = static_cast<int>(matrix.size());
+        v.reserve(n * n);
+
+        for (int i = 0; i < n; ++i) {
+            v.insert(v.end(), matrix[i].begin(), matrix[i].end());
+        }
+
+        sort(v.begin(), v.end());
+        v.erase(unique(v.begin(), v.end()), v.end());
     }
 };
 
