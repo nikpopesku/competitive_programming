@@ -60,7 +60,7 @@ int main() {
     Bit bt(n);
 
     for (int i = 0; i < n; ++i) {
-        int index = lower_bound(sorted.begin(), sorted.end(), v[i]) - v.begin();
+        int index = lower_bound(sorted.begin(), sorted.end(), v[i]) - sorted.begin();
 
         lower[i] = i - bt.query(index);
         bt.update(index);
@@ -69,7 +69,7 @@ int main() {
     bt.clear();
 
     for (int i = n - 1; i >= 0; --i) {
-        int index = lower_bound(sorted.begin(), sorted.end(), v[i]) - v.begin();
+        int index = lower_bound(sorted.begin(), sorted.end(), v[i]) - sorted.begin();
 
         upper[i] = n - 1 - i - bt.query(index);
         bt.update(index);
