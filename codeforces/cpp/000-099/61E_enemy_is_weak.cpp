@@ -64,7 +64,7 @@ int main() {
         int index = 0;
 
         while (left < right) {
-            index = left + (right - left) / 2;
+            index = left + (right - left + 1) / 2;
             if (sorted[index] == v[i]) break;
 
             if (sorted[index] < v[i]) {
@@ -86,7 +86,7 @@ int main() {
         int index = 0;
 
         while (left < right) {
-            index = left + (right - left) / 2;
+            index = left + (right - left + 1) / 2;
             if (sorted[index] == v[i]) break;
 
             if (sorted[index] < v[i]) {
