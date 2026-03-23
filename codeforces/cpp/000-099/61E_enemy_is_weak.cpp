@@ -18,7 +18,7 @@ public:
         }
     }
 
-    int query(int index) const {
+    [[nodiscard]] int query(int index) const {
         int sum = 0;
         ++index;
 
@@ -53,7 +53,7 @@ int main() {
     }
 
     vector<int> sorted = v;
-    sort(sorted.begin(), sorted.end());
+    ranges::sort(sorted);
     vector<int> lower(n);
     vector<int> upper(n);
 
