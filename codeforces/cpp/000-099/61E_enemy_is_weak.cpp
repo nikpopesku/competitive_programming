@@ -78,7 +78,7 @@ int main() {
     long long response = 0;
 
     for (int i = 0; i < n; ++i) {
-        response += (long long) lower[i] * upper[i];
+        response += static_cast<long long>(lower[i]) * upper[i];
     }
 
     cout << response << '\n';
