@@ -6,8 +6,7 @@ using namespace std;
 
 class Bit {
 public:
-    explicit Bit(const int sz): n(sz), tree(sz + 1, 0) {
-
+    explicit Bit(const int sz) : n(sz), tree(sz + 1, 0) {
     }
 
     void update(int index) {
@@ -35,6 +34,7 @@ public:
             tree[i] = 0;
         }
     }
+
 private:
     int n;
     vector<int> tree;
@@ -81,7 +81,7 @@ int main() {
 
     bt.clear();
 
-    for (int i = n - 1; i >=0 ; --i) {
+    for (int i = n - 1; i >= 0; --i) {
         int left = 0, right = n - 1;
         int index = 0;
 
