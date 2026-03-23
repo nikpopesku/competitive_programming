@@ -69,19 +69,7 @@ int main() {
     bt.clear();
 
     for (int i = n - 1; i >= 0; --i) {
-        int left = 0, right = n - 1;
-        int index = 0;
-
-        while (left < right) {
-            index = left + (right - left + 1) / 2;
-            if (sorted[index] == v[i]) break;
-
-            if (sorted[index] < v[i]) {
-                left = index;
-            } else {
-                right = index - 1;
-            }
-        }
+        int index = lower_bound(sorted.begin(), sorted.end(), v[i]) - v.begin();
 
         upper[i] = n - 1 - i - bt.query(index);
         bt.update(index);
