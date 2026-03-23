@@ -3,6 +3,24 @@
 
 using namespace std;
 
+class Bit {
+public:
+    explicit Bit(const int sz): n(sz), tree(sz + 1, 0) {
+
+    }
+
+    void update(int index) {
+        ++index;
+        while (index <= n) {
+            ++tree[index];
+            index += index & -index;
+        }
+    }
+private:
+    int n;
+    vector<int> tree;
+};
+
 int main()
 {
     ios_base::sync_with_stdio(false);
