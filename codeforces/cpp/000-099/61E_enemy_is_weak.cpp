@@ -78,7 +78,7 @@ int main() {
     long long response = 0;
 
     for (int i = 0; i < n; ++i) {
-        response += lower[i] * upper[i];
+        response += (long long) lower[i] * upper[i];
     }
 
     cout << response << '\n';
