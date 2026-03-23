@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -33,4 +34,7 @@ int main()
     for (int i = 0; i < n; ++i) {
         cin >> v[i];
     }
+
+    vector<int> sorted = v;
+    sort(sorted.begin(), sorted.end());
 }
