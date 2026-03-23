@@ -68,5 +68,6 @@ int main() {
         Bit bt(n);
 
         lower[i] = bt.query(index);
+        bt.update(index);
     }
 }
