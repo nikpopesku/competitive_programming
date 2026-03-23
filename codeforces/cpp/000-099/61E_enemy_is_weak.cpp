@@ -71,7 +71,7 @@ int main() {
     for (int i = n - 1; i >= 0; --i) {
         int index = lower_bound(sorted.begin(), sorted.end(), v[i]) - sorted.begin();
 
-        upper[i] = n - 1 - i - bt.query(index);
+        upper[i] = bt.query(index);
         bt.update(index);
     }
 
