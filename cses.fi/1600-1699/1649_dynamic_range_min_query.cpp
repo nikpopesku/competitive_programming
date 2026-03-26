@@ -13,7 +13,7 @@ public:
         update(1, 0, n - 1, a, b);
     }
 
-    int query(int a, int b) {
+    int query(const int a, const int b) {
         return query(1, 0, n - 1, a, b);
     }
 
@@ -27,7 +27,7 @@ private:
         }
 
         const int mid = (lo + hi) / 2;
-        tree[index] = min(update(2 * index, lo, mid, pos, val), update(2 * index + 1, mid +1 , hi, pos, val));
+        tree[index] = min(update(2 * index, lo, mid, pos, val), update(2 * index + 1, mid + 1, hi, pos, val));
         return tree[index];
     }
 
