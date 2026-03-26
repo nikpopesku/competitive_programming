@@ -7,18 +7,18 @@ class SegTree {
     int n;
     vector<int> tree;
 
-    void build(const vector<int> &arr, int node, int lo, int hi) {
+    void build(const vector<int> &arr, const int node, const int lo, const int hi) {
         if (lo == hi) {
             tree[node] = arr[lo];
             return;
         }
-        int mid = (lo + hi) / 2;
+        const int mid = (lo + hi) / 2;
         build(arr, 2 * node, lo, mid);
         build(arr, 2 * node + 1, mid + 1, hi);
         tree[node] = min(tree[2 * node], tree[2 * node + 1]);
     }
 
-    void update(int node, int lo, int hi, int pos, int val) {
+    void update(const int node, const int lo, const int hi, const int pos, const int val) {
         if (lo == hi) {
             tree[node] = val;
             return;
@@ -29,7 +29,7 @@ class SegTree {
         tree[node] = min(tree[2 * node], tree[2 * node + 1]);
     }
 
-    int query(int node, int lo, int hi, int a, int b) {
+    int query(const int node, const int lo, const int hi, const int a, const int b) {
         if (b < lo || hi < a) return INT_MAX; // fully outside
         if (a <= lo && hi <= b) return tree[node]; // fully inside
         int mid = (lo + hi) / 2;
