@@ -4,14 +4,15 @@ using namespace std;
 
 class SegTree {
 public:
-    SegTree(vector<int> arr): n(static_cast<int>(arr.size())), tree(n * 4) {
-        build(arr, 1, 0, n-1);
+    SegTree(vector<int> arr) : n(static_cast<int>(arr.size())), tree(n * 4) {
+        build(arr, 1, 0, n - 1);
     }
+
 private:
     int n;
     vector<int> tree;
 
-    void build(vector<int>& arr, const int index, const int lo, const int hi) {
+    void build(vector<int> &arr, const int index, const int lo, const int hi) {
         if (lo == hi) {
             tree[index] = arr[lo];
             return;
@@ -40,5 +41,6 @@ int main() {
         cin >> type >> a >> b;
 
         if (type == 1)
+
     }
 }
