@@ -29,7 +29,9 @@ private:
         }
 
         const int mid = (lo + hi) / 2;
-        tree[index] = min(update(2 * index, lo, mid, pos, val), update(2 * index + 1, mid + 1, hi, pos, val));
+        if (pos <= mid) update(2 * index, lo, mid, pos, val);
+        else            update(2 * index + 1, mid + 1, hi, pos, val);
+        tree[index] = min(tree[2 * index], tree[2 * index + 1]);
         return tree[index];
     }
 
