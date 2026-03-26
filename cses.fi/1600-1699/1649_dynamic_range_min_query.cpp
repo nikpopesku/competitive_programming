@@ -9,7 +9,7 @@ public:
         build(arr, 1, 0, n - 1);
     }
 
-    void update(int a, int b) {
+    void update(const int a, const int b) {
         update(1, 0, n - 1, a, b);
     }
 
@@ -21,11 +21,14 @@ private:
     int n;
     vector<int> tree;
 
-    void update(int index, int lo, int hi, int a, int b) {
-        // if (b < lo || a > hi) return INT_MAX;
-        //
-        // int mid = (lo + hi) / 2;
-        // tree[index] = min(update(2 * index, lo, mid))
+    int update(const int index, const int lo, const int hi, const int pos, const int val) {
+        if (lo == hi) {
+            tree[lo] = val;
+        }
+
+        const int mid = (lo + hi) / 2;
+        tree[index] = min(update(2 * index, lo, mid, pos, val), update(2 * index + 1, mid +1 , hi, pos, val));
+        return tree[index];
     }
 
     int query(const int index, const int lo, const int hi, const int a, const int b) {
