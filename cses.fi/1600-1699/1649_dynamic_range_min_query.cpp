@@ -19,7 +19,7 @@ public:
         }
     }
 
-    int range(const int a, const int b) const {
+    [[nodiscard]] int range(const int a, const int b) const {
         return query(b) - query(a - 1);
     }
 
