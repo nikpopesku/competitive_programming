@@ -1,16 +1,40 @@
 #include <iostream>
+#include <limits.h>
 #include <vector>
 using namespace std;
 
 class SegTree {
 public:
-    SegTree(vector<int> arr) : n(static_cast<int>(arr.size())), tree(n * 4) {
+    explicit SegTree(vector<int> arr) : n(static_cast<int>(arr.size())), tree(n * 4) {
         build(arr, 1, 0, n - 1);
+    }
+
+    void update(int a, int b) {
+        update(1, 0, n - 1, a, b);
+    }
+
+    int query(int a, int b) {
+        return query(1, 0, n - 1, a, b);
     }
 
 private:
     int n;
     vector<int> tree;
+
+    void update(int index, int lo, int hi, int a, int b) {
+        // if (b < lo || a > hi) return INT_MAX;
+        //
+        // int mid = (lo + hi) / 2;
+        // tree[index] = min(update(2 * index, lo, mid))
+    }
+
+    int query(int index, int lo, int hi, int a, int b) {
+        if (b < lo || a > hi) return INT_MAX;
+        if (lo <= a && b <= hi) return tree[index];
+
+        int mid = (lo + hi) / 2;
+        tree[index] = min(query(2 * index, lo, mid, a, b), query(2 * index + 1, mid + 1, hi, a, b));
+    }
 
     void build(vector<int> &arr, const int index, const int lo, const int hi) {
         if (lo == hi) {
@@ -40,7 +64,10 @@ int main() {
     while (q--) {
         cin >> type >> a >> b;
 
-        if (type == 1)
-
+        if (type == 1) {
+            st.update(a, b);
+        } else {
+            cout << st.query(a, b) << '\n';
+        }
     }
 }
