@@ -38,12 +38,12 @@ class SegTree {
     }
 
 public:
-    explicit SegTree(const vector<int> &arr) : n(arr.size()), tree(4 * arr.size()) {
+    explicit SegTree(const vector<int> &arr) : n(static_cast<int>(arr.size())), tree(4 * arr.size()) {
         build(arr, 1, 0, n - 1);
     }
 
-    void update(int pos, int val) { update(1, 0, n - 1, pos, val); }
-    int query(int a, int b) { return query(1, 0, n - 1, a, b); }
+    void update(const int pos, const int val) { update(1, 0, n - 1, pos, val); }
+    int query(const int a, const int b) { return query(1, 0, n - 1, a, b); }
 };
 
 int main() {
