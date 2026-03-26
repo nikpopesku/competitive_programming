@@ -28,7 +28,11 @@ private:
     vector<int> tree;
 
     int query(int index) {
-        return 4;
+        int min_val = tree[index];
+        while (index > 0) {
+            min_val = min(min_val, tree[index]);
+            index -= index & -index;
+        }
     }
 };
 
@@ -49,5 +53,6 @@ int main() {
 
     for (int i = 0; i < q; ++i) {
         cin >> type >> a >> b;
+        cout << bt.range(a, b) << '\n';
     }
 }
