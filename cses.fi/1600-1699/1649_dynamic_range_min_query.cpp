@@ -23,7 +23,9 @@ private:
 
     int update(const int index, const int lo, const int hi, const int pos, const int val) {
         if (lo == hi) {
-            tree[lo] = val;
+            tree[index] = val;
+
+            return tree[index];
         }
 
         const int mid = (lo + hi) / 2;
@@ -46,8 +48,8 @@ private:
         }
 
         const int mid = (lo + hi) / 2;
-        build(arr, index, lo, mid);
-        build(arr, index, mid + 1, hi);
+        build(arr, 2 * index, lo, mid);
+        build(arr, 2 * index + 1, mid + 1, hi);
         tree[index] = min(tree[2 * index], tree[2 * index + 1]);
     }
 };
@@ -68,9 +70,9 @@ int main() {
         cin >> type >> a >> b;
 
         if (type == 1) {
-            st.update(a, b);
+            st.update(a - 1, b);
         } else {
-            cout << st.query(a, b) << '\n';
+            cout << st.query(a - 1, b - 1) << '\n';
         }
     }
 }
