@@ -28,12 +28,12 @@ private:
         // tree[index] = min(update(2 * index, lo, mid))
     }
 
-    int query(int index, int lo, int hi, int a, int b) {
+    int query(const int index, const int lo, const int hi, const int a, const int b) {
         if (b < lo || a > hi) return INT_MAX;
         if (lo <= a && b <= hi) return tree[index];
 
-        int mid = (lo + hi) / 2;
-        tree[index] = min(query(2 * index, lo, mid, a, b), query(2 * index + 1, mid + 1, hi, a, b));
+        const int mid = (lo + hi) / 2;
+        return min(query(2 * index, lo, mid, a, b), query(2 * index + 1, mid + 1, hi, a, b));
     }
 
     void build(vector<int> &arr, const int index, const int lo, const int hi) {
