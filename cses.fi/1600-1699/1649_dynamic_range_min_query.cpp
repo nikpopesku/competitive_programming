@@ -14,7 +14,7 @@ public:
     }
 
     int query(int a, int b) {
-        return query(1, 0, n-1, a, b);
+        return query(1, 0, n - 1, a, b);
     }
 
 private:
