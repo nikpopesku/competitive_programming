@@ -9,6 +9,10 @@ public:
         build(1, 0, n - 1, arr);
     }
 
+    void update(const int pos, const int val) {
+        update(1, 0, n-1, pos, val);
+    }
+
 private:
     int n;
     vector<int> tree;
@@ -26,18 +30,40 @@ private:
 
         tree[index] = min(tree[2 * index], tree[2 * index + 1]);
     }
+
+    void update(const int index, const int lo, const int hi, const int pos, const int val) {
+        if (lo == hi) {
+            tree[index] = val;
+
+            return;
+        }
+
+        if (int mid = (lo + hi) / 2; pos <= mid) {
+            update(2 * index, lo, mid, pos, val);
+        } else {
+            update(2 * index + 1, mid + 1, hi, pos, val);
+        }
+
+        tree[index] = min(tree[2 * index], tree[2 * index + 1]);
+    }
 };
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n, q;
+    int n, q, type, a, b;
     cin >> n >> q;
     vector<int> v(n);
     for (int &x: v) cin >> x;
     SegTree st(v, n);
 
     while (q--) {
+        cin >> type >> a >> b;
+        if (type == 1) {
+            st.update(a-1, b);
+        } else {
+            cout << st.query(a-1, b-1) << '\n';
+        }
     }
 }
