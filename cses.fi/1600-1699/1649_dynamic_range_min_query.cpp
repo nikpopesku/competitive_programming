@@ -10,7 +10,7 @@ public:
     }
 
     void update(const int pos, const int val) {
-        update(1, 0, n-1, pos, val);
+        update(1, 0, n - 1, pos, val);
     }
 
 private:
@@ -61,9 +61,9 @@ int main() {
     while (q--) {
         cin >> type >> a >> b;
         if (type == 1) {
-            st.update(a-1, b);
+            st.update(a - 1, b);
         } else {
-            cout << st.query(a-1, b-1) << '\n';
+            cout << st.query(a - 1, b - 1) << '\n';
         }
     }
 }
