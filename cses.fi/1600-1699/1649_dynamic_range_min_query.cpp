@@ -57,7 +57,7 @@ private:
 
         const int mid = (lo + hi) / 2;
 
-        return min(query(2 * index, lo, mid, a, b), query(2 * index + 1, mid, hi, a, b));
+        return min(query(2 * index, lo, mid, a, b), query(2 * index + 1, mid + 1, hi, a, b));
     }
 };
 
