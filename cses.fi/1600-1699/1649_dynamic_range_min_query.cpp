@@ -13,6 +13,10 @@ public:
         update(1, 0, n - 1, pos, val);
     }
 
+    int query(int a, int b) {
+        return query(1, 0, n-1, a, b);
+    }
+
 private:
     int n;
     vector<int> tree;
@@ -38,13 +42,22 @@ private:
             return;
         }
 
-        if (int mid = (lo + hi) / 2; pos <= mid) {
+        if (const int mid = (lo + hi) / 2; pos <= mid) {
             update(2 * index, lo, mid, pos, val);
         } else {
             update(2 * index + 1, mid + 1, hi, pos, val);
         }
 
         tree[index] = min(tree[2 * index], tree[2 * index + 1]);
+    }
+
+    int query(const int index, const int lo, const int hi, const int a, const int b) {
+        if (b < lo || a > hi) return INT_MAX;
+        if (a <= lo && b >= hi) return tree[index];
+
+        const int mid = (lo + hi) / 2;
+
+        return min(query(2 * index, lo, mid, a, b), query(2 * index + 1, mid, hi, a, b));
     }
 };
 
