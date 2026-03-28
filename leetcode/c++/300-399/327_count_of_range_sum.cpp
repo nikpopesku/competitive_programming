@@ -31,8 +31,9 @@ public:
             prefix.push_back(x - upper);
         }
 
-        ranges::sort(prefix);
-        prefix.erase(unique(prefix.begin(), prefix.end()) - prefix.end());
+        sort(prefix.begin(), prefix.end());
+        prefix.erase(unique(prefix.begin(), prefix.end()), prefix.end());
+        cout << "OK\n";
     }
 };
 
