@@ -11,6 +11,7 @@ public:
     }
 
     void update(int index) {
+        ++index;
         while (index <= n) {
             ++tree[index];
             index += index & -index;
@@ -50,7 +51,7 @@ public:
         const int n = static_cast<int>(nums.size());
         const int m = static_cast<int>(prefix.size());
         Bit bt(m);
-        bt.update(prefix[0]);
+        bt.update(0);
 
         int answer = 0;
 
@@ -62,7 +63,7 @@ public:
             const int rank_b = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), b) - prefix.begin());
 
             answer += bt.range(rank_a, rank_b);
-            bt.update(j);
+            bt.update(index);
         }
 
         return answer;
