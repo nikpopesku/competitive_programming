@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -5,7 +6,16 @@ using namespace std;
 
 class Solution {
 public:
-    int countRangeSum(vector<int> &nums, int lower, int upper) {
+    int countRangeSum(const vector<int> &nums, const int lower, const int upper) {
+        vector<int> prefix;
+        for (int x: nums) {
+            prefix.push_back(x);
+            prefix.push_back(x - lower);
+            prefix.push_back(x - upper);
+        }
+
+        ranges::sort(prefix);
+        prefix.erase(unique(prefix.begin(), prefix.end()) - prefix.end());
     }
 };
 
