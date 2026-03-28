@@ -39,11 +39,13 @@ private:
 class Solution {
 public:
     int countRangeSum(const vector<int> &nums, const int lower, const int upper) {
-        vector<int> prefix;
-        for (int x: nums) {
-            prefix.push_back(x);
-            prefix.push_back(x - lower);
-            prefix.push_back(x - upper);
+        vector<long long> prefix;
+        long long pr = 0;
+        for (const int x: nums) {
+            pr += x;
+            prefix.push_back(pr);
+            prefix.push_back(pr - lower);
+            prefix.push_back(pr - upper);
         }
 
         sort(prefix.begin(), prefix.end());
@@ -57,8 +59,8 @@ public:
 
         for (int j = 0; j < n; ++j) {
             const int index = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), nums[j]) - prefix.begin());
-            const int a = prefix[index] - upper;
-            const int b = prefix[index] - lower;
+            const long long a = prefix[index] - upper;
+            const long long b = prefix[index] - lower;
             const int rank_a = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), a) - prefix.begin());
             const int rank_b = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), b) - prefix.begin());
 
