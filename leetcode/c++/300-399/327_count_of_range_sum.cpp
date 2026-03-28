@@ -55,11 +55,11 @@ public:
         int answer = 0;
 
         for (int j = 0; j < n; ++j) {
-            int index = lower_bound(prefix.begin(), prefix.end(), nums[j]) - prefix.begin();
+            const int index = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), nums[j]) - prefix.begin());
             const int a = prefix[index] - upper;
             const int b = prefix[index] - lower;
-            const int rank_a = lower_bound(prefix.begin(), prefix.end(), a) - prefix.begin();
-            const int rank_b = lower_bound(prefix.begin(), prefix.end(), b) - prefix.begin();
+            const int rank_a = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), a) - prefix.begin());
+            const int rank_b = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), b) - prefix.begin());
 
             answer += bt.range(rank_a, rank_b);
             bt.update(j);
