@@ -53,7 +53,7 @@ public:
         const int n = static_cast<int>(nums.size());
         const int m = static_cast<int>(prefix.size());
         Bit bt(m);
-        bt.update(0);
+        bt.update(static_cast<int>(lower_bound(prefix.begin(), prefix.end(), 0) - prefix.begin()));
         int answer = 0;
 
         pr = 0;
