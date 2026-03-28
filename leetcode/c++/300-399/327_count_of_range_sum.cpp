@@ -6,8 +6,7 @@ using namespace std;
 
 class Bit {
 public:
-    explicit Bit (const int sz): n(sz), tree(sz + 1, 0) {
-
+    explicit Bit(const int sz) : n(sz), tree(sz + 1, 0) {
     }
 
     void update(int index) {
@@ -19,7 +18,7 @@ public:
     }
 
     [[nodiscard]] int range(const int a, const int b) const {
-        return query(b) - query(a -1);
+        return query(b) - query(a - 1);
     }
 
     [[nodiscard]] int query(int index) const {
@@ -31,6 +30,7 @@ public:
 
         return sm;
     }
+
 private:
     int n;
     vector<int> tree;
