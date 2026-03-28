@@ -62,7 +62,7 @@ public:
             const long long a = prefix[index] - upper;
             const long long b = prefix[index] - lower;
             const int rank_a = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), a) - prefix.begin());
-            const int rank_b = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), b) - prefix.begin());
+            const int rank_b = static_cast<int>(upper_bound(prefix.begin(), prefix.end(), b) - prefix.begin()) - 1;
 
             answer += bt.range(rank_a, rank_b);
             bt.update(index);
