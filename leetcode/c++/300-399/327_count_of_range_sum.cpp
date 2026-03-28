@@ -16,6 +16,20 @@ public:
             index += index & -index;
         }
     }
+
+    int range(const int a, const int b) {
+        return query(b) - query(a -1);
+    }
+
+    [[nodiscard]] int query(int index) const {
+        int sm = 0;
+        while (index > 0) {
+            sm += tree[index];
+            index -= index & -index;
+        }
+
+        return sm;
+    }
 private:
     int n;
     vector<int> tree;
@@ -36,6 +50,17 @@ public:
         const int m = static_cast<int>(prefix.size());
         Bit bt(m);
         bt.update(prefix[0]);
+
+        int answer = 0;
+
+        for (int j = 1; j < m; ++j) {
+            int a = prefix[j] - upper;
+            int b = prefix[j] - lower;
+
+            answer += bt.
+        }
+
+        return answer;
     }
 };
 
