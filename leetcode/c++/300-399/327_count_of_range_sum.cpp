@@ -39,7 +39,7 @@ private:
 class Solution {
 public:
     int countRangeSum(const vector<int> &nums, const int lower, const int upper) {
-        vector<long long> prefix;
+        vector prefix = {0LL};
         long long pr = 0;
         for (const int x: nums) {
             pr += x;
@@ -53,19 +53,19 @@ public:
         const int n = static_cast<int>(nums.size());
         const int m = static_cast<int>(prefix.size());
         Bit bt(m);
-        bt.update(0);
 
         int answer = 0;
 
+        pr = 0;
         for (int j = 0; j < n; ++j) {
-            const int index = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), nums[j]) - prefix.begin());
-            const long long a = prefix[index] - upper;
-            const long long b = prefix[index] - lower;
+            pr += nums[j];
+            const long long a = pr - upper;
+            const long long b = pr - lower;
             const int rank_a = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), a) - prefix.begin());
             const int rank_b = static_cast<int>(upper_bound(prefix.begin(), prefix.end(), b) - prefix.begin()) - 1;
 
             answer += bt.range(rank_a, rank_b);
-            bt.update(index);
+            bt.update(pr);
         }
 
         return answer;
