@@ -47,17 +47,21 @@ public:
 
         sort(prefix.begin(), prefix.end());
         prefix.erase(unique(prefix.begin(), prefix.end()), prefix.end());
+        const int n = static_cast<int>(nums.size());
         const int m = static_cast<int>(prefix.size());
         Bit bt(m);
         bt.update(prefix[0]);
 
         int answer = 0;
 
-        for (int j = 1; j < m; ++j) {
-            const int a = prefix[j] - upper;
-            const int b = prefix[j] - lower;
+        for (int j = 0; j < n; ++j) {
+            int index = lower_bound(prefix.begin(), prefix.end(), nums[j]) - prefix.begin();
+            const int a = prefix[index] - upper;
+            const int b = prefix[index] - lower;
+            const int rank_a = lower_bound(prefix.begin(), prefix.end(), a) - prefix.begin();
+            const int rank_b = lower_bound(prefix.begin(), prefix.end(), b) - prefix.begin();
 
-            answer += bt.range(a, b);
+            answer += bt.range(rank_a, rank_b);
             bt.update(j);
         }
 
