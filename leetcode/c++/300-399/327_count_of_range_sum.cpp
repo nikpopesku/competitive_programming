@@ -17,7 +17,7 @@ public:
         }
     }
 
-    int range(const int a, const int b) {
+    [[nodiscard]] int range(const int a, const int b) const {
         return query(b) - query(a -1);
     }
 
@@ -54,10 +54,11 @@ public:
         int answer = 0;
 
         for (int j = 1; j < m; ++j) {
-            int a = prefix[j] - upper;
-            int b = prefix[j] - lower;
+            const int a = prefix[j] - upper;
+            const int b = prefix[j] - lower;
 
-            answer += bt.
+            answer += bt.range(a, b);
+            bt.update(j);
         }
 
         return answer;
