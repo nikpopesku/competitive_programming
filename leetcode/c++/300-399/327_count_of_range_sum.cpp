@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -17,9 +16,25 @@ public:
             index += index & -index;
         }
     }
+
+    [[nodiscard]] int range(int a , int b) const {
+        ++a;
+        ++b;
+        return query(b) - query(a-1);
+    }
 private:
     int n;
     vector<int> tree;
+
+    [[nodiscard]] int query(int index) const {
+        int sm = 0;
+        while (index > 0) {
+            sm += tree[index];
+            index -= index & -index;
+        }
+
+        return sm;
+    }
 };
 
 class Solution {
