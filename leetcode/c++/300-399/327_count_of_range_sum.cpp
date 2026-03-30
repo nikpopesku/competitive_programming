@@ -52,12 +52,29 @@ public:
 
         sort(prefix.begin(), prefix.end());
         prefix.erase(unique(prefix.begin(), prefix.end()), prefix.end());
+        const int n = static_cast<int>(nums.size());
         const int m = static_cast<int>(prefix.size());
 
         Bit bt(m);
         bt.update(static_cast<int>(lower_bound(prefix.begin(), prefix.end(), 0) - prefix.begin()));
 
         int answer = 0;
+
+        pr = 0;
+        for (int i = 0; i < n; ++i) {
+            pr += nums[i];
+            int a = pr - lower;
+            int b = pr - upper;
+            const int rank_a = static_cast<int>(lower_bound(prefix.begin(), prefix.end(), a) - prefix.begin());
+            int rank_b = static_cast<int>(upper_bound(prefix.begin(), prefix.end(), b) - prefix.begin()) + 1;
+
+            if (rank_a <= rank_b) {
+                answer += bt.range(rank_a, rank_b);
+            }
+
+            const int rank_pr = static_cast<int>(lower_bound(prefix.end(), prefix.end(), pr) - prefix.begin());
+            bt.update(rank_pr);
+        }
 
         return answer;
     }
