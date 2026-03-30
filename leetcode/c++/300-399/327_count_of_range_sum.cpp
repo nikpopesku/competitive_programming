@@ -17,8 +17,10 @@ public:
         }
     }
 
-    [[nodiscard]] int range(const int a, const int b) const {
-        return query(b + 1) - query(a);
+    [[nodiscard]] int range(int a, int b) const {
+        ++a;
+        ++b;
+        return query(b) - query(a - 1);
     }
 
     [[nodiscard]] int query(int index) const {
