@@ -4,11 +4,29 @@
 
 using namespace std;
 
+class Bit {
+public:
+    explicit Bit(const int sz): n(sz), tree(n+1) {
+
+    }
+
+    void update(int index) {
+        ++index;
+        while (index <= n) {
+            ++tree[index];
+            index += index & -index;
+        }
+    }
+private:
+    int n;
+    vector<int> tree;
+};
+
 class Solution {
 public:
     int countRangeSum(const vector<int> &nums, const int lower, const int upper) {
         int pr = 0;
-        vector<int> prefix;
+        vector prefix = {0LL};
         for (int x: nums) {
             pr += x;
             prefix.push_back(pr);
