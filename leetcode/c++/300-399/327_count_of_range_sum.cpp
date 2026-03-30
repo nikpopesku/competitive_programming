@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -42,12 +43,19 @@ public:
     int countRangeSum(const vector<int> &nums, const int lower, const int upper) {
         int pr = 0;
         vector prefix = {0LL};
-        for (int x: nums) {
+        for (const int x: nums) {
             pr += x;
             prefix.push_back(pr);
             prefix.push_back(pr - lower);
             prefix.push_back(pr - upper);
         }
+
+        sort(prefix.begin(), prefix.end());
+        prefix.erase(unique(prefix.begin(), prefix.end()), prefix.end());
+        const int m = static_cast<int>(prefix.size());
+
+        Bit bt(m);
+        bt.update(static_cast<int>(lower_bound(prefix.begin(), prefix.end(), 0) - prefix.begin()));
 
         int answer = 0;
 
