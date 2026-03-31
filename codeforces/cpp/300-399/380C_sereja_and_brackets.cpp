@@ -11,14 +11,14 @@ struct Bracket {
 
 class SegTree {
 public:
-    explicit SegTree(const int sz, string s) : n(sz), tree(sz * 4, 0) {
+    explicit SegTree(const int sz, string s) : n(sz), tree<Bracket>(sz * 4, 0) {
         Bracket br;
 
         for (int i = 0; i < n; ++i) {
             if (s[i] == '(') {
-                br = Bracket{1, 0 , 0};
-            } else {
                 br = Bracket{0, 1 , 0};
+            } else {
+                br = Bracket{0, 0 , 1};
             }
             build(i+1, br);
         }
@@ -46,7 +46,7 @@ private:
         const Bracket ans_left = query(node * 2, nl, mid, l, r);
         const Bracket ans_right = query(node * 2 + 1, mid + 1, nr, l, r);
 
-        const int pairs = min(ans_left.matched, ans_right.close);
+        const int pairs = min(ans_left.open, ans_right.close);
         Bracket merged;
 
         merged.matched = ans_left.matched + ans_right.matched +pairs;
