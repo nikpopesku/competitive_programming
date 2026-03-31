@@ -39,9 +39,11 @@ private:
     void update(const int node, const int nl, const int nr, const int pos, const int val) {
         if (nl == nr) {
             tree[node] = val;
+
+            return;
         }
 
-        if (int mid = (nr + nl) / 2; pos <= mid) {
+        if (const int mid = (nr + nl) / 2; pos <= mid) {
             update(node * 2, nl, mid, pos, val);
         } else {
             update(node * 2 + 1, mid + 1, nr, pos, val);
