@@ -36,13 +36,12 @@ private:
         return ans_left + ans_right;
     }
 
-    void update(const int node, const int nl, const int nr, int pos, int val) {
+    void update(const int node, const int nl, const int nr, const int pos, const int val) {
         if (nl == nr) {
             tree[node] = val;
         }
 
-        int mid = (nr + nl) / 2;
-        if (pos <= mid) {
+        if (int mid = (nr + nl) / 2; pos <= mid) {
             update(node * 2, nl, mid, pos, val);
         } else {
             update(node * 2 + 1, mid + 1, nr, pos, val);
@@ -61,7 +60,12 @@ int main() {
     int l, r;
     SegTree st(static_cast<int>(s.size()) + 1);
 
+    for (int i = 0; i < s.size(); ++i) {
+        st.update(i, 1);
+    }
+
     while (n--) {
         cin >> l >> r;
+        cout << st.query(l, r) << '\n';
     }
 }
