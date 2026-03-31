@@ -28,14 +28,16 @@ private:
             return;
         }
 
-        const int mid = (nl + nr) / 2;
-        update(node * 2, nl, mid, pos, val);
-        update(node * 2 + 1, mid + 1, nr, pos, val);
+        if (const int mid = (nl + nr) / 2; mid <= pos) {
+            update(node * 2, nl, mid, pos, val);
+        } else {
+            update(node * 2 + 1, mid + 1, nr, pos, val);
+        }
 
         tree[node] = max(tree[node * 2], tree[node * 2 + 1]);
     }
 
-    int query(int node, int nl, const int nr, const int l, const int r) {
+    int query(const int node, const int nl, const int nr, const int l, const int r) {
         if (r < nl || l > nr) {
             return 0;
         }
@@ -44,8 +46,11 @@ private:
             return tree[node];
         }
 
-        int mid = (nl + nr) / 2;
-        // if (mid <= )
+        const int mid = (nl + nr) / 2;
+        const int ans_left = query(node * 2, nl, mid, l, r);
+        const int ans_right = query(node * 2 + 1, mid + 1, nl, l, r);
+
+        return max(ans_left, ans_right);
     }
 };
 
