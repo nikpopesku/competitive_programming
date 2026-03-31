@@ -5,8 +5,7 @@ using namespace std;
 
 class SegTree {
 public:
-    explicit SegTree(const int sz): n(sz), tree(sz * 4, 0) {
-
+    explicit SegTree(const int sz) : n(sz), tree(sz * 4, 0) {
     }
 
     void update(const int pos, const int val) {
@@ -16,6 +15,7 @@ public:
     int query(const int l, const int r) {
         return query(1, 1, n, l, r);
     }
+
 private:
     int n;
     vector<int> tree;
@@ -30,8 +30,8 @@ private:
         }
 
         const int mid = (nl + nr) / 2;
-        const int ans_left = query(node * 2, nl, mid, l , r);
-        const int ans_right = query(node * 2 + 1, mid +1 , nr, l, r);
+        const int ans_left = query(node * 2, nl, mid, l, r);
+        const int ans_right = query(node * 2 + 1, mid + 1, nr, l, r);
 
         return ans_left + ans_right;
     }
@@ -48,12 +48,11 @@ private:
             update(node * 2 + 1, mid + 1, nr, pos, val);
         }
 
-        tree[node] = tree[node *2] + tree[node * 2 + 1];
+        tree[node] = tree[node * 2] + tree[node * 2 + 1];
     }
 };
 
-int main()
-{
+int main() {
     string s;
     cin >> s;
 
