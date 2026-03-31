@@ -43,28 +43,27 @@ private:
         const int pairs = min(ans_left.open, ans_right.close);
         Bracket merged;
 
-        merged.matched = ans_left.matched + ans_right.matched +pairs;
+        merged.matched = ans_left.matched + ans_right.matched + pairs;
         merged.open = ans_left.open - pairs + ans_right.open;
         merged.close = ans_left.close + (ans_right.close - pairs);
 
         return merged;
     }
 
-    void build(const int node, const int nl, int nr, int pos, Bracket val) {
+    void build(const int node, const int nl, const int nr, const int pos, const Bracket val) {
         if (nl == nr) {
             tree[node] = val;
             return;
         }
-        const int mid = (nl + nr) / 2;
-        if (pos <= mid)
+        if (const int mid = (nl + nr) / 2; pos <= mid)
             build(node * 2, nl, mid, pos, val);
         else
             build(node * 2 + 1, mid + 1, nr, pos, val);
 
         const int pairs = min(tree[node * 2].open, tree[node * 2 + 1].close);
-        tree[node].matched = tree[node*2].matched + tree[node*2+1].matched + pairs;
-        tree[node].open    = tree[node*2].open - pairs + tree[node*2+1].open;
-        tree[node].close   = tree[node*2].close + (tree[node*2+1].close - pairs);
+        tree[node].matched = tree[node * 2].matched + tree[node * 2 + 1].matched + pairs;
+        tree[node].open = tree[node * 2].open - pairs + tree[node * 2 + 1].open;
+        tree[node].close = tree[node * 2].close + (tree[node * 2 + 1].close - pairs);
     }
 };
 
