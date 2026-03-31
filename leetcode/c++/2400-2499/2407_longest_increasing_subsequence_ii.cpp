@@ -28,7 +28,7 @@ private:
             return;
         }
 
-        if (const int mid = (nl + nr) / 2; mid <= pos) {
+        if (const int mid = (nl + nr) / 2; pos <= mid) {
             update(node * 2, nl, mid, pos, val);
         } else {
             update(node * 2 + 1, mid + 1, nr, pos, val);
@@ -48,7 +48,7 @@ private:
 
         const int mid = (nl + nr) / 2;
         const int ans_left = query(node * 2, nl, mid, l, r);
-        const int ans_right = query(node * 2 + 1, mid + 1, nl, l, r);
+        const int ans_right = query(node * 2 + 1, mid + 1, nr, l, r);
 
         return max(ans_left, ans_right);
     }
