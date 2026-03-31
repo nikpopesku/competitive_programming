@@ -24,9 +24,9 @@ private:
     int n;
     vector<Bracket> tree;
 
-    int query(const int node, const int nl, const int nr, const int l, const int r) {
+    Bracket query(const int node, const int nl, const int nr, const int l, const int r) {
         if (r < nl || l > nr) {
-            return 0;
+            return {};
         }
 
         if (l <= nl && r >= nr) {
@@ -34,10 +34,17 @@ private:
         }
 
         const int mid = (nl + nr) / 2;
-        const int ans_left = query(node * 2, nl, mid, l, r);
-        const int ans_right = query(node * 2 + 1, mid + 1, nr, l, r);
+        const Bracket ans_left = query(node * 2, nl, mid, l, r);
+        const Bracket ans_right = query(node * 2 + 1, mid + 1, nr, l, r);
 
-        return ans_left + ans_right;
+        const int pairs = min(ans_left.matched, ans_right.close);
+        Bracket merged;
+
+        merged.matched = ans_left.matched + ans_right.matched +pairs;
+        merged.open = ans_left.open - pairs + ans_right.open;
+        merged.close = ans_left.close + (ans_right.close - pairs);
+
+        return merged;
     }
 };
 
