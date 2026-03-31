@@ -16,7 +16,7 @@ public:
     }
 
 
-    int query(const int l, const int r) {
+    Bracket query(const int l, const int r) {
         return query(1, 1, n, l, r);
     }
 
@@ -63,6 +63,6 @@ int main() {
 
     while (n--) {
         cin >> l >> r;
-        cout << st.query(l, r) << '\n';
+        cout << 2 * st.query(l, r).matched << '\n';
     }
 }
