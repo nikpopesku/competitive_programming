@@ -68,11 +68,7 @@ int main() {
     int n;
     cin >> n;
     int l, r;
-    SegTree st(static_cast<int>(s.size()) + 1);
-
-    for (int i = 0; i < s.size(); ++i) {
-        st.update(i, 1);
-    }
+    SegTree st(static_cast<int>(s.size()) + 1, s);
 
     while (n--) {
         cin >> l >> r;
