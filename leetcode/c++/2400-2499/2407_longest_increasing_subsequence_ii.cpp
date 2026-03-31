@@ -4,10 +4,71 @@
 
 using namespace std;
 
+class SegTree {
+public:
+    SegTree(int sz): n(sz), tree(n * 4, 0) {
+
+    }
+
+    void update(int pos, int val) {
+        update(1, 1, n, pos, val);
+    }
+
+    int query(int l, int r) {
+        return query(1, 1, n, l, r);
+    }
+private:
+    int n;
+    vector<int> tree;
+
+    void update(const int node, const int nl, const int nr, int pos, int val) {
+        if (nl == nr) {
+            tree[node] = max(tree[node], val);
+
+            return;
+        }
+
+        const int mid = (nl + nr) / 2;
+        update(node * 2, nl, mid, pos, val);
+        update(node * 2 + 1, mid + 1, nr, pos, val);
+
+        tree[node] = max(tree[node * 2], tree[node * 2 + 1]);
+    }
+
+    int query(int node, int nl, int nr, int l, int r) {
+        if (r < nl || l > nr) {
+            return 0;
+        }
+
+        if (l <= nl && r >= nr) {
+            return tree[node];
+        }
+
+        int mid = (nl + nr) / 2;
+        // if (mid <= )
+    }
+};
 
 class Solution {
 public:
     int lengthOfLIS(const vector<int> &nums, const int k) {
+        SegTree st(100001);
+        int maxVal = *max_element(nums.begin(), nums.end());
+
+        for (int n: nums) {
+            int l = max(1, n - k);
+            int r = n - 1;
+
+            int best = 0;
+
+            if (r >= l) {
+                best = st.query(l, r);
+            }
+
+            st.update(n, best + 1);
+        }
+
+        return st.query(1, maxVal);
     }
 };
 
