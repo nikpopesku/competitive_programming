@@ -3,14 +3,18 @@
 
 using namespace std;
 
+struct Bracket {
+    int matched;
+    int open;
+    int close;
+};
+
 class SegTree {
 public:
     explicit SegTree(const int sz) : n(sz), tree(sz * 4, 0) {
+
     }
 
-    void update(const int pos, const int val) {
-        update(1, 1, n, pos, val);
-    }
 
     int query(const int l, const int r) {
         return query(1, 1, n, l, r);
@@ -18,7 +22,7 @@ public:
 
 private:
     int n;
-    vector<int> tree;
+    vector<Bracket> tree;
 
     int query(const int node, const int nl, const int nr, const int l, const int r) {
         if (r < nl || l > nr) {
@@ -34,22 +38,6 @@ private:
         const int ans_right = query(node * 2 + 1, mid + 1, nr, l, r);
 
         return ans_left + ans_right;
-    }
-
-    void update(const int node, const int nl, const int nr, const int pos, const int val) {
-        if (nl == nr) {
-            tree[node] = val;
-
-            return;
-        }
-
-        if (const int mid = (nr + nl) / 2; pos <= mid) {
-            update(node * 2, nl, mid, pos, val);
-        } else {
-            update(node * 2 + 1, mid + 1, nr, pos, val);
-        }
-
-        tree[node] = tree[node * 2] + tree[node * 2 + 1];
     }
 };
 
