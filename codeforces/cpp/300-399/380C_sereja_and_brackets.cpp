@@ -11,16 +11,10 @@ struct Bracket {
 
 class SegTree {
 public:
-    explicit SegTree(const int sz, string s) : n(sz), tree<Bracket>(sz * 4, 0) {
-        Bracket br;
-
+    explicit SegTree(const int sz, string s) : n(sz), tree(sz * 4) {
         for (int i = 0; i < n; ++i) {
-            if (s[i] == '(') {
-                br = Bracket{0, 1 , 0};
-            } else {
-                br = Bracket{0, 0 , 1};
-            }
-            build(i+1, br);
+            const Bracket br = (s[i] == '(') ? Bracket{0, 1, 0} : Bracket{0, 0, 1};
+            build(1, 1, n, i + 1, br);
         }
     }
 
@@ -56,8 +50,21 @@ private:
         return merged;
     }
 
-    void build(int pos, Bracket val) {
+    void build(const int node, const int nl, int nr, int pos, Bracket val) {
+        if (nl == nr) {
+            tree[node] = val;
+            return;
+        }
+        const int mid = (nl + nr) / 2;
+        if (pos <= mid)
+            build(node * 2, nl, mid, pos, val);
+        else
+            build(node * 2 + 1, mid + 1, nr, pos, val);
 
+        const int pairs = min(tree[node * 2].open, tree[node * 2 + 1].close);
+        tree[node].matched = tree[node*2].matched + tree[node*2+1].matched + pairs;
+        tree[node].open    = tree[node*2].open - pairs + tree[node*2+1].open;
+        tree[node].close   = tree[node*2].close + (tree[node*2+1].close - pairs);
     }
 };
 
@@ -68,7 +75,7 @@ int main() {
     int n;
     cin >> n;
     int l, r;
-    SegTree st(static_cast<int>(s.size()) + 1, s);
+    SegTree st(static_cast<int>(s.size()), s);
 
     while (n--) {
         cin >> l >> r;
