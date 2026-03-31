@@ -11,8 +11,17 @@ struct Bracket {
 
 class SegTree {
 public:
-    explicit SegTree(const int sz) : n(sz), tree(sz * 4, 0) {
+    explicit SegTree(const int sz, string s) : n(sz), tree(sz * 4, 0) {
+        Bracket br;
 
+        for (int i = 0; i < n; ++i) {
+            if (s[i] == '(') {
+                br = Bracket{1, 0 , 0};
+            } else {
+                br = Bracket{0, 1 , 0};
+            }
+            build(i+1, br);
+        }
     }
 
 
@@ -45,6 +54,10 @@ private:
         merged.close = ans_left.close + (ans_right.close - pairs);
 
         return merged;
+    }
+
+    void build(int pos, Bracket val) {
+
     }
 };
 
