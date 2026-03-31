@@ -6,8 +6,7 @@ using namespace std;
 
 class SegTree {
 public:
-    explicit SegTree(const int sz): n(sz), tree(n * 4, 0) {
-
+    explicit SegTree(const int sz) : n(sz), tree(n * 4, 0) {
     }
 
     void update(const int pos, const int val) {
@@ -17,6 +16,7 @@ public:
     int query(const int l, const int r) {
         return query(1, 1, n, l, r);
     }
+
 private:
     int n;
     vector<int> tree;
@@ -53,11 +53,11 @@ class Solution {
 public:
     int lengthOfLIS(const vector<int> &nums, const int k) {
         SegTree st(100001);
-        int maxVal = *max_element(nums.begin(), nums.end());
+        const int maxVal = *max_element(nums.begin(), nums.end());
 
-        for (int n: nums) {
-            int l = max(1, n - k);
-            int r = n - 1;
+        for (const int n: nums) {
+            const int l = max(1, n - k);
+            const int r = n - 1;
 
             int best = 0;
 
