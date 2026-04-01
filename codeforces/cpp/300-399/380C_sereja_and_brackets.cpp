@@ -18,8 +18,8 @@ public:
         }
     }
 
-    Bracket query(int l, int r) {
-        return query(1, 1, n, l , r);
+    Bracket query(const int l, const int r) {
+        return query(1, 1, n, l, r);
     }
 
 private:
@@ -36,11 +36,11 @@ private:
         if (const int mid = (nl + nr) / 2; pos <= mid) {
             build(node * 2, nl, mid, pos, val);
         } else {
-            build(node * +1, mid + 1, nr, pos, val);
+            build(node * 2 + 1, mid + 1, nr, pos, val);
         }
 
         Bracket merged{};
-        const int pairs = min(tree[node * 2].open, tree[node * 2].close);
+        const int pairs = min(tree[node * 2].open, tree[node * 2 + 1].close);
         merged.matched = tree[node * 2].matched + tree[node * 2 + 1].matched + pairs;
         merged.open = tree[node * 2].open + tree[node * 2 + 1].open - pairs;
         merged.close = tree[node * 2].close + tree[node * 2 + 1].close - pairs;
@@ -59,7 +59,7 @@ private:
         auto ans_left = query(node * 2, nl, mid, l, r);
         auto ans_right = query(node * 2 + 1, mid + 1, nr, l, r);
 
-        Bracket merged {};
+        Bracket merged{};
         const int pairs = min(ans_left.open, ans_right.close);
         merged.matched = ans_left.matched + ans_right.matched + pairs;
         merged.open = ans_left.open + ans_right.open - pairs;
