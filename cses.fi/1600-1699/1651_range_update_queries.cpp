@@ -7,7 +7,7 @@ using namespace std;
 
 class Bit {
 public:
-    Bit(const ll sz, const vector<ll> &v) : n(sz), tree(sz + 2, 0) {
+    Bit(const ll sz, const vector<ll> &v) : n(sz), tree(sz + 1, 0) {
         // Build BIT over difference array D[i] = v[i] - v[i-1]
         for (ll i = 1; i <= sz; ++i) {
             update(i, v[i] - v[i - 1]);
