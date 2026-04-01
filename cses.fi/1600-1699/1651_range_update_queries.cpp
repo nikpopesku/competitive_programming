@@ -42,7 +42,7 @@ int main() {
 
     ll n, q, type, a, b, u;
     cin >> n >> q;
-    vector v(n + 1, 0);
+    vector<ll> v(n + 1, 0);
     for (ll i = 1; i <= n; ++i) {
         cin >> v[i];
     }
