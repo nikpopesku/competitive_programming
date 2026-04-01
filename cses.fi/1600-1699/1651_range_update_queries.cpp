@@ -7,21 +7,21 @@ using namespace std;
 
 class Bit {
 public:
-    Bit(const int sz, const vector<int> &v) : n(sz), tree(n + 1, 0) {
-        for (int i = 1; i <= n; ++i) {
+    Bit(const ll sz, const vector<ll> &v) : n(sz), tree(n + 1, 0) {
+        for (ll i = 1; i <= n; ++i) {
             update(i, v[i] - v[i - 1]);
         }
     }
 
-    void update(int index, const int val) {
+    void update(ll index, const ll val) {
         while (index <= n) {
             tree[index] += val;
             index += index & -index;
         }
     }
 
-    [[nodiscard]] int query(int index) const {
-        int sm = 0;
+    [[nodiscard]] ll query(ll index) const {
+        ll sm = 0;
         while (index > 0) {
             sm += tree[index];
             index -= index & -index;
@@ -31,8 +31,8 @@ public:
     }
 
 private:
-    int n;
-    vector<int> tree;
+    ll n;
+    vector<ll> tree;
 };
 
 int main() {
@@ -40,10 +40,10 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int n, q, type, a, b, u;
+    ll n, q, type, a, b, u;
     cin >> n >> q;
     vector v(n + 1, 0);
-    for (int i = 1; i <= n; ++i) {
+    for (ll i = 1; i <= n; ++i) {
         cin >> v[i];
     }
 
