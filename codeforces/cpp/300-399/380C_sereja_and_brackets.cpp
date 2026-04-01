@@ -44,6 +44,8 @@ private:
         merged.matched = tree[node * 2].matched + tree[node * 2 + 1].matched + pairs;
         merged.open = tree[node * 2].open + tree[node * 2 + 1].open - pairs;
         merged.close = tree[node * 2].close + tree[node * 2 + 1].close - pairs;
+
+        tree[node] = merged;
     }
 
     Bracket query(const int node, const int nl, const int nr, const int l, const int r) {
@@ -79,6 +81,6 @@ int main() {
 
     while (m--) {
         cin >> l >> r;
-        cout << st.query(l, r).matched << '\n';
+        cout << 2 * st.query(l, r).matched << '\n';
     }
 }
