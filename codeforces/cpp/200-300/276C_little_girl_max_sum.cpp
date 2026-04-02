@@ -6,31 +6,30 @@ using namespace std;
 
 #define  ll long long
 
-int main()
-{
+int main() {
     // Fast I/O
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n, q, l , r;
+    int n, q, l, r;
     cin >> n >> q;
-    vector<ll> v;
+    vector<ll> v(n);
     for (int i = 0; i < n; ++i) {
         cin >> v[i];
     }
 
-    vector<ll> count(n+1, 0);
+    vector<ll> count(n + 1, 0);
 
     while (q--) {
         cin >> l >> r;
-        count[l-1]++;
+        count[l - 1]++;
         if (r < n) {
             --count[r];
         }
     }
 
     for (int i = 1; i <= n; ++i) {
-        count[i] += count[i-1];
+        count[i] += count[i - 1];
     }
 
     ranges::sort(v);
