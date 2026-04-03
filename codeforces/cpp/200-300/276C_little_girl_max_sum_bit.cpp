@@ -8,12 +8,16 @@ using namespace std;
 
 class Bit {
 public:
-    Bit (int sz): n(sz), tree(sz+1, 0) {
+    explicit Bit (const int sz): n(sz), tree(sz+1, 0) {
 
     }
 
-    void update(int l, int r) {
+    void update(const int l, const int r) {
+        ++tree[l - 1];
 
+        if (r < n) {
+            --tree[r];
+        }
     }
 
     int query(int l, int r) {
