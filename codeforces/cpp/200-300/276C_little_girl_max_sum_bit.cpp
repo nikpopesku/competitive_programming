@@ -18,7 +18,7 @@ public:
         }
     }
 
-    int query(int index) const {
+    [[nodiscard]] int query(int index) const {
         int sm = 0;
         while (index > 0) {
             sm += tree[index];
@@ -59,12 +59,12 @@ int main() {
     }
 
     vector<int> freq(n);
-    sort(v.begin(), v.end());
+    ranges::sort(v);
     for (int i = 0; i < n; ++i) {
-        freq[i] = bt.query(i+1);
+        freq[i] = bt.query(i + 1);
     }
 
-    sort(freq.begin(), freq.end());
+    ranges::sort(freq);
 
     ll answer = 0;
 
