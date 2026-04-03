@@ -18,7 +18,14 @@ public:
         }
     }
 
-    int query(int l, int r) {
+    int query(int index) const {
+        int sm = 0;
+        while (index > 0) {
+            sm += tree[index];
+            index -= index & -index;
+        }
+
+        return sm;
     }
 
 private:
@@ -51,5 +58,19 @@ int main() {
         }
     }
 
-    cout << bt.query(1, n) << '\n';
+    vector<int> freq(n);
+    sort(v.begin(), v.end());
+    for (int i = 0; i < n; ++i) {
+        freq[i] = bt.query(i+1);
+    }
+
+    sort(freq.begin(), freq.end());
+
+    ll answer = 0;
+
+    for (int i = 0; i < n; ++i) {
+        answer += static_cast<ll>(v[i] * freq[i]);
+    }
+
+    cout << answer << '\n';
 }
