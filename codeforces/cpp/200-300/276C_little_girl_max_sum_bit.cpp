@@ -8,21 +8,19 @@ using namespace std;
 
 class Bit {
 public:
-    explicit Bit (const int sz): n(sz), tree(sz+1, 0) {
-
+    explicit Bit(const int sz) : n(sz), tree(sz + 1, 0) {
     }
 
-    void update(const int l, const int r) {
-        ++tree[l - 1];
-
-        if (r < n) {
-            --tree[r];
+    void update(int index, const int val) {
+        while (index <= n) {
+            tree[index] += val;
+            index += index & -index;
         }
     }
 
     int query(int l, int r) {
-
     }
+
 private:
     int n;
     vector<int> tree;
@@ -45,7 +43,12 @@ int main() {
 
     while (q--) {
         cin >> l >> r;
-        bt.update(l, r);
+
+        bt.update(l, 1);
+
+        if (r + 1 <= n) {
+            bt.update(r + 1, -1);
+        }
     }
 
     cout << bt.query(1, n) << '\n';
