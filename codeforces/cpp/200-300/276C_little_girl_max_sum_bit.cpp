@@ -8,11 +8,15 @@ using namespace std;
 
 class Bit {
 public:
-    Bit (int sz): n(sz), tree(n+1, 0) {
+    Bit (int sz): n(sz), tree(sz+1, 0) {
 
     }
 
     void update(int l, int r) {
+
+    }
+
+    int query(int l, int r) {
 
     }
 private:
@@ -39,4 +43,6 @@ int main() {
         cin >> l >> r;
         bt.update(l, r);
     }
+
+    cout << bt.query(1, n) << '\n';
 }
