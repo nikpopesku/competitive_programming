@@ -3,6 +3,34 @@
 
 using namespace std;
 
+class Bit {
+public:
+    explicit Bit(const int sz): n(sz), tree(n+1, 0) {
+
+    }
+
+    void update(int index) {
+        while (index <= n) {
+            ++tree[index];
+            index += index & -index;
+        }
+    }
+
+    int query(int index) const {
+        int sm = 0;
+
+        while (index > 0) {
+            sm += tree[index];
+            index -= index & -index;
+        }
+
+        return sm;
+    }
+private:
+    int n;
+    vector<int> tree;
+};
+
 class Solution {
 public:
     bool isIdealPermutation(const vector<int> &nums) {
