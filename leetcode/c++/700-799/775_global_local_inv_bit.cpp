@@ -5,8 +5,7 @@ using namespace std;
 
 class Bit {
 public:
-    explicit Bit(const int sz): n(sz), tree(n+1, 0) {
-
+    explicit Bit(const int sz) : n(sz), tree(n + 1, 0) {
     }
 
     void update(int index) {
@@ -26,6 +25,7 @@ public:
 
         return sm;
     }
+
 private:
     int n;
     vector<int> tree;
@@ -34,7 +34,6 @@ private:
 class Solution {
 public:
     bool isIdealPermutation(const vector<int> &nums) {
-
     }
 };
 
