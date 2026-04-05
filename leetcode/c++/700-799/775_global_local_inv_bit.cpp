@@ -52,11 +52,11 @@ public:
                 ++local;
             }
             const int index = lower_bound(v.begin(), v.end(), nums[i]) - v.begin();
-            global += bt.query(index);
+            global += i - bt.query(index);
             bt.update(index);
         }
 
-        return global > local;
+        return global == local;
     }
 };
 
