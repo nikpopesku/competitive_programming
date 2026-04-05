@@ -34,6 +34,21 @@ private:
 class Solution {
 public:
     bool isIdealPermutation(const vector<int> &nums) {
+        Bit bt(2000000 + 2);
+        const int n = static_cast<int>(nums.size());
+
+        int global = 0;
+        int local = 0;
+
+        for (int i = 0; i < n; ++i) {
+            if (i < n - 1 && nums[i] > nums[i+1]) {
+                ++local;
+            }
+            global += bt.query(nums[i]);
+            bt.update(nums[i]);
+        }
+
+        return global > local;
     }
 };
 
