@@ -38,7 +38,7 @@ public:
     bool isIdealPermutation(const vector<int> &nums) {
         const int n = static_cast<int>(nums.size());
 
-        int global = 0;
+        long long global = 0;
         int local = 0;
 
         vector<int> v = nums;
