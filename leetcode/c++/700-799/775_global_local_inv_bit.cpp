@@ -15,7 +15,7 @@ public:
         }
     }
 
-    int query(int index) const {
+    [[nodiscard]] int query(int index) const {
         int sm = 0;
 
         while (index > 0) {
@@ -41,7 +41,7 @@ public:
         int local = 0;
 
         for (int i = 0; i < n; ++i) {
-            if (i < n - 1 && nums[i] > nums[i+1]) {
+            if (i < n - 1 && nums[i] > nums[i + 1]) {
                 ++local;
             }
             global += bt.query(nums[i]);
