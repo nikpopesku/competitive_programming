@@ -69,4 +69,7 @@ int main() {
 
     vector<int> v2 = {1, 2, 0};
     cout << boolalpha << s.isIdealPermutation(v2) << '\n';
+
+    vector<int> v3 = {0};
+    cout << boolalpha << s.isIdealPermutation(v3) << '\n';
 }
