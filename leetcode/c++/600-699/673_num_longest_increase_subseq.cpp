@@ -4,8 +4,8 @@
 using namespace std;
 
 struct Lis {
-    int max_length;
-    int count;
+    int max_length = 0;
+    int count = 0;
 };
 
 class Bit {
@@ -18,7 +18,9 @@ public:
     }
 
     int query(int index) const {
+        ++index;
         Lis response = {};
+
         while (index > 0) {
             if (tree[index].max_length > response.max_length) {
                 response = tree[index];
@@ -50,8 +52,10 @@ public:
 
         for (int i = 0; i < n; ++i) {
             int rank = lower_bound(v.begin(), v.end(), nums[i]) - v.begin();
-            bt.query(rank - 1);
+            int val = bt.query(rank - 1);
         }
+
+        return bt.query()
     }
 };
 
