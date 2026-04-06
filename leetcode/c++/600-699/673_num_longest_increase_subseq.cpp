@@ -27,7 +27,7 @@ public:
         }
     }
 
-    Lis query(int index) const {
+    [[nodiscard]] Lis query(int index) const {
         ++index;
         Lis response = {};
 
