@@ -3,14 +3,39 @@
 
 using namespace std;
 
+struct Lis {
+    int max_length;
+    int count;
+};
+
 class Bit {
 public:
     explicit Bit(const int sz) : n(sz), tree(sz + 1, 0) {
     }
 
+    void update(int index) {
+
+    }
+
+    int query(int index) const {
+        Lis response = {};
+        while (index > 0) {
+            if (tree[index].max_length > response.max_length) {
+                response = tree[index];
+            }
+
+            if (tree[index].max_length == response.max_length) {
+                response.count += tree[index].count;
+            }
+
+            index -= index & -index;
+        }
+
+        return response.max_length;
+    }
 private:
     int n;
-    vector<int> tree;
+    vector<Lis> tree;
 };
 
 class Solution {
@@ -19,10 +44,13 @@ public:
         vector<int> v = nums;
         sort(v.begin(), v.end());
         v.erase(unique(v.begin(), v.end()), v.end());
-        int n = static_cast<int>(nums.size());
-        int m = static_cast<int>(v.size());
+        const int n = static_cast<int>(nums.size());
+        const int m = static_cast<int>(v.size());
+        Bit bt(m);
 
         for (int i = 0; i < n; ++i) {
+            int rank = lower_bound(v.begin(), v.end(), nums[i]) - v.begin();
+            bt.query(rank - 1);
         }
     }
 };
