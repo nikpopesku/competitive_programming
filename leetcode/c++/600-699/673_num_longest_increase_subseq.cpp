@@ -10,19 +10,20 @@ struct Lis {
 
 class Bit {
 public:
-    explicit Bit(const int sz) : n(sz), tree(sz + 1, 0) {
+    explicit Bit(const int sz) : n(sz), tree(sz + 1) {
     }
 
     void update(int index, const int length, const int count) {
         ++index;
 
-        while (index <= n ) {
+        while (index <= n) {
             if (length > tree[index].max_length) {
                 tree[index] = Lis{length, count};
             } else if (length == tree[index].max_length) {
-                ++tree[index].count;
+                tree[index].count += count;
             }
 
+            index += index & -index;
         }
     }
 
@@ -42,6 +43,7 @@ public:
 
         return response;
     }
+
 private:
     int n;
     vector<Lis> tree;
@@ -61,10 +63,11 @@ public:
             const int rank = lower_bound(v.begin(), v.end(), nums[i]) - v.begin();
             Lis val = bt.query(rank - 1);
 
-            bt.update(rank, val.max_length, val.count);
+            Lis insert_val = val.max_length == 0 ? Lis{1, 1} : Lis{val.max_length + 1, val.count};
+            bt.update(rank, insert_val.max_length, insert_val.count);
         }
 
-        // return bt.query()
+        return bt.query(m - 1).count;
     }
 };
 
