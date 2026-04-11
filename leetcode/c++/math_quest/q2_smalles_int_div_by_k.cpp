@@ -1,39 +1,24 @@
 #include <iostream>
-#include <set>
-
 
 using namespace std;
-
-#define ll long long
 
 class Solution {
 public:
     int smallestRepunitDivByK(int k) {
-        if (k % 2 == 0) {
+        if (k % 2 == 0 || k % 5 == 0) {
             return -1;
         }
 
-        set<ll> uniq;
+        int remainder = 0;
 
-        ll num = 1;
-        int ln = 1;
-
-        while (true) {
-            const ll md = num % k;
-            if (md == 0) {
-                return ln;
+        for (int len = 1; len <= k; len++) {
+            remainder = (remainder * 10 + 1) % k;
+            if (remainder == 0) {
+                return len;
             }
-
-
-            if (uniq.contains(md)) {
-                return -1;
-            }
-
-            uniq.insert(md);
-            num = num * 10;
-            num += 1;
-            ln += 1;
         }
+
+        return -1;
     }
 };
 
@@ -44,4 +29,5 @@ int main() {
     cout << s.smallestRepunitDivByK(2) << '\n';
     cout << s.smallestRepunitDivByK(3) << '\n';
     cout << s.smallestRepunitDivByK(5) << '\n';
+    cout << s.smallestRepunitDivByK(23) << '\n';
 }
