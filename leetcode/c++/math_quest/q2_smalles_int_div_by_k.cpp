@@ -9,14 +9,19 @@ using namespace std;
 class Solution {
 public:
     int smallestRepunitDivByK(int k) {
+        if (k % 2 == 0) {
+            return -1;
+        }
+
         set<ll> uniq;
 
         ll num = 1;
+        int ln = 1;
 
         while (true) {
             const ll md = num % k;
             if (md == 0) {
-                return static_cast<int>(to_string(num).size());
+                return ln;
             }
 
 
@@ -25,8 +30,9 @@ public:
             }
 
             uniq.insert(md);
-            num = num << 1;
+            num = num * 10;
             num += 1;
+            ln += 1;
         }
     }
 };
