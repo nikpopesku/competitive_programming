@@ -14,9 +14,9 @@ public:
         ll num = 1;
 
         while (true) {
-            int md = num % k;
+            const ll md = num % k;
             if (md == 0) {
-                return num;
+                return static_cast<int>(to_string(num).size());
             }
 
 
@@ -37,4 +37,5 @@ int main() {
     cout << s.smallestRepunitDivByK(1) << '\n';
     cout << s.smallestRepunitDivByK(2) << '\n';
     cout << s.smallestRepunitDivByK(3) << '\n';
+    cout << s.smallestRepunitDivByK(5) << '\n';
 }
