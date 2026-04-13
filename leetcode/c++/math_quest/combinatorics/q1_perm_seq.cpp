@@ -17,11 +17,13 @@ public:
             int index = k / block_size;
             if (k % block_size > 0) ++index;
             response += to_string(digits[index - 1]);
-            digits.erase(digits.begin() + index);
+            digits.erase(digits.begin() + index - 1);
             --m;
             k -= block_size;
             block_size /= m;
         }
+
+        response += to_string(digits[0]);
 
 
         return response;
@@ -32,6 +34,6 @@ int main() {
     auto s = Solution();
 
     cout << s.getPermutation(3, 3) << '\n'; //213
-    // cout << s.getPermutation(4, 9) << '\n'; //2314
-    // cout << s.getPermutation(3, 1) << '\n'; //123
+    cout << s.getPermutation(4, 9) << '\n'; //2314
+    cout << s.getPermutation(3, 1) << '\n'; //123
 }
