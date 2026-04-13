@@ -20,11 +20,14 @@ public:
             if (block_size <= k) {
                 k -= block_size;
             }
-            block_size /= static_cast<int>(digits.size());
+            if (!digits.empty()) {
+                block_size /= static_cast<int>(digits.size());
+            }
         }
 
-        response += to_string(digits[0]);
-
+        if (!digits.empty()) {
+            response += to_string(digits[0]);
+        }
 
         return response;
     }
