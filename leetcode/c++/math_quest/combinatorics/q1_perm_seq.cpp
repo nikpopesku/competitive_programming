@@ -19,7 +19,9 @@ public:
             response += to_string(digits[index - 1]);
             digits.erase(digits.begin() + index - 1);
             --m;
-            k -= block_size;
+            if (block_size <= k) {
+                k -= block_size;
+            }
             block_size /= m;
         }
 
