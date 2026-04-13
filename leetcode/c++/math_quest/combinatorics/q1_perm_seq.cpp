@@ -12,21 +12,15 @@ public:
         int block_size = 1;
         for (int i = 1; i < n; ++i) block_size *= i;
 
-        while (k) {
+        while (!digits.empty()) {
             int index = k / block_size;
             if (k % block_size > 0) ++index;
             response += to_string(digits[index - 1]);
             digits.erase(digits.begin() + index - 1);
-            if (block_size <= k) {
-                k -= block_size;
-            }
+            k = (k - 1) % block_size + 1;
             if (!digits.empty()) {
                 block_size /= static_cast<int>(digits.size());
             }
-        }
-
-        if (!digits.empty()) {
-            response += to_string(digits[0]);
         }
 
         return response;
