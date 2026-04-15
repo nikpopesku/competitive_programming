@@ -6,7 +6,10 @@ using namespace std;
 class Solution {
 public:
     int rearrangeSticks(int n, int k) {
-
+        vector<vector<int> > dp(n + 1, vector<int>(k + 1, 0));
+        for (int i = 0; i <= min(n, k); ++i) {
+            dp[i][i] = 1;
+        }
     }
 };
 
