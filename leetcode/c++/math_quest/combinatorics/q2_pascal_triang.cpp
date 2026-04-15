@@ -11,7 +11,7 @@ public:
         for (int row = 0; row < numRows; ++row) {
             vector<int> row_vec(row + 1, 1);
             for (int col = 0; col <= row; ++col) {
-                if (col != 0 && col == row) {
+                if (col != 0 && col != row) {
                     row_vec[col] = response.back()[col - 1] + response.back()[col];
                 }
             }
