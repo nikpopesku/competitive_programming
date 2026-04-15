@@ -9,15 +9,13 @@ public:
         vector<vector<int> > response;
 
         for (int row = 0; row < numRows; ++row) {
-            vector<int> row_vec;
+            vector<int> row_vec(row + 1, 1);
             for (int col = 0; col <= row; ++col) {
-                if (col == 0 || col == row) {
-                    row_vec.push_back(1);
-                } else {
-                    row_vec.push_back(response.back()[col - 1] + response.back()[col]);
+                if (col != 0 && col == row) {
+                    row_vec[col] = response.back()[col - 1] + response.back()[col];
                 }
             }
-            response.push_back(row_vec);
+            response.push_back(std::move(row_vec));
         }
 
         return response;
@@ -27,7 +25,7 @@ public:
 int main() {
     auto s = Solution();
 
-    for (auto e: s.generate(1)) {
+    for (auto e: s.generate(5)) {
         for (auto x: e) cout << x << ' ';
         cout << '\n';
     }
