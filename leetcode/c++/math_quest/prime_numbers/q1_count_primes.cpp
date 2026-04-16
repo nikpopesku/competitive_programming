@@ -9,7 +9,7 @@ public:
     int countPrimes(int n) {
         if (n <= 2) return 0;
 
-        vector prime(n + 1, true);
+        vector prime(n, true);
         prime[0] = false;
         prime[1] = false;
 
