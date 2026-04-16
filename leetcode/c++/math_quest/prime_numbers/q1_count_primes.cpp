@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -8,23 +9,21 @@ public:
     int countPrimes(int n) {
         if (n < 1) return 0;
 
-        int response = 0;
-        vector factor(n, true);
+        vector prime(n + 1, true);
+        prime[0] = false;
+        prime[1] = false;
 
-        for (int i = 2; i * i <= n; ++i) {
-            if (n % i != 0) continue;
-            if (!factor[i]) continue;
-            ++response;
-            for (int j = i * 2; j * j <= n; j += i) {
-                if (n % j == 0) {
-                    factor[j] = false;
-                }
+        for (int i = 2; i <= n; ++i) {
+            if (!prime[i]) continue;
+            for (int j = i * 2; j <= n; j += i) {
+                prime[j] = false;
             }
         }
 
-        return response;
+        return ranges::count(prime, true);
     }
 };
+
 int main() {
     auto s = Solution();
 
