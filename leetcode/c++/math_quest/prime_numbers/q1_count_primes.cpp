@@ -7,15 +7,15 @@ using namespace std;
 class Solution {
 public:
     int countPrimes(int n) {
-        if (n < 1) return 0;
+        if (n <= 2) return 0;
 
         vector prime(n + 1, true);
         prime[0] = false;
         prime[1] = false;
 
-        for (int i = 2; i <= n; ++i) {
+        for (int i = 2; i < n; ++i) {
             if (!prime[i]) continue;
-            for (int j = i * 2; j <= n; j += i) {
+            for (int j = i * 2; j < n; j += i) {
                 prime[j] = false;
             }
         }
@@ -30,4 +30,5 @@ int main() {
     cout << s.countPrimes(10) << '\n'; //4
     cout << s.countPrimes(0) << '\n'; //0
     cout << s.countPrimes(1) << '\n'; //0
+    cout << s.countPrimes(2) << '\n'; //0
 }
