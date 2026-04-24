@@ -22,4 +22,6 @@ int main() {
 
     for (vector<int> nums = {2, 5, 1, 3, 4, 7}; const auto e: s.shuffle(nums, 3)) cout << e << ' ';
     cout << '\n';
+    for (vector<int> nums = {1, 2, 3, 4, 4, 3, 2, 1}; const auto e: s.shuffle(nums, 4)) cout << e << ' ';
+    cout << '\n';
 }
