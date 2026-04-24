@@ -6,6 +6,9 @@ using namespace std;
 class Solution {
 public:
     vector<int> findErrorNums(vector<int> &nums) {
+        for (int i = 1; i <= static_cast<int>(nums.size()); ++i) {
+            if (i != nums[i]) return {nums[i], i};
+        }
     }
 };
 
