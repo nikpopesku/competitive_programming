@@ -6,9 +6,24 @@ using namespace std;
 class Solution {
 public:
     vector<int> findErrorNums(vector<int> &nums) {
-        for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
-            if (i + 1 != nums[i]) return {nums[i], i + 1};
+        int n = static_cast<int>(nums.size());
+        vector<bool> val(n + 1, false);
+        int duplicate = 0;
+
+        for (int i = 0; i < n; ++i) {
+            if (!val[nums[i]]) {
+                val[nums[i]] = true;
+            } else {
+                duplicate = nums[i];
+            }
         }
+
+        for (int i = 1; i < n + 1; ++i) {
+            if (val[i] == false) {
+                return {duplicate, i};
+            }
+        }
+
 
         return nums;
     }
