@@ -9,7 +9,7 @@ public:
         vector v(101, 0);
         const int n = static_cast<int>(nums.size());
         for (const auto x: nums) ++v[x];
-        for (int i = 1; i < 10; ++i) v[i] += v[i - 1];
+        for (int i = 1; i < 101; ++i) v[i] += v[i - 1];
 
         vector response(n, 0);
         for (int i = 0; i < n; ++i) {
