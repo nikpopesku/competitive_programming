@@ -7,7 +7,7 @@ class Solution {
 public:
     vector<int> smallerNumbersThanCurrent(vector<int> &nums) {
         vector v(10, 0);
-        int n = static_cast<int>(nums.size());
+        const int n = static_cast<int>(nums.size());
         for (const auto x: nums) ++v[x];
         for (int i = 1; i < 10; ++i) v[i] += v[i - 1];
 
