@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 #include <vector>
 
 using namespace std;
@@ -6,6 +7,25 @@ using namespace std;
 class Solution {
 public:
     int evalRPN(vector<string> &tokens) {
+        stack<int> st;
+
+        for (string &t: tokens) {
+            if (t != "+" && t != "-" && t != "*" && t != "/") {
+                st.push(stoi(t));
+            } else {
+                const int op2 = st.top();
+                st.pop();
+                const int op1 = st.top();
+                st.pop();
+
+                if (t == "+") st.push(op1 + op2);
+                if (t == "-") st.push(op1 - op2);
+                if (t == "*") st.push(op1 * op2);
+                if (t == "/") st.push(op1 / op2);
+            }
+        }
+
+        return st.top();
     }
 };
 
