@@ -6,8 +6,8 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findDisappearedNumbers(vector<int> &nums) {
-        int n = static_cast<int>(nums.size());
+    vector<int> findDisappearedNumbers(const vector<int> &nums) {
+        const int n = static_cast<int>(nums.size());
         vector v(n + 1, true);
         for (const auto &x: nums) v[x] = false;
 
@@ -15,7 +15,7 @@ public:
 
         auto range = views::iota(1, n + 1) | views::filter([&v](const size_t i) { return v[i]; });
 
-        return vector<int>(range.begin(), range.end());
+        return {range.begin(), range.end()};
     }
 };
 
