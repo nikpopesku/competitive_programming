@@ -12,9 +12,9 @@ public:
 
         for (int i = 1; i <= n; ++i) {
             if (j == m) break;
-            response.push_back("Push");
+            response.emplace_back("Push");
             if (i != target[j]) {
-                response.push_back("Pop");
+                response.emplace_back("Pop");
             } else {
                 ++j;
             }
