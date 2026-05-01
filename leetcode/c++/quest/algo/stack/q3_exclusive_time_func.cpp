@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
 public:
     vector<int> exclusiveTime(int n, vector<string> &logs) {
-        vector<int> response(n, -1);
+        vector<int> response(n, 0);
         int cur_id = -1;
         int cur_start = -1;
         stack<int> st;
@@ -32,7 +32,7 @@ public:
                 if (!st.empty()) {
                     cur_id = st.top();
                     st.pop();
-                    cur_start = time;
+                    cur_start = time + 1;
                 } else {
                     cur_id = -1;
                     cur_start = -1;
