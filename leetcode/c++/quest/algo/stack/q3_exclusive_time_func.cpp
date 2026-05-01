@@ -55,4 +55,9 @@ int main() {
          s.exclusiveTime(1, logs2))
         cout << e << ' ';
     cout << '\n';
+
+    for (vector<string> logs3 = {"0:start:0", "0:start:2", "0:end:5", "1:start:6", "1:end:6", "0:end:7"}; const auto e:
+         s.exclusiveTime(2, logs3))
+        cout << e << ' ';
+    cout << '\n';
 }
