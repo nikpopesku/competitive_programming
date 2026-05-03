@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stack>
 #include <vector>
 
 using namespace std;
@@ -9,15 +8,16 @@ public:
     vector<int> dailyTemperatures(vector<int> &temperatures) {
         int n = static_cast<int>(temperatures.size());
         vector<int> answer(n, 0);
-        stack<int> st;
+        vector<int> st;
+        st.reserve(n);
 
         for (int i = 0; i < n; ++i) {
-            while (!st.empty() && temperatures[st.top()] < temperatures[i]) {
-                const int index = st.top();
-                st.pop();
+            while (!st.empty() && temperatures[st.back()] < temperatures[i]) {
+                const int index = st.back();
+                st.pop_back();
                 answer[index] = i - index;
             }
-            st.push(i);
+            st.push_back(i);
         }
 
         return answer;
