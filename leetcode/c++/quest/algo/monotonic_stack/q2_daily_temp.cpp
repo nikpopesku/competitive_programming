@@ -12,7 +12,7 @@ public:
         stack<int> st;
 
         for (int i = 0; i < n; ++i) {
-            while (!st.empty() && temperatures[st.top()] <= temperatures[i]) {
+            while (!st.empty() && temperatures[st.top()] < temperatures[i]) {
                 const int index = st.top();
                 st.pop();
                 answer[index] = i - index;
@@ -34,5 +34,9 @@ int main() {
     cout << '\n';
 
     for (vector<int> nums = {30, 60, 90}; const auto e: s.dailyTemperatures(nums)) cout << e << ' ';
+    cout << '\n';
+
+    for (vector<int> nums = {89, 62, 70, 58, 47, 47, 46, 76, 100, 70}; const auto e: s.dailyTemperatures(nums))
+        cout << e << ' '; //[8,1,5,4,3,2,1,1,0,0]
     cout << '\n';
 }
