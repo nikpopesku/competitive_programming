@@ -12,7 +12,7 @@ public:
         stack<int> st;
 
         for (int i = 0; i < n; ++i) {
-            while (!st.empty() && prices[st.top()] > prices[i]) {
+            while (!st.empty() && prices[st.top()] >= prices[i]) {
                 const int index = st.top();
                 st.pop();
                 final_prices[index] = final_prices[index] - prices[i];
