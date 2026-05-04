@@ -10,14 +10,16 @@ public:
         int n = static_cast<int>(heights.size());
         vector<int> min_right = heights;
         stack<int> st;
-        int max_area = 0;
+        int max_area = *max_element(heights.begin(), heights.end());
 
         for (int i = 0; i < n; ++i) {
             while (!st.empty() && heights[st.top()] > heights[i]) {
                 int index = st.top();
                 st.pop();
                 min_right[index] = heights[i];
-                max_area = max(max_area, (i - index + 1) * heights[i]);
+            }
+            if (!st.empty()) {
+                max_area = max(max_area, (i - st.top() + 1) * heights[st.top()]);
             }
             st.push(i);
         }
