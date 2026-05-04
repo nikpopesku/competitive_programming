@@ -16,7 +16,7 @@ public:
             while (!st.empty() && heights[st.top()] > heights[i]) {
                 int index = st.top();
                 st.pop();
-                heights[index] = heights[i];
+                min_right[index] = heights[i];
                 max_area = max(max_area, (i - index + 1) * heights[i]);
             }
             st.push(i);
@@ -36,6 +36,6 @@ int main() {
     vector<int> nums = {2, 1, 5, 6, 2, 3};
     cout << s.largestRectangleArea(nums) << '\n';
 
-    // vector<int> nums2 = {2, 4};
-    // cout << s.largestRectangleArea(nums2) << '\n';
+    vector<int> nums2 = {2, 4};
+    cout << s.largestRectangleArea(nums2) << '\n';
 }
