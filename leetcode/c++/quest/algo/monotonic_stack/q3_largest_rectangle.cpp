@@ -8,28 +8,18 @@ class Solution {
 public:
     int largestRectangleArea(vector<int> &heights) {
         int n = static_cast<int>(heights.size());
-        vector<int> min_right = heights;
+        int max_area = 0;
         stack<int> st;
-        int max_area = *max_element(heights.begin(), heights.end());
 
-        for (int i = 0; i < n; ++i) {
-            while (!st.empty() && heights[st.top()] > heights[i]) {
-                int index = st.top();
+        for (int i = 0; i <= n; ++i) {
+            int h = (i == n) ? 0 : heights[i];
+            while (!st.empty() && heights[st.top()] > h) {
+                int height = heights[st.top()];
                 st.pop();
-                min_right[index] = heights[i];
-            }
-            if (!st.empty()) {
-                max_area = max(max_area, (i - st.top() + 1) * heights[st.top()]);
+                int width = st.empty() ? i : i - st.top() - 1;
+                max_area = max(max_area, height * width);
             }
             st.push(i);
-        }
-
-        for (int i = n - 2; i >= 0; --i) {
-            min_right[i] = min(min_right[i], min_right[i + 1]);
-        }
-
-        for (int i = 0; i < n; ++i) {
-            max_area = max(max_area, min_right[i] * (n - i));
         }
 
         return max_area;
@@ -46,5 +36,8 @@ int main() {
     cout << s.largestRectangleArea(nums2) << '\n';
 
     vector<int> nums3 = {2, 1, 0, 2};
-    cout << s.largestRectangleArea(nums3) << '\n';
+    cout << s.largestRectangleArea(nums3) << '\n'; // 2
+
+    vector<int> nums4 = {5, 4, 1, 2};
+    cout << s.largestRectangleArea(nums4) << '\n'; // 8
 }
