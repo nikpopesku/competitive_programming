@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 #include <vector>
 
 using namespace std;
@@ -6,6 +7,26 @@ using namespace std;
 class Solution {
 public:
     int largestRectangleArea(vector<int> &heights) {
+        int n = static_cast<int>(heights.size());
+        vector<int> min_right = heights;
+        stack<int> st;
+        int max_area = 0;
+
+        for (int i = 0; i < n; ++i) {
+            while (!st.empty() && heights[st.top()] > heights[i]) {
+                int index = st.top();
+                st.pop();
+                heights[index] = heights[i];
+                max_area = max(max_area, (i - index + 1) * heights[i]);
+            }
+            st.push(i);
+        }
+
+        for (int i = 0; i < n; ++i) {
+            max_area = max(max_area, min_right[i] * (n - i));
+        }
+
+        return max_area;
     }
 };
 
