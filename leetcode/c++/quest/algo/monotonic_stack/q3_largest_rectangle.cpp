@@ -24,6 +24,10 @@ public:
             st.push(i);
         }
 
+        for (int i = n - 2; i >= 0; --i) {
+            min_right[i] = min(min_right[i], min_right[i + 1]);
+        }
+
         for (int i = 0; i < n; ++i) {
             max_area = max(max_area, min_right[i] * (n - i));
         }
@@ -40,4 +44,7 @@ int main() {
 
     vector<int> nums2 = {2, 4};
     cout << s.largestRectangleArea(nums2) << '\n';
+
+    vector<int> nums3 = {2, 1, 0, 2};
+    cout << s.largestRectangleArea(nums3) << '\n';
 }
