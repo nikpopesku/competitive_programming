@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <map>
 #include <stack>
 #include <vector>
 
@@ -9,10 +10,14 @@ class Solution {
 public:
     vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2) {
         int n = static_cast<int>(nums2.size());
+        int m = static_cast<int>(nums1.size());
         vector<int> next_greater(n, -1);
         stack<int> st;
+        map<int, int> mp;
+        vector<int> response(m, -1);
 
         for (int i = 0; i < n; ++i) {
+            mp[nums2[i]] = i;
             while (!st.empty() && nums2[st.top()] <= nums2[i]) {
                 const int index = st.top();
                 st.pop();
@@ -20,6 +25,13 @@ public:
             }
             st.push(i);
         }
+
+
+        for (int i = 0; i < m; ++i) {
+            response[i] = next_greater[mp[nums1[i]]];
+        }
+
+        return response;
     }
 };
 
