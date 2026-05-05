@@ -28,7 +28,7 @@ public:
 
 
         for (int i = 0; i < m; ++i) {
-            response[i] = next_greater[mp[nums1[i]]];
+            response[i] = next_greater[mp[nums1[i]]] == -1 ? -1 : nums2[next_greater[mp[nums1[i]]]];
         }
 
         return response;
