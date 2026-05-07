@@ -10,12 +10,27 @@ using namespace std;
 class StockSpanner {
 public:
     StockSpanner() {
-
     }
 
-    int next(int price) {
+    int next(const int price) {
+        prices.push_back(price);
+        int index = counter;
 
+
+        while (!st.empty() && price[st.top()] < price) {
+            index = st.top();
+            st.pop();
+        }
+
+        st.push(counter++);
+
+        return counter - index;
     }
+
+private:
+    vector<int> prices;
+    stack<int> st;
+    int counter = 0;
 };
 
 /**
