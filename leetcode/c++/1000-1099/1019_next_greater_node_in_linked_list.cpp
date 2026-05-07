@@ -37,7 +37,7 @@ public:
         stack<int> st;
 
         for (int i = 0; i < n; ++i) {
-            while (!st.empty() && nums[st.top()] <= nums[i]) {
+            while (!st.empty() && nums[st.top()] < nums[i]) {
                 int index = st.top();
                 st.pop();
                 response[index] = nums[i];
