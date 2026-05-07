@@ -14,17 +14,15 @@ public:
 
     int next(const int price) {
         prices.push_back(price);
-        int index = counter;
 
-
-        while (!st.empty() && prices[st.top()] < price) {
-            index = st.top();
+        while (!st.empty() && prices[st.top()] <= price) {
             st.pop();
         }
 
+        int span = st.empty() ? counter + 1 : counter - st.top();
         st.push(counter++);
 
-        return counter - index;
+        return span;
     }
 
 private:
