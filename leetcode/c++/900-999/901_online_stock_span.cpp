@@ -17,7 +17,7 @@ public:
         int index = counter;
 
 
-        while (!st.empty() && price[st.top()] < price) {
+        while (!st.empty() && prices[st.top()] < price) {
             index = st.top();
             st.pop();
         }
