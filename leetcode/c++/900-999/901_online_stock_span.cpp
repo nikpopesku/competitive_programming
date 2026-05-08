@@ -19,10 +19,11 @@ public:
             st.pop();
         }
 
-        int span = st.empty() ? counter + 1 : counter - st.top();
+        int response = st.empty() ? counter + 1 : counter - st.top();
+
         st.push(counter++);
 
-        return span;
+        return response;
     }
 
 private:
