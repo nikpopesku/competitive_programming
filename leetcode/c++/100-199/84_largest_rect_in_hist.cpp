@@ -16,12 +16,11 @@ public:
         for (int i = 0; i <= n; ++i) {
             int h = i < n ? heights[i] : 0;
             while (!st.empty() && heights[st.top()] > h) {
+                int height = heights[st.top()];
                 st.pop();
+                int width = st.empty() ? i : i - st.top() - 1;
+                max_area = max(max_area, height * width);
             }
-
-            int height = h;
-            int width = st.empty() ? i + 1 : i - st.top() - 1;
-            max_area = max(max_area, height * width);
             st.push(i);
         }
 
@@ -33,7 +32,7 @@ public:
 int main() {
     auto s = Solution();
 
-    vector nums = {9, 3, 15, 20, 7};
+    vector nums = {2, 1, 5, 6, 2, 3};
     cout << s.largestRectangleArea(nums) << endl;
 
     vector nums2 = {2, 4};
