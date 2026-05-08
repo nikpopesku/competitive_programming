@@ -16,11 +16,13 @@ public:
         for (int i = 0; i <= n; ++i) {
             int h = i < n ? heights[i] : 0;
             while (!st.empty() && heights[st.top()] > heights[i]) {
-                int height = heights[st.top()];
                 st.pop();
-                int width = st.empty() ? i + 1: i - st.top() - 1;
-                max_area = max(max_area, height * width);
             }
+
+            int height = heights[st.top()];
+            int width = st.empty() ? i + 1 : i - st.top() - 1;
+            max_area = max(max_area, height * width);
+            st.push(i);
         }
 
         return max_area;
