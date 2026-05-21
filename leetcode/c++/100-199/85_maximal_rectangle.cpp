@@ -28,9 +28,8 @@ public:
             for (int j = 0; j <= m; ++j) {
                 while (!st.empty() && current_height[st.top()] > current_height[j]) {
                     const int height = current_height[st.top()];
-                    const int index = st.top();
                     st.pop();
-                    const int width = st.empty() ? j : j - index - 1;
+                    const int width = st.empty() ? j : j - st.top() - 1;
                     max_rectangle = max(max_rectangle, width * height);
                 }
 
