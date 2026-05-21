@@ -30,7 +30,7 @@ public:
                     const int height = current_height[st.top()];
                     const int index = st.top();
                     st.pop();
-                    const int width = j - index;
+                    const int width = st.empty() ? j : j - index - 1;
                     max_rectangle = max(max_rectangle, width * height);
                 }
 
