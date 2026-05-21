@@ -23,9 +23,7 @@ public:
                 } else {
                     current_height[j] = 0;
                 }
-            }
 
-            for (int j = 0; j <= m; ++j) {
                 while (!st.empty() && current_height[st.top()] > current_height[j]) {
                     const int height = current_height[st.top()];
                     st.pop();
