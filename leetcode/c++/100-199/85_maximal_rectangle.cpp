@@ -18,12 +18,14 @@ public:
             stack<int> st;
 
             for (int j = 0; j <= m; ++j) {
-                if (j < m && matrix[i][j] == 1) {
+                if (j < m && matrix[i][j] == '1') {
                     ++current_height[j];
                 } else {
                     current_height[j] = 0;
                 }
+            }
 
+            for (int j = 0; j <= m; ++j) {
                 while (!st.empty() && current_height[st.top()] > current_height[j]) {
                     int index = st.top();
                     st.pop();
