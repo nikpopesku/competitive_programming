@@ -12,13 +12,13 @@ public:
         int n = static_cast<int>(matrix.size());
         int m = static_cast<int>(matrix[0].size());
         int max_rectangle = 0;
-        vector<int> current_height(m, 0);
+        vector<int> current_height(m + 1, 0);
 
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j <= m; ++j) {
                 if (j < m && matrix[i][j] == 1) {
                     ++current_height[j];
-                } else if (j < m) {
+                } else {
                     current_height[j] = 0;
                 }
             }
