@@ -30,7 +30,7 @@ int main() {
                 ++current_height[j];
             }
 
-            while (!st.empty() && current_height[st.top()] > current_height[j]) {
+            while (!st.empty() && current_height[st.top()] >= current_height[j]) {
                 st.pop();
                 const int height = current_height[j];
                 const int width = st.empty() ? j : j - st.top() - 1;
@@ -38,9 +38,8 @@ int main() {
                 max_area = max(max_area, width * height);
             }
 
-            st.push(i);
+            st.push(j);
         }
-
     }
 
     cout << max_area << '\n';
