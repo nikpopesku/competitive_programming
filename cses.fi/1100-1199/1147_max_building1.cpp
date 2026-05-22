@@ -31,8 +31,8 @@ int main() {
             }
 
             while (!st.empty() && current_height[st.top()] >= current_height[j]) {
+                const int height = current_height[st.top()];
                 st.pop();
-                const int height = current_height[j];
                 const int width = st.empty() ? j : j - st.top() - 1;
 
                 max_area = max(max_area, width * height);
