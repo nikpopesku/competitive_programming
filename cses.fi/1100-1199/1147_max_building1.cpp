@@ -29,7 +29,18 @@ int main() {
             } else {
                 ++current_height[j];
             }
+
+            while (!st.empty() && current_height[st.top()] > current_height[j]) {
+                st.pop();
+                int height = current_height[j];
+                int width = st.empty() ? j : j - st.top() - 1;
+
+                max_area = max(max_area, width * height);
+            }
+
+            st.push(i);
         }
+
     }
 
     cout << max_area << '\n';
