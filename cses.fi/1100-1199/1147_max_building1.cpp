@@ -17,4 +17,20 @@ int main() {
             cin >> forest[i][j];
         }
     }
+
+    int max_area = 0;
+    vector<int> current_height(m + 1, 0);
+
+    for (int i = 0; i < n; ++i) {
+        stack<int> st;
+        for (int j = 0; j <= m; ++j) {
+            if (j == m || forest[i][j] == '*') {
+                current_height[j] = 0;
+            } else {
+                ++current_height[j];
+            }
+        }
+    }
+
+    cout << max_area << '\n';
 }
