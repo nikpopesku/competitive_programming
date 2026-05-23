@@ -26,7 +26,7 @@ int main() {
         for (int i = 0; i <= n; ++i) {
             int h = i == n ? 0 : rectangles[i];
             while (!st.empty() && rectangles[st.top()] >= h) {
-                const int height = i < n ? h : rectangles[st.top()];
+                const int height = st.empty() ? h : rectangles[st.top()];
                 st.pop();
                 const int width = st.empty() ? i : i - st.top() - 1;
                 max_area = max(max_area, width * height);
