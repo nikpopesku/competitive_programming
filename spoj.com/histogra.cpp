@@ -14,9 +14,9 @@ int main() {
 
         if (n == 0) return 0;
 
-        vector<int> rectangles(n);
+        vector<long long> rectangles(n);
 
-        int max_area = 0;
+        long long max_area = 0;
         stack<int> st;
 
         for (int i = 0; i < n; ++i) {
@@ -24,11 +24,11 @@ int main() {
         }
 
         for (int i = 0; i <= n; ++i) {
-            int h = i == n ? 0 : rectangles[i];
+            long long h = i == n ? 0 : rectangles[i];
             while (!st.empty() && rectangles[st.top()] >= h) {
-                const int height = st.empty() ? h : rectangles[st.top()];
+                const long long height = rectangles[st.top()];
                 st.pop();
-                const int width = st.empty() ? i : i - st.top() - 1;
+                const long long width = st.empty() ? i : i - st.top() - 1;
                 max_area = max(max_area, width * height);
             }
 
