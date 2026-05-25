@@ -9,7 +9,7 @@ public:
     string removeKdigits(string num, int k) {
         vector<char> st;
         for (auto &c: num) {
-            if (!st.empty() && st[st.size() - 1] > c) {
+            if (k && !st.empty() && st[st.size() - 1] > c) {
                 st.pop_back();
                 k--;
             }
