@@ -10,7 +10,7 @@ using namespace std;
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-        int n = static_cast<int>(s.size());
+        const int n = static_cast<int>(s.size());
         unordered_map<char, int> last_occurrence;
         set<char> st;
         vector<char> v;
@@ -22,8 +22,8 @@ public:
         for (int i = 0; i < n; ++i) {
             if (st.contains(s[i])) continue;
 
-            while (!st.empty() && v.back() > s[i] && last_occurrence[s[i]] > i) {
-                st.erase(s[i]);
+            while (!v.empty() && v.back() > s[i] && last_occurrence[v.back()] > i) {
+                st.erase(v.back());
                 v.pop_back();
             }
 
