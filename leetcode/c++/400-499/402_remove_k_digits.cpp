@@ -6,13 +6,12 @@ using namespace std;
 
 class Solution {
 public:
-    string removeKdigits(const string &num, int k) {
+    string removeKdigits(string num, int k) {
         vector<char> st;
-
-        for (const auto &c: num) {
-            while (k > 0 && !st.empty() && st[st.size() - 1] > c) {
+        for (auto &c: num) {
+            if (!st.empty() && st[st.size() - 1] > c) {
                 st.pop_back();
-                --k;
+                k--;
             }
 
             if (st.empty() && c == '0') {
@@ -24,7 +23,7 @@ public:
 
         while (k && !st.empty()) {
             st.pop_back();
-            --k;
+            k--;
         }
 
         string s(st.begin(), st.end());
@@ -32,6 +31,7 @@ public:
         return !s.empty() ? s : "0";
     }
 };
+
 
 int main() {
     Solution s;
