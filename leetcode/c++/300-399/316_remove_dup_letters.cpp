@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <iostream>
 #include <set>
 #include <string>
@@ -9,30 +10,28 @@ using namespace std;
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-        vector<char> v;
-        unordered_map<char, int> lastOccurrence;
+        int n = static_cast<int>(s.size());
+        unordered_map<char, int> last_occurrence;
         set<char> st;
-        const size_t n = s.size();
+        vector<char> v;
 
         for (int i = 0; i < n; ++i) {
-            lastOccurrence[s[i]] = i;
+            last_occurrence[s[i]] = i;
         }
 
         for (int i = 0; i < n; ++i) {
-            if (st.contains(s[i])) {
-                continue;
-            }
+            if (st.contains(s[i])) continue;
 
-            while (!v.empty() && s[i] < v.back() && lastOccurrence[v.back()] > i) {
-                st.erase(v.back());
+            while (!st.empty() && v.back() > s[i] && last_occurrence[s[i]] > i) {
+                st.erase(s[i]);
                 v.pop_back();
             }
 
-            v.push_back(s[i]);
             st.insert(s[i]);
+            v.push_back(s[i]);
         }
 
-        string ss(v.begin(), v.end());
+        string ss;
 
         return ss;
     }
