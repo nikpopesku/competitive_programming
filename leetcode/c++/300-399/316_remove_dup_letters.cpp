@@ -31,7 +31,7 @@ public:
             v.push_back(s[i]);
         }
 
-        string ss;
+        string ss(v.begin(), v.end());
 
         return ss;
     }
