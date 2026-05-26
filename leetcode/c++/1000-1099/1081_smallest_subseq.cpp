@@ -20,7 +20,7 @@ public:
             if (in_stack[a]) continue;
 
             while (!res.empty() && res.back() > s[i] && last_occurrence[res.back() - 'a'] > i) {
-                in_stack[a] = false;
+                in_stack[res.back() - 'a'] = false;
                 res.pop_back();
             }
 
