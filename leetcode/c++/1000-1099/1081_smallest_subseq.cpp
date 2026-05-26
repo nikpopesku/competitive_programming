@@ -16,15 +16,16 @@ public:
         }
 
         for (int i = 0; i < static_cast<int>(s.size()); ++i) {
-            if (in_stack[s[i]]) continue;
+            const int a = s[i] - 'a';
+            if (in_stack[a]) continue;
 
-            while (!res.empty() && res.back() > s[i] && last_occurrence[res.back()] > i) {
-                in_stack[res.back()] = false;
+            while (!res.empty() && res.back() > s[i] && last_occurrence[res.back() - 'a'] > i) {
+                in_stack[a] = false;
                 res.pop_back();
             }
 
             res.push_back(s[i]);
-            in_stack[s[i]] = true;
+            in_stack[a] = true;
         }
 
         return res;
