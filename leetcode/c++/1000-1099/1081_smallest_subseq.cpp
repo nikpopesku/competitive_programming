@@ -21,7 +21,7 @@ public:
         for (int i = 0; i < n; ++i) {
             if (st.contains(s[i])) continue;
 
-            while (!v.empty() && v.back() > s[i] && last_occurrence[s[i]] > i) {
+            while (!v.empty() && v.back() > s[i] && last_occurrence[v.back()] > i) {
                 st.erase(v.back());
                 v.pop_back();
             }
