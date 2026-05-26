@@ -6,28 +6,31 @@ using namespace std;
 class Solution {
 public:
     string smallestSubsequence(string s) {
-        int last[26] = {};
-        bool in_stack[26] = {};
         string res;
-
-        for (int i = 0; i < static_cast<int>(s.size()); ++i)
-            last[s[i] - 'a'] = i;
+        int last_occurrence[26] = {};
+        bool in_stack[26] = {};
 
         for (int i = 0; i < static_cast<int>(s.size()); ++i) {
-            const int c = s[i] - 'a';
-            if (in_stack[c]) continue;
+            last_occurrence[s[i] - 'a'] = i;
+            in_stack[s[i] - 'a'] = false;
+        }
 
-            while (!res.empty() && res.back() > s[i] && last[res.back() - 'a'] > i) {
-                in_stack[res.back() - 'a'] = false;
+        for (int i = 0; i < static_cast<int>(s.size()); ++i) {
+            if (in_stack[s[i]]) continue;
+
+            while (!res.empty() && res.back() > s[i] && last_occurrence[res.back()] > i) {
+                in_stack[res.back()] = false;
                 res.pop_back();
             }
-            in_stack[c] = true;
+
             res.push_back(s[i]);
+            in_stack[s[i]] = true;
         }
 
         return res;
     }
 };
+
 
 int main() {
     Solution s;
