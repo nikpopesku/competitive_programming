@@ -1,39 +1,30 @@
-#include <filesystem>
 #include <iostream>
-#include <set>
 #include <string>
-#include <unordered_map>
-#include <vector>
 
 using namespace std;
 
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-        const int n = static_cast<int>(s.size());
-        unordered_map<char, int> last_occurrence;
-        set<char> st;
-        vector<char> v;
+        int last[26] = {};
+        bool in_stack[26] = {};
+        string res;
 
-        for (int i = 0; i < n; ++i) {
-            last_occurrence[s[i]] = i;
-        }
+        for (int i = 0; i < (int)s.size(); ++i)
+            last[s[i] - 'a'] = i;
 
-        for (int i = 0; i < n; ++i) {
-            if (st.contains(s[i])) continue;
-
-            while (!v.empty() && v.back() > s[i] && last_occurrence[v.back()] > i) {
-                st.erase(v.back());
-                v.pop_back();
+        for (int i = 0; i < (int)s.size(); ++i) {
+            int c = s[i] - 'a';
+            if (in_stack[c]) continue;
+            while (!res.empty() && res.back() > s[i] && last[res.back() - 'a'] > i) {
+                in_stack[res.back() - 'a'] = false;
+                res.pop_back();
             }
-
-            st.insert(s[i]);
-            v.push_back(s[i]);
+            in_stack[c] = true;
+            res.push_back(s[i]);
         }
 
-        string ss(v.begin(), v.end());
-
-        return ss;
+        return res;
     }
 };
 
