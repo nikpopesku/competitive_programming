@@ -14,20 +14,13 @@ int main() {
     string u;
 
     stack<int> st;
-    vector<int> v(n, -1);
+    vector<int> v(n + 1, 'z' + 1);
+
+    for (int i = n - 1; i >= 0; --i)
+        v[i] = min(static_cast<int>(s[i]), v[i + 1]);
 
     for (int i = 0; i < n; ++i) {
-        while (!st.empty() && s[st.top()] > s[i]) {
-            v[st.top()] = i;
-            st.pop();
-        }
-        st.push(i);
-    }
-
-    st = {};
-
-    for (int i = 0; i < n; ++i) {
-        while (!st.empty() && v[st.top()] == -1) {
+        while (!st.empty() && s[st.top()] <= v[i]) {
             u += s[st.top()];
             st.pop();
         }
