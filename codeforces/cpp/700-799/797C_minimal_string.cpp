@@ -15,9 +15,15 @@ int main() {
     for (int i = 0; i < n; ++i) {
         while (!t.empty() && t.back() <= s[i]) {
             u += t.back();
+            t.pop_back();
         }
 
         t += s[i];
+    }
+
+    while (!t.empty()) {
+        u += t.back();
+        t.pop_back();
     }
 
     cout << u;
