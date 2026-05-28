@@ -4,6 +4,8 @@
 
 using namespace std;
 
+constexpr int MODULO = 1e9 + 7;
+
 class Solution {
 public:
     int sumSubarrayMins(const vector<int> &arr) {
@@ -33,6 +35,14 @@ public:
             }
             st.push(i);
         }
+
+        int response = 0;
+
+        for (int i = 0; i < n; ++i) {
+            response = (response + ((arr[i] * left_count[i] % MODULO) * right_count[i] % MODULO)) % MODULO;
+        }
+
+        return response;
     }
 };
 
