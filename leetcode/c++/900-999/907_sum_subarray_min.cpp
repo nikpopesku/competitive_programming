@@ -28,9 +28,7 @@ public:
             const int index = st.top();
             st.pop();
 
-            if (st.empty()) {
-                right_count[index] = n - index;
-            }
+            right_count[index] = n - index;
         }
 
         st = {};
@@ -49,9 +47,7 @@ public:
             const int index = st.top();
             st.pop();
 
-            if (st.empty()) {
-                left_count[index] = n - 1;
-            }
+            left_count[index] = index;
         }
 
         int response = 0;
