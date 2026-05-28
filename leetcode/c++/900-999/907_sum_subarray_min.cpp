@@ -9,7 +9,8 @@ public:
         const int n = static_cast<int>(arr.size());
         vector<int> mn(n + 1, 0);
 
-        for (int i = n; i >= 0; --i) {
+        for (int i = n - 1; i >= 0; --i) {
+            mn[i] = min(mn[i + 1], arr[i]);
         }
     }
 };
