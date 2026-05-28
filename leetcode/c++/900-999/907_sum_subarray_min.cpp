@@ -24,6 +24,15 @@ public:
             st.push(i);
         }
 
+        while (!st.empty()) {
+            const int index = st.top();
+            st.pop();
+
+            if (st.empty()) {
+                right_count[index] = n - 1;
+            }
+        }
+
         st = {};
 
         for (int i = n - 1; i >= 0; --i) {
@@ -34,6 +43,15 @@ public:
                 left_count[index] = index - i;
             }
             st.push(i);
+        }
+
+        while (!st.empty()) {
+            const int index = st.top();
+            st.pop();
+
+            if (st.empty()) {
+                left_count[index] = n - 1;
+            }
         }
 
         int response = 0;
