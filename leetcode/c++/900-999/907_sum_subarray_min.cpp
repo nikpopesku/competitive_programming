@@ -47,7 +47,7 @@ public:
             const int index = st.top();
             st.pop();
 
-            left_count[index] = index;
+            left_count[index] = index + 1;
         }
 
         int response = 0;
