@@ -20,6 +20,7 @@ public:
                 st.pop();
 
                 right_count[index] = i - index;
+                left_count[index] = st.empty() ? index + 1 : index - st.top();
             }
             st.push(i);
         }
@@ -29,25 +30,7 @@ public:
             st.pop();
 
             right_count[index] = n - index;
-        }
-
-        st = {};
-
-        for (int i = n - 1; i >= 0; --i) {
-            while (!st.empty() && arr[st.top()] >= arr[i]) {
-                const int index = st.top();
-                st.pop();
-
-                left_count[index] = index - i;
-            }
-            st.push(i);
-        }
-
-        while (!st.empty()) {
-            const int index = st.top();
-            st.pop();
-
-            left_count[index] = index + 1;
+            left_count[index] = st.empty() ? index + 1 : index - st.top();
         }
 
         int response = 0;
