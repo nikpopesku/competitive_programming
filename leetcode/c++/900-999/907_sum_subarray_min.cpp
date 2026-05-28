@@ -33,13 +33,13 @@ public:
             left_count[index] = st.empty() ? index + 1 : index - st.top();
         }
 
-        int response = 0;
+        long long response = 0;
 
         for (int i = 0; i < n; ++i) {
-            response = (response + ((arr[i] * left_count[i] % MODULO) * right_count[i] % MODULO)) % MODULO;
+            response = (response + (static_cast<long long>(arr[i]) * left_count[i] % MODULO) * right_count[i] % MODULO) % MODULO;
         }
 
-        return response;
+        return static_cast<int>(response);
     }
 };
 
