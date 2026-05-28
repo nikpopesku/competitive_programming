@@ -5,7 +5,12 @@ using namespace std;
 
 class Solution {
 public:
-    int sumSubarrayMins(vector<int> &arr) {
+    int sumSubarrayMins(const vector<int> &arr) {
+        const int n = static_cast<int>(arr.size());
+        vector<int> mn(n + 1, 0);
+
+        for (int i = n; i >= 0; --i) {
+        }
     }
 };
 
