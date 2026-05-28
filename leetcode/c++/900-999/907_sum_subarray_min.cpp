@@ -22,6 +22,8 @@ public:
             st.push(i);
         }
 
+        st = {};
+
         for (int i = n - 1; i >= 0; --i) {
             while (!st.empty() && arr[st.top()] >= arr[i]) {
                 const int index = st.top();
