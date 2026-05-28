@@ -29,7 +29,7 @@ public:
             st.pop();
 
             if (st.empty()) {
-                right_count[index] = n - 1;
+                right_count[index] = n - index;
             }
         }
 
