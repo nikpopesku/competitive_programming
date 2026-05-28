@@ -16,7 +16,7 @@ public:
         }
 
         for (int i = 1; i < n; ++i) {
-            mn_left[i] = min(mn_left[i], arr[i]);
+            mn_left[i] = min(mn_left[i - 1], arr[i]);
         }
     }
 };
