@@ -9,15 +9,25 @@ public:
     int sumSubarrayMins(const vector<int> &arr) {
         const int n = static_cast<int>(arr.size());
         stack<int> st;
-        vector<int> left_count(n, 1);
-        vector<int> right_count(n, 1);
+        vector left_count(n, 1);
+        vector right_count(n, 1);
 
         for (int i = 0; i < n; ++i) {
             while (!st.empty() && arr[st.top()] >= arr[i]) {
-                int index = st.top();
+                const int index = st.top();
                 st.pop();
 
                 right_count[index] = i - index;
+            }
+            st.push(i);
+        }
+
+        for (int i = n - 1; i >= 0; --i) {
+            while (!st.empty() && arr[st.top()] >= arr[i]) {
+                const int index = st.top();
+                st.pop();
+
+                left_count[index] = index - i;
             }
             st.push(i);
         }
