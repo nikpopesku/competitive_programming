@@ -46,6 +46,13 @@ public:
             min_left[index] = st_min.empty() ? index : index - st_min.top();
         }
 
+        while (!st_max.empty()) {
+            const int index = st_max.top();
+            st_max.pop();
+            max_right[index] = n - index;
+            max_left[index] = st_max.empty() ? index : index - st_max.top();
+        }
+
 
         ll response = 0;
 
