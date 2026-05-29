@@ -16,7 +16,7 @@ public:
 int main() {
     Solution s;
 
-    vector<vector<int> > nums = {1, 2, 3};
+    vector<int> nums = {1, 2, 3};
     cout << s.subArrayRanges(nums) << '\n';
 
     return 0;
