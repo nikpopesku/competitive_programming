@@ -12,6 +12,17 @@ public:
         int n = static_cast<int>(arr.size());
         vector left_count(n, 1);
         vector right_count(n, 1);
+        stack<int> st;
+
+        for (int i = 0; i < n; ++i) {
+            while (!st.empty() && arr[st.top()] >= arr[i]) {
+                int index = st.top();
+                st.pop();
+                right_count[i] = 1;
+                left_count[i] = 2;
+            }
+            st.push(i);
+        }
 
         long long response = 0;
 
