@@ -8,6 +8,7 @@
 using namespace std;
 
 #define ll long long
+
 class Solution {
 public:
     long long subArrayRanges(vector<int> &nums) {
@@ -38,6 +39,12 @@ public:
             st_max.push(i);
         }
 
+        while (!st_min.empty()) {
+            const int index = st_min.top();
+            st_min.pop();
+            min_right[index] = n - index;
+            min_left[index] = st_min.empty() ? index : index - st_min.top();
+        }
 
 
         ll response = 0;
