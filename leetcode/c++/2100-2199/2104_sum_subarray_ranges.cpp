@@ -57,7 +57,8 @@ public:
         ll response = 0;
 
         for (int i = 0; i < n; ++i) {
-            response = response + static_cast<ll>(nums[i]) * (max_left[i] * max_right[i] - min_left[i] * min_right[i]);
+            // response = response + static_cast<ll>(nums[i]) * (max_left[i] * max_right[i] - min_left[i] * min_right[i]);
+            response = response + static_cast<ll>(nums[i]) * min_left[i] * min_right[i];
         }
 
         return response;
@@ -67,11 +68,16 @@ public:
 int main() {
     Solution s;
 
-    vector<int> nums = {1, 2, 3};
-    cout << s.subArrayRanges(nums) << '\n';
+    // vector<int> nums = {1, 2, 3};
+    // cout << s.subArrayRanges(nums) << '\n';
+    //
+    // vector<int> nums2 = {4, -2, -3, 4, 1};
+    // cout << s.subArrayRanges(nums2) << '\n';
 
-    vector<int> nums2 = {4, -2, -3, 4, 1};
-    cout << s.subArrayRanges(nums2) << '\n';
+    vector<int> arr1 = {3, 1, 2, 4};
+    cout << s.subArrayRanges(arr1) << endl; // Expected: 17
 
+    vector<int> arr2 = {11, 81, 94, 43, 3};
+    cout << s.subArrayRanges(arr2) << endl; // Expected: 444
     return 0;
 }
