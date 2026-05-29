@@ -70,5 +70,8 @@ int main() {
     vector<int> nums = {1, 2, 3};
     cout << s.subArrayRanges(nums) << '\n';
 
+    vector<int> nums2 = {4, -2, -3, 4, 1};
+    cout << s.subArrayRanges(nums2) << '\n';
+
     return 0;
 }
