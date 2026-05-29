@@ -18,8 +18,8 @@ public:
             while (!st.empty() && arr[st.top()] >= arr[i]) {
                 int index = st.top();
                 st.pop();
-                right_count[i] = 1;
-                left_count[i] = 2;
+                right_count[i] = i - index;
+                left_count[i] = !st.empty() ? i - st.top() : index;
             }
             st.push(i);
         }
