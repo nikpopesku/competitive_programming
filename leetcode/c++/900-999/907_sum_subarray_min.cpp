@@ -8,7 +8,7 @@ constexpr int MODULO = 1e9 + 7;
 
 class Solution {
 public:
-    int sumSubarrayMins(const vector<int>& arr) {
+    int sumSubarrayMins(const vector<int> &arr) {
         int n = static_cast<int>(arr.size());
         vector left_count(n, 1);
         vector right_count(n, 1);
@@ -16,7 +16,8 @@ public:
         long long response = 0;
 
         for (int i = 0; i < n; ++i) {
-            response = (response + static_cast<long long>(arr[i]) * left_count[i] % MODULO * right_count[i] % MODULO) % MODULO;
+            response = (response + static_cast<long long>(arr[i]) * left_count[i] % MODULO * right_count[i] % MODULO) %
+                       MODULO;
         }
 
         return static_cast<int>(response);
