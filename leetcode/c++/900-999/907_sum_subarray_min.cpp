@@ -16,12 +16,19 @@ public:
 
         for (int i = 0; i < n; ++i) {
             while (!st.empty() && arr[st.top()] >= arr[i]) {
-                int index = st.top();
+                const int index = st.top();
                 st.pop();
                 right_count[i] = i - index;
                 left_count[i] = !st.empty() ? i - st.top() : index;
             }
             st.push(i);
+        }
+
+        while (!st.empty()) {
+            int index = st.top();
+            st.pop();
+            right_count[i] = i - index;
+            left_count[i] = !st.empty() ? i - st.top() : index;
         }
 
         long long response = 0;
