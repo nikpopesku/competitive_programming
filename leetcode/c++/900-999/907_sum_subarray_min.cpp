@@ -19,7 +19,7 @@ public:
                 const int index = st.top();
                 st.pop();
                 right_count[i] = i - index;
-                left_count[i] = !st.empty() ? i - st.top() : index;
+                left_count[i] = !st.empty() ? i - st.top() : i + 1;
             }
             st.push(i);
         }
@@ -27,8 +27,8 @@ public:
         while (!st.empty()) {
             int index = st.top();
             st.pop();
-            right_count[i] = i - index;
-            left_count[i] = !st.empty() ? i - st.top() : index;
+            right_count[index] = n - index;
+            left_count[index] = !st.empty() ? index - st.top() : index + 1;
         }
 
         long long response = 0;
