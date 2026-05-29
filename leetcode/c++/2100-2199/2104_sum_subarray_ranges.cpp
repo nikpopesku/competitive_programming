@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ranges>
+#include <stack>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -15,6 +16,20 @@ public:
         vector min_right(n, 1);
         vector max_left(n, 1);
         vector max_right(n, 1);
+        stack<int> st_min;
+        stack<int> st_max;
+
+        for (int i = 0; i < n; ++i) {
+            while (!st_min.empty() && nums[st_min.top()] >= nums[i]) {
+                const int index = st_min.top();
+                st_min.pop();
+                min_right[index] = index - i;
+                min_left[index] = st_min.empty() ? index : index - st_min.top();
+            }
+            st_min.push(i);
+        }
+
+
 
         ll response = 0;
 
