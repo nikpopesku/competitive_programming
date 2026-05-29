@@ -28,7 +28,7 @@ public:
                 min_left[index] = st_min.empty() ? index : index - st_min.top();
             }
 
-            while (!st_max.empty() && nums[st_min.top()] <= nums[i]) {
+            while (!st_max.empty() && nums[st_max.top()] <= nums[i]) {
                 const int index = st_max.top();
                 st_max.pop();
                 max_right[index] = index - i;
