@@ -24,14 +24,14 @@ public:
             while (!st_min.empty() && nums[st_min.top()] >= nums[i]) {
                 const int index = st_min.top();
                 st_min.pop();
-                min_right[index] = index - i;
-                min_left[index] = st_min.empty() ? index : index - st_min.top();
+                min_right[index] = i - index;
+                min_left[index] = st_min.empty() ? index + 1 : index - st_min.top();
             }
 
             while (!st_max.empty() && nums[st_max.top()] <= nums[i]) {
                 const int index = st_max.top();
                 st_max.pop();
-                max_right[index] = index - i;
+                max_right[index] = i - index;
                 max_left[index] = st_max.empty() ? index : index - st_max.top();
             }
 
@@ -43,7 +43,7 @@ public:
             const int index = st_min.top();
             st_min.pop();
             min_right[index] = n - index;
-            min_left[index] = st_min.empty() ? index : index - st_min.top();
+            min_left[index] = st_min.empty() ? index + 1 : index - st_min.top();
         }
 
         while (!st_max.empty()) {
