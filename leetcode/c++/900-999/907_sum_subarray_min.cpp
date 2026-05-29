@@ -18,8 +18,8 @@ public:
             while (!st.empty() && arr[st.top()] >= arr[i]) {
                 const int index = st.top();
                 st.pop();
-                right_count[i] = i - index;
-                left_count[i] = !st.empty() ? index - st.top() : index + 1;
+                right_count[index] = i - index;
+                left_count[index] = !st.empty() ? index - st.top() : index + 1;
             }
             st.push(i);
         }
