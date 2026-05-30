@@ -27,11 +27,17 @@ public:
 
             st.push(i);
         }
+        int counter = 0;
 
         while (!st.empty()) {
+            ++counter;
             const int index = st.top();
             st.pop();
             response[index] = n - index - 1;
+
+            if (counter > 2) {
+                response[index] -= counter - 2;
+            }
         }
 
         return response;
