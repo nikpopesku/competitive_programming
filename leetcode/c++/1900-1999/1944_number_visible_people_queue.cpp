@@ -12,11 +12,18 @@ public:
         vector response(n, 0);
 
         for (int i = 0; i < n; ++i) {
+            int counter = 0;
             while (!st.empty() && heights[st.top()] <= heights[i]) {
+                ++counter;
                 const int index = st.top();
                 st.pop();
                 response[index] += i - index;
+
+                if (counter > 2) {
+                    response[index] -= counter - 2;
+                }
             }
+
 
             st.push(i);
         }
