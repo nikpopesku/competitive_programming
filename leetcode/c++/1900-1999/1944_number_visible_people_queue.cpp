@@ -21,6 +21,12 @@ public:
             st.push(i);
         }
 
+        while (!st.empty()) {
+            const int index = st.top();
+            st.pop();
+            response[index] = n - index - 1;
+        }
+
         return response;
     }
 };
