@@ -50,4 +50,10 @@ int main() {
     vector<int> heights2 = {5, 1, 2, 3, 10};
     for (auto id: s.canSeePersonsCount(heights2))
         cout << id << ' ';
+
+    cout << '\n';
+
+    vector<int> heights3 = {4, 3, 2, 1};
+    for (auto id: s.canSeePersonsCount(heights3))
+        cout << id << ' ';
 }
