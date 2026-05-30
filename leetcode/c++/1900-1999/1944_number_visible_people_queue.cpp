@@ -12,32 +12,14 @@ public:
         vector response(n, 0);
 
         for (int i = 0; i < n; ++i) {
-            int counter = 0;
             while (!st.empty() && heights[st.top()] <= heights[i]) {
-                ++counter;
-                const int index = st.top();
+                response[st.top()]++;
                 st.pop();
-                response[index] += i - index;
-
-                if (counter > 2) {
-                    response[index] -= counter - 2;
-                }
             }
-
-
+            if (!st.empty()) {
+                response[st.top()]++;
+            }
             st.push(i);
-        }
-        int counter = 0;
-
-        while (!st.empty()) {
-            ++counter;
-            const int index = st.top();
-            st.pop();
-            response[index] = n - index - 1;
-
-            if (counter > 2) {
-                response[index] -= counter - 2;
-            }
         }
 
         return response;
