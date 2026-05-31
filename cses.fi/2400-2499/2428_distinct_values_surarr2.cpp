@@ -29,7 +29,7 @@ int main() {
     while (r < n) {
         const int sorted_pos_r = static_cast<int>(ranges::lower_bound(sorted_x, x[r]) - sorted_x.begin());
 
-        while (val[sorted_pos_r]) {
+        while (val[sorted_pos_r] || r - l + 1 > k) {
             ++l;
             const int sorted_pos_l = static_cast<int>(ranges::lower_bound(sorted_x, x[l - 1]) - sorted_x.begin());
             val[sorted_pos_l] = false;
