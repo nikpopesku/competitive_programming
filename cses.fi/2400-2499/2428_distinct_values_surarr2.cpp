@@ -19,7 +19,7 @@ int main() {
     }
 
     int l = 0, r = 0;
-    int response = 0;
+    long long response = 0;
     vector<int> sorted_x = x;
     ranges::sort(sorted_x);
     sorted_x.erase(ranges::unique(sorted_x).begin(), sorted_x.end());
@@ -36,7 +36,7 @@ int main() {
         }
 
         val[sorted_pos_r] = true;
-        response += r - l + 1;
+        response = response + r - l + 1;
 
         r += 1;
     }
