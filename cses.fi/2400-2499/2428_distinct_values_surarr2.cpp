@@ -23,21 +23,23 @@ int main() {
     vector<int> sorted_x = x;
     sort(sorted_x.begin(), sorted_x.end());
     sorted_x.erase(unique(sorted_x.begin(), sorted_x.end()), sorted_x.end());
+    int sz = static_cast<int>(sorted_x.size());
+    vector<bool> val(sz, false);
 
     while (r < n) {
         int sorted_pos_r = lower_bound(sorted_x.begin(), sorted_x.end(), x[r]) - sorted_x.begin();
 
-        while (sorted_x[sorted_pos_r]) {
+        while (val[sorted_pos_r]) {
             ++l;
-            int sorted_pos_l = lower_bound(sorted_x.begin(), sorted_x.end(), x[l-1]) - sorted_x.begin();
-            sorted_x[sorted_pos_l] = false;
+            int sorted_pos_l = lower_bound(sorted_x.begin(), sorted_x.end(), x[l - 1]) - sorted_x.begin();
+            val[sorted_pos_l] = false;
         }
 
-        sorted_x[sorted_pos_r] = true;
+        val[sorted_pos_r] = true;
         response += r - l + 1;
 
         r += 1;
     }
 
-    return response;
+    cout << response << '\n';
 }
