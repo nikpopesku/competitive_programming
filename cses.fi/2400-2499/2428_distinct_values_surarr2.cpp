@@ -28,18 +28,18 @@ int main() {
     while (r < n) {
         const int sorted_pos_r = static_cast<int>(ranges::lower_bound(sorted_x, x[r]) - sorted_x.begin());
 
-        while (val[sorted_pos_r] > 0 || current_total > k) {
-            ++l;
-            const int sorted_pos_l = static_cast<int>(ranges::lower_bound(sorted_x, x[l - 1]) - sorted_x.begin());
+        ++val[sorted_pos_r];
+        if (val[sorted_pos_r] == 1) {
+            ++current_total;
+        }
+
+        while (current_total > k) {
+            const int sorted_pos_l = static_cast<int>(ranges::lower_bound(sorted_x, x[l]) - sorted_x.begin());
             --val[sorted_pos_l];
             if (val[sorted_pos_l] == 0) {
                 --current_total;
             }
-        }
-
-        ++val[sorted_pos_r];
-        if (val[sorted_pos_r] == 1) {
-            ++current_total;
+            ++l;
         }
 
         response = response + r - l + 1;
