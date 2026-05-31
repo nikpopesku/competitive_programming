@@ -21,17 +21,17 @@ int main() {
     int l = 0, r = 0;
     int response = 0;
     vector<int> sorted_x = x;
-    sort(sorted_x.begin(), sorted_x.end());
-    sorted_x.erase(unique(sorted_x.begin(), sorted_x.end()), sorted_x.end());
-    int sz = static_cast<int>(sorted_x.size());
-    vector<bool> val(sz, false);
+    ranges::sort(sorted_x);
+    sorted_x.erase(ranges::unique(sorted_x).begin(), sorted_x.end());
+    const int sz = static_cast<int>(sorted_x.size());
+    vector val(sz, false);
 
     while (r < n) {
-        int sorted_pos_r = lower_bound(sorted_x.begin(), sorted_x.end(), x[r]) - sorted_x.begin();
+        const int sorted_pos_r = static_cast<int>(ranges::lower_bound(sorted_x, x[r]) - sorted_x.begin());
 
         while (val[sorted_pos_r]) {
             ++l;
-            int sorted_pos_l = lower_bound(sorted_x.begin(), sorted_x.end(), x[l - 1]) - sorted_x.begin();
+            const int sorted_pos_l = static_cast<int>(ranges::lower_bound(sorted_x, x[l - 1]) - sorted_x.begin());
             val[sorted_pos_l] = false;
         }
 
