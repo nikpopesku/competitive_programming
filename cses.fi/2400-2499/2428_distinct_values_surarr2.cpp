@@ -20,15 +20,20 @@ int main() {
 
     int l = 0, r = 0;
     int response = 0;
-    bool val[VALUES] = {false};
+    vector<int> sorted_x = x;
+    sort(sorted_x.begin(), sorted_x.end());
+    sorted_x.erase(unique(sorted_x.begin(), sorted_x.end()), sorted_x.end());
 
     while (r < n) {
-        while (val[x[r]]) {
+        int sorted_pos_r = lower_bound(sorted_x.begin(), sorted_x.end(), x[r]) - sorted_x.begin();
+
+        while (sorted_x[sorted_pos_r]) {
             ++l;
-            val[x[l-1]] = false;
+            int sorted_pos_l = lower_bound(sorted_x.begin(), sorted_x.end(), x[l-1]) - sorted_x.begin();
+            sorted_x[sorted_pos_l] = false;
         }
 
-        val[x[r]] = true;
+        sorted_x[sorted_pos_r] = true;
         response += r - l + 1;
 
         r += 1;
