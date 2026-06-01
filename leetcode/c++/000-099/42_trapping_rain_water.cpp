@@ -8,7 +8,29 @@ using namespace std;
 
 class Solution {
 public:
-    int trap(vector<int> &height) {
+    int trap(const vector<int> &height) {
+        int left = 0;
+        int right = static_cast<int>(height.size()) - 1;
+        int response = 0;
+        int possible_max = 0;
+
+        while (left < right) {
+            possible_max = max(possible_max, min(height[left], height[right]));
+
+            if (height[left] < height[right]) {
+                if (possible_max > height[left]) {
+                    response += possible_max - height[left];
+                }
+                ++left;
+            } else {
+                if (possible_max > height[right]) {
+                    response += possible_max - height[right];
+                }
+                --right;
+            }
+        }
+
+        return response;
     }
 };
 
