@@ -17,7 +17,7 @@ public:
                 const int index = st.top();
                 st.pop();
 
-                response += !st.empty() ? height[i] - height[index] : 0;
+                response += !st.empty() ? (min(height[st.top()], height[i]) - height[index]) * (i - st.top() - 1) : 0;
             }
             st.push(i);
         }
