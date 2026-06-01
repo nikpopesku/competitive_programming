@@ -7,7 +7,7 @@ using namespace std;
 
 class Solution {
 public:
-    int trap(const vector<int>& height) {
+    int trap(const vector<int> &height) {
         stack<int> st;
         const int n = static_cast<int>(height.size());
         int response = 0;
@@ -34,5 +34,5 @@ int main() {
     cout << s.trap(nums) << endl; //6
 
     vector nums2 = {4, 2, 0, 3, 2, 5};
-    cout << s.trap(nums2) << endl;
+    cout << s.trap(nums2) << endl; //9
 }
