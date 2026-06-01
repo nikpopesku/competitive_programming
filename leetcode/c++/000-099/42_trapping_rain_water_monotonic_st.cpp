@@ -1,4 +1,3 @@
-#include <string>
 #include <iostream>
 #include <stack>
 #include <vector>
@@ -8,8 +7,22 @@ using namespace std;
 
 class Solution {
 public:
-    int trap(vector<int>& height) {
+    int trap(const vector<int>& height) {
+        stack<int> st;
+        const int n = static_cast<int>(height.size());
+        int response = 0;
 
+        for (int i = 0; i < n; ++i) {
+            while (!st.empty() && height[st.top()] < height[i]) {
+                const int index = st.top();
+                st.pop();
+
+                response += !st.empty() ? height[i] - height[index] : 0;
+            }
+            st.push(i);
+        }
+
+        return response;
     }
 };
 
