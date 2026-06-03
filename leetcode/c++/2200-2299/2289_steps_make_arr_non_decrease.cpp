@@ -18,5 +18,5 @@ int main() {
     cout << s.totalSteps(arr) << endl; // 3
 
     vector<int> arr2 = {4, 5, 7, 7, 13};
-    cout << s.mctFromLeafValues(arr2) << endl; // 0
+    cout << s.totalSteps(arr2) << endl; // 0
 }
