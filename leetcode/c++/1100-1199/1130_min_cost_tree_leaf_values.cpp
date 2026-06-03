@@ -15,7 +15,7 @@ public:
             while (!st.empty() && arr[st.top()] < arr[i]) {
                 const int index = st.top();
                 st.pop();
-                const int product = !st.empty() ? arr[index] * arr[st.top()] : arr[index] * arr[i];
+                const int product = !st.empty() ? arr[index] * min(arr[st.top()], arr[i]) : arr[index] * arr[i];
                 response += product;
             }
 
@@ -40,6 +40,6 @@ int main() {
     vector<int> arr = {6, 2, 4};
     cout << s.mctFromLeafValues(arr) << endl; // 32
 
-    // vector<int> arr2 = {4, 11};
-    // cout << s.mctFromLeafValues(arr2) << endl; // 44
+    vector<int> arr2 = {4, 11};
+    cout << s.mctFromLeafValues(arr2) << endl; // 44
 }
