@@ -22,7 +22,7 @@ public:
             st.push(i);
         }
 
-        while (st.empty()) {
+        while (!st.empty()) {
             const int index = st.top();
             st.pop();
             const int product = !st.empty() ? arr[index] * arr[st.top()] : 0;
