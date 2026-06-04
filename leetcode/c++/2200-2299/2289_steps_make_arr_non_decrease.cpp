@@ -24,7 +24,7 @@ public:
 
             v = {};
             while (!st.empty()) {
-                v.push_back(st.top());
+                v.push_back(nums[st.top()]);
                 st.pop();
             }
 
