@@ -6,28 +6,26 @@ using namespace std;
 
 class Solution {
 public:
-    int totalSteps(vector<int> &nums) {
+    int totalSteps(const vector<int> &nums) {
+        int n;
         stack<int> st;
-        int n = static_cast<int>(nums.size());
+        vector<int> v = nums;
         int response = 0;
-        bool flag = true;
 
-        while (flag) {
-            flag = false;
+        do {
+            n = static_cast<int>(v.size());
             for (int i = 0; i < n; ++i) {
-                while (!st.empty() && nums[st.top()] < nums[i]) {
-                    if (!flag) {
-                        ++response;
-                        flag = true;
-                    }
-                    int index = st.top();
+                while (!st.empty() && v[st.top()] < v[i]) {
                     st.pop();
-
                 }
 
                 st.push(i);
             }
-        }
+
+            if (n > static_cast<int>(v.size())) {
+                ++response;
+            }
+        } while (n > static_cast<int>(v.size()));
 
         return response;
     }
