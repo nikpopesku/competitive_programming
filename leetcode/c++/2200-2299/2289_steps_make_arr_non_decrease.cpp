@@ -22,6 +22,14 @@ public:
                 st.push(i);
             }
 
+            v = {};
+            while (!st.empty()) {
+                v.push_back(st.top());
+                st.pop();
+            }
+
+            reverse(v.begin(), v.end());
+
             if (n > static_cast<int>(v.size())) {
                 ++response;
             }
