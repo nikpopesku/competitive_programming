@@ -10,14 +10,14 @@ public:
         stack<pair<int,int>> st; // (value, step)
         int response = 0;
 
-        for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
+        for (int num : nums) {
             int step = 0;
-            while (!st.empty() && st.top().first <= nums[i]) {
+            while (!st.empty() && st.top().first <= num) {
                 step = max(step, st.top().second);
                 st.pop();
             }
             if (!st.empty()) step++;
-            st.emplace(nums[i], step);
+            st.emplace(num, step);
             response = max(response, step);
         }
 
