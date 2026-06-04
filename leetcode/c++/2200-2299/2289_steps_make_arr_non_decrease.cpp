@@ -7,33 +7,19 @@ using namespace std;
 class Solution {
 public:
     int totalSteps(const vector<int> &nums) {
-        int n;
-        stack<int> st;
-        vector<int> v = nums;
+        stack<pair<int,int>> st; // (value, step)
         int response = 0;
 
-        do {
-            n = static_cast<int>(v.size());
-            for (int i = 0; i < n; ++i) {
-                while (!st.empty() && v[st.top()] < v[i]) {
-                    st.pop();
-                }
-
-                st.push(i);
-            }
-
-            v = {};
-            while (!st.empty()) {
-                v.push_back(nums[st.top()]);
+        for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
+            int step = 0;
+            while (!st.empty() && st.top().first <= nums[i]) {
+                step = max(step, st.top().second);
                 st.pop();
             }
-
-            reverse(v.begin(), v.end());
-
-            if (n > static_cast<int>(v.size())) {
-                ++response;
-            }
-        } while (n > static_cast<int>(v.size()));
+            if (!st.empty()) step++;
+            st.emplace(nums[i], step);
+            response = max(response, step);
+        }
 
         return response;
     }
