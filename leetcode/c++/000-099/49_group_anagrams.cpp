@@ -42,5 +42,4 @@ int main() {
         for (auto &x: e) cout << x << ' ';
         cout << '\n';
     }
-    cout << '\n';
 }
