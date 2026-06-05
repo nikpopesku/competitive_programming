@@ -18,7 +18,7 @@ public:
             groupped_anagram[st_sorted].push_back(st);
         }
 
-        for (auto val: groupped_anagram | views::values) groupped_anagram_vector.push_back(val);
+        for (const auto& val: groupped_anagram | views::values) groupped_anagram_vector.push_back(val);
 
         return groupped_anagram_vector;
     }
