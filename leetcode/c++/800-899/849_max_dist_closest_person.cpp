@@ -7,7 +7,7 @@ using namespace std;
 
 class Solution {
 public:
-    int maxDistToClosest(vector<int> &seats) {
+    int maxDistToClosest(const vector<int> &seats) {
         int n = static_cast<int>(seats.size());
         int distance = 0;
         vector closest(n, 0);
@@ -42,8 +42,14 @@ int main() {
     cout << s.maxDistToClosest(seats) << endl; //2
 
     vector<int> seats2 = {1, 0, 0, 0};
-    cout << s.maxDistToClosest(seats2) << endl; //2
+    cout << s.maxDistToClosest(seats2) << endl; //3
 
     vector<int> seats3 = {0, 1};
-    cout << s.maxDistToClosest(seats3) << endl; //2
+    cout << s.maxDistToClosest(seats3) << endl; //1
+
+    vector<int> seats4 = {0, 0, 1};
+    cout << s.maxDistToClosest(seats4) << endl; //2
+
+    vector<int> seats5 = {1, 0, 0};
+    cout << s.maxDistToClosest(seats5) << endl; //2
 }
