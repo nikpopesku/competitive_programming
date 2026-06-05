@@ -135,6 +135,16 @@
   - SPOJ MATSUM
   - Remaining (solved with non-BIT approach or unsolved): LC 1504, CSES 1649, LC 2407, CF 380C, CF 1967C, CF 1234D, SPOJ HORRIBLE
   - Fun Level: 9/10
+- **Monotonic Stack 7-Day Plan (2026-06-05)**: ✅ Days 1-6 Complete, Day 7 skipped
+  - Day 1 ✅: LC 496, LC 739, LC 1475 (quest)
+  - Day 2 ✅: LC 503, LC 1019, LC 901
+  - Day 3 ✅: LC 84, LC 85
+  - Day 4 ✅: LC 402, LC 316, LC 1081, CF 797C
+  - Day 5 ✅: LC 907, LC 2104, LC 1944
+  - Day 6 ✅: LC 42 (two approaches!), LC 1130, LC 2289, CF 380C
+  - Day 7 ⏭️ Skipped (Contest-Level Hard): LC 456, LC 962, LC 1840, CF 1893D, CF 1265E, SPOJ POSTERIN
+  - Key insight: Greater→Decreasing stack, Smaller→Increasing stack; contribution counting for subarray problems; time-tracking for LC 2289
+  - Fun Level: 8/10
 
 ### Weekly Checklist
 ```
