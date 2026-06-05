@@ -16,11 +16,21 @@ public:
 int main() {
     auto s = Solution();
 
-    vector st = {"eat","tea","tan","ate","nat","bat"};
-    for (auto &e: s.groupAnagrams(st)) cout << e << ' ';
+    vector<string> st = {"eat","tea","tan","ate","nat","bat"};
+    for (auto &e: s.groupAnagrams(st)) {
+        for (auto &x: e) cout << x << ' ';
+    }
     cout << '\n';
 
-    vector st2 = {""};
-    for (auto &e: s.groupAnagrams(st2)) cout << e << ' ';
+    vector<string> st2 = {""};
+    for (auto &e: s.groupAnagrams(st2)) {
+        for (auto &x: e) cout << x << ' ';
+    }
+    cout << '\n';
+
+    vector<string> st3 = {""};
+    for (auto &e: s.groupAnagrams(st3)) {
+        for (auto &x: e) cout << x << ' ';
+    }
     cout << '\n';
 }
