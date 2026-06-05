@@ -8,9 +8,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        unordered_map<string, vector<string>> groupped_anagram;
-        vector<vector<string>> groupped_anagram_vector;
+    vector<vector<string> > groupAnagrams(vector<string> &strs) {
+        unordered_map<string, vector<string> > groupped_anagram;
+        vector<vector<string> > groupped_anagram_vector;
 
         for (auto &st: strs) {
             string st_sorted = st;
@@ -28,7 +28,7 @@ public:
 int main() {
     auto s = Solution();
 
-    for (vector<string> st = {"eat","tea","tan","ate","nat","bat"}; auto &e: s.groupAnagrams(st)) {
+    for (vector<string> st = {"eat", "tea", "tan", "ate", "nat", "bat"}; auto &e: s.groupAnagrams(st)) {
         for (auto &x: e) cout << x << ' ';
     }
     cout << '\n';
