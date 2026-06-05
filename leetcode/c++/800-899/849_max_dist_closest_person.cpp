@@ -1,15 +1,17 @@
 #include <iostream>
-#include <numeric>
+#include <climits>
 #include <queue>
 #include <vector>
 
 using namespace std;
 
+constexpr int MX = 2e4;
+
 class Solution {
 public:
     int maxDistToClosest(const vector<int> &seats) {
         int n = static_cast<int>(seats.size());
-        int distance = 0;
+        int distance = MX;
         vector closest(n, 0);
 
         for (int i = 0; i < n; ++i) {
@@ -20,6 +22,7 @@ public:
             }
         }
 
+        distance = MX;
         int max_distance = 0;
 
         for (int i = n - 1; i >= 0; --i) {
