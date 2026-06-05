@@ -8,7 +8,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<string> > groupAnagrams(vector<string> &strs) {
+    vector<vector<string> > groupAnagrams(const vector<string> &strs) {
         unordered_map<string, vector<string> > groupped_anagram;
         vector<vector<string> > groupped_anagram_vector;
 
