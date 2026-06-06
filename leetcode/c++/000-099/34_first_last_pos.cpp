@@ -35,17 +35,7 @@ public:
 int main() {
     auto s = Solution();
 
-    for (const vector<string> st = {"eat", "tea", "tan", "ate", "nat", "bat"}; auto &e: s.groupAnagrams(st)) {
-        for (auto &x: e) cout << x << ' ';
-        cout << '\n';
-    }
-
-    for (const vector<string> st2 = {""}; auto &e: s.groupAnagrams(st2)) {
-        for (auto &x: e) cout << x << ' ';
-        cout << '\n';
-    }
-
-    for (const vector<string> st3 = {""}; auto &e: s.groupAnagrams(st3)) {
+    for (const vector<int> st = {5, 7, 7, 8, 8, 10}; auto &e: s.searchRange(st, 8)) {
         for (auto &x: e) cout << x << ' ';
         cout << '\n';
     }
