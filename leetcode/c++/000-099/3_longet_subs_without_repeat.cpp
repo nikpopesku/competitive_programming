@@ -1,10 +1,9 @@
 #include <string>
 #include <iostream>
-#include <stack>
-#include <unordered_map>
 #include <vector>
 
 using namespace std;
+
 class Solution {
 public:
     int lengthOfLongestSubstring(const string &s) {
@@ -29,6 +28,7 @@ public:
         return max_length;
     }
 };
+
 int main() {
     auto s = Solution();
 
