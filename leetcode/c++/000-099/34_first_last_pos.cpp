@@ -9,6 +9,8 @@ using namespace std;
 class Solution {
 public:
     vector<int> searchRange(const vector<int> &nums, const int target) {
+        if (nums.empty()) return {-1, -1};
+
         const int n = static_cast<int>(nums.size());
         int left = 0, right = n - 1;
         int l = -1, r = -1;
