@@ -23,10 +23,23 @@ public:
             }
         }
 
-        if (nums[left] == target) {
-            l = left;
-        } else if (nums[right] == target) {
-            l = right;
+        l = nums[left] ==  target ? left : l;
+
+        left = 0;
+        right = n - 1;
+
+        while (left < right) {
+            if (const int m = left + (right - left) / 2; nums[m] > target) {
+                right = m - 1;
+            } else {
+                left = m;
+            }
+        }
+
+        if (nums[right] == target) {
+            r = right;
+        } else if (nums[left] == target) {
+            r = left;
         }
 
         return {l, r};
