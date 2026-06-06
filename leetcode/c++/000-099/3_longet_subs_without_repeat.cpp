@@ -7,11 +7,11 @@
 using namespace std;
 class Solution {
 public:
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstring(const string &s) {
         if (s.empty()) return 0;
         vector v(26, false);
 
-        int n = static_cast<int>(s.size());
+        const int n = static_cast<int>(s.size());
         int left = 0, right = 0;
         int max_length = 0;
 
@@ -22,6 +22,7 @@ public:
             }
 
             max_length = max(max_length, right - left + 1);
+            v[s[right] - 'a'] = true;
             ++right;
         }
 
