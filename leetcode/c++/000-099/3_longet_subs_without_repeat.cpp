@@ -8,7 +8,24 @@ using namespace std;
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+        if (s.empty()) return 0;
+        vector v(26, false);
 
+        int n = static_cast<int>(s.size());
+        int left = 0, right = 0;
+        int max_length = 0;
+
+        while (right < n) {
+            while (v[s[right] - 'a']) {
+                ++left;
+                v[s[left - 1] - 'a'] = false;
+            }
+
+            max_length = max(max_length, right - left + 1);
+            ++right;
+        }
+
+        return max_length;
     }
 };
 int main() {
