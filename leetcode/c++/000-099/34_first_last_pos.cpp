@@ -8,7 +8,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> searchRange(const vector<int>& nums, const int target) {
+    vector<int> searchRange(const vector<int> &nums, const int target) {
         const int n = static_cast<int>(nums.size());
         int left = 0, right = n - 1;
         int l = -1, r = -1;
@@ -36,7 +36,17 @@ int main() {
     auto s = Solution();
 
     for (const vector<int> st = {5, 7, 7, 8, 8, 10}; auto &e: s.searchRange(st, 8)) {
-        for (auto &x: e) cout << x << ' ';
-        cout << '\n';
+        cout << e << ' ';
     }
+    cout << '\n';
+
+    for (const vector<int> st = {5, 7, 7, 8, 8, 10}; auto &e: s.searchRange(st, 6)) {
+        cout << e << ' ';
+    }
+    cout << '\n';
+
+    for (const vector<int> st = {}; auto &e: s.searchRange(st, 0)) {
+        cout << e << ' ';
+    }
+    cout << '\n';
 }
