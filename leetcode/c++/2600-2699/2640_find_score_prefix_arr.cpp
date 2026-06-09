@@ -6,6 +6,12 @@ using namespace std;
 class Solution {
 public:
     vector<long long> findPrefixScore(vector<int> &nums) {
+        const int n = static_cast<int>(nums.size());
+        vector<int> max_val = nums;
+
+        for (int i = 0; i < n; ++i) {
+
+        }
     }
 };
 
