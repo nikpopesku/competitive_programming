@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 #include <stack>
 #include <unordered_map>
 #include <vector>
@@ -24,7 +25,7 @@ class Solution {
 public:
     TreeNode *replaceValueInTree(TreeNode *root) {
         stack<pair<TreeNode *, int> > st;
-        st.push({root, 0});
+        st.emplace(root, 0);
         unordered_map<int, unordered_map<TreeNode *, vector<int> > > mp;
 
         while (!st.empty()) {
@@ -33,23 +34,23 @@ public:
             mp[level][node].push_back(node->val);
             st.pop();
             if (node->left) {
-                st.push({node->left, level + 1});
+                st.emplace(node->left, level + 1);
             }
 
             if (node->right) {
-                st.push({node->right, level + 1});
+                st.emplace(node->right, level + 1);
             }
         }
 
         stack<tuple<TreeNode *, TreeNode*, int> > sstt;
         auto new_root = new TreeNode(0);
-        sstt.push({root, new_root, 0});
+        sstt.emplace(root, new_root, 0);
 
         while (!sstt.empty()) {
             auto node = std::get<0>(sstt.top());
-            auto new_node = std::get<1>(sstt.top());
+            const auto new_node = std::get<1>(sstt.top());
             int level = std::get<2>(sstt.top());
-            st.pop();
+            sstt.pop();
 
             if (!mp[level].contains(node)) {
                 new_node->val = 0;
@@ -69,13 +70,13 @@ public:
             if (node->left) {
                 TreeNode new_left(0);
                 new_node->left = &new_left;
-                sstt.push({node->left, &new_left, level + 1});
+                sstt.emplace(node->left, &new_left, level + 1);
             }
 
             if (node->right) {
                 TreeNode new_right(0);
                 new_node->left = &new_right;
-                sstt.push({node->right, &new_right, level + 1});
+                sstt.emplace(node->right, &new_right, level + 1);
             }
         }
 
@@ -84,17 +85,54 @@ public:
     }
 };
 
+TreeNode *buildTree(const vector<int> &vals, int null_val = -1) {
+    if (vals.empty() || vals[0] == null_val) return nullptr;
+    auto *root = new TreeNode(vals[0]);
+    queue<TreeNode *> q;
+    q.push(root);
+    int i = 1;
+    while (!q.empty() && i < (int) vals.size()) {
+        auto *node = q.front();
+        q.pop();
+        if (i < (int) vals.size() && vals[i] != null_val) {
+            node->left = new TreeNode(vals[i]);
+            q.push(node->left);
+        }
+        ++i;
+        if (i < (int) vals.size() && vals[i] != null_val) {
+            node->right = new TreeNode(vals[i]);
+            q.push(node->right);
+        }
+        ++i;
+    }
+    return root;
+}
+
+void printTree(TreeNode *root) {
+    if (!root) { cout << "[]\n"; return; }
+    queue<TreeNode *> q;
+    q.push(root);
+    cout << '[';
+    bool first = true;
+    while (!q.empty()) {
+        auto *node = q.front();
+        q.pop();
+        if (!first) cout << ',';
+        first = false;
+        if (!node) { cout << "null"; continue; }
+        cout << node->val;
+        q.push(node->left);
+        q.push(node->right);
+    }
+    cout << "]\n";
+}
+
 int main() {
     auto sol = Solution();
 
-    // [4,10,24,36,56]
-    for (vector<int> nums{2, 3, 7, 5, 10}; const auto &e: sol.findPrefixScore(nums)) {
-        cout << e << ' ';
-    }
-    cout << '\n';
+    // [0,0,0,7,7,null,11]
+    printTree(sol.replaceValueInTree(buildTree({5, 4, 9, 1, 10, -1, 7})));
 
-    // [2,4,8,16,32,64]
-    for (vector<int> nums{1, 1, 2, 4, 8, 16}; const auto &e: sol.findPrefixScore(nums)) {
-        cout << e << ' ';
-    }
+    // [0,0,0]
+    printTree(sol.replaceValueInTree(buildTree({3, 1, 2})));
 }
