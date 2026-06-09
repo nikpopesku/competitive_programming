@@ -13,8 +13,11 @@ int main() {
     auto sol = Solution();
 
     // [4,10,24,36,56]
-    vector<int> nums{2, 3, 7, 5, 10};
-    for (auto &e: sol.findPrefixScore(nums)) {
+    for (vector<int> nums{2, 3, 7, 5, 10}; const auto &e: sol.findPrefixScore(nums)) {
+        cout << e << "\n";
+    }
+    // [2,4,8,16,32,64]
+    for (vector<int> nums{1, 1, 2, 4, 8, 16}; const auto &e: sol.findPrefixScore(nums)) {
         cout << e << "\n";
     }
 }
