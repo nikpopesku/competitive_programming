@@ -43,8 +43,8 @@ public:
         }
 
         stack<tuple<TreeNode *, TreeNode*, int> > sstt;
-        TreeNode new_root(0);
-        sstt.emplace(root, &new_root, 0);
+        auto *new_root = new TreeNode(0);
+        sstt.emplace(root, new_root, 0);
 
         while (!sstt.empty()) {
             auto node = std::get<0>(sstt.top());
@@ -68,20 +68,20 @@ public:
             }
 
             if (node->left) {
-                TreeNode new_left(0);
-                new_node->left = &new_left;
-                sstt.emplace(node->left, &new_left, level + 1);
+                auto *new_left = new TreeNode(0);
+                new_node->left = new_left;
+                sstt.emplace(node->left, new_left, level + 1);
             }
 
             if (node->right) {
-                TreeNode new_right(0);
-                new_node->left = &new_right;
-                sstt.emplace(node->right, &new_right, level + 1);
+                auto *new_right = new TreeNode(0);
+                new_node->right = new_right;
+                sstt.emplace(node->right, new_right, level + 1);
             }
         }
 
 
-        return &new_root;
+        return new_root;
     }
 };
 
