@@ -43,8 +43,8 @@ public:
         }
 
         stack<tuple<TreeNode *, TreeNode*, int> > sstt;
-        auto new_root = new TreeNode(0);
-        sstt.emplace(root, new_root, 0);
+        TreeNode new_root(0);
+        sstt.emplace(root, &new_root, 0);
 
         while (!sstt.empty()) {
             auto node = std::get<0>(sstt.top());
@@ -81,7 +81,7 @@ public:
         }
 
 
-        return new_root;
+        return &new_root;
     }
 };
 
