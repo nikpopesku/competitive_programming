@@ -23,13 +23,22 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode *replaceValueInTree(TreeNode *root) {
-        stack<TreeNode*> st;
-        st.push(root);
+        stack<pair<TreeNode*, int>> st;
+        st.push({root, 0});
         unordered_map<int, unordered_map<TreeNode, int> > mp;
 
         while (!st.empty()) {
-            auto node = st.top();
+            TreeNode* node = st.top().first;
+            const int level = st.top().second;
             st.pop();
+            if (node->left) {
+                st.push({node->left, level + 1});
+            }
+
+            if (node->right) {
+                st.push({node->right, level + 1});
+            }
+
         }
     }
 };
