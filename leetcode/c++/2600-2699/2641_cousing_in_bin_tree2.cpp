@@ -25,11 +25,12 @@ public:
     TreeNode *replaceValueInTree(TreeNode *root) {
         stack<pair<TreeNode*, int>> st;
         st.push({root, 0});
-        unordered_map<int, unordered_map<TreeNode, int> > mp;
+        unordered_map<int, unordered_map<TreeNode*, vector<int>> > mp;
 
         while (!st.empty()) {
             TreeNode* node = st.top().first;
             const int level = st.top().second;
+            mp[level][node].push_back(node->val);
             st.pop();
             if (node->left) {
                 st.push({node->left, level + 1});
@@ -38,7 +39,6 @@ public:
             if (node->right) {
                 st.push({node->right, level + 1});
             }
-
         }
     }
 };
