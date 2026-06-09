@@ -23,12 +23,12 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode *replaceValueInTree(TreeNode *root) {
-        stack<pair<TreeNode*, int>> st;
+        stack<pair<TreeNode *, int> > st;
         st.push({root, 0});
-        unordered_map<int, unordered_map<TreeNode*, vector<int>> > mp;
+        unordered_map<int, unordered_map<TreeNode *, vector<int> > > mp;
 
         while (!st.empty()) {
-            TreeNode* node = st.top().first;
+            TreeNode *node = st.top().first;
             const int level = st.top().second;
             mp[level][node].push_back(node->val);
             st.pop();
@@ -41,16 +41,18 @@ public:
             }
         }
 
-        st.push({root, 0});
-
+        stack<tuple<TreeNode *, TreeNode*, int> > sstt;
         auto new_root = new TreeNode(0);
+        sstt.push({root, new_root, 0});
 
-        while (!st.empty()) {
-            TreeNode* node = st.top().first;
-            int level = st.top().second;
+        while (!sstt.empty()) {
+            auto node = std::get<0>(sstt.top());
+            auto new_node = std::get<1>(sstt.top());
+            int level = std::get<2>(sstt.top());
+            st.pop();
 
             if (!mp[level].contains(node)) {
-                node->val = 0;
+                new_node->val = 0;
             } else {
                 int cousins_val = 0;
                 for (auto &[fst, snd]: mp[level]) {
@@ -60,6 +62,20 @@ public:
                         }
                     }
                 }
+
+                new_node->val = cousins_val;
+            }
+
+            if (node->left) {
+                TreeNode new_left(0);
+                new_node->left = &new_left;
+                sstt.push({node->left, &new_left, level + 1});
+            }
+
+            if (node->right) {
+                TreeNode new_right(0);
+                new_node->left = &new_right;
+                sstt.push({node->right, &new_right, level + 1});
             }
         }
 
