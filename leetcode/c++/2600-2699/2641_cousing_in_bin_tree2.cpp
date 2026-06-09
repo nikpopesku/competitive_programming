@@ -40,6 +40,13 @@ public:
                 st.push({node->right, level + 1});
             }
         }
+
+        st.push({root, 0});
+
+        auto new_root = new TreeNode(0);
+
+
+        return new_root;
     }
 };
 
