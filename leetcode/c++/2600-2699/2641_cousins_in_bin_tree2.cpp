@@ -45,6 +45,24 @@ public:
 
         auto new_root = new TreeNode(0);
 
+        while (!st.empty()) {
+            TreeNode* node = st.top().first;
+            int level = st.top().second;
+
+            if (!mp[level].contains(node)) {
+                node->val = 0;
+            } else {
+                int cousins_val = 0;
+                for (auto &[fst, snd]: mp[level]) {
+                    if (fst != node) {
+                        for (const auto &x: snd) {
+                            cousins_val += x;
+                        }
+                    }
+                }
+            }
+        }
+
 
         return new_root;
     }
