@@ -5,7 +5,11 @@ using namespace std;
 
 class Solution {
 public:
-    int projectionArea(vector<vector<int> > &grid) {
+    int projectionArea(const vector<vector<int> > &grid) {
+        const int n = static_cast<int>(grid.size());
+        int area = n;
+
+        return area;
     }
 };
 
