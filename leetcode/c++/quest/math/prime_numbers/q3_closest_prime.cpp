@@ -3,12 +3,10 @@
 
 using namespace std;
 
-constexpr int MX = 1e6;
-
 class Solution {
 public:
     vector<int> closestPrimes(const int left, const int right) {
-        bool v[MX] = {true};
+        vector<bool> v(right + 1);
 
         for (int i = 2; i <= right; ++i) {
             if (v[i] == false) continue;
@@ -21,7 +19,7 @@ public:
         }
 
         int first = 0, second = 0, third = 0;
-        int min_value = MX;
+        int min_value = right;
         vector<int> numbers(2);
 
         for (int i = left; i <= right; ++i) {
