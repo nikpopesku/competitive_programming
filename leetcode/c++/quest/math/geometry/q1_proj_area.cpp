@@ -21,12 +21,11 @@ public:
 
         area += n * n - zero_height;
 
-        const auto max_row_it = max_element(grid.begin(), grid.end(), [col](vector<int> &a, vector<int> &b) {
-            return a[col] < b[col];
-        });
-
-        for (int i = 0; i < n; ++i) {
-            area += (*max_row_it)[i];
+        for (int col = 0; col < n; ++col) {
+            const auto max_row_it = max_element(grid.begin(), grid.end(), [col](const vector<int> &a, const vector<int> &b) {
+                return a[col] < b[col];
+            });
+            area += (*max_row_it)[col];
         }
 
         return area;
