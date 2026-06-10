@@ -24,64 +24,40 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode *replaceValueInTree(TreeNode *root) {
-        stack<pair<TreeNode *, int> > st;
-        st.emplace(root, 0);
-        unordered_map<int, unordered_map<TreeNode *, vector<int> > > mp;
+        queue<TreeNode *> q;
+        q.push(root);
+        root->val = 0;
 
-        while (!st.empty()) {
-            TreeNode *node = st.top().first;
-            const int level = st.top().second;
-            mp[level][node].push_back(node->val);
-            st.pop();
-            if (node->left) {
-                st.emplace(node->left, level + 1);
+        while (!q.empty()) {
+            int sz = static_cast<int>(q.size());
+            vector<TreeNode *> level_nodes;
+            level_nodes.reserve(sz);
+            for (int i = 0; i < sz; ++i) {
+                level_nodes.push_back(q.front());
+                q.pop();
             }
 
-            if (node->right) {
-                st.emplace(node->right, level + 1);
+            int next_sum = 0;
+            for (auto *node : level_nodes) {
+                if (node->left) next_sum += node->left->val;
+                if (node->right) next_sum += node->right->val;
             }
-        }
 
-        stack<tuple<TreeNode *, TreeNode*, int> > sstt;
-        auto *new_root = new TreeNode(0);
-        sstt.emplace(root, new_root, 0);
-
-        while (!sstt.empty()) {
-            auto node = std::get<0>(sstt.top());
-            const auto new_node = std::get<1>(sstt.top());
-            int level = std::get<2>(sstt.top());
-            sstt.pop();
-
-            if (!mp[level].contains(node)) {
-                new_node->val = 0;
-            } else {
-                int cousins_val = 0;
-                for (auto &[fst, snd]: mp[level]) {
-                    if (fst != node) {
-                        for (const auto &x: snd) {
-                            cousins_val += x;
-                        }
-                    }
+            for (auto *node : level_nodes) {
+                int sibling_sum = (node->left ? node->left->val : 0)
+                                + (node->right ? node->right->val : 0);
+                if (node->left) {
+                    node->left->val = next_sum - sibling_sum;
+                    q.push(node->left);
                 }
-
-                new_node->val = cousins_val;
-            }
-
-            if (node->left) {
-                auto *new_left = new TreeNode(0);
-                new_node->left = new_left;
-                sstt.emplace(node->left, new_left, level + 1);
-            }
-
-            if (node->right) {
-                auto *new_right = new TreeNode(0);
-                new_node->right = new_right;
-                sstt.emplace(node->right, new_right, level + 1);
+                if (node->right) {
+                    node->right->val = next_sum - sibling_sum;
+                    q.push(node->right);
+                }
             }
         }
 
-
-        return new_root;
+        return root;
     }
 };
 
