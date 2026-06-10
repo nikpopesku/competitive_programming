@@ -16,18 +16,19 @@ public:
                 if (grid[i][j] == 0) ++zero_height;
             }
 
+            const auto max_row_it = max_element(
+                grid.begin(),
+                grid.end(),
+                [i](const vector<int> &a, const vector<int> &b) {
+                    return a[i] < b[i];
+                }
+            );
+            area += (*max_row_it)[i];
+
             area += *max_element(grid[i].begin(), grid[i].end());
         }
 
         area += n * n - zero_height;
-
-        for (int col = 0; col < n; ++col) {
-            const auto max_row_it = max_element(grid.begin(), grid.end(),
-                                                [col](const vector<int> &a, const vector<int> &b) {
-                                                    return a[col] < b[col];
-                                                });
-            area += (*max_row_it)[col];
-        }
 
         return area;
     }
