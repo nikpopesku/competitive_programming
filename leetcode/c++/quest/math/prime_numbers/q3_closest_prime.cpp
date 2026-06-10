@@ -3,9 +3,22 @@
 
 using namespace std;
 
+constexpr int MX = 1e6;
+
 class Solution {
 public:
     vector<int> closestPrimes(int left, int right) {
+        bool v[MX] = {true};
+
+        for (int i = 2; i <= right; ++i) {
+            if (v[i] == false) continue;
+            int j = i;
+
+            while (j * j <= right) {
+                v[j] = false;
+                j += i;
+            }
+        }
     }
 };
 
