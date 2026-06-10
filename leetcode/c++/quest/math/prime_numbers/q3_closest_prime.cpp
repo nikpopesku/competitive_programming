@@ -6,13 +6,13 @@ using namespace std;
 class Solution {
 public:
     vector<int> closestPrimes(const int left, const int right) {
-        vector<bool> v(right + 1);
+        vector v(right + 1, true);
 
         for (int i = 2; i <= right; ++i) {
             if (v[i] == false) continue;
-            int j = i;
+            int j = i + i;
 
-            while (j * j <= right) {
+            while (j <= right) {
                 v[j] = false;
                 j += i;
             }
@@ -20,16 +20,15 @@ public:
 
         int first = 0, second = 0, third = 0;
         int min_value = right;
-        vector<int> numbers(2);
+        vector<int> numbers(2, -1);
 
         for (int i = left; i <= right; ++i) {
             if (v[i] == true) {
                 first = second;
                 second = third;
-                third = v[i];
+                third = i;
 
                 if (second != 0) {
-                    min_value = min(min_value, third - second);
                     if (third - second < min_value) {
                         min_value = third - second;
                         numbers[0] = second;
