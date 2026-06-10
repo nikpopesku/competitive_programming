@@ -10,14 +10,17 @@ public:
         const int m = static_cast<int>(grid[0].size());
 
         int zero_height = 0;
+        int area = 0;
 
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
                 if (grid[i][j] == 0) ++zero_height;
             }
+
+            area += *max_element(grid[i].begin(), grid[i].end());
         }
 
-        int area = n * n - zero_height;
+        area += n * n - zero_height;
 
         return area;
     }
