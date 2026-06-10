@@ -22,7 +22,7 @@ public:
         int min_value = right;
         vector<int> numbers(2, -1);
 
-        for (int i = left; i <= right; ++i) {
+        for (int i = max(2, left); i <= right; ++i) {
             if (v[i] == true) {
                 first = second;
                 second = third;
@@ -58,6 +58,11 @@ int main() {
     cout << '\n';
 
     for (const auto &x: s.closestPrimes(4, 6)) {
+        cout << x << ' '; //[-1,-1]
+    }
+    cout << '\n';
+
+    for (const auto &x: s.closestPrimes(1, 2)) {
         cout << x << ' '; //[-1,-1]
     }
     cout << '\n';
