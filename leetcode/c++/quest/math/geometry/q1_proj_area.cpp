@@ -7,13 +7,12 @@ class Solution {
 public:
     int projectionArea(const vector<vector<int> > &grid) {
         const int n = static_cast<int>(grid.size());
-        const int m = static_cast<int>(grid[0].size());
 
         int zero_height = 0;
         int area = 0;
 
         for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < m; ++j) {
+            for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 0) ++zero_height;
             }
 
@@ -21,6 +20,14 @@ public:
         }
 
         area += n * n - zero_height;
+
+        const auto max_row_it = max_element(grid.begin(), grid.end(), [col](vector<int> &a, vector<int> &b) {
+            return a[col] < b[col];
+        });
+
+        for (int i = 0; i < n; ++i) {
+            area += (*max_row_it)[i];
+        }
 
         return area;
     }
