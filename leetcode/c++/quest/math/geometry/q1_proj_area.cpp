@@ -7,7 +7,17 @@ class Solution {
 public:
     int projectionArea(const vector<vector<int> > &grid) {
         const int n = static_cast<int>(grid.size());
-        int area = n * n;
+        const int m = static_cast<int>(grid[0].size());
+
+        int zero_height = 0;
+
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                if (grid[i][j] == 0) ++zero_height;
+            }
+        }
+
+        int area = n * n - zero_height;
 
         return area;
     }
