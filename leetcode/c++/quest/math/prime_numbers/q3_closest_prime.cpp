@@ -7,7 +7,7 @@ constexpr int MX = 1e6;
 
 class Solution {
 public:
-    vector<int> closestPrimes(int left, int right) {
+    vector<int> closestPrimes(const int left, const int right) {
         bool v[MX] = {true};
 
         for (int i = 2; i <= right; ++i) {
@@ -19,6 +19,36 @@ public:
                 j += i;
             }
         }
+
+        int first = 0, second = 0, third = 0;
+        int min_value = MX;
+        vector<int> numbers(2);
+
+        for (int i = left; i <= right; ++i) {
+            if (v[i] == true) {
+                first = second;
+                second = third;
+                third = v[i];
+
+                if (second != 0) {
+                    min_value = min(min_value, third - second);
+                    if (third - second < min_value) {
+                        min_value = third - second;
+                        numbers[0] = second;
+                        numbers[1] = third;
+                    }
+                }
+                if (first != 0) {
+                    if (second - first < min_value) {
+                        min_value = second - first;
+                        numbers[0] = first;
+                        numbers[1] = second;
+                    }
+                }
+            }
+        }
+
+        return numbers;
     }
 };
 
