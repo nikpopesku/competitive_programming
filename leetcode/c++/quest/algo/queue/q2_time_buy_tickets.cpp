@@ -8,21 +8,13 @@ using namespace std;
 class Solution {
 public:
     int timeRequiredToBuy(vector<int> &tickets, int k) {
-        queue<pair<int, int> > q;
         int time = 0;
-        for (int i = 0; i < static_cast<int>(tickets.size()); ++i) q.emplace(i, tickets[i]);
+        const int n = static_cast<int>(tickets.size());
 
-        while (true) {
-            ++time;
-            auto [fst, snd] = q.front();
-            if (q.front().second > 1) {
-                q.emplace(fst, snd - 1);
-            }
-            q.pop();
-            if (fst == k && snd == 1) break;
-        }
+        for (int i = 0; i < k; ++i) time += min(tickets[i], tickets[k]);
+        for (int i = k + 1; i < n; ++i) time += min(tickets[i], tickets[k] - 1);
 
-        return time;
+        return time + tickets[k];
     }
 };
 
