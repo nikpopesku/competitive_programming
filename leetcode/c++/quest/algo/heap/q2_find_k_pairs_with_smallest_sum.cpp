@@ -7,19 +7,19 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int> > kSmallestPairs(const vector<int> &nums1, const vector<int> &nums2, int k) {
-        priority_queue<pair<int, vector<int> > > pq;
+        priority_queue<tuple<int, int, int> > pq;
 
-        for (const auto &n1: nums1) {
-            for (const auto &n2: nums2) {
-                pq.emplace(-n1 - n2, vector{n1, n2});
-            }
-        }
-
+        for (int i = 0; i < static_cast<int>(nums1.size()); ++i) pq.emplace(-nums1[i] - nums2[0], i, 0);
         vector<vector<int> > pairs_with_smallest_sum;
 
         for (int i = 0; i < k; ++i) {
-            pairs_with_smallest_sum.push_back(pq.top().second);
+            const int n1 = get<1>(pq.top());
+            const int n2 = get<2>(pq.top());
+            pairs_with_smallest_sum.push_back(vector{nums1[n1], nums2[n2]});
             pq.pop();
+            if (i < k - 1) {
+                pq.emplace(-nums1[n1] - nums2[n2 + 1], n1, n2 + 1);
+            }
         }
 
         return pairs_with_smallest_sum;
