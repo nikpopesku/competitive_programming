@@ -11,7 +11,7 @@ public:
 
         for (const auto &n1: nums1) {
             for (const auto &n2: nums2) {
-                pq.push({-n1 - n2, vector{n1, n2}});
+                pq.emplace(-n1 - n2, vector{n1, n2});
             }
         }
 
