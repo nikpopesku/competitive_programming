@@ -7,19 +7,15 @@ using namespace std;
 
 class Solution {
 public:
-    int lastStoneWeight(vector<int>& stones) {
-
+    int lastStoneWeight(vector<int> &stones) {
     }
 };
 
 int main() {
     auto s = Solution();
-    vector<int> countStudents = {1, 1, 0, 0};
-    vector<int> sandwiches = {0, 1, 0, 1};
-    cout << s.countStudents(countStudents, sandwiches) << '\n';
+    vector<int> stones = {2, 7, 4, 1, 8, 1};
+    cout << s.lastStoneWeight(stones) << '\n';
 
-
-    vector<int> countStudents2 = {1, 1, 1, 0, 0, 1};
-    vector<int> sandwiches2 = {1, 0, 0, 0, 1, 1};
-    cout << s.countStudents(countStudents2, sandwiches2) << '\n';
+    vector<int> stones2 = {1};
+    cout << s.lastStoneWeight(stones2) << '\n';
 }
