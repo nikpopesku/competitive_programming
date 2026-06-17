@@ -12,10 +12,12 @@ public:
     }
 
     void push(const int x) {
+        from_front_to_back();
         back.push(x);
     }
 
     int pop() {
+        from_back_to_front();
         const int elem = front.top();
         front.pop();
 
@@ -23,16 +25,32 @@ public:
     }
 
     int peek() {
+        from_back_to_front();
+
         return front.top();
     }
 
-    bool empty() {
+    bool empty() const {
         return front.empty() && back.empty();
     }
 
 private:
     stack<int> front;
     stack<int> back;
+
+    void from_back_to_front() {
+        while (!back.empty()) {
+            front.push(back.top());
+            back.pop();
+        }
+    }
+
+    void from_front_to_back() {
+        while (!front.empty()) {
+            back.push(front.top());
+            front.pop();
+        }
+    }
 };
 
 /**
