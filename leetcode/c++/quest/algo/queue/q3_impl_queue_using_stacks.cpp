@@ -29,6 +29,7 @@ public:
     bool empty() {
         return front.empty() && back.empty();
     }
+
 private:
     stack<int> front;
     stack<int> back;
