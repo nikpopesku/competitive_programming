@@ -17,7 +17,7 @@ public:
             const int n2 = get<2>(pq.top());
             pairs_with_smallest_sum.push_back(vector{nums1[n1], nums2[n2]});
             pq.pop();
-            if (i < k - 1) {
+            if (n2 + 1 < static_cast<int>(nums2.size())) {
                 pq.emplace(-nums1[n1] - nums2[n2 + 1], n1, n2 + 1);
             }
         }
