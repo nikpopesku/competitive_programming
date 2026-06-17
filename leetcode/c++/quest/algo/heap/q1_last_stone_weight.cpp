@@ -1,6 +1,5 @@
 #include <iostream>
 #include <queue>
-#include <stack>
 #include <vector>
 
 using namespace std;
@@ -10,8 +9,23 @@ public:
     int lastStoneWeight(const vector<int> &stones) {
         priority_queue<int> pq;
 
-        for (int i = 0; i < static_cast<int>(stones.size()); ++i) {
-            pq.push(stones[i]);
+        for (int stone : stones) {
+            pq.push(stone);
+        }
+
+        while (true) {
+            if (pq.empty()) return 0;
+
+            const int stone1 = pq.top();
+            pq.pop();
+
+            if (pq.empty()) return stone1;
+
+            const int stone2 = pq.top();
+            pq.pop();
+            if (stone1 > stone1) {
+                pq.push(stone1 - stone2);
+            }
         }
     }
 };
