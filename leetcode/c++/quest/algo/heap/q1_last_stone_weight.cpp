@@ -23,7 +23,7 @@ public:
 
             const int stone2 = pq.top();
             pq.pop();
-            if (stone1 > stone1) {
+            if (stone1 > stone2) {
                 pq.push(stone1 - stone2);
             }
         }
