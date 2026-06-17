@@ -7,7 +7,12 @@ using namespace std;
 
 class Solution {
 public:
-    int lastStoneWeight(vector<int> &stones) {
+    int lastStoneWeight(const vector<int> &stones) {
+        priority_queue<int> pq;
+
+        for (int i = 0; i < static_cast<int>(stones.size()); ++i) {
+            pq.push(stones[i]);
+        }
     }
 };
 
