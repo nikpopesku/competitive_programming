@@ -22,16 +22,16 @@ public:
             int i = pq.top().second;
             pq.pop();
 
-            if (current_sum > elem) {
+            if (current_sum > -elem) {
                 return false;
             }
 
-            if (current_sum <= elem) {
+            if (current_sum <= -elem) {
                 const int temp = arr[i];
                 arr[i] = current_sum;
                 current_sum = 2 * current_sum - temp;
 
-                if (current_sum < elem) {
+                if (current_sum < -elem) {
                     pq.emplace(elem, i);
                 }
             }
