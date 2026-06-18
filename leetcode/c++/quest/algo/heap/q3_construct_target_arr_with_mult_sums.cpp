@@ -16,6 +16,7 @@ public:
 
         vector<int> arr(n, 1);
         int current_sum = n;
+        int previous_diff = 0;
 
         while (!pq.empty()) {
             int elem = pq.top().first;
@@ -30,9 +31,18 @@ public:
                 const int temp = arr[i];
                 arr[i] = current_sum;
                 current_sum = 2 * current_sum - temp;
+                if (current_sum - arr[i] == previous_diff) {
+                    if (-elem % previous_diff != 0) {
+                        return false;
+                    }
 
-                if (current_sum < -elem) {
-                    pq.emplace(elem, i);
+                    current_sum = -elem;
+                } else {
+                    previous_diff = current_sum - arr[i];
+
+                    if (current_sum < -elem) {
+                        pq.emplace(elem, i);
+                    }
                 }
             }
         }
@@ -53,6 +63,6 @@ int main() {
     vector<int> target3 = {8, 5};
     cout << boolalpha << s.isPossible(target3) << '\n'; //true
 
-    vector<int> target4 = {1,10000};
+    vector<int> target4 = {1, 1000000000};
     cout << boolalpha << s.isPossible(target4) << '\n'; //true
 }
