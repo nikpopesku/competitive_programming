@@ -51,5 +51,5 @@ int main() {
     cout << boolalpha << s.isPossible(target2) << '\n'; //false
 
     vector<int> target3 = {8, 5};
-    cout << boolalpha << s.isPossible(target2) << '\n'; //true
+    cout << boolalpha << s.isPossible(target3) << '\n'; //true
 }
