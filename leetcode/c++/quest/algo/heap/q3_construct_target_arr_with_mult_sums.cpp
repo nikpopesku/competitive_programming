@@ -52,4 +52,7 @@ int main() {
 
     vector<int> target3 = {8, 5};
     cout << boolalpha << s.isPossible(target3) << '\n'; //true
+
+    vector<int> target4 = {1,1000000000};
+    cout << boolalpha << s.isPossible(target4) << '\n'; //true
 }
