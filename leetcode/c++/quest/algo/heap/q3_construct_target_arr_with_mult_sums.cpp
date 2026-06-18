@@ -55,18 +55,21 @@ public:
 
 int main() {
     auto s = Solution();
-    vector<int> target = {9, 3, 5};
-    cout << boolalpha << s.isPossible(target) << '\n'; //true
+    // vector<int> target = {9, 3, 5};
+    // cout << boolalpha << s.isPossible(target) << '\n'; //true
+    //
+    // vector<int> target2 = {1, 1, 1, 2};
+    // cout << boolalpha << s.isPossible(target2) << '\n'; //false
+    //
+    // vector<int> target3 = {8, 5};
+    // cout << boolalpha << s.isPossible(target3) << '\n'; //true
+    //
+    // vector<int> target4 = {1, 1000000000};
+    // cout << boolalpha << s.isPossible(target4) << '\n'; //true
+    //
+    // vector<int> target5 = {1};
+    // cout << boolalpha << s.isPossible(target5) << '\n'; //true
 
-    vector<int> target2 = {1, 1, 1, 2};
-    cout << boolalpha << s.isPossible(target2) << '\n'; //false
-
-    vector<int> target3 = {8, 5};
-    cout << boolalpha << s.isPossible(target3) << '\n'; //true
-
-    vector<int> target4 = {1, 1000000000};
-    cout << boolalpha << s.isPossible(target4) << '\n'; //true
-
-    vector<int> target5 = {1};
-    cout << boolalpha << s.isPossible(target5) << '\n'; //true
+    vector<int> target6 = {2};
+    cout << boolalpha << s.isPossible(target6) << '\n'; //true
 }
