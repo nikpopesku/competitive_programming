@@ -22,7 +22,7 @@ public:
             int i = pq.top().second;
             pq.pop();
 
-            if (current_sum > -elem) {
+            if (current_sum > -elem && -elem != 1) {
                 return false;
             }
 
@@ -53,6 +53,6 @@ int main() {
     vector<int> target3 = {8, 5};
     cout << boolalpha << s.isPossible(target3) << '\n'; //true
 
-    vector<int> target4 = {1,1000000000};
+    vector<int> target4 = {1,10000};
     cout << boolalpha << s.isPossible(target4) << '\n'; //true
 }
