@@ -7,48 +7,29 @@ using namespace std;
 class Solution {
 public:
     bool isPossible(const vector<int> &target) {
-        priority_queue<pair<int, int> > pq;
-        const int n = static_cast<int>(target.size());
+        priority_queue<long long> pq;
+        long long total = 0;
 
-        for (int i = 0; i < n; ++i) {
-            pq.emplace(-target[i], i);
+        for (int x : target) {
+            pq.push(x);
+            total += x;
         }
 
-        vector<int> arr(n, 1);
-        int current_sum = n;
-        int previous_diff = -1;
-
-        while (!pq.empty()) {
-            int elem = pq.top().first;
-            int i = pq.top().second;
+        // Undo operations: the max element was the last one replaced with the sum.
+        // Before that op: old_val = max - rest = max % rest (skip multiple steps).
+        while (pq.top() > 1) {
+            const long long a = pq.top();
             pq.pop();
-            if (elem == -1) continue;
 
-            if (current_sum > -elem) {
-                return false;
-            }
+            const long long rest = total - a;
 
-            if (current_sum <= -elem) {
-                const int temp = arr[i];
-                arr[i] = current_sum;
-                current_sum = 2 * current_sum - temp;
-                if (current_sum - arr[i] == previous_diff && previous_diff > 0) {
-                    if ((-elem - arr[i]) % previous_diff != 0) {
-                        return false;
-                    }
+            if (rest == 0 || a <= rest) return false;
 
-                    current_sum = -elem;
-                } else {
-                    if (previous_diff == 0) {
-                        return false;
-                    }
-                    previous_diff = current_sum - arr[i];
+            long long prev = a % rest;
+            if (prev == 0) prev = rest;
 
-                    if (current_sum < -elem) {
-                        pq.emplace(elem, i);
-                    }
-                }
-            }
+            total = rest + prev;
+            pq.push(prev);
         }
 
         return true;
@@ -58,21 +39,14 @@ public:
 
 int main() {
     auto s = Solution();
-    vector<int> target = {9, 3, 5};
-    cout << boolalpha << s.isPossible(target) << '\n'; //true
-
-    vector<int> target2 = {1, 1, 1, 2};
-    cout << boolalpha << s.isPossible(target2) << '\n'; //false
-
-    vector<int> target3 = {8, 5};
-    cout << boolalpha << s.isPossible(target3) << '\n'; //true
-
-    vector<int> target4 = {1, 1000000000};
-    cout << boolalpha << s.isPossible(target4) << '\n'; //true
-
-    vector<int> target5 = {1};
-    cout << boolalpha << s.isPossible(target5) << '\n'; //true
-
-    vector<int> target6 = {2};
-    cout << boolalpha << s.isPossible(target6) << '\n'; //true
+    cout << boolalpha;
+    cout << s.isPossible({9, 3, 5})       << '\n'; // true
+    cout << s.isPossible({1, 1, 1, 2})    << '\n'; // false
+    cout << s.isPossible({8, 5})          << '\n'; // true
+    cout << s.isPossible({1, 1000000000}) << '\n'; // true
+    cout << s.isPossible({1})             << '\n'; // true
+    cout << s.isPossible({2})             << '\n'; // false
+    cout << s.isPossible({2, 7})          << '\n'; // true
+    cout << s.isPossible({4, 10})         << '\n'; // false
+    cout << s.isPossible({1, 1, 61, 9, 17}) << '\n'; // true
 }
