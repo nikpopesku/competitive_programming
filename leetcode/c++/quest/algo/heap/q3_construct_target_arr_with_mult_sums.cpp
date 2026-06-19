@@ -6,36 +6,36 @@ using namespace std;
 
 class Solution {
 public:
-    bool isPossible(const vector<int> &target) {
-        priority_queue<long long> pq;
+    bool isPossible(vector<int>& target) {
         long long total = 0;
+        priority_queue<long long> pq;
 
-        for (int x : target) {
-            pq.push(x);
-            total += x;
+        for (auto &t: target) {
+            total += t;
+            pq.push(t);
         }
 
-        // Undo operations: the max element was the last one replaced with the sum.
-        // Before that op: old_val = max - rest = max % rest (skip multiple steps).
         while (pq.top() > 1) {
-            const long long a = pq.top();
+            const long long elem = pq.top();
             pq.pop();
 
-            const long long rest = total - a;
+            const long long rest = total - elem;
+            if (rest == 0 || elem <= rest) return false;
 
-            if (rest == 0 || a <= rest) return false;
+            long long prev = elem % rest;
 
-            long long prev = a % rest;
-            if (prev == 0) prev = rest;
+            if (elem % rest == 0) {
+                prev = rest;
+            }
 
             total = rest + prev;
             pq.push(prev);
         }
 
         return true;
+
     }
 };
-
 
 int main() {
     auto s = Solution();
