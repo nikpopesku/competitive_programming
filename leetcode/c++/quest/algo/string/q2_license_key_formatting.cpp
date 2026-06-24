@@ -6,25 +6,18 @@ using namespace std;
 class Solution {
 public:
     string licenseKeyFormatting(string s, int k) {
-        const int n = static_cast<int>(s.size());
-        string current_group;
-        string formatted_key;
+        string clean;
+        for (const char c : s)
+            if (c != '-') clean += toupper(static_cast<unsigned char>(c));
 
-        for (int i = n - 1; i >= 0; --i) {
-            if (s[i] == '-') continue;
-            if (current_group.size() == k) {
-                formatted_key.insert(0, current_group + (!formatted_key.empty() ? "-" : ""));
-                current_group = "";
-            }
-
-            current_group.insert(0, 1, static_cast<char>(toupper(static_cast<unsigned char>(s[i]))));
+        string result;
+        const int first = clean.size() % k;
+        if (first) result += clean.substr(0, first);
+        for (int i = first; i < static_cast<int>(clean.size()); i += k) {
+            if (!result.empty()) result += '-';
+            result += clean.substr(i, k);
         }
-
-        if (!current_group.empty()) {
-            formatted_key.insert(0, current_group + (!formatted_key.empty() ? "-" : ""));
-        }
-
-        return formatted_key;
+        return result;
     }
 };
 
