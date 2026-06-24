@@ -7,7 +7,7 @@ class Solution {
 public:
     string licenseKeyFormatting(string s, int k) {
         string clean;
-        for (const char c : s)
+        for (const char c: s)
             if (c != '-') clean += toupper(static_cast<unsigned char>(c));
 
         string result;
