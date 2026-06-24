@@ -17,7 +17,7 @@ public:
                 current_group = "";
             }
 
-            current_group.insert(0, to_string(toupper(s[i])));
+            current_group.insert(0, 1, static_cast<char>(toupper(static_cast<unsigned char>(s[i]))));
         }
 
         formatted_key.insert(0, current_group + (!formatted_key.empty() ? "-" : ""));
@@ -29,6 +29,6 @@ public:
 
 int main() {
     auto s = Solution();
-    cout <<  s.licenseKeyFormatting("5F3Z-2e-9-w", 4) << '\n'; //5F3Z-2E9W
-    cout <<  s.licenseKeyFormatting("2-5g-3-J", 2) << '\n'; //2-5G-3J
+    cout << s.licenseKeyFormatting("5F3Z-2e-9-w", 4) << '\n'; //5F3Z-2E9W
+    cout << s.licenseKeyFormatting("2-5g-3-J", 2) << '\n'; //2-5G-3J
 }
