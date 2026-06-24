@@ -10,7 +10,7 @@ public:
         string current_group;
         string formatted_key;
 
-        for (int i = n; i >= 0; --i) {
+        for (int i = n - 1; i >= 0; --i) {
             if (s[i] == '-') continue;
             if (current_group.size() == k) {
                 formatted_key.insert(0, current_group + (!formatted_key.empty() ? "-" : ""));
@@ -20,7 +20,9 @@ public:
             current_group.insert(0, 1, static_cast<char>(toupper(static_cast<unsigned char>(s[i]))));
         }
 
-        formatted_key.insert(0, current_group + (!formatted_key.empty() ? "-" : ""));
+        if (!current_group.empty()) {
+            formatted_key.insert(0, current_group + (!formatted_key.empty() ? "-" : ""));
+        }
 
         return formatted_key;
     }
