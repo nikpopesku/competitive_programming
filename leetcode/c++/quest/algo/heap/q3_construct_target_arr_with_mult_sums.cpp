@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool isPossible(vector<int>& target) {
+    bool isPossible(const vector<int>& target) {
         long long total = 0;
         priority_queue<long long> pq;
 
