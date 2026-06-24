@@ -13,14 +13,14 @@ public:
         for (int i = n; i >= 0; --i) {
             if (s[i] == '-') continue;
             if (current_group.size() == k) {
-                formatted_key = current_group + (formatted_key.size() > 0 ? "-" : "");
+                formatted_key.insert(0, current_group + (!formatted_key.empty() ? "-" : ""));
                 current_group = "";
             }
 
-            current_group = to_string(toupper(s[i])) + current_group;
+            current_group.insert(0, to_string(toupper(s[i])));
         }
 
-        formatted_key = current_group + (formatted_key.size() > 0 ? "-" : "");
+        formatted_key.insert(0, current_group + (!formatted_key.empty() ? "-" : ""));
 
         return formatted_key;
     }
