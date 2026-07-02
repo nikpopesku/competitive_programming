@@ -7,7 +7,7 @@ class Solution {
 public:
     string maskPII(string s) {
         if (const int at = get_at(s); at != -1) {
-            string masked_string = tolower(s[0]) + "*****" + tolower(s[at - 1]);
+            string masked_string = to_string(tolower(s[0])) + "*****" + to_string(tolower(s[at - 1]));
             for (int i = at + 1; i < static_cast<int>(s.size()); ++i) {
                 masked_string += tolower(s[i]);
             }
@@ -18,8 +18,6 @@ public:
         string masked_phone;
         for (int i = 0; i < static_cast<int>(s.size()); ++i) {
             if (s[i] == '+' || s[i] == '-' || s[i] == '(' || s[i] == ')' || s[i] == ' ') continue;
-
-
         }
 
         return masked_phone;
