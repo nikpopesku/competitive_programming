@@ -24,7 +24,7 @@ public:
     }
 
 private:
-    int get_at(string &s) {
+    int get_at(const string &s) {
         for (int i = 0; i < static_cast<int>(s.size()); ++i) {
             if (s[i] == '@') return i;
         }
