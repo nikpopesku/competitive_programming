@@ -11,6 +11,7 @@ public:
             masked_string += static_cast<char>(tolower(s[0]));
             masked_string += "*****";
             masked_string += static_cast<char>(tolower(s[at - 1]));
+            masked_string += '@';
             for (int i = at + 1; i < static_cast<int>(s.size()); ++i) {
                 masked_string += static_cast<char>(tolower(s[i]));
             }
@@ -19,16 +20,17 @@ public:
         }
 
         string masked_phone;
-        int counter = 0;
+        int counter = -1;
         const int n = static_cast<int>(s.size());
         for (int i = n - 1; i >= 0; --i) {
             if (s[i] == '+' || s[i] == '-' || s[i] == '(' || s[i] == ')' || s[i] == ' ') continue;
-            masked_phone += counter++ < 4 ? s[i] : '*';
-            if (counter == 4 || counter == 7) masked_phone += '-';
-            if (counter == 10 && i < n - 1) masked_phone += '-';
+            ++counter;
+            masked_phone += counter < 4 ? s[i] : '*';
+            if (counter == 3 || counter == 6) masked_phone += '-';
+            if (counter == 9 && i > 0) masked_phone += '-';
         }
 
-        if (counter > 10) masked_phone += '+';
+        if (counter >= 10) masked_phone += '+';
 
         reverse(masked_phone.begin(), masked_phone.end());
 
