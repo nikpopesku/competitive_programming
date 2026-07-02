@@ -14,6 +14,15 @@ public:
 
             return masked_string;
         }
+
+        string masked_phone;
+        for (int i = 0; i < static_cast<int>(s.size()); ++i) {
+            if (s[i] == '+' || s[i] == '-' || s[i] == '(' || s[i] == ')' || s[i] == ' ') continue;
+
+
+        }
+
+        return masked_phone;
     }
 
 private:
