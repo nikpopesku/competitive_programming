@@ -21,11 +21,16 @@ public:
 
         string masked_phone;
         int counter = -1;
-        const int n = static_cast<int>(s.size());
-        for (int i = n - 1; i >= 0; --i) {
-            if (s[i] == '+' || s[i] == '-' || s[i] == '(' || s[i] == ')' || s[i] == ' ') continue;
+        string stripped_string;
+
+        for (const auto &c: s) {
+            if (c == '+' || c == '-' || c == '(' || c == ')' || c == ' ') continue;
+            stripped_string += c;
+        }
+
+        for (int i = static_cast<int>(stripped_string.size()) - 1; i >= 0; --i) {
             ++counter;
-            masked_phone += counter < 4 ? s[i] : '*';
+            masked_phone += counter < 4 ? stripped_string[i] : '*';
             if (counter == 3 || counter == 6) masked_phone += '-';
             if (counter == 9 && i > 0) masked_phone += '-';
         }
@@ -56,4 +61,5 @@ int main() {
     cout << s.maskPII("10(234)567-890") << '\n'; //"***-***-7890"
     cout << s.maskPII("101(234)567-890") << '\n'; //"***-***-7890"
     cout << s.maskPII("1012(234)567-890") << '\n'; //"***-***-7890"
+    cout << s.maskPII("+46(427)55-7-41") << '\n'; //"***-***-5741"
 }
