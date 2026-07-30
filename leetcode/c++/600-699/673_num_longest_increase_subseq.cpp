@@ -10,7 +10,7 @@ struct Lis {
 
 class Bit {
 public:
-    explicit Bit(const int sz) : n(sz), tree(sz + 1) {
+    explicit Bit(int sz) : n(sz), tree(sz + 1) {
     }
 
     void update(int index, const int length, const int count) {
