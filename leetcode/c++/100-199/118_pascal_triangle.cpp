@@ -7,7 +7,8 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int> > generate(int numRows) {
-        vector<vector<int> > triangle(numRows);
+        vector<vector<int> > triangle;
+        triangle.reserve(numRows);
         for (int i = 0; i < numRows; ++i) {
             vector<int> current_row(i + 1, 0);
             for (int j = 0; j < i + 1; ++j) {
