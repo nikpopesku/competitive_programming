@@ -18,7 +18,7 @@ public:
                 }
             }
 
-            triangle.push_back(current_row);
+            triangle.push_back(std::move(current_row));
         }
 
         return triangle;
@@ -30,8 +30,8 @@ int main() {
     auto s = Solution();
     auto triangle = s.generate(5);
     for (int i = 0; i < triangle.size(); ++i) {
-        for (int j = 0; j < static_cast<int>(triangle.size()); ++j) {
-            printf("%d ", triangle[i][j]);
+        for (int j = 0; j < static_cast<int>(triangle[i].size()); ++j) {
+            cout << triangle[i][j] << ' ';
         }
         printf("\n");
     }
