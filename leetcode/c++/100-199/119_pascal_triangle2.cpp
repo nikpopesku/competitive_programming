@@ -18,7 +18,7 @@ public:
             previous_row = std::move(current_row);
         }
 
-        return current_row;
+        return previous_row;
     }
 };
 
