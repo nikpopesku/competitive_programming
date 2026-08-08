@@ -7,6 +7,22 @@ using namespace std;
 constexpr ll MD = 1e9 + 7;
 constexpr ll LIMIT = 1e6;
 
+ll exp(ll a, ll p) {
+    ll res = 1;
+
+    while (p > 0) {
+        if (p % 2 == 1) {
+            res = res * a;
+            --p;
+        } else {
+            a = a * a;
+            p >>= 1;
+        }
+    }
+
+    return res;
+}
+
 int main() {
     ll n;
     ll a, b;
@@ -24,6 +40,6 @@ int main() {
     for (int i = 0; i < n; ++i) {
         cin >> a >> b;
 
-        cout << fact[a] / (fact[b] * fact[a - b] % MD) % MD << '\n';
+        cout << fact[a] * (fact[exp(b, MD - 2)] * fact[exp(a - b, MD - 2)] % MD) % MD << '\n';
     }
 }
