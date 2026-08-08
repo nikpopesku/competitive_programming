@@ -12,13 +12,13 @@ constexpr int LIMIT = 100;
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        int response = 1;
+        long long response = 1;
 
         for (int i = 1; i < n; ++i) {
             response = response * (i + m - 1) / i;
         }
 
-        return response;
+        return static_cast<int>(response);
     }
 };
 
