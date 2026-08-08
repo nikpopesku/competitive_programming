@@ -1,16 +1,17 @@
 #include <iostream>
 #include <vector>
 
+#define ll long long
 
 using namespace std;
 
-constexpr int MD = 1337;
+constexpr ll MD = 1337;
 
 class Solution {
 public:
     int superPow(int a, vector<int> &b) {
-        int res = 1;
-        int aa = a;
+        ll res = 1;
+        ll aa = a;
 
 
         for (int i = 0; i < b.size(); ++i) {
@@ -29,7 +30,7 @@ public:
         }
 
 
-        return res;
+        return static_cast<int>(res);
     }
 };
 
