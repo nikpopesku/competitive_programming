@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <set>
 #include <stack>
 #include <unordered_map>
 #include <vector>
@@ -11,11 +12,23 @@ constexpr int LIMIT = 100;
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        vector<int> factorial(LIMIT, 1);
-        for (int i = 2; i < LIMIT; ++i) {
-            factorial[i] = factorial[i] * i;
-            if (factorial[i] >= 2e9) break;
+        int response = 1;
+        set<int> st;
+        for (int i = 2; i <= n; ++i) st.insert(i);
+
+        for (int i = m - 1; i <= m + n - 2; ++i) {
+            response *= i;
+            vector<int> dividers{};
+            for (auto &elem: st) {
+                if (response % elem == 0) {
+                    response /= elem;
+                    dividers.push_back(elem);
+                }
+            }
+            for (auto &elem: dividers) st.erase(elem);
         }
+
+        return response;
     }
 };
 
