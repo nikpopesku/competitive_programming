@@ -14,9 +14,9 @@ public:
     int uniquePaths(int m, int n) {
         int response = 1;
         set<int> st;
-        for (int i = 2; i <= n; ++i) st.insert(i);
+        for (int i = 2; i < n; ++i) st.insert(i);
 
-        for (int i = m - 1; i <= m + n - 2; ++i) {
+        for (int i = m; i <= m + n - 2; ++i) {
             response *= i;
             vector<int> dividers{};
             for (auto &elem: st) {
