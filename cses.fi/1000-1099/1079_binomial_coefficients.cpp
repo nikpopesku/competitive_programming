@@ -12,10 +12,10 @@ ll exp(ll a, ll p) {
 
     while (p > 0) {
         if (p % 2 == 1) {
-            res = res * a;
+            res = res * a % MD;
             --p;
         } else {
-            a = a * a;
+            a = a * a % MD;
             p >>= 1;
         }
     }
@@ -40,6 +40,7 @@ int main() {
     for (int i = 0; i < n; ++i) {
         cin >> a >> b;
 
+        cout << exp(b, MD - 2) << ' ' << exp(a - b, MD - 2) << '\n';
         cout << fact[a] * (fact[exp(b, MD - 2)] * fact[exp(a - b, MD - 2)] % MD) % MD << '\n';
     }
 }
