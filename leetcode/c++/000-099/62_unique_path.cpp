@@ -13,7 +13,7 @@ public:
 
         for (int row = 1; row < m; ++row) {
             for (int col = 1; col < n; ++col) {
-                dp[row][col] = min(dp[row - 1][col] + 1, dp[row][col - 1]);
+                dp[row][col] = dp[row - 1][col] + dp[row][col - 1];
             }
         }
 
@@ -24,18 +24,5 @@ public:
 int main() {
     auto s = Solution();
 
-    for (const vector<string> st = {"eat", "tea", "tan", "ate", "nat", "bat"}; auto &e: s.groupAnagrams(st)) {
-        for (auto &x: e) cout << x << ' ';
-        cout << '\n';
-    }
-
-    for (const vector<string> st2 = {""}; auto &e: s.groupAnagrams(st2)) {
-        for (auto &x: e) cout << x << ' ';
-        cout << '\n';
-    }
-
-    for (const vector<string> st3 = {""}; auto &e: s.groupAnagrams(st3)) {
-        for (auto &x: e) cout << x << ' ';
-        cout << '\n';
-    }
+    cout << s.uniquePaths(3, 7) << '\n';
 }
