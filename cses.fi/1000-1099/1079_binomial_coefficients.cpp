@@ -40,7 +40,6 @@ int main() {
     for (int i = 0; i < n; ++i) {
         cin >> a >> b;
 
-        cout << exp(b, MD - 2) << ' ' << exp(a - b, MD - 2) << '\n';
-        cout << fact[a] * (fact[exp(b, MD - 2)] * fact[exp(a - b, MD - 2)] % MD) % MD << '\n';
+        cout << fact[a] * (exp(fact[b], MD - 2) * exp(fact[a - b], MD - 2) % MD) % MD << '\n';
     }
 }
