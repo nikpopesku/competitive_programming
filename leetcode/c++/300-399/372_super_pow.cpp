@@ -12,11 +12,11 @@ public:
         int res = 1;
 
 
-        for (int & i : b) {
-            for (auto val: {10, i}) {
+        for (int i = 0; i < b.size(); ++i) {
+            for (auto val: {i != 0 ? 10 : 0, b[i]}) {
                 while (val > 0) {
                     if (val & 1) {
-                        res = res * val % MD;
+                        res = res * a % MD;
                         --val;
                     } else {
                         val >>= 1;
