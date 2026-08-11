@@ -33,4 +33,7 @@ int main() {
 
     vector<vector<int> > obstacleGrid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
     cout << s.uniquePathsWithObstacles(obstacleGrid) << '\n';
+
+    vector<vector<int> > obstacleGrid2 = {{0, 1}, {0, 0}};
+    cout << s.uniquePathsWithObstacles(obstacleGrid2) << '\n';
 }
