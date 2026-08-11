@@ -13,6 +13,9 @@ public:
 
         int n = obstacleGrid.size();
         int m = obstacleGrid[0].size();
+
+        if (obstacleGrid[n - 1][m - 1] == 1) return 0;
+
         vector dp(n, vector(m, 0));
         dp[0][0] = 1;
 
