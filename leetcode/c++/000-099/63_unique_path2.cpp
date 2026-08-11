@@ -11,8 +11,8 @@ public:
     int uniquePathsWithObstacles(vector<vector<int> > &obstacleGrid) {
         if (obstacleGrid[0][0] == 1) return 0;
 
-        int n = obstacleGrid.size();
-        int m = obstacleGrid[0].size();
+        const int n = obstacleGrid.size();
+        const int m = obstacleGrid[0].size();
 
         if (obstacleGrid[n - 1][m - 1] == 1) return 0;
 
