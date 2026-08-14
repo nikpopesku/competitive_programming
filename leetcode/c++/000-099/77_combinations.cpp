@@ -35,6 +35,5 @@ private:
 int main() {
     auto s = Solution();
 
-    vector<vector<int> > obstacleGrid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
     print("{}", s.combine(4, 2));
 }
