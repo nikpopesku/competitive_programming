@@ -35,5 +35,6 @@ private:
 int main() {
     auto s = Solution();
 
-    print("{}", s.combine(4, 2));
+    print("{}\n", s.combine(4, 2));
+    print("{}\n", s.combine(1, 1));
 }
