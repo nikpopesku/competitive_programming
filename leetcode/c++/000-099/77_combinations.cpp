@@ -15,7 +15,7 @@ public:
     }
 
 private:
-    void backtrack(int start, int n, int k, vector<vector<int> > &combinations, vector<int> &current_combination) {
+    void backtrack(int start, const int n, const int k, vector<vector<int> > &combinations, vector<int> &current_combination) {
         if (current_combination.size() == k) {
             combinations.push_back(current_combination);
 
@@ -26,7 +26,7 @@ private:
 
         for (int i = start; i < n; ++i) {
             current_combination.push_back(i);
-            backtrack(start + 1, n, k, combinations, current_combination);
+            backtrack(i + 1, n, k, combinations, current_combination);
             current_combination.pop_back();
         }
     }
