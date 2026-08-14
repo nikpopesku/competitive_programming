@@ -22,7 +22,7 @@ private:
             return;
         }
 
-        if (n - start + 1 < k) return;
+        if (n - start + 1 < k - current_combination.size()) return;
 
         for (int i = start; i <= n; ++i) {
             current_combination.push_back(i);
