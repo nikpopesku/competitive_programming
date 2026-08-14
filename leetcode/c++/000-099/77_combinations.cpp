@@ -24,7 +24,7 @@ private:
 
         if (n - start + 1 < k) return;
 
-        for (int i = start; i < n; ++i) {
+        for (int i = start; i <= n; ++i) {
             current_combination.push_back(i);
             backtrack(i + 1, n, k, combinations, current_combination);
             current_combination.pop_back();
