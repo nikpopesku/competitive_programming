@@ -29,7 +29,7 @@ int main() {
 
     cin >> n >> m;
 
-    vector<ll> fact(2e6 + 1, 1);
+    vector<ll> fact(n + m, 1);
     for (ll i = 1; i < fact.size(); ++i) {
         fact[i] = fact[i - 1] * i % MD;
     }
