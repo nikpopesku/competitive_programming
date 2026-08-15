@@ -41,7 +41,7 @@ int main() {
 
     ll response = fact[s.size()];
 
-    for (const ll i : occ) {
+    for (const ll i: occ) {
         if (i > 1) {
             response = response * pow(fact[i], MD - 2) % MD;
         }
