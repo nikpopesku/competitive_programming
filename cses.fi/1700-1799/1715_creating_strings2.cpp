@@ -10,7 +10,7 @@ ll pow(ll a, ll b) {
     ll response = 1;
     while (b > 0) {
         if (b % 2 == 1) {
-            response *= a % MD;
+            response = response * a % MD;
             --b;
         } else {
             a = a * a % MD;
@@ -43,7 +43,7 @@ int main() {
 
     for (const ll i : occ) {
         if (i > 1) {
-            response *= pow(fact[i], MD - 2) % MD;
+            response = response * pow(fact[i], MD - 2) % MD;
         }
     }
 
