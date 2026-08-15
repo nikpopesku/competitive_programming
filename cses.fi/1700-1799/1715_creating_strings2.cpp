@@ -2,16 +2,18 @@
 
 using namespace std;
 
-constexpr int MD = 1e9 + 7;
+#define ll long long
 
-int pow(int a, int b) {
-    int response = 1;
+constexpr ll MD = 1e9 + 7;
+
+ll pow(ll a, ll b) {
+    ll response = 1;
     while (b > 0) {
         if (b % 2 == 1) {
-            response *= a;
+            response *= a % MD;
             --b;
         } else {
-            a = a * a;
+            a = a * a % MD;
             b >>= 1;
         }
     }
@@ -25,10 +27,25 @@ int main() {
     cout.tie(nullptr);
 
     vector occ(26, 0);
-    vector<int> fact(1e6, 0);
+    vector<ll> fact(1e6 + 1, 1);
+
+    for (int i = 1; i < fact.size(); ++i) {
+        fact[i] = fact[i - 1] * i % MD;
+    }
+
     string s;
     cin >> s;
-    for (char i : s) {
+    for (const char i: s) {
         ++occ[i - 'a'];
     }
+
+    int response = fact[s.size()];
+
+    for (const int i : occ) {
+        if (i > 1) {
+            response *= pow(fact[i], MD - 2) % MD;
+        }
+    }
+
+    cout << response << '\n';
 }
