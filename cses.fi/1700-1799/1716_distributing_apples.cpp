@@ -28,12 +28,13 @@ int main() {
     ll n, m;
 
     cin >> n >> m;
+
     vector<ll> fact(2e6 + 1, 1);
     for (ll i = 1; i < fact.size(); ++i) {
         fact[i] = fact[i - 1] * i % MD;
     }
 
-    const ll response = fact[n + m - 1] * pow(fact[m], MD - 2) * pow(fact[n - 1], MD - 2);
+    const ll response = (fact[n + m - 1] * pow(fact[m], MD - 2) % MD) * pow(fact[n - 1], MD - 2) % MD;
 
 
     cout << response;
