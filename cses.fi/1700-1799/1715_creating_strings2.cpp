@@ -6,6 +6,21 @@ using namespace std;
 
 constexpr ll MD = 1e9 + 7;
 
+ll pow(ll a, ll b) {
+    ll response = 1;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            response *= a % MD;
+            --b;
+        } else {
+            a = a * a % MD;
+            b >>= 1;
+        }
+    }
+
+    return response;
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -28,7 +43,7 @@ int main() {
 
     for (const ll i : occ) {
         if (i > 1) {
-            response /= fact[i] % MD;
+            response *= pow(fact[i], MD - 2) % MD;
         }
     }
 
