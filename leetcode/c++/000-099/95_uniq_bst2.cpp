@@ -39,6 +39,8 @@ private:
     void backtrack(vector<TreeNode *> &v, TreeNode *cur_variant, int start, int n) {
         if (start == n) {
             v.push_back(cur_variant);
+
+            return;
         }
 
         cur_variant->left = new TreeNode(start + 1);
