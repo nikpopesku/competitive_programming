@@ -29,21 +29,30 @@ class Solution {
 public:
     vector<TreeNode *> generateTrees(int n) {
         vector<TreeNode *> v;
-        TreeNode *cur_variant {};
-        backtrack(v, cur_variant, 0, n);
+        TreeNode *cur_variant{};
+        backtrack(v, cur_variant, 1, n);
 
         return v;
     }
 
 private:
     void backtrack(vector<TreeNode *> &v, TreeNode *cur_variant, int start, int n) {
+        if (start == n) {
+            v.push_back(cur_variant);
+        }
+
+        cur_variant->left = new TreeNode(start + 1);
+        backtrack(v, cur_variant, start + 1, n);
+        cur_variant->left = nullptr;
+
+        cur_variant->right = new TreeNode(start + 1);
+        backtrack(v, cur_variant, start + 1, n);
+        cur_variant->right = nullptr;
     }
 };
 
 int main() {
     auto s = Solution();
 
-    print("{}\n", s.numTrees(3)); //5
-    print("{}\n", s.numTrees(1)); //1
-    print("{}\n", s.numTrees(19)); //1767263190
+    print("{}\n", s.generateTrees(3));
 }
