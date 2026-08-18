@@ -30,7 +30,8 @@ class Solution {
 public:
     vector<TreeNode *> generateTrees(int n) {
         vector<TreeNode *> v;
-        TreeNode *cur_variant{};
+        TreeNode t;
+        TreeNode *cur_variant = &t;
         backtrack(v, cur_variant, 1, n);
 
         return v;
