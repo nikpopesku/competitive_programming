@@ -40,7 +40,7 @@ public:
 private:
     void backtrack(vector<TreeNode *> &v, TreeNode *cur_variant, int start, int n) {
         if (start == n) {
-            v.push_back(cur_variant);
+            v.push_back(cloneTree(cur_variant));
 
             return;
         }
@@ -52,6 +52,11 @@ private:
         cur_variant->right = new TreeNode(start + 1);
         backtrack(v, cur_variant, start + 1, n);
         cur_variant->right = nullptr;
+    }
+
+    TreeNode* cloneTree(TreeNode *node) {
+        if (!node) return nullptr;
+        return new TreeNode(node->val, cloneTree(node->left), cloneTree(node->right));
     }
 };
 
