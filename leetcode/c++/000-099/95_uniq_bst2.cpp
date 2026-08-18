@@ -29,34 +29,33 @@ struct TreeNode {
 class Solution {
 public:
     vector<TreeNode *> generateTrees(int n) {
-        vector<TreeNode *> v;
-        TreeNode t;
-        TreeNode *cur_variant = &t;
-        backtrack(v, cur_variant, 1, n);
+        if (n == 0) {
+            return {};
+        }
 
-        return v;
+        return build(1, n);
     }
 
 private:
-    void backtrack(vector<TreeNode *> &v, TreeNode *cur_variant, int start, int n) {
-        if (start == n) {
-            v.push_back(cloneTree(cur_variant));
-
-            return;
+    vector<TreeNode *> build(int start, int end) {
+        if (start > end) {
+            return {nullptr};
         }
 
-        cur_variant->left = new TreeNode(start + 1);
-        backtrack(v, cur_variant, start + 1, n);
-        cur_variant->left = nullptr;
+        vector<TreeNode *> result;
 
-        cur_variant->right = new TreeNode(start + 1);
-        backtrack(v, cur_variant, start + 1, n);
-        cur_variant->right = nullptr;
-    }
+        for (int r = start; r <= end; ++r) {
+            vector<TreeNode *> lefts = build(start, r - 1);
+            vector<TreeNode *> rights = build(r + 1, end);
 
-    TreeNode* cloneTree(TreeNode *node) {
-        if (!node) return nullptr;
-        return new TreeNode(node->val, cloneTree(node->left), cloneTree(node->right));
+            for (TreeNode *l: lefts) {
+                for (TreeNode *rt: rights) {
+                    result.push_back(new TreeNode(r, l, rt));
+                }
+            }
+        }
+
+        return result;
     }
 };
 
