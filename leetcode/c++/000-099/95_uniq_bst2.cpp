@@ -28,34 +28,8 @@ struct TreeNode {
 
 class Solution {
 public:
-    vector<TreeNode *> generateTrees(int n) {
-        if (n == 0) {
-            return {};
-        }
+    vector<TreeNode*> generateTrees(int n) {
 
-        return build(1, n);
-    }
-
-private:
-    vector<TreeNode *> build(int start, int end) {
-        if (start > end) {
-            return {nullptr};
-        }
-
-        vector<TreeNode *> result;
-
-        for (int r = start; r <= end; ++r) {
-            vector<TreeNode *> lefts = build(start, r - 1);
-            vector<TreeNode *> rights = build(r + 1, end);
-
-            for (TreeNode *l: lefts) {
-                for (TreeNode *rt: rights) {
-                    result.push_back(new TreeNode(r, l, rt));
-                }
-            }
-        }
-
-        return result;
     }
 };
 
