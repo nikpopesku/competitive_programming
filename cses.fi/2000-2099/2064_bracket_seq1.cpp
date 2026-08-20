@@ -27,9 +27,9 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    ll k, n;
+    ll k;
     cin >> k;
-    n = k / 2;
+    const ll n = k / 2;
 
     vector<ll> fact(2 * n + 1, 1);
     for (ll i = 2; i < 2 * n + 1; ++i) fact[i] = i * fact[i - 1] % MD;
