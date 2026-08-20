@@ -29,6 +29,11 @@ int main() {
 
     ll k;
     cin >> k;
+    if (k % 2 == 1) {
+        cout << 0;
+        return 0;
+    }
+
     const ll n = k / 2;
 
     vector<ll> fact(2 * n + 1, 1);
