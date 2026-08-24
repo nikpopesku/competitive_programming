@@ -9,20 +9,28 @@ using namespace std;
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
-        return gen(1, n);
+        vector<string> combination{};
+        gen(n, n, combination, "");
+
+        return combination;
     }
 
 private:
-    void gen(int start, int end) {
-        if (start > end) return;
+    void gen(const int left, const int right, vector<string> &combination, const string &cur_comb) {
+        if (left > right) return;
 
-        vector<string> combination{};
+        if (left == 0 && right == 0) {
+            combination.push_back(cur_comb);
 
-        for (int r = start; r <= end; ++r) {
-            for (int i = 1; i <= r - 1; ++i) {
-
-            }
+            return;
         }
+
+
+        if (left > 0) {
+            gen(left - 1, right, combination, cur_comb + '(');
+        }
+
+        gen(left, right - 1, combination, cur_comb + ')');
     }
 };
 
