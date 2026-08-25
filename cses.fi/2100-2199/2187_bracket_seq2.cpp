@@ -54,5 +54,8 @@ int main() {
         return 0;
     }
 
-    cout << pow(2, min(left, right)) << '\n';
+    vector<ll> fact(left + right + 1, 1);
+    for (ll i = 2; i < fact.size(); ++i) fact[i] = i * fact[i - 1] % MD;
+
+    cout << fact[left + right] * pow(fact[left], MD - 2) % MD * pow(fact[right], MD - 2) % MD << '\n';
 }
