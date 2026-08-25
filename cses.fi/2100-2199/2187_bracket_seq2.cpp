@@ -49,7 +49,7 @@ int main() {
         }
     }
 
-    if (left < right) {
+    if (right < left) {
         cout << "0\n";
         return 0;
     }
