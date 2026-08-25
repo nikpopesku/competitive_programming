@@ -39,13 +39,19 @@ int main() {
 
     ll left = n / 2;
     ll right = n / 2;
-
+    ll balance = 0;
 
     for (const char i: k) {
         if (i == '(') {
             --left;
+            ++balance;
         } else {
             --right;
+            --balance;
+        }
+        if (balance < 0) {
+            cout << "0\n";
+            return 0;
         }
     }
 
@@ -57,6 +63,11 @@ int main() {
     vector<ll> fact(left + right + 1, 1);
     for (ll i = 2; i < fact.size(); ++i) fact[i] = i * fact[i - 1] % MD;
 
-    cout << ((fact[left + right] * pow(fact[left], MD - 2) % MD * pow(fact[right], MD - 2) % MD - fact[left + right] *
-            pow(fact[left - 1], MD - 2) % MD * pow(fact[right + 1], MD - 2) % MD) % MD + MD) % MD << '\n';
+    ll total = fact[left + right] * pow(fact[left], MD - 2) % MD * pow(fact[right], MD - 2) % MD;
+    ll bad = 0;
+    if (left > 0) {
+        bad = fact[left + right] * pow(fact[left - 1], MD - 2) % MD * pow(fact[right + 1], MD - 2) % MD;
+    }
+
+    cout << ((total - bad) % MD + MD) % MD << '\n';
 }
