@@ -33,6 +33,7 @@ int main() {
     cin >> k;
 
     if (n % 2 == 1) {
+        cout << "0\n";
         return 0;
     }
 
@@ -46,6 +47,11 @@ int main() {
         } else {
             --right;
         }
+    }
+
+    if (left < right) {
+        cout << "0\n";
+        return 0;
     }
 
     cout << pow(2, min(left, right)) << '\n';
