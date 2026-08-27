@@ -28,7 +28,7 @@ public:
             }
         }
 
-        return num_ways == 1 && cur_seats < 2 ? 0 : num_ways;
+        return cur_seats < 2 ? 0 : static_cast<int>(num_ways);
     }
 };
 
