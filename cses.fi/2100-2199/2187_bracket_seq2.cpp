@@ -9,12 +9,14 @@ constexpr ll MD = 1e9 + 7;
 ll pow(ll a, ll b) {
     ll result = 1;
 
-    if (b % 2 == 1) {
-        result = result * a % MD;
-        --b;
-    } else {
-        b >>= 1;
-        a = a * a % MD;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            result = result * a % MD;
+            --b;
+        } else {
+            b >>= 1;
+            a = a * a % MD;
+        }
     }
 
     return result;
