@@ -56,11 +56,11 @@ int main() {
     ll total = 0;
     ll bad = 0;
     vector<ll> fact(left + right + 1, 1);
-    for (ll i = 2; i <= left + right; ++i) fact[i] = i * fact[i - 1];
+    for (ll i = 2; i <= left + right; ++i) fact[i] = i * fact[i - 1] % MD;
 
     total = fact[left + right] * pow(fact[left], MD - 2) % MD * pow(fact[right], MD - 2) % MD;
 
-    if (left > 1) {
+    if (left > 0) {
         bad = fact[left + right] * pow(fact[left - 1], MD - 2) % MD * pow(fact[right + 1], MD - 2) % MD;
     }
 
