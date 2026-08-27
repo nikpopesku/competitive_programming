@@ -1,8 +1,4 @@
 #include <iostream>
-#include <ranges>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
 using namespace std;
 
@@ -32,16 +28,16 @@ public:
             }
         }
 
-        cout << num_ways << '\n';
+        return num_ways == 1 && cur_seats < 2 ? 0 : num_ways;
     }
 };
 
 int main() {
     Solution s;
 
-    s.numberOfWays("SSPPSPS"); //3
-    s.numberOfWays("PPSPSP"); //1
-    s.numberOfWays("S"); //0
+    cout << s.numberOfWays("SSPPSPS") << '\n'; //3
+    cout << s.numberOfWays("PPSPSP") << '\n'; //1
+    cout << s.numberOfWays("S") << '\n'; //0
 
     return 0;
 }
