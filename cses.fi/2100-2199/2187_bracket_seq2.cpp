@@ -35,9 +35,8 @@ int main() {
         return 0;
     }
 
-    ll left, right;
-    left = n / 2;
-    right = n / 2;
+    ll left = n / 2;
+    ll right = n / 2;
 
     for (const auto i: k) {
         if (i == '(') {
