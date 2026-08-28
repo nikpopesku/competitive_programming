@@ -2,20 +2,22 @@
 #include <iostream>
 #include <vector>
 
+#define ll long long
+
 using namespace std;
 
 class Solution {
 public:
-    int numDistinct(string s, string t) {
-        const int n = static_cast<int>(s.size());
-        const int m = static_cast<int>(t.size());
+    ll numDistinct(string s, string t) {
+        const ll n = static_cast<ll>(s.size());
+        const ll m = static_cast<ll>(t.size());
 
-        vector dp(n + 1, vector(m + 1, 0));
-        for (int i = 0; i <= n; ++i) dp[i][0] = 1;
-        for (int i = 1; i <= m; ++i) dp[0][i] = 0;
+        vector dp(n + 1, vector<ll>(m + 1, 0));
+        for (ll i = 0; i <= n; ++i) dp[i][0] = 1;
+        for (ll i = 1; i <= m; ++i) dp[0][i] = 0;
 
-        for (int i = 1; i <= n; ++i) {
-            for (int j = 1; j <= m; ++j) {
+        for (ll i = 1; i <= n; ++i) {
+            for (ll j = 1; j <= m; ++j) {
                 if (s[i - 1] == t[j - 1]) {
                     dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
                 } else {
