@@ -32,7 +32,7 @@ int main() {
 
     for (ll i = 1; i <= n / k; ++i) {
         num_stable_arr = (num_stable_arr + fact[n / i - 1] * pow(fact[k - 1], MD - 2) % MD * pow(
-                              fact[n / i - k + 1], MD - 2) % MD) % MD;
+                              fact[n / i - k], MD - 2) % MD) % MD;
     }
 
     cout << num_stable_arr << '\n';
