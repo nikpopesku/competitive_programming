@@ -13,8 +13,8 @@ int main() {
 
     ll n;
     cin >> n;
-    vector<ll> d(n + 1, 1);
-    d[2] = 2;
+    vector<ll> d(n + 1, 0);
+    d[2] = 1;
 
     for (ll i = 3; i <= n; ++i) {
         d[i] = (i - 1) * ((d[i - 2] + d[i - 1]) % MD) % MD;
