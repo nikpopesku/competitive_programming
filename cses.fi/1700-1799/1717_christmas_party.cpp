@@ -17,7 +17,7 @@ int main() {
     d[2] = 2;
 
     for (ll i = 3; i <= n; ++i) {
-        d[n] = (n - 1) * ((d[n - 2] + d[n - 1]) % MD) % MD;
+        d[i] = (i - 1) * ((d[i - 2] + d[i - 1]) % MD) % MD;
     }
 
     cout << d[n] << '\n';
