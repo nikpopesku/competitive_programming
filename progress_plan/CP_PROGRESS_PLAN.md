@@ -145,6 +145,17 @@
   - Day 7 ⏭️ Skipped (Contest-Level Hard): LC 456, LC 962, LC 1840, CF 1893D, CF 1265E, SPOJ POSTERIN
   - Key insight: Greater→Decreasing stack, Smaller→Increasing stack; contribution counting for subarray problems; time-tracking for LC 2289
   - Fun Level: 8/10
+- **Binomial Coefficients & Catalan Numbers 7-Day Plan (2026-09-03)**: ✅ Days 1-7 Complete (2 optional/stretch items skipped)
+  - Day 1 ✅: LC 118, LC 119, CSES 1079 (Pascal's triangle attempt, TLE as expected)
+  - Day 2 ✅: CSES 1079 (solved with factorial + modular inverse), LC 1922, LC 372
+  - Day 3 ✅: LC 62 (DP + combinatorial), LC 63, LC 77
+  - Day 4 ✅: CSES 1715 (Creating Strings II), CSES 1716 (Distributing Apples)
+  - Day 5 ✅: LC 96, LC 95, CSES 2064 (Bracket Sequences I)
+  - Day 6 ✅: LC 22, CSES 2187 (Bracket Sequences II), LC 2147
+  - Day 7 ✅: LC 115, CF 1359E (Modular Stability), CSES 1717 (Christmas Party — derangements)
+  - Day 7 ⏭️ Skipped: LC 1099 (premium/paid, inaccessible), AtCoder ABC 235F (stretch goal)
+  - Key insight: Pascal's triangle → factorial + inverse-factorial precomputation is the standard large-n/mod-prime upgrade path; Catalan numbers are binomial coefficients in disguise (BSTs, bracket sequences, triangulations all share Cₙ); derangements follow D(n) = (n-1)(D(n-1) + D(n-2)) from inclusion-exclusion, with D(0)=1, D(1)=0 as the base cases to get right
+  - Fun Level: 9/10
 
 ### Weekly Checklist
 ```
